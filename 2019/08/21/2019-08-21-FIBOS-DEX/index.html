@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Tiny Hill">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="简述FIBOS DEX撮合模型"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Tiny Hill&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Tiny Hill's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home-bg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">简述FIBOS DEX撮合模型</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qiushaoxi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/mailto:x@qsx.io">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Tiny Hill</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-08-21</span>
+            <span class="time">08:16:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a> <a class="tag" href="/tags/FIBOS/">#FIBOS</a> <a class="tag" href="/tags/DEX/">#DEX</a> <a class="tag" href="/tags/uniswap/">#uniswap</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>说说FIBOS DEX如果结合uniswap和挂单的撮合模型</p>
+<a id="more"></a>
+<p>在之前的文章中，已经介绍过 FIBOS 和 FIBOS 的异构跨链体系。随着 FIBOS DEX 的正式上线，我们来聊一聊 FIBOS DEX 到底有什么特别之处。</p>
+<h2 id="传统交易形式"><a href="#传统交易形式" class="headerlink" title="传统交易形式"></a>传统交易形式</h2><p>一般的交易所，包括目前绝大部分的交易所，都是采用「挂单/吃单」的撮合模型。用户可以选择指定的价格买入/卖出特定资产，如果没有匹配的价格，那么这个交易需求会保存在「订单簿」上，这个行为称为「挂单」。直到有用户选择「市价买入」或者挂一个新单能够匹配目前「订单簿」的价格，那么就会把之前的挂单与新的挂单进行撮合成交，这个行为称为「吃单」。</p>
+<p>这种交易撮合模式是符合直觉的，也是目前主流的交易撮合模式。那么这样的模式有什么问题呢？</p>
+<p>我们在一些小的交易所或者小的币种的对一对经常会看到，如果挂单的「深度」不够，如果你现在就想梭哈或者抛售，往往不可能，如果深度不够，可以会「拉爆」或者「砸穿」。这是一些新手大户会遇到的问题，如果习惯了市价吃单，或者挂错价格，那可能会得到意想不到的后果。</p>
+<p>对于买卖方意愿都不足的市场，挂单的撮合模型存在「流动性」问题。</p>
+<p>那么，除了挂单的撮合模型，还有哪些撮合模型呢？</p>
+<h2 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h2><p>这个撮合模型我们在之前的文章中也有提到过，它是一个自动成交的交易模型。你不需要等人和你进行价格匹配，立马就可以成交。所有的交易都是「吃单」的行为，那么吃谁的单？以什么价格成交呢？</p>
+<p>在 uniswap 中，有底池的概念，底池中分别有交易对的两个币种，底池就是交易对手方。那么又是以什么价格同底池进行交易呢？</p>
+<p>底池中两个币种的比例就是目前的价格，比如底池用有 10 个 USDT，1000 个 FO，那么目前 FO 的价格就是 0.01 USDT。那么当你进行购买操作的时候，是不是都以 0.01 的价格成交呢？并不是这样的。</p>
+<p>在公式中，要求交易前后有一个等式必须成立：</p>
+<p><strong>交易前底池币种 A _ 交易前底池币种 B = 交易后底池币种 A _ 交易后底池币种 B</strong></p>
+<p>假如我们用 A 来购买 B，进一步推导：</p>
+<p><strong>交易前底池币种 A _ 交易前底池币种 B = （交易前底池币种 A+购买所付出的币种 A）_（交易前底池币种 B-买到的币种 B）</strong></p>
+<p>再进行简化：</p>
+<p><strong>买到的币种 B = 交易前底池币种 B -（交易前底池币种 A * 交易前底池币种 B）/（交易前底池币种 A+购买所付出的币种 A）</strong></p>
+<p>是不是已经晕了？我们举个例子。</p>
+<p>底池用有 10 个 USDT，1000 个 FO，我用 1USDT 来购买 FO。</p>
+<p>买到的 FO = 1000 - 10*1000/（10+1） ≈ 90.9，成交的价格为 0.011。</p>
+<p>是的，价格不是 0.01 而是 0.011。这就是 uniswap 的特点，每次交易都会造成价格的变化，如果买了价格就会变多，如果卖了价格就会变低。而交易金额相对底仓越多，就会造成越大的价格变化。</p>
+<p>为了避免价格的剧烈变动，就必须保持底仓的金额足够多。除了交易之外，还可以对底仓进行加仓或者减仓。使用当前的市价，为底仓注入同等价值的代币。这样，在不变动价格的情况下，就可以增加底仓的金额。这样，一般的交易者就可以用更好的价格进行交易。</p>
+<p>而底仓的资金也都是来自用户，那用户把资金加入底仓有什么好处呢？底仓用户可以瓜分交易的手续费。那么底仓资金有什么风险呢？如果市场形成单边行情，比如一直涨，那么底仓中的 USDT 就会增多，而 FO 就会减少。如果哪天你要从底仓中拿出你的资金，你会发现，USDT 多了而 FO 少了，而按照目前的价格，多出来的 USDT 买不到少掉的 FO，其实你就是变相在价格升高的过程中把 FO 卖给其他用户。</p>
+<p>uniswap 模型适合希望立即成交的用户，但是问题是，你无法用你期待的价格进行成交。</p>
+<h2 id="FIBOS-DEX"><a href="#FIBOS-DEX" class="headerlink" title="FIBOS DEX"></a>FIBOS DEX</h2><p>说到这里，终于可以介绍 FIBOS DEX 了，它结合了 uniswap 和挂单两种撮合模型。如果你愿意等，你可以挂单，等待特定的价格进行撮合。如果你不愿意等，希望立即成交，你也可以通过 uniswap 模型，直接与底仓交易。除此之外，你还可以充值底仓，通过提供流动性来赚取手续费。</p>
+<p>除此之外，FIBOS DEX 其实是一个「协议」而不是具体的交易所，因为所有的交易对都是用户自行创建，底层也是用户来进行维护。交易手续费归属底仓用户，没有所谓的项目方收取手续费。更重要的是，资产完全由用户自己保管，不存在交易所被盗的风险。</p>
+<p>文章原创首发<a href="https://lichang.io/articleDetail/563924" target="_blank" rel="noopener">力场</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

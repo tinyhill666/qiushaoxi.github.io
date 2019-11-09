@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Tiny Hill">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="本地Docker Hub配置"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Tiny Hill&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Tiny Hill's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home-bg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">本地Docker Hub配置</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qiushaoxi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/mailto:x@qsx.io">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Tiny Hill</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-12-05</span>
+            <span class="time">08:16:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/docker/">#docker</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>网上配置贴非常多，但是因为系统版本和docker版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x</p>
+</blockquote>
+<h1 id="启动-regisrty-容器"><a href="#启动-regisrty-容器" class="headerlink" title="启动 regisrty 容器"></a>启动 regisrty 容器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5000:5000 -v /mnt/date/registry:/var/lib/registry registry</span><br></pre></td></tr></table></figure>
+
+<p>-d后台运行</p>
+<p>-p指定端口</p>
+<p>-v把registry的镜像路径/var/lib/registry映射到本机的/mnt/date/registry</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 0.0.0.0:5000/v2/_catalog</span><br></pre></td></tr></table></figure>
+<p>返回目前regisrty存在的image，不报错说明服务启动成功。</p>
+<h1 id="修改docker-https配置"><a href="#修改docker-https配置" class="headerlink" title="修改docker https配置"></a>修改docker https配置</h1><p>因为docker镜像的push和pull默认进过https传输，本地的registry并没有启动https的连接，所以要修改部分配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
+<p>打开docker配置文件，需要root权限</p>
+<p>在ExecStart参数最后加上 –insecure-registry [registry_ip]:[registry_port],如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock  --insecure-registry 192.168.23.113:5000</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>重新加载docker.service文件的配置，并重启docker服务。</p>
+<h1 id="推送镜像到本地的hub"><a href="#推送镜像到本地的hub" class="headerlink" title="推送镜像到本地的hub"></a>推送镜像到本地的hub</h1><p>首先要tag现有的image</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag hyperledger/fabric-kafka 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
+<p>然后推送image到本地镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
+
+<h1 id="从本地hub拉取镜像"><a href="#从本地hub拉取镜像" class="headerlink" title="从本地hub拉取镜像"></a>从本地hub拉取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Tiny Hill">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="EOSIO随机数的一种实现"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Tiny Hill&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Tiny Hill's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home-bg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">EOSIO随机数的一种实现</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qiushaoxi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/mailto:x@qsx.io">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Tiny Hill</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-03-11</span>
+            <span class="time">08:16:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a> <a class="tag" href="/tags/EOS/">#EOS</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>最近帮助Enumivo（基于EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。</p>
+<h2 id="合约随机逻辑："><a href="#合约随机逻辑：" class="headerlink" title="合约随机逻辑："></a>合约随机逻辑：</h2><ol>
+<li><p>用户发起领取交易，领取投票奖励，同时合约账户转1ENU到奖池，同时发起一笔（0-24小时随机值）的延迟交易。</p>
+</li>
+<li><p>延迟交易被触发，检查奖池金额，达到了10ENU，就把10ENU都奖励给当前用户。</p>
+</li>
+</ol>
+<h2 id="随机机制："><a href="#随机机制：" class="headerlink" title="随机机制："></a>随机机制：</h2><p>0-24小时这个时间的随机数，就使用之前常用的利用block prefix值来生成，这个不是随机的唯一部分。因为就算用户可以控制随机数来控制延迟时间，也没有办法控制延迟交易发生时奖池的金额，奖池的金额完全是根据其他用户的随机行为来进行累积的。利用这样的随机数方案，或许能够开发一款公平的Lottery Dapp。</p>
+<h2 id="可能的攻击方式："><a href="#可能的攻击方式：" class="headerlink" title="可能的攻击方式："></a>可能的攻击方式：</h2><p>构造交易控制随机数控制延时时间，在延迟交易发生前利用别的账户发起交易，将奖池金额构造到满足开奖条件。像本应用这样金额比较小的开奖，应该没有人会费时费力做这个事情。当奖金足够诱人的时候，就有人和你竞争，增加了开奖的不确定性。</p>
+<p>欢迎拍砖。</p>
+<h2 id="其他信息"><a href="#其他信息" class="headerlink" title="其他信息"></a>其他信息</h2><ul>
+<li><p>合约交易历史：<a href="http://enumivo.qsx.io/search?q=claimlottery" target="_blank" rel="noopener">http://enumivo.qsx.io/search?q=claimlottery</a></p>
+</li>
+<li><p>合约开源地址：<a href="https://github.com/ENU-Zion/claimforvote" target="_blank" rel="noopener">https://github.com/ENU-Zion/claimforvote</a></p>
+</li>
+</ul>
+<h2 id="Enumivo"><a href="#Enumivo" class="headerlink" title="Enumivo"></a>Enumivo</h2><p>Enumivo 是一个以UBI（全民基本收入）为目标的区块链项目</p>
+<p>白皮书：</p>
+<p><a href="https://enumivo.org/whitepapers/whitepaper_cn.pdf" target="_blank" rel="noopener">https://enumivo.org/whitepapers/whitepaper_cn.pdf</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

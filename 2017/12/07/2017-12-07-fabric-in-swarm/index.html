@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Tiny Hill">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="在 Swarm 集群环境部署 Fabric 区块链"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Tiny Hill&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Tiny Hill's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home-bg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">在 Swarm 集群环境部署 Fabric 区块链</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qiushaoxi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/mailto:x@qsx.io">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Tiny Hill</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-12-07</span>
+            <span class="time">08:16:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Hyperledger/">#Hyperledger</a> <a class="tag" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a> <a class="tag" href="/tags/fabric/">#fabric</a> <a class="tag" href="/tags/docker/">#docker</a> <a class="tag" href="/tags/swarm/">#swarm</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>fabric 部署本来就是一件麻烦的事情，如果还涉及到多机环境部署那就更加的麻烦了。<br>因为 fabric 推荐部署在docker环境中，那很自然地想到通过集群部署工具来部署fabric。本文就通过例子来说明如何在 Swarm 集群中部署 fabric 区块链网络。</p>
+<p>还有之前看到过张海宁的<a href="https://github.com/hainingzhang/articles/blob/master/fabric_multi_nodes/FabricMultiNodev2-3.pdf" target="_blank" rel="noopener">k8s部署方案</a>，供大家参考。</p>
+<p>文中所有IP地址,如192.168.1.93，都需要根据你本地的情况输入。</p>
+<p>本例子github地址：<a href="https://github.com/qiushaoxi/fabric-in-swarm.git" target="_blank" rel="noopener">fabric-in-swarm</a> , 欢迎star.</p>
+<h2 id="架构说明"><a href="#架构说明" class="headerlink" title="架构说明"></a>架构说明</h2><p><img src="/img/fabric-in-swarm/architect.png" alt="架构图"></p>
+<p>docker swarm 会在各台机器之上 创建一个 overlay 虚拟网络，通过swarm启动的container可以跨主机互相访问。</p>
+<p>docker service 是 swarm 编排的最小单位，可以配置运行的镜像、网络端口、环境变量等，一个service 可以启动多个container进行负载均衡。不过因为区块链中每个节点都有不同的配置，本例子中每个service只跑一个container。后续可以继续探讨启动多个container的场景。</p>
+<p>docker stack 则是一组 service 的合集， 每个stack会默认创建一个 default 的 overlay 网络，其中还可以再配置其他网络。 stack 本意是技术栈，通过在 stack 中配置前后端、中间件等 service，可以实现一键部署整个技术栈。本例子的stack 中，配置了1个orderer、4个peer和1个cli一共6个service。后续可以根据需要加入kafka、couchdb等service。</p>
+<p>swarm 集群会对外暴露一个IP，通过端口映射，可以访问到具体 service 的端口。</p>
+<h2 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h2><h3 id="Swarm-集群搭建"><a href="#Swarm-集群搭建" class="headerlink" title="Swarm 集群搭建"></a>Swarm 集群搭建</h3><h4 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h4><p>如果还没有安装 docker ，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br></pre></td></tr></table></figure>
+<h4 id="在-leader-创建-Swarm-集群"><a href="#在-leader-创建-Swarm-集群" class="headerlink" title="在 leader 创建 Swarm 集群"></a>在 leader 创建 Swarm 集群</h4><p>选择一台机器作为 leader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init --advertise-addr 192.168.1.93</span><br></pre></td></tr></table></figure>
+<p>这里的ip是整个swarm集群对外的ip，所有swarm集群里面的容器都通过这个ip对外提供服务。</p>
+<p>执行返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">To add a worker to this swarm, run the following command:</span><br><span class="line"> </span><br><span class="line">    docker swarm join /</span><br><span class="line">    --token SWMTKN-1-16kit6dksvrqilgptjg5pvu0tvo5qfs8uczjq458lf9mul41hc-dzvgu0h3qngfgihz4fv0855bo /</span><br><span class="line">    192.168.1.93:2377</span><br><span class="line"> </span><br><span class="line">To add a manager to this swarm, run &apos;docker swarm join-token manager&apos; and follow the instructions.</span><br></pre></td></tr></table></figure>
+<h4 id="其他机器加入-Swarm-集群"><a href="#其他机器加入-Swarm-集群" class="headerlink" title="其他机器加入 Swarm 集群"></a>其他机器加入 Swarm 集群</h4><p>根据第一步返回的命令加入集群：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker swarm join /</span><br><span class="line">--token SWMTKN-1-16kit6dksvrqilgptjg5pvu0tvo5qfs8uczjq458lf9mul41hc-dzvgu0h3qngfgihz4fv0855bo /</span><br><span class="line">192.168.1.93:2377</span><br></pre></td></tr></table></figure>
+<p>所有其他机器执行命令后，在leader执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker node ls</span><br></pre></td></tr></table></figure>
+<p>如果能看到所有机器，说明操作成功，Swarm集群搭建完毕。</p>
+<h4 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h4><p>这里推荐一个开源的docker后台管理工具<a href="https://portainer.io/" target="_blank" rel="noopener">portainer</a>，也支持Swarm集群的管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker service create \</span><br><span class="line">--name portainer \</span><br><span class="line">--publish 9000:9000 \</span><br><span class="line">--replicas=1 \</span><br><span class="line">--constraint &apos;node.role == manager&apos; \</span><br><span class="line">--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">portainer/portainer \</span><br><span class="line">-H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure>
+<p>执行这个命令就可以在Swarm中启动，然后访问 Swarm_IP:9000 就可以进行管理后台，初次需要设置密码。</p>
+<h3 id="NFS服务器搭建"><a href="#NFS服务器搭建" class="headerlink" title="NFS服务器搭建"></a>NFS服务器搭建</h3><p>因为集群容器需要读取一些文件，所以需要搭一个文件服务器。</p>
+<h4 id="安装nfs-kernel-server"><a href="#安装nfs-kernel-server" class="headerlink" title="安装nfs-kernel-server"></a>安装nfs-kernel-server</h4><p>可以在任意台机器安装，本例子就在 swarm manager的机器上安装的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install nfs-common</span><br><span class="line">apt install nfs-kernel-server</span><br></pre></td></tr></table></figure>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/exports</span><br></pre></td></tr></table></figure>
+<p>修改内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/nfs *(rw,sync,no_root_squash)</span><br></pre></td></tr></table></figure>
+<p>各段表达的意思如下，根据实际进行修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/nfs   ：共享的目录</span><br><span class="line">*       ：指定哪些用户可以访问</span><br><span class="line">            *  所有可以ping同该主机的用户</span><br><span class="line">            192.168.1.*  指定网段，在该网段中的用户可以挂载</span><br><span class="line">            192.168.1.12 只有该用户能挂载</span><br><span class="line">(ro,sync,no_root_squash)：  权限</span><br><span class="line">        ro : 只读</span><br><span class="line">        rw : 读写</span><br><span class="line">        sync :  同步</span><br><span class="line">        no_root_squash: 不降低root用户的权限</span><br><span class="line">    其他选项man 5 exports 查看</span><br></pre></td></tr></table></figure>
+<h4 id="创建目录并重启nfs服务"><a href="#创建目录并重启nfs服务" class="headerlink" title="创建目录并重启nfs服务"></a>创建目录并重启nfs服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /nfs</span><br><span class="line">service nfs-kernel-server restart</span><br></pre></td></tr></table></figure>
+<p>到此，nfs的服务就搭建好了。</p>
+<h4 id="连接挂载nfs服务器"><a href="#连接挂载nfs服务器" class="headerlink" title="连接挂载nfs服务器"></a>连接挂载nfs服务器</h4><p>执行 showmount -e + 主机IP 测试和nfs服务器是否能够联通</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install nfs-common</span><br><span class="line"></span><br><span class="line">showmount -e 192.168.1.93</span><br></pre></td></tr></table></figure>
+<p>如果看到返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Export list for 192.168.1.93:</span><br><span class="line">/nfs *</span><br></pre></td></tr></table></figure>
+<p>说明文件服务器是ok的。</p>
+<p>将该目录挂载到本地，每个机器都需要挂载，包括管理节点的机器。为的是保证每台机器都能够从/mnt/nfs/目录获取数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mnt/nfs</span><br><span class="line">mount 192.168.1.93:/nfs  /mnt/nfs</span><br></pre></td></tr></table></figure>
+<p>访问本地的/mnt/nfs目录，就可访问服务端共享的目录了。</p>
+<h2 id="部署-Fabric"><a href="#部署-Fabric" class="headerlink" title="部署 Fabric"></a>部署 Fabric</h2><h3 id="部署文件准备"><a href="#部署文件准备" class="headerlink" title="部署文件准备"></a>部署文件准备</h3><p>进入nfs目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/nfs</span><br></pre></td></tr></table></figure>
+<p>从github获取示例脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/qiushaoxi/fabric-in-swarm.git</span><br><span class="line">cd fabric-in-swarm</span><br></pre></td></tr></table></figure>
+<p>每个节点都需要有fabric相关的docker image，我例子使用fabric 1.0.0版本。</p>
+<p>如果还没有，需要在每台机器执行下载脚本，拉取image</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash download-dockerimages.sh</span><br></pre></td></tr></table></figure>
+<p>如果觉得下载速度太慢，可以使用阿里云镜像加速，或者在本地部署docker hub，具体方法可以参考<a href="http://qiushaoxi.com/2017/12/05/Docker-Hub-Configration/" target="_blank" rel="noopener">本地Docker Hub配置</a>.</p>
+<h3 id="执行部署命令"><a href="#执行部署命令" class="headerlink" title="执行部署命令"></a>执行部署命令</h3><p>设置相关环境变量，FABRIC_IP是你Swarm管理节点的ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export FABRIC_IP=192.168.1.93</span><br></pre></td></tr></table></figure>
+<p>执行docker stack deploy命令启动stack，docker-compose-cli.yaml是docker-compose v3 配置文件，配置了相关的service。</p>
+<p>示例的配置参考fabric官方e2e_cli，1个orderer，4个peer，一个cli。命令最后的 e2e 是stack的名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd e2e_cli</span><br><span class="line">docker stack deploy -c docker-compose-cli.yaml e2e</span><br></pre></td></tr></table></figure>
+<p>docker-compose文件中配置了cli容器会自动执行脚本，执行创建通道、加入通道等一系列操作。</p>
+<p>docker service 会根据每台机器的性能和负载，选择启动container的机器。</p>
+<p><img src="/img/fabric-in-swarm/cluster.png" alt="运行情况"></p>
+<h3 id="查看执行结果"><a href="#查看执行结果" class="headerlink" title="查看执行结果"></a>查看执行结果</h3><p>执行下面命令，查询执行日志。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service logs -f e2e_cli</span><br></pre></td></tr></table></figure>
+
+<p>如果看不到内容，（我在本地可以用这个命令，阿里云看不到，原因不明）。执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service ps e2e_cli</span><br></pre></td></tr></table></figure>
+<p>可以看到cli容器的id和运行在哪台机器上。</p>
+<p>到运行cli容器的机器上执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs [cli_container_id]</span><br></pre></td></tr></table></figure>
+<p>查看执行日志。</p>
+<p>如果最后出现 END-E2E，则说明执行成功。</p>
+<h3 id="移除-stack"><a href="#移除-stack" class="headerlink" title="移除 stack"></a>移除 stack</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stack rm e2e</span><br></pre></td></tr></table></figure>
+<p>就可以停止并移除所有配置启动的service。</p>
+<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><p>查看stack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stack ls</span><br></pre></td></tr></table></figure>
+<p>查看service</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service ls</span><br></pre></td></tr></table></figure>
+<p>因为运行chaincode的container是通过unix://var/run/docker.sock启动的，不是由swarm启动的，所以通过docker service 是看不到的。需要到具体执行的机器上执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>才能看到。</p>
+<p>而且，就算是停止了stack也不会自动删除这些container，不过因为peer停止了，这些chaincode的container也会自动停止。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="http://www.jianshu.com/p/748416621013" target="_blank" rel="noopener">Docker Compose 配置文件详解（V3）</a></p>
+<p><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">官方接口文档</a></p>
+<p><a href="http://blog.csdn.net/u014743697/article/details/53004638" target="_blank" rel="noopener">多主机网络下 Docker Swarm 模式的容器管理</a></p>
+<p><a href="https://www.cnblogs.com/MoreExcellent/p/7222895.html" target="_blank" rel="noopener">ubuntu 16.04 nfs服务的搭建</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

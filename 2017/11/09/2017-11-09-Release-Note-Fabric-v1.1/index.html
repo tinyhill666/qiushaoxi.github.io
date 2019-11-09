@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Tiny Hill">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Fabric v1.1 版本新功能简析"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Tiny Hill&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Tiny Hill's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/home-bg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Fabric v1.1 版本新功能简析</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qiushaoxi" target="_blank" rel="noopener">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/mailto:x@qsx.io">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Tiny Hill</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-09</span>
+            <span class="time">08:16:08</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Hyperledger/">#Hyperledger</a> <a class="tag" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a> <a class="tag" href="/tags/fabric/">#fabric</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<p>本文内容参考官方版本说明：<br><a href="https://github.com/hyperledger/fabric/releases/tag/v1.1.0-preview" target="_blank" rel="noopener">v1.1.0-preview</a> ，简单看了一下变动，后续如果有时间会写更详细的内容。</p>
+</blockquote>
+<p>官方已经发布v1.1.0-preview版本，V1.1正式版也不远了，来看看这个版本都增加了哪些功能。</p>
+<h2 id="FAB-2331-Node-js-Chaincode-支持"><a href="#FAB-2331-Node-js-Chaincode-支持" class="headerlink" title="FAB-2331 - Node.js Chaincode 支持"></a><a href="https://jira.hyperledger.org/browse/FAB-2331" target="_blank" rel="noopener">FAB-2331</a> - Node.js Chaincode 支持</h2><p>增加了Node.js开发Chaincode的支持，原先支持Golang和java开发Chaincode，具体内容可以关注<a href="https://github.com/hyperledger/fabric-chaincode-node" target="_blank" rel="noopener">fabric-chaincode-node</a>项目，开发模型和go差不多，通过shim接口调用。</p>
+<h2 id="FAB-5363-Node-js-SDK-Connection-Profile"><a href="#FAB-5363-Node-js-SDK-Connection-Profile" class="headerlink" title="FAB-5363 - Node.js SDK Connection Profile"></a><a href="https://jira.hyperledger.org/browse/FAB-5363" target="_blank" rel="noopener">FAB-5363</a> - Node.js SDK Connection Profile</h2><p>通过配置文件的方式管理SDK的连接。参考原先官方的供的node sdk的sample，也有通过配置文件的方式配置连接地址，但是在sdk的外层。目前看，这个功能应该是sdk自带的属性。</p>
+<p>配置文件中包含peer节点、orderer节点的地址，和一些加密信息的配置，基本上使用中所需要的配置内容都集中到这个文件中，通过sdk接口可以方便读取。</p>
+<p>以下是简单的例子：</p>
+<p>var client = Client.loadFromConfig(json)</p>
+<p>var mychannel = client.getChannel(‘mychannel’)</p>
+<p>mychannel.sendTransactionProposal()</p>
+<p>mychannel.sendTransaction()</p>
+<h2 id="FAB-830-Encryption-library-for-chaincode"><a href="#FAB-830-Encryption-library-for-chaincode" class="headerlink" title="FAB-830 - Encryption library for chaincode"></a><a href="https://jira.hyperledger.org/browse/FAB-830" target="_blank" rel="noopener">FAB-830</a> - Encryption library for chaincode</h2><p>给Chaincode增加了加密套件，这个东西还是比较重要的，方便用户对上链数据进行灵活的加密。</p>
+<h2 id="FAB-5346-Attribute-based-Access-Control"><a href="#FAB-5346-Attribute-based-Access-Control" class="headerlink" title="FAB-5346 - Attribute-based Access Control"></a><a href="https://jira.hyperledger.org/browse/FAB-5346" target="_blank" rel="noopener">FAB-5346</a> - Attribute-based Access Control</h2><p>基于属性的权限控制。简单说就是在Ecert中加入特定的属性，让chaincode可以根据这个属性进行更加丰富的权限控制。</p>
+<h2 id="FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info"><a href="#FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info" class="headerlink" title="FAB-6089 - Chaincode APIs to retrieve creator cert info"></a><a href="https://jira.hyperledger.org/browse/FAB-6089" target="_blank" rel="noopener">FAB-6089</a> - Chaincode APIs to retrieve creator cert info</h2><p>新增了GetCreator接口方法用来获取交易发起者的信息，方便进行权限控制。</p>
+<h2 id="FAB-6421-Performance-improvements"><a href="#FAB-6421-Performance-improvements" class="headerlink" title="FAB-6421 - Performance improvements"></a><a href="https://jira.hyperledger.org/browse/FAB-6421" target="_blank" rel="noopener">FAB-6421</a> - Performance improvements</h2><p>性能优化</p>
+<h2 id="bug修复和其他修改请看Change-Log"><a href="#bug修复和其他修改请看Change-Log" class="headerlink" title="bug修复和其他修改请看Change Log"></a>bug修复和其他修改请看<a href="https://github.com/hyperledger/fabric/blob/master/CHANGELOG.md#v110-preview" target="_blank" rel="noopener">Change Log</a></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
