@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="不要接盘！不要接盘！不要接盘！重要的事情说三遍  EIDOS空投已经成为这个周末币圈最热的话题之一，“0成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致EOS主网CPU价格不断攀升，大量用户的EOS资源都不够去发起一笔交易。 关于EOS的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为EOS主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。 EI">
+<meta name="keywords" content="区块链,EIDOS,ENU,AP,enumivo,aiden pearce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EIDOS撸爆EOS，说说我和ENU以及AP的故事">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;2019-11-04-ENU-AP-ME&#x2F;index.html">
+<meta property="og:site_name" content="Tiny Hill&#39;s Blog">
+<meta property="og:description" content="不要接盘！不要接盘！不要接盘！重要的事情说三遍  EIDOS空投已经成为这个周末币圈最热的话题之一，“0成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致EOS主网CPU价格不断攀升，大量用户的EOS资源都不够去发起一笔交易。 关于EOS的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为EOS主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。 EI">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-09T00:43:05.591Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/04/2019-11-04-ENU-AP-ME/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>EIDOS撸爆EOS，说说我和ENU以及AP的故事 | Tiny Hill's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tiny Hill's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">区块链小山的博客</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/2019-11-04-ENU-AP-ME/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tiny Hill">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny Hill's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EIDOS撸爆EOS，说说我和ENU以及AP的故事
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-04 10:01:00" itemprop="dateCreated datePublished" datetime="2019-11-04T10:01:00+08:00">2019-11-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-09 08:43:05" itemprop="dateModified" datetime="2019-11-09T08:43:05+08:00">2019-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链轶事</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>不要接盘！不要接盘！不要接盘！重要的事情说三遍</p>
+</blockquote>
+<p>EIDOS空投已经成为这个周末币圈最热的话题之一，“0成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致EOS主网CPU价格不断攀升，大量用户的EOS资源都不够去发起一笔交易。</p>
+<p>关于EOS的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为EOS主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p>
+<p>EIDOS是Enumivo（ENU）创始人aiden pearce（AP）启动的新项目。</p>
+<p>在这篇文章里，我要讲讲我和ENU以及AP之前的故事。</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>时间要回到2018年，EOS主网启动的时候，当时我作为EOSeco节点的负责人，全程参与了EOS主网启动的过程，同时开发了一款EOS区块链浏览器EOSeco explorer。现在你可能不知道，但是最开始的时候，它还是服务了一些用户，特别是在主网激活阶段，通过离线签名的方式，为用户提供安全的投票操作。后来因为投资人套现EOS，我们的节点也失去了竞争力，逐渐退出EOS节点竞选。在这个过程中，认识了非常多EOS圈子的技术大牛。</p>
+<p>后来有个朋友和我说了ENU，是一个EOS的复制链，还没有浏览器工具，让我把浏览器迁移过去。于是，我就在ENU上面搭了一个节点，并把浏览器迁移了过去。这个行为得到社区非常热烈的反馈，用户自发众筹感谢浏览器，这让我有些激动。之后，我发现ENU社区除了用户活跃之外，也不乏优秀的社区开发者，他们可能原来都不是币圈的用户，而是因为UBI的理念参与到这个项目。这里还要特别推荐一下ENU上面的一个好玩的趣味dAPP - 站队  。在EOS全都是菠菜dAPP的时候，站队玩出了一股清流。因为EOS主网启动社区准备了很久，而ENU链，甚至比EOS主网更早的启动。这些都让我对这个项目产生了一些感情，并且在之后的时间里不断地参与到这个项目当中。</p>
+<p>在这之后，我直接推动了TP钱包支持ENU，在后续的ENU钱包和交易所的对接过程中，我几乎是主力的社区技术人员。</p>
+<h2 id="我对AP的印象"><a href="#我对AP的印象" class="headerlink" title="我对AP的印象"></a>我对AP的印象</h2><p>熟悉了ENU中国社区之后，我也和AP取得了直接的联系。AP是一个匿名的人，你只能在Telegram中找到他，他应该是BTC和ETH的早期投资者，从和他的接触过程中，你能感受到他是一个偏“左”的人，这从ENU项目所要做的UBI（全面基本收入）就可以看出来。其实我自己是个偏“右”的人，不认为这件事情真的能做成，但是这不妨碍我参与其中。经过一段时间的接触，发现ENU这个项目除了AP自己，没有全职的开发人员，只是在网上雇佣了几个开发者，包括AP自己都不算全职。所以除了跟EOS的版本更新，几乎没有更多的开发量。而我也作为社区开发者，也帮助做了投票激励和一版UBI的原型。但是总体来说，项目的进展非常缓慢，而UBI的大饼遥遥无期。</p>
+<h2 id="AP与社区的矛盾"><a href="#AP与社区的矛盾" class="headerlink" title="AP与社区的矛盾"></a>AP与社区的矛盾</h2><p>与此形成对比的是，ENU中国社区，靠着社区的力量，以众筹等形式，相继上线Cointiger、AEX和Biki等交易所，这其中David贡献功不可没。这在我看来，真的可以说的币圈的一股清流。</p>
+<p>好景不长，项目进展缓慢，AP却持续套现来支付开发费用，这导致社区对AP产生了很大的意见。而AP一边，一直诟病节点的中心化，对于中国社区把持超级节点非常不满。两边的矛盾不断积累，矛盾的爆发只需要一个火星。</p>
+<p>而这个导火索就是AEX的交易量，AP怀疑AEX在刷量，认为这会误导持币者，要求AEX下架ENU，同时指出由5个节点都是由一个人在控制，要求他退出节点。社区和AP已然不可调和，而AP最终选择了最激烈的，甚至是行为艺术的方式退出社区。</p>
+<p>目前，ENU社区也是在苦苦支撑，节点的利润完全不能覆盖成本，为了对社区的一点感情，我也是在持续维持着浏览器。其实，我并不是ENU的受益者，在最开始轰轰烈烈的空投以及后来的爆炒都与我无关，所以AP的退出，和ENU的接近归零对我来说也是很受伤。但是更受伤的是高位接盘的人，ENU最高的时候到过1块钱，而目前的价格是1分钱。</p>
+<p>AP很任性，也很有煽动性，在社区里，还有人在给他造神，甚至说他是中本聪。</p>
+<p>持币者很受伤，甚至是一些大佬。而因为匿名的原因，也没有人找得到他，也没法维权。</p>
+<p>这就是我和ENU以及AP的一些往事，文笔不行，权当记录。这也是我对EIDOS潜在接盘者所能做的一些警告，希望能够帮到他们。</p>
+<p>关于我对EIDOS和CODEX去中心化交易所的看法，我会再写一篇，敬请期待。</p>
+<p>文章原创首发<a href="https://lichang.io/articleDetail/909965" target="_blank" rel="noopener">力场</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
+              <a href="/tags/EIDOS/" rel="tag"># EIDOS</a>
+              <a href="/tags/ENU/" rel="tag"># ENU</a>
+              <a href="/tags/AP/" rel="tag"># AP</a>
+              <a href="/tags/enumivo/" rel="tag"># enumivo</a>
+              <a href="/tags/aiden-pearce/" rel="tag"># aiden pearce</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/08/21/2019-08-21-FIBOS-DEX/" rel="next" title="简述FIBOS DEX撮合模型">
+                  <i class="fa fa-chevron-left"></i> 简述FIBOS DEX撮合模型
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/04/2019-11-04-EIDOS-FOMO/" rel="prev" title="EIDOS，一场早就分出胜负的游戏">
+                  EIDOS，一场早就分出胜负的游戏 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我对AP的印象"><span class="nav-number">2.</span> <span class="nav-text">我对AP的印象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AP与社区的矛盾"><span class="nav-number">3.</span> <span class="nav-text">AP与社区的矛盾</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tiny Hill</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiushaoxi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;qiushaoxi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:x@qsx.io" title="E-Mail &amp;rarr; mailto:x@qsx.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tiny Hill</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
