@@ -188,6 +188,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/2019-11-21-EASY-PAY-EOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tiny Hill">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny Hill's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/2019-11-21-EASY-PAY-EOS/" class="post-title-link" itemprop="url">为EOS小白用户准备的应用：Easy Pay</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-21 11:14:32 / 修改时间：12:58:55" itemprop="dateCreated datePublished" datetime="2019-11-21T11:14:32+08:00">2019-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>普通用户是否需要了解 EOS 的资源模型？</p>
+</blockquote>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>EIDOS 的空投导致整个 EOS 网络交易费用高企，大量用户抵押 EOS 不够发起交易，用户怨声载道。是否 EOS 的资源模型设计存在问题，又有什么办法可以解决这样的问题？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/21/2019-11-21-EASY-PAY-EOS/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/2019-11-09-DEFI-SHORT-SWAP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -211,10 +291,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-09 09:12:46 / 修改时间：10:44:08" itemprop="dateCreated datePublished" datetime="2019-11-09T09:12:46+08:00">2019-11-09</time>
+              <time title="创建时间：2019-11-09 09:12:46" itemprop="dateCreated datePublished" datetime="2019-11-09T09:12:46+08:00">2019-11-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 12:55:18" itemprop="dateModified" datetime="2019-11-21T12:55:18+08:00">2019-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -243,88 +329,14 @@
 </blockquote>
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。</p>
 <p>本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。</p>
-<p>该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空中楼阁，看不到实现的可能。但是这个机制用在去中心化交易所的做空机制上，可能是个不错的尝试。</p>
-<h1 id="triswap"><a href="#triswap" class="headerlink" title="triswap"></a>triswap</h1><p>uniswap 是一个经过时间考验，非常成熟好用的去中心化交易协议。它通过交易对的底仓形成价格和深度，为交易者提供即刻的流动性。</p>
-<p>假设一个基于 uniswap 模型的 EOS/USDT 交易对，在交易对中引入一个做空权益代币，short-EOS，简称 sEOS。在对底仓注入交易对两边的资金同时，根据 EOS/sEOS 的价格发行相同价值的做空权益 sEOS。让交易对中的 EOS、sEOS 和 USDT 形成三角的 uniswap，这里简称 triswap。</p>
-<p>3 个币种会自然形成 3 个交易对，分别是 EOS/USDT、sEOS/USDT、EOS/sEOS，根据 uniswap 的模型，价格来源于币种在底仓中余额的比值，而这 3 个交易对共享底仓中 3 个余额。所以每个交易对发生交易后，对其他 2 个交易对的价格也会产生直接的影响。</p>
-<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><ul>
-<li>初始 0 底仓，交易对补充 10000 USDT 和 5000 EOS 形成交易对。</li>
-<li>EOS/sEOS 交易对在实际情况中会有市场价格，在初始阶段，需要对 sEOS 拟定一个价格</li>
-<li>例子假设 EOS/sEOS = 1/10</li>
-<li>补充底仓的同时新增发行同等价值的 50000 sEOS</li>
-<li>初始价格：EOS：2 U ， sEOS：0.2 U</li>
-<li>以下举例都由最初的底仓展开，交易资金量为底仓 1%</li>
-<li>3 个交易对有 6 中交易行为</li>
-</ul>
-<h3 id="USDT-gt-EOS"><a href="#USDT-gt-EOS" class="headerlink" title="USDT-&gt;EOS"></a>USDT-&gt;EOS</h3><p>100 USDT -&gt; 49.5 EOS</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 2.04， 上涨 4%</li>
-<li>sEOS/USDT： 0.202，上涨 2% （同时上涨）</li>
-<li>sEOS/EOS： 0.099，下降 1%</li>
-</ul>
-<h3 id="EOS-gt-USDT"><a href="#EOS-gt-USDT" class="headerlink" title="EOS-&gt;USDT"></a>EOS-&gt;USDT</h3><p>50 EOS -&gt; 99.01 USDT</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 1.96， 下跌 4%</li>
-<li>sEOS/USDT： 0.198， 下跌 2% （同时下跌）</li>
-<li>sEOS/EOS： 0.101， 上涨 1%</li>
-</ul>
-<h3 id="USDT-gt-sEOS"><a href="#USDT-gt-sEOS" class="headerlink" title="USDT-&gt;sEOS"></a>USDT-&gt;sEOS</h3><p>100 USDT -&gt; 495.05 sEOS</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 2.02， 上涨 2%</li>
-<li>sEOS/USDT：0.0204，上涨 4%</li>
-<li>sEOS/EOS： 0.101， 上涨 1%</li>
-</ul>
-<h3 id="sEOS-gt-USDT"><a href="#sEOS-gt-USDT" class="headerlink" title="sEOS-&gt;USDT"></a>sEOS-&gt;USDT</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p>
-<p>500 sEOS -&gt; 99.01 USDT</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 1.98， 下跌 2%</li>
-<li>sEOS/USDT：0.196，下跌 4%</li>
-<li>sEOS/EOS： 0.099，下降 1%</li>
-</ul>
-<h3 id="EOS-gt-sEOS"><a href="#EOS-gt-sEOS" class="headerlink" title="EOS-&gt;sEOS"></a>EOS-&gt;sEOS</h3><p>50 EOS-&gt; 495.05 sEOS</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 1.98 ，下降 1%</li>
-<li>sEOS/USDT：0.202，上涨 1%</li>
-<li>sEOS/EOS： 0.102，上涨 2%</li>
-</ul>
-<h3 id="sEOS-gt-EOS-卖出平空"><a href="#sEOS-gt-EOS-卖出平空" class="headerlink" title="sEOS-&gt;EOS 卖出平空"></a>sEOS-&gt;EOS 卖出平空</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p>
-<p>500 sEOS-&gt; 49.5 EOS</p>
-<p>交易后：</p>
-<ul>
-<li>EOS/USDT： 2.02 ， 上涨 1%</li>
-<li>sEOS/USDT：0.0198 ，下跌 1%</li>
-<li>sEOS/EOS： 0.098 ， 下跌 2%</li>
-</ul>
-<h1 id="做空逻辑"><a href="#做空逻辑" class="headerlink" title="做空逻辑"></a>做空逻辑</h1><ul>
-<li>认为 EOS 价格会下跌，用 EOS 买入 sEOS</li>
-<li>EOS/USDT 价格下跌，普通用户、套利用户会卖出 EOS</li>
-<li>如果交易 EOS-&gt;USDT，sEOS/USDT 价格下跌幅度为 EOS/USDT 的一半，sEOS 相对 EOS 的价格上涨</li>
-<li>如果交易 EOS-&gt;sEOS，同样能够使 EOS/USDT 下降以匹配价差，此时，sEOS 相对 EOS 价格的涨幅是交易额的 2 倍</li>
-<li>认为下跌行情结束，用 sEOS 买回 EOS，可以获得相对购买时更多的 EOS</li>
-</ul>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul>
-<li>sEOS 无需其他资产抵押</li>
-<li>sEOS 没有爆仓</li>
-<li>sEOS 只有最后兑现成 EOS 才能完成做空的盈利，sEOS 对 USDT 不会产生做空盈利</li>
-<li>这是一个赚币的做空方案</li>
-<li>无杠杆，波动相对小</li>
-</ul>
-<h1 id="产品化方案"><a href="#产品化方案" class="headerlink" title="产品化方案"></a>产品化方案</h1><ul>
-<li>在 uniswap 的币币兑换的基础上增加“币做空”</li>
-<li>“币做空”交易 EOS/sEOS</li>
-<li>考虑到 sEOS/USDT 对于 EOS/USDT 并不是反向的作用，可以禁用 USDT-&gt;sEOS ，只允许 sEOS-&gt;USDT 的权益兑现</li>
-</ul>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>全文以 USDT、EOS、sEOS 举例，可以适用于任何交易对。但是在 unsiwap 多交易对拼接形成的交易对中，可能效果会不同。</p>
-<p>sEOS 的发行是对底仓注资的同时。所以，在底仓取回的同时，也会根据当时的 EOS/sEOS 价格销毁相同价值的 sEOS</p>
-<p>EOS/sEOS 的价格，是一个市场博弈的结果，对于什么价格是合理的，我目前也没有想通。如果想通了可以再写一篇。</p>
-<p>这个想法还是很粗糙，欢迎大家一起讨论。</p>
-<p>文章原创首发<a href="https://lichang.io/articleDetail/931431" target="_blank" rel="noopener">力场</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/09/2019-11-09-DEFI-SHORT-SWAP/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -374,7 +386,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 09:04:57" itemprop="dateModified" datetime="2019-11-09T09:04:57+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:54:53" itemprop="dateModified" datetime="2019-11-21T12:54:53+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -400,45 +412,17 @@
 
       
           <blockquote>
-<p>EIDOS - ENUMIVO IS DEAD, OH SHIT! </p>
+<p>EIDOS - ENUMIVO IS DEAD, OH SHIT!</p>
 </blockquote>
-<h1 id="0撸的魅力"><a href="#0撸的魅力" class="headerlink" title="0撸的魅力"></a>0撸的魅力</h1><p>一个币，开盘就上线Bithumb，完全没有付上币费，Hoo、MXC、BKEX、BIKI、Newdex、WhaleEX。。。。抢着上架。这就是热度的价值，这就是0撸的魅力。</p>
-<p>币圈最不缺的就是羊毛党。</p>
-<p>EIDOS这个项目，只要你往合约地址转账任意金额的EOS，你就能获得1/10000新增产量的EIDOS，并且EOS也会还给你。</p>
-<p>EIDOS总量10亿，1年半发行完，20%的发行量给团队。</p>
-<p>11月1号下午4点开始，当天早上在区块律动和dapp社区的宣传下，引发了大量的关注。</p>
-<p>很多用户都去撸了，很快，EOS的交易量就上来了，很快EOS的CPU价格就被推高了，普通用户的可怜的0.1 EOS的资源抵押可能连1次交易都不能发起。</p>
-<p>这个时候轮到MYKEY表演了，MYKEY是一个EOS的（半）中心化钱包，很难准确的定义。MYKEY帮助用户支付CPU成本，让用户继续0撸，一时间大量用户涌入MYKEY，就一个晚上就把MYKEY原来的资源撸爆，MYKEY紧急维护。维护之后限制用户每分钟只能撸一次。</p>
-<p>同一时间在TokenPocket上，撸币矿机（帮助用户更快撸币的工具），包括Win96矿机dapp都第一时间支持EIDOS。</p>
-<p>所有这些的结果就是，EOS链CPU价格攀升，普通用户无法交易。给币圈的感官是EOS又堵了，EOS又爆了。</p>
-<p>当然，这个认识是错误，EOS是高速公路，保证快速交易的同时，因为CPU价格调节机制阻挡了低价交易。关于EOS费用模型可以单读开一篇，这个不多说。好在EOS的新特性可以优化目前的问题。</p>
-<h1 id="胜负早已决定"><a href="#胜负早已决定" class="headerlink" title="胜负早已决定"></a>胜负早已决定</h1><p><strong>这部分是本文的核心。</strong></p>
-<p>EIDOS的分发，看似是长达1年半的游戏。但是实际上，在第一天就决定了各个参与方的优势所在。</p>
-<p>EIDOS的分发，比拼CPU的数量，你拥有更多的CPU时间你就能获得更多的币。</p>
-<p><strong>本质上，比拼的是CPU的成本。</strong></p>
-<p>这里普及一下 REX（EOS系统级资源交易所），用户可以将没用的EOS存入REX产生收益，需要资源的用户可以向REX租EOS资源。</p>
-<p>11月1号下午5点，我向REX支付40个EOS，换取了130331 EOS对应的资源的30天使用权，价格是3200 EOS-CPU/EOS。</p>
-<p>而现在，11月4号下午6点，REX的价格是 188 EOS-CPU/EOS。</p>
-<p>什么概念，新矿工的挖矿成本是我的17倍。</p>
-<p>更夸张的是，第一天租赁CPU的矿工，当天就回本了！而且他还可以挖29天。</p>
-<p>所以说，那些散户矿工和后来租赁EOS的矿工很可能辛辛苦苦，最后不能回本。因为你面对的是技术比你牛，成本比你低的专业玩家。</p>
-<h1 id="不是傻就是坏"><a href="#不是傻就是坏" class="headerlink" title="不是傻就是坏"></a>不是傻就是坏</h1><p>我已经在上一篇文章中介绍了AP，这个匿名创始人因为认为ENU分配机制不公平导致大户垄断整条链的男人，声称他这次使用了公平的方式去分发EIDOS。</p>
-<p><strong>这样的人，不是傻就是坏！</strong></p>
-<p>当然他一点都不傻。</p>
-<h1 id="模式创造者"><a href="#模式创造者" class="headerlink" title="模式创造者"></a>模式创造者</h1><p>两次代币发行都引起巨大的舆论关注和热度，不得不承认，AP这个人有点厉害。他是一个很好的模式创造者。ENU的分发带起了空抓的概念。而这次EIDOS的发行，不断地酝酿。至少已经出现了POS云矿机等新的概念。而有新的玩法对这个圈子就是好事情，我同意小岛的说法，这个事件实际利好EOS，因为有不同的玩法出现了。</p>
-<h1 id="CODEX"><a href="#CODEX" class="headerlink" title="CODEX"></a>CODEX</h1><p>昨天晚上，AP公布了EIDOS这个空气的价值，它将成为CODEX的平台币。而CODEX这个DEX有什么特别的地方吗？</p>
-<p><strong>然鹅并没有</strong></p>
-<p>CODEX就是UNISWAP的一个复制。UNISWAP可以看我之前文章的介绍。</p>
-<p>AP这个男人，我们戏称他FORK MAN，LiteShares fork BitShares，ENU fork EOS，CODEX fork UNISWAP。</p>
-<p>除了Fork，他还会什么？</p>
-<h1 id="EOS堵的假象"><a href="#EOS堵的假象" class="headerlink" title="EOS堵的假象"></a>EOS堵的假象</h1><p>我还是要为EOS辩驳几句，EOS的堵是假象。</p>
-<p>只要你有足够的资源，你还是可以秒到账，而没有资源交易都不能成功。</p>
-<p>当全网交易量增大后，资源价格的自动调节机制，导致资源抵押不够的用户无法发起交易。</p>
-<p>目前社区有各种资源租赁的方案可以部分解决这个问题。</p>
-<p>最新的他方付费机制，能够更好地解决这个问题。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这个项目最终会归零，但是过程会是怎么样，谁也不知道，每个人自己把握吧。</p>
-<p>文章原创首发<a href="https://lichang.io/articleDetail/911639" target="_blank" rel="noopener">力场</a></p>
-
+<h1 id="0-撸的魅力"><a href="#0-撸的魅力" class="headerlink" title="0 撸的魅力"></a>0 撸的魅力</h1><p>一个币，开盘就上线 Bithumb，完全没有付上币费，Hoo、MXC、BKEX、BIKI、Newdex、WhaleEX。。。。抢着上架。这就是热度的价值，这就是 0 撸的魅力。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/04/2019-11-04-EIDOS-FOMO/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -488,7 +472,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:43:05" itemprop="dateModified" datetime="2019-11-09T08:43:05+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:55:07" itemprop="dateModified" datetime="2019-11-21T12:55:07+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -516,24 +500,18 @@
           <blockquote>
 <p>不要接盘！不要接盘！不要接盘！重要的事情说三遍</p>
 </blockquote>
-<p>EIDOS空投已经成为这个周末币圈最热的话题之一，“0成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致EOS主网CPU价格不断攀升，大量用户的EOS资源都不够去发起一笔交易。</p>
-<p>关于EOS的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为EOS主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p>
-<p>EIDOS是Enumivo（ENU）创始人aiden pearce（AP）启动的新项目。</p>
-<p>在这篇文章里，我要讲讲我和ENU以及AP之前的故事。</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>时间要回到2018年，EOS主网启动的时候，当时我作为EOSeco节点的负责人，全程参与了EOS主网启动的过程，同时开发了一款EOS区块链浏览器EOSeco explorer。现在你可能不知道，但是最开始的时候，它还是服务了一些用户，特别是在主网激活阶段，通过离线签名的方式，为用户提供安全的投票操作。后来因为投资人套现EOS，我们的节点也失去了竞争力，逐渐退出EOS节点竞选。在这个过程中，认识了非常多EOS圈子的技术大牛。</p>
-<p>后来有个朋友和我说了ENU，是一个EOS的复制链，还没有浏览器工具，让我把浏览器迁移过去。于是，我就在ENU上面搭了一个节点，并把浏览器迁移了过去。这个行为得到社区非常热烈的反馈，用户自发众筹感谢浏览器，这让我有些激动。之后，我发现ENU社区除了用户活跃之外，也不乏优秀的社区开发者，他们可能原来都不是币圈的用户，而是因为UBI的理念参与到这个项目。这里还要特别推荐一下ENU上面的一个好玩的趣味dAPP - 站队  。在EOS全都是菠菜dAPP的时候，站队玩出了一股清流。因为EOS主网启动社区准备了很久，而ENU链，甚至比EOS主网更早的启动。这些都让我对这个项目产生了一些感情，并且在之后的时间里不断地参与到这个项目当中。</p>
-<p>在这之后，我直接推动了TP钱包支持ENU，在后续的ENU钱包和交易所的对接过程中，我几乎是主力的社区技术人员。</p>
-<h2 id="我对AP的印象"><a href="#我对AP的印象" class="headerlink" title="我对AP的印象"></a>我对AP的印象</h2><p>熟悉了ENU中国社区之后，我也和AP取得了直接的联系。AP是一个匿名的人，你只能在Telegram中找到他，他应该是BTC和ETH的早期投资者，从和他的接触过程中，你能感受到他是一个偏“左”的人，这从ENU项目所要做的UBI（全面基本收入）就可以看出来。其实我自己是个偏“右”的人，不认为这件事情真的能做成，但是这不妨碍我参与其中。经过一段时间的接触，发现ENU这个项目除了AP自己，没有全职的开发人员，只是在网上雇佣了几个开发者，包括AP自己都不算全职。所以除了跟EOS的版本更新，几乎没有更多的开发量。而我也作为社区开发者，也帮助做了投票激励和一版UBI的原型。但是总体来说，项目的进展非常缓慢，而UBI的大饼遥遥无期。</p>
-<h2 id="AP与社区的矛盾"><a href="#AP与社区的矛盾" class="headerlink" title="AP与社区的矛盾"></a>AP与社区的矛盾</h2><p>与此形成对比的是，ENU中国社区，靠着社区的力量，以众筹等形式，相继上线Cointiger、AEX和Biki等交易所，这其中David贡献功不可没。这在我看来，真的可以说的币圈的一股清流。</p>
-<p>好景不长，项目进展缓慢，AP却持续套现来支付开发费用，这导致社区对AP产生了很大的意见。而AP一边，一直诟病节点的中心化，对于中国社区把持超级节点非常不满。两边的矛盾不断积累，矛盾的爆发只需要一个火星。</p>
-<p>而这个导火索就是AEX的交易量，AP怀疑AEX在刷量，认为这会误导持币者，要求AEX下架ENU，同时指出由5个节点都是由一个人在控制，要求他退出节点。社区和AP已然不可调和，而AP最终选择了最激烈的，甚至是行为艺术的方式退出社区。</p>
-<p>目前，ENU社区也是在苦苦支撑，节点的利润完全不能覆盖成本，为了对社区的一点感情，我也是在持续维持着浏览器。其实，我并不是ENU的受益者，在最开始轰轰烈烈的空投以及后来的爆炒都与我无关，所以AP的退出，和ENU的接近归零对我来说也是很受伤。但是更受伤的是高位接盘的人，ENU最高的时候到过1块钱，而目前的价格是1分钱。</p>
-<p>AP很任性，也很有煽动性，在社区里，还有人在给他造神，甚至说他是中本聪。</p>
-<p>持币者很受伤，甚至是一些大佬。而因为匿名的原因，也没有人找得到他，也没法维权。</p>
-<p>这就是我和ENU以及AP的一些往事，文笔不行，权当记录。这也是我对EIDOS潜在接盘者所能做的一些警告，希望能够帮到他们。</p>
-<p>关于我对EIDOS和CODEX去中心化交易所的看法，我会再写一篇，敬请期待。</p>
-<p>文章原创首发<a href="https://lichang.io/articleDetail/909965" target="_blank" rel="noopener">力场</a></p>
-
+<p>EIDOS 空投已经成为这个周末币圈最热的话题之一，“0 成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致 EOS 主网 CPU 价格不断攀升，大量用户的 EOS 资源都不够去发起一笔交易。</p>
+<p>关于 EOS 的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为 EOS 主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p>
+<p>EIDOS 是 Enumivo（ENU）创始人 aiden pearce（AP）启动的新项目。</p>
+<p>在这篇文章里，我要讲讲我和 ENU 以及 AP 之前的故事。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/04/2019-11-04-ENU-AP-ME/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -666,7 +644,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:04:54" itemprop="dateModified" datetime="2019-11-09T08:04:54+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:12" itemprop="dateModified" datetime="2019-11-21T12:56:12+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -691,26 +669,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近帮助Enumivo（基于EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。</p>
-<h2 id="合约随机逻辑："><a href="#合约随机逻辑：" class="headerlink" title="合约随机逻辑："></a>合约随机逻辑：</h2><ol>
-<li><p>用户发起领取交易，领取投票奖励，同时合约账户转1ENU到奖池，同时发起一笔（0-24小时随机值）的延迟交易。</p>
-</li>
-<li><p>延迟交易被触发，检查奖池金额，达到了10ENU，就把10ENU都奖励给当前用户。</p>
-</li>
-</ol>
-<h2 id="随机机制："><a href="#随机机制：" class="headerlink" title="随机机制："></a>随机机制：</h2><p>0-24小时这个时间的随机数，就使用之前常用的利用block prefix值来生成，这个不是随机的唯一部分。因为就算用户可以控制随机数来控制延迟时间，也没有办法控制延迟交易发生时奖池的金额，奖池的金额完全是根据其他用户的随机行为来进行累积的。利用这样的随机数方案，或许能够开发一款公平的Lottery Dapp。</p>
-<h2 id="可能的攻击方式："><a href="#可能的攻击方式：" class="headerlink" title="可能的攻击方式："></a>可能的攻击方式：</h2><p>构造交易控制随机数控制延时时间，在延迟交易发生前利用别的账户发起交易，将奖池金额构造到满足开奖条件。像本应用这样金额比较小的开奖，应该没有人会费时费力做这个事情。当奖金足够诱人的时候，就有人和你竞争，增加了开奖的不确定性。</p>
-<p>欢迎拍砖。</p>
-<h2 id="其他信息"><a href="#其他信息" class="headerlink" title="其他信息"></a>其他信息</h2><ul>
-<li><p>合约交易历史：<a href="http://enumivo.qsx.io/search?q=claimlottery" target="_blank" rel="noopener">http://enumivo.qsx.io/search?q=claimlottery</a></p>
-</li>
-<li><p>合约开源地址：<a href="https://github.com/ENU-Zion/claimforvote" target="_blank" rel="noopener">https://github.com/ENU-Zion/claimforvote</a></p>
-</li>
-</ul>
-<h2 id="Enumivo"><a href="#Enumivo" class="headerlink" title="Enumivo"></a>Enumivo</h2><p>Enumivo 是一个以UBI（全民基本收入）为目标的区块链项目</p>
-<p>白皮书：</p>
-<p><a href="https://enumivo.org/whitepapers/whitepaper_cn.pdf" target="_blank" rel="noopener">https://enumivo.org/whitepapers/whitepaper_cn.pdf</a></p>
-
+          <p>最近帮助 Enumivo（基于 EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/11/2019-3-12-EOS-RANDOM/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -760,7 +727,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:04:58" itemprop="dateModified" datetime="2019-11-09T08:04:58+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:25" itemprop="dateModified" datetime="2019-11-21T12:56:25+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -788,78 +755,17 @@
           <p>Dawn 4.0 发布后，基本上白皮书上提到的特性都得到了实现，特别是投票、资源抵押和内存买卖。</p>
 <p>EOS 的网络带宽和计算资源是通过抵押代币的方式获得，如果不需要了可以解除抵押收回原先的代币。</p>
 <p>投票的权重和抵押代币所获得的带宽和计算资源相关，抵押了越多，投票的权重越大。同时投票的权重会随着时间的推移减少，这个设定鼓励用户持续更新自己的投票。</p>
-<p>而存储资源则是通过购买来得到，但是并不会消耗，当不再需要存储资源的时候可以出售。但是存储资源相对于EOS代币的价格会随着市场对于存储资源的需求而变动。</p>
+<p>而存储资源则是通过购买来得到，但是并不会消耗，当不再需要存储资源的时候可以出售。但是存储资源相对于 EOS 代币的价格会随着市场对于存储资源的需求而变动。</p>
 <p>而这些功能都是在 eosio.system 这个智能合约中实现。</p>
 <p>本文试图通过分析 eosio.system 中所有的功能函数来解读 eos 系统功能。</p>
-<h2 id="函数列表"><a href="#函数列表" class="headerlink" title="函数列表"></a>函数列表</h2><p>在 eosio.system.hpp 头文件中包含以下函数声明： </p>
-<h3 id="delegatebw"><a href="#delegatebw" class="headerlink" title="delegatebw"></a>delegatebw</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onblock</span><span class="params">( block_timestamp timestamp, account_name producer )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delegatebw</span><span class="params">( account_name from, account_name receiver,asset stake_net_quantity, asset stake_cpu_quantity, <span class="keyword">bool</span> transfer )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>delegatebw 函数用来实现抵押代币获取 cpu 和带宽资源。参数定义：</p>
-<ul>
-<li>from : 从哪个账号扣除用来抵押的代币</li>
-<li>receiver : 抵押的代币的接受者，表示抵押获取的资源作用在哪个账号上</li>
-<li>stake_net_quantity : 用来抵押带宽资源的代币数量</li>
-<li>stake_cpu_quantity : 用来抵押计算资源的代币数量</li>
-<li>transfer : 是否接受者可以主动解除抵押获得代币，如果不是，只有发起者能够解除抵押收回代币</li>
-</ul>
-<h3 id="undelegatebw"><a href="#undelegatebw" class="headerlink" title="undelegatebw"></a>undelegatebw</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">undelegatebw</span><span class="params">( account_name from, account_name receiver,asset unstake_net_quantity, asset unstake_cpu_quantity )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>undelegatebw 函数用来解除抵押，释放资源，收回代币，参数定义：</p>
-<ul>
-<li>from : 解除用哪个账号所抵押的代币</li>
-<li>receiver : 解除作用在哪个账号上的抵押代币</li>
-<li>unstake_net_quantity : 解除用来获取带宽资源的代币数量</li>
-<li>unstake_cpu_quantity : 解除用来获取计算资源的代币数量</li>
-</ul>
-<p>解除抵押之后，资源会马上释放，同时投票权重也相应消失。但是代币需要等待一定时间才能回到账号里，目前的设定是3天。</p>
-<h3 id="buyram"><a href="#buyram" class="headerlink" title="buyram"></a>buyram</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buyram</span><span class="params">( account_name buyer, account_name receiver, asset tokens )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buyrambytes</span><span class="params">( account_name buyer, account_name receiver, <span class="keyword">uint32_t</span> bytes )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>这两个函数的作用是购买存储资源，区别是买特定数量的代币还是买特定大小的内容。参数定义:</p>
-<ul>
-<li>buyer : 购买存储资源的账号</li>
-<li>receiver : 接受存储资源的账号</li>
-<li>tokens : 购买存储资源所用的代币数量</li>
-<li>bytes : 都买存储资源空间大小的数值</li>
-</ul>
-<h3 id="sellram"><a href="#sellram" class="headerlink" title="sellram"></a>sellram</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sellram</span><span class="params">( account_name receiver, <span class="keyword">int64_t</span> bytes )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>sellram函数功能是出售不需要的存储资源。参数定义：</p>
-<ul>
-<li>receiver : 出售资源代币的接受账号</li>
-<li>bytes : 出售多少空间的存储资源</li>
-</ul>
-<p>出售后资源会马上释放，收入的代币也会马上入账。</p>
-<h3 id="refund"><a href="#refund" class="headerlink" title="refund"></a>refund</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">refund</span><span class="params">( account_name owner )</span></span>;</span><br><span class="line">``` </span><br><span class="line">refund 函数 在 undelegatebw 函数解除抵押后调用，作用是把抵押的代币退回账户。</span><br><span class="line"></span><br><span class="line">##<span class="meta"># regproducer</span></span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">regproducer</span><span class="params">( <span class="keyword">const</span> account_name producer, <span class="keyword">const</span> public_key&amp; producer_key, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; url, <span class="keyword">uint16_t</span> location )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>regproducer 函数的作用是注册成为超级节点候选人。参数定义：</p>
-<ul>
-<li>producer : 候选节点的账户名</li>
-<li>producer_key : 候选节点的账户公钥</li>
-<li>url : 候选节点的网站地址</li>
-<li>location : 候选节点的机房地理位置</li>
-</ul>
-<p>注册成为候选人后就可以接受用户的投票了。</p>
-<h3 id="unregprod"><a href="#unregprod" class="headerlink" title="unregprod"></a>unregprod</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unregprod</span><span class="params">( <span class="keyword">const</span> account_name producer )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>unregprod 函数的作用的取消成为候选人。</p>
-<h3 id="voteproducer"><a href="#voteproducer" class="headerlink" title="voteproducer"></a>voteproducer</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setram</span><span class="params">( <span class="keyword">uint64_t</span> max_ram_size )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">voteproducer</span><span class="params">( <span class="keyword">const</span> account_name voter, <span class="keyword">const</span> account_name proxy, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;account_name&gt;&amp; producers )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>voteproducer 函数的作用是投票。参数定义：</p>
-<ul>
-<li>voter : 投票人</li>
-<li>proxy : 代理投票人</li>
-<li>producers : 得票人列表</li>
-</ul>
-<p>有两种投票模式，代理模式和直接投票模式。代理模式是将投票权重委托给一个代理人，让他帮你投票。直接投票模式就是直接投票给你信任的超级节点，最多30个。</p>
-<h3 id="regproxy"><a href="#regproxy" class="headerlink" title="regproxy"></a>regproxy</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">regproxy</span><span class="params">( <span class="keyword">const</span> account_name proxy, <span class="keyword">bool</span> isproxy )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>regproxy 函数的作用是注册成为代理人，接受其他用户的委托。</p>
-<h3 id="claimrewards"><a href="#claimrewards" class="headerlink" title="claimrewards"></a>claimrewards</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">claimrewards</span><span class="params">( <span class="keyword">const</span> account_name&amp; owner )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>claimrewards 函数的作用是支付超级节点的奖励。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setpriv</span><span class="params">( account_name account, <span class="keyword">uint8_t</span> ispriv )</span></span>;</span><br></pre></td></tr></table></figure>
-<h2 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h2><p>开发者可以通过 cleos system 子命令来测试这些功能。</p>
-<p>如果要加入一个测试网络成为出块人，步骤应该是这样：</p>
-<ul>
-<li>注册账号</li>
-<li>启动节点同步区块</li>
-<li>注册成为候选人</li>
-<li>抵押代币获得资源和投票权重</li>
-<li>投票给自己</li>
-<li>当得票足够后，等待一个周期，就可以成为出块人了。</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/05/17/2018-5-17-EOS-SYSTEM-CONTRACT/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -909,7 +815,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:00" itemprop="dateModified" datetime="2019-11-09T08:05:00+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:32" itemprop="dateModified" datetime="2019-11-21T12:56:32+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -957,131 +863,14 @@
 </li>
 </ul>
 <!-- /TOC -->
-
-<h2 id="EOSIO-智能合约介绍"><a href="#EOSIO-智能合约介绍" class="headerlink" title="EOSIO 智能合约介绍"></a>EOSIO 智能合约介绍</h2><h3 id="必须的背景知识"><a href="#必须的背景知识" class="headerlink" title="必须的背景知识"></a>必须的背景知识</h3><p><strong>C / C++ 经验</strong></p>
-<p>基于EOSIO的区块链使用 <a href="http://webassembly.org/" target="_blank" rel="noopener">WebAssembly</a> (WASM) 执行用户生成的应用程序和代码。WASM是一项新兴的网络标准，得到了谷歌，微软，苹果等公司的广泛支持。目前，用于构建编译为WASM的应用程序的最成熟工具链是使用 C/C++ 编译器的 <a href="https://clang.llvm.org/" target="_blank" rel="noopener">clang/llvm</a>。</p>
-<p>其他第三方开发的工具链包括：Rust，Python和Solidity。虽然这些其他语言看起来可能更简单，但它们的性能可能会影响你可以构建的应用程序的规模。我们预计 C++ 将成为开发高性能和安全智能合约的最佳语言，并计划在可预见的将来使用 C++。</p>
-<p><strong>Linux / Mac OS 经验</strong></p>
-<p>EOSIO软件支持以下环境:</p>
-<ul>
-<li>Amazon 2017.09 and higher</li>
-<li>Centos 7</li>
-<li>Fedora 25 and higher (Fedora 27 recommended)</li>
-<li>Mint 18</li>
-<li>Ubuntu 16.04 (Ubuntu 16.10 recommended)</li>
-<li>MacOS Darwin 10.12 and higher (MacOS 10.13.x recommended)</li>
-</ul>
-<p><strong>命令行知识</strong></p>
-<p>与EOSIO一起提供的各种工具，要求你具有基本的命令行知识才能与之交互。</p>
-<h3 id="EOSIO-智能合约基础知识"><a href="#EOSIO-智能合约基础知识" class="headerlink" title="EOSIO 智能合约基础知识"></a>EOSIO 智能合约基础知识</h3><p><strong>交互模型</strong></p>
-<p>EOSIO智能合约以动作（actions）和共享内存数据库访问的形式彼此交互，<br>例如，合约可以读取其他合约数据库的状态，只要它包含在具有异步事务的读取范围内即可。<br>异步通信可能会导致资源限制算法会处理的垃圾邮件（spam）。<br>在合约中可以定义两种通信模式：</p>
-<ul>
-<li><p><strong>内联</strong>。内联保证与当前交易一起执行或展开; 无论成功或失败，都不会通知任何通知。内联与原有交易拥有相同的作用范围和权限。</p>
-</li>
-<li><p><strong>延期</strong>。延期交互将由出块人酌情决定如何执行; 可以传递交互结果或者可以简单地超时。延期交互可以有不同的作用范围，并带有发送它们的合约指定的权限。</p>
-</li>
-</ul>
-<p><strong>动作 vs 交易</strong></p>
-<p>一个动作表示单个操作，而一个交易是一个或多个动作的集合。合约和账户以动作的形式进行交流。动作可以单独发送，也可以组合的形式发送，如果它们打算作为一个整体来执行。</p>
-<p><em>1个动作的交易</em>.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"expiration"</span>: <span class="string">"2018-04-01T15:20:44"</span>,</span><br><span class="line">  <span class="attr">"region"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"ref_block_num"</span>: <span class="number">42580</span>,</span><br><span class="line">  <span class="attr">"ref_block_prefix"</span>: <span class="number">3987474256</span>,</span><br><span class="line">  <span class="attr">"net_usage_words"</span>: <span class="number">21</span>,</span><br><span class="line">  <span class="attr">"kcpu_usage"</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">"delay_sec"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"context_free_actions"</span>: [],</span><br><span class="line">  <span class="attr">"actions"</span>: [&#123;</span><br><span class="line">      <span class="attr">"account"</span>: <span class="string">"eosio.token"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"issue"</span>,</span><br><span class="line">      <span class="attr">"authorization"</span>: [&#123;</span><br><span class="line">          <span class="attr">"actor"</span>: <span class="string">"eosio"</span>,</span><br><span class="line">          <span class="attr">"permission"</span>: <span class="string">"active"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"00000000007015d640420f000000000004454f5300000000046d656d6f"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"signatures"</span>: [</span><br><span class="line">    <span class="string">""</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"context_free_data"</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>多动作交易</em>, 这些动作会同时成功或失败.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"expiration"</span>: <span class="string">"..."</span>,</span><br><span class="line">  <span class="attr">"region"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"ref_block_num"</span>: ...,</span><br><span class="line">  <span class="attr">"ref_block_prefix"</span>: ...,</span><br><span class="line">  <span class="attr">"net_usage_words"</span>: ..,</span><br><span class="line">  <span class="attr">"kcpu_usage"</span>: ..,</span><br><span class="line">  <span class="attr">"delay_sec"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">"context_free_actions"</span>: [],</span><br><span class="line">  <span class="attr">"actions"</span>: [&#123;</span><br><span class="line">      <span class="attr">"account"</span>: <span class="string">"..."</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"..."</span>,</span><br><span class="line">      <span class="attr">"authorization"</span>: [&#123;</span><br><span class="line">          <span class="attr">"actor"</span>: <span class="string">"..."</span>,</span><br><span class="line">          <span class="attr">"permission"</span>: <span class="string">"..."</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"..."</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      <span class="attr">"account"</span>: <span class="string">"..."</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"..."</span>,</span><br><span class="line">      <span class="attr">"authorization"</span>: [&#123;</span><br><span class="line">          <span class="attr">"actor"</span>: <span class="string">"..."</span>,</span><br><span class="line">          <span class="attr">"permission"</span>: <span class="string">"..."</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"..."</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"signatures"</span>: [</span><br><span class="line">    <span class="string">""</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"context_free_data"</span>: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>动作名称限制</strong></p>
-<p>动作类型实际上是 <strong>base32编码的64位整数</strong> 。这意味着对于前12个字符它们仅限于字符a-z，1-5和 ‘.’ 。如果有第13个字符，则它仅限于前16个字符（’.’和a-p）。</p>
-<p><strong>交易确认</strong></p>
-<p>接收交易哈希并不意味着交易已被确认，它只意味着节点认为没有错误并接受了它，这也意味着其他出块人很可能会接受它。</p>
-<p>通过确认，你应该在交易历史中看到包含确认交易所属区块的交易。</p>
-<h2 id="智能合约文件"><a href="#智能合约文件" class="headerlink" title="智能合约文件"></a>智能合约文件</h2><p>为了简单起见 ，我们创建了一个名为 <strong><a href="https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp" target="_blank" rel="noopener">eosiocpp</a></strong> 的工具，可以用来启动一个新的合约。eosiocpp也将为你创建3个智能合约文件，并提供基本框架。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -n $&#123;contract&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的命令将新建一个空项目，项目目录下有3个文件:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;contract&#125;.abi $&#123;contract&#125;.hpp $&#123;contract&#125;.cpp</span><br></pre></td></tr></table></figure>
-
-<h3 id="hpp"><a href="#hpp" class="headerlink" title="hpp"></a>hpp</h3><p><code>${contract}.hpp</code> 是被 <code>.cpp</code> 引用的，包含变量，常量和函数定义的头文件。</p>
-<h3 id="cpp"><a href="#cpp" class="headerlink" title="cpp"></a>cpp</h3><p><code>${contract}.cpp</code> 文件是包含智能合约功能函数的源文件。</p>
-<p>如果你使用 <code>eosiocpp</code> 工具生成 <code>.cpp</code> 文件，生成的 .cpp 文件与下面的相似:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;$&#123;contract&#125;.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  The init() and apply() methods must have C calling convention so that the blockchain can lookup and</span></span><br><span class="line"><span class="comment"> *  call these methods.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  This method is called once when the contract is published or updated.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">       eosio::print( <span class="string">"Init World!\n"</span> ); <span class="comment">// Replace with actual code</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The apply method implements the dispatch of actions to this contract</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">apply</span><span class="params">( <span class="keyword">uint64_t</span> code, <span class="keyword">uint64_t</span> action )</span> </span>&#123;</span><br><span class="line">       eosio::print( <span class="string">"Hello World: "</span>, eosio::name(code), <span class="string">"-&gt;"</span>, eosio::name(action), <span class="string">"\n"</span> ); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// extern "C"</span></span><br></pre></td></tr></table></figure>
-<p>在这个例子中，你可以看到有两个函数， <code>init</code> 和 <code>apply</code>。<br>他们所做的只是记录动作，不做其他检查。只要出块人允许，任何人都可以随时提供任何操作。在没有任何所需的签名的情况下，合约将按照消耗的带宽收费。</p>
-<p><strong>init</strong></p>
-<p><code>init</code> 函数只会在初始部署时执行一次。用来初始化智能合约的变量，例如，代币合约的代币发行量。</p>
-<p><strong>apply</strong></p>
-<p><code>apply</code> 是动作处理器，它监听所有传入的动作并根据函数内的逻辑作出反应。该 apply 函数需要两个输入参数，<code>code</code> 和 <code>action</code>。</p>
-<p><strong>代码过滤器</strong></p>
-<p>为了应对特定的动作，<code>apply</code> 函数按以下方式编写。你也可以通过省略代码过滤器来编写对通用动作的响应。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (code == N($&#123;contract_name&#125;) &#123;</span><br><span class="line">    <span class="comment">// your handler to respond to particular action</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>你也可以在代码块中定义对各个操作的响应。</p>
-<p><strong>动作过滤器</strong></p>
-<p>为了响应某个特定动作，<code>apply</code> 函数按照以下方式编写。这通常与代码过滤器结合使用。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (action == N($&#123;action_name&#125;) &#123;</span><br><span class="line">    <span class="comment">//your handler to respond to a particular action</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wast"><a href="#wast" class="headerlink" title="wast"></a>wast</h3><p>任何要部署到EOSIO区块链的程序都必须编译为WASM格式。这是区块链接受的唯一格式。</p>
-<p>准备好CPP文件后，可以使用 <code>eosiocpp</code> 工具将其编译为WASM（.wast）的文本版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -o $&#123;contract&#125;.wast $&#123;contract&#125;.cpp</span><br></pre></td></tr></table></figure>
-<h3 id="abi"><a href="#abi" class="headerlink" title="abi"></a>abi</h3><p>应用程序二进制接口（ABI）是一种基于JSON的描述，介绍如何将用户动作在JSON和二进制表达之间转换。ABI还介绍了如何将数据库状态转换为JSON或从JSON转换数据库状态。通过ABI描述了智能合约，开发人员和用户就可以通过JSON无缝地与你的合约进行交互。</p>
-<p>ABI文件可以通过使用 <code>eosiocpp</code> 工具从 <code>.hpp</code> 文件生成：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -g $&#123;contract&#125;.abi $&#123;contract&#125;.hpp</span><br></pre></td></tr></table></figure>
-
-<p>以下是框架合约ABI的示例：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"types"</span>: [&#123;</span><br><span class="line">      <span class="attr">"new_type_name"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"name"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"structs"</span>: [&#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"transfer"</span>,</span><br><span class="line">      <span class="attr">"base"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"fields"</span>: &#123;</span><br><span class="line">        <span class="attr">"from"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">        <span class="attr">"to"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">        <span class="attr">"quantity"</span>: <span class="string">"uint64"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"account"</span>,</span><br><span class="line">      <span class="attr">"base"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"fields"</span>: &#123;</span><br><span class="line">        <span class="attr">"account"</span>: <span class="string">"name"</span>,</span><br><span class="line">        <span class="attr">"balance"</span>: <span class="string">"uint64"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"actions"</span>: [&#123;</span><br><span class="line">      <span class="attr">"action"</span>: <span class="string">"transfer"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"transfer"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"tables"</span>: [&#123;</span><br><span class="line">      <span class="attr">"table"</span>: <span class="string">"account"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"account"</span>,</span><br><span class="line">      <span class="attr">"index_type"</span>: <span class="string">"i64"</span>,</span><br><span class="line">      <span class="attr">"key_names"</span> : [<span class="string">"account"</span>],</span><br><span class="line">      <span class="attr">"key_types"</span> : [<span class="string">"name"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>你会注意到这个ABI定义了一个 <code>transfer</code> 类型的动作 <code>transfer</code> 。这告诉EOSIO，当 <code>${account}-&gt;transfer</code> 被看到时，交易的负载（payload）类型是 <code>transfer</code> 。动作类型 <code>transfer</code> 在 <code>structs</code> 数组中被定义，<code>structs</code> 数组对象中，<code>name</code> 属性的值为 <code>transfer</code>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  "structs": [&#123;</span><br><span class="line">      "name": "transfer",</span><br><span class="line">      "base": "",</span><br><span class="line">      "fields": &#123;</span><br><span class="line">        "from": "account_name",</span><br><span class="line">        "to": "account_name",</span><br><span class="line">        "quantity": "uint64"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>该ABI 有好几个字段，包括 <code>from</code>, <code>to</code> 和 <code>quantity</code> 。<br>这些字段有相应的类型  <code>account_name</code>, 和 <code>uint64</code> 。<br><code>account_name</code> 是一个内置的类型使用 <code>uint64</code> 来表示 base32 字符串。<br>要详细了解可用的内置类型，请点击<a href="https://github.com/EOSIO/eos/blob/master/libraries/chain/contracts/abi_serializer.cpp" target="_blank" rel="noopener">此处</a>。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"types"</span>: [&#123;</span><br><span class="line">      <span class="attr">"new_type_name"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"name"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>在上面的 <code>types</code> 数组中，我们为已存在类型定义了一个别名列表。在这里，我们定义 <code>name</code> 为 <code>account_name</code> 的一个别名。</p>
-<h2 id="调试智能合约"><a href="#调试智能合约" class="headerlink" title="调试智能合约"></a>调试智能合约</h2><p>为了能够调试你的智能合约，你需要设置本地 nodeos 节点。这个本地 nodeos 节点可以作为独立的私人测试网或作为公共测试网（或官方测试网）的扩展来运行。</p>
-<p>当你首次创建智能合约时，建议先在私人测试网上测试并调试你的智能合约，因为你完全控制了整个区块链。这使你可以拥有无​​限量你所需要的eos，你可以随时重置区块链状态。当准备发布到生产环境时，可以通过将本地节点连接到公共测试网（或官方测试网）来在公共测试网（或官方测试网）上进行调试，以便你可以在本地节点中看到测试网的日志。</p>
-<p>下面的教程，将在私人测试网上进行调试。</p>
-<p>如果你尚未设置自己的本地节点，请按照 <a href="https://github.com/eosfansio/eos-tutorials/blob/master/EOS3.0-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md" target="_blank" rel="noopener">启动指南</a> 进行操作。默认情况下，除非你按照 <a href="Testnet%3A%20Public">Testnet指南</a> 中所述修改config.ini文件以便与公共testnet（或官方testnet）节点连接，否则你的本地节点将仅运行在私有测试网络中。</p>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>用于调试智能合约的主要方法是 <strong>穴居人调试</strong>（<strong>Caveman Debugging</strong>），我们利用打印功能来检查变量的值并检查合约的流程。在智能合约中打印可以通过打印API (<a href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.h" target="_blank" rel="noopener">C</a> 和 <a href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.hpp" target="_blank" rel="noopener">C++</a>) 完成。C++ API是C API的封装器，因此大多数情况下我们只会使用C++ API。</p>
-<h3 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h3><p>打印 C API支持你可以打印的以下数据类型：</p>
-<ul>
-<li>prints - 一个带null终止符的字符数组（字符串）</li>
-<li>prints_l - 给定大小的任何字符数组（字符串）</li>
-<li>printi - 64位无符号整数</li>
-<li>printi128 - 128位无符号整数</li>
-<li>printd - 编码为64位无符号整数的浮点类型</li>
-<li>printn - 编码为64位无符号整数的base32字符串</li>
-<li>printhex - 给出二进制数据及其大小的十六进制</li>
-</ul>
-<p>打印 C++ API通过重写print() 函数来封装一些上述C API，因此用户不需要确定他需要使用哪种特定的打印功能。</p>
-<p>打印 C++ API支持：</p>
-<ul>
-<li>一个带null终止符的字符数组（字符串）</li>
-<li>整数（128位无符号，64位无符号，32位无符号，有符号，无符号）</li>
-<li>编码为64位无符号整数的base32字符串</li>
-<li>具有 print() 方法的结构体</li>
-</ul>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们来写一个新的合约作为调试的例子</p>
-<ul>
-<li>debug.hpp</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;eoslib/eos.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;eoslib/db.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> debug &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">foo</span> &#123;</span></span><br><span class="line">        account_name from;</span><br><span class="line">        account_name to;</span><br><span class="line">        <span class="keyword">uint64_t</span> amount;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">            eosio::print(<span class="string">"Foo from "</span>, eosio::name(from), <span class="string">" to "</span>,eosio::name(to), <span class="string">" with amount "</span>, amount, <span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>debug.cpp</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;debug.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">apply</span><span class="params">( <span class="keyword">uint64_t</span> code, <span class="keyword">uint64_t</span> action )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (code == N(debug)) &#123;</span><br><span class="line">            eosio::print(<span class="string">"Code is debug\n"</span>);</span><br><span class="line">            <span class="keyword">if</span> (action == N(foo)) &#123;</span><br><span class="line">                 eosio::print(<span class="string">"Action is foo\n"</span>);</span><br><span class="line">                debug::foo f = eosio::current_message&lt;debug::foo&gt;();</span><br><span class="line">                <span class="keyword">if</span> (f.amount &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">                    eosio::print(<span class="string">"Amount is larger or equal than 100\n"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    eosio::print(<span class="string">"Amount is smaller than 100\n"</span>);</span><br><span class="line">                    eosio::print(<span class="string">"Increase amount by 10\n"</span>);</span><br><span class="line">                    f.amount += <span class="number">10</span>;</span><br><span class="line">                    eosio::print(f);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">// extern "C"</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>debug.hpp</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"structs"</span>: [&#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"foo"</span>,</span><br><span class="line">      <span class="string">"base"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="string">"fields"</span>: &#123;</span><br><span class="line">        <span class="string">"from"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">        <span class="string">"to"</span>: <span class="string">"account_name"</span>,</span><br><span class="line">        <span class="string">"amount"</span>: <span class="string">"uint64"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"actions"</span>: [&#123;</span><br><span class="line">      <span class="string">"action_name"</span>: <span class="string">"foo"</span>,</span><br><span class="line">      <span class="string">"type"</span>: <span class="string">"foo"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>让我们部署它并发送一条消息给它。假设你已经创建 <code>debug</code> 帐户并在将私钥导入你的钱包中。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -o debug.wast debug.cpp</span><br><span class="line">$ cleos <span class="built_in">set</span> contract debug debug.wast debug.abi</span><br><span class="line">$ cleos push message debug foo <span class="string">'&#123;"from":"inita", "to":"initb", "amount":10&#125;'</span> --scope debug</span><br></pre></td></tr></table></figure>
-
-<p>当你检查你的本地 <code>nodeos</code> 节点日志时，你将在发送上述消息后看到以下行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Code is debug</span><br><span class="line">Action is foo</span><br><span class="line">Amount is smaller than 100</span><br><span class="line">Increase amount by 10</span><br><span class="line">Foo from inita to initb with amount 20</span><br></pre></td></tr></table></figure>
-
-<p>这里，你可以确认你的消息正在进入正确的控制流程并且金额已正确更新。你可能会看到上述消息至少2次，这很正常，<br>因为每个交易在验证、块生成和块应用阶段都会被执行。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/04/09/2018-4-9-EOSIO-Smart-Contract/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1217,7 +1006,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:05" itemprop="dateModified" datetime="2019-11-09T08:05:05+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:41" itemprop="dateModified" datetime="2019-11-21T12:56:41+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1243,140 +1032,14 @@
 
       
           <p>使用官方的 bitsharesjs 库进行开发，参考了官方的转账例子，补充了下单的部分，更多的使用细节需要自己研究代码。</p>
-<p>这里附上转账和下单的示例函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* import &#123;Apis&#125; from "bitsharesjs-ws";</span></span><br><span class="line"><span class="comment">import &#123;ChainStore, FetchChain, PrivateKey, TransactionHelper, Aes, TransactionBuilder&#125; from "bitsharesjs"; */</span></span><br><span class="line"><span class="keyword">const</span> Apis = <span class="built_in">require</span>(<span class="string">'bitsharesjs-ws'</span>).Apis;</span><br><span class="line"><span class="keyword">const</span> ChainStore = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).ChainStore;</span><br><span class="line"><span class="keyword">const</span> FetchChain = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).FetchChain;</span><br><span class="line"><span class="keyword">const</span> PrivateKey = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).PrivateKey;</span><br><span class="line"><span class="keyword">const</span> TransactionHelper = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).TransactionHelper;</span><br><span class="line"><span class="keyword">const</span> Aes = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).Aes;</span><br><span class="line"><span class="keyword">const</span> TransactionBuilder = <span class="built_in">require</span>(<span class="string">'bitsharesjs'</span>).TransactionBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> BTS_PRECISION = <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">const</span> CNY_PRECISION = <span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wss_url = <span class="string">"wss://bitshares-api.wancloud.io/ws"</span>;</span><br><span class="line"><span class="keyword">var</span> privKey = <span class="string">"privKey"</span>;<span class="comment">//change to your privKey</span></span><br><span class="line"><span class="keyword">let</span> pKey = PrivateKey.fromWif(privKey);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> transfer = <span class="function"><span class="keyword">function</span> (<span class="params">fromAccount, toAccount, sendAmount, memo</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        Apis.instance(wss_url, <span class="literal">true</span>)</span><br><span class="line">            .init_promise.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"connected to:"</span>, res[<span class="number">0</span>].network_name, <span class="string">"network"</span>);</span><br><span class="line"></span><br><span class="line">                ChainStore.init().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">let</span> memoSender = fromAccount;</span><br><span class="line"></span><br><span class="line">                    <span class="built_in">Promise</span>.all([</span><br><span class="line">                        FetchChain(<span class="string">"getAccount"</span>, fromAccount),</span><br><span class="line">                        FetchChain(<span class="string">"getAccount"</span>, toAccount),</span><br><span class="line">                        FetchChain(<span class="string">"getAccount"</span>, memoSender),</span><br><span class="line">                        FetchChain(<span class="string">"getAsset"</span>, sendAmount.asset),</span><br><span class="line">                        FetchChain(<span class="string">"getAsset"</span>, sendAmount.asset)</span><br><span class="line">                    ]).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="comment">// console.log("got data:", res);</span></span><br><span class="line">                        <span class="keyword">let</span> [fromAccount, toAccount, memoSender, sendAsset, feeAsset] = res;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// Memos are optional, but if you have one you need to encrypt it here</span></span><br><span class="line">                        <span class="keyword">let</span> memoFromKey = memoSender.getIn([<span class="string">"options"</span>, <span class="string">"memo_key"</span>]);</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">"memo pub key:"</span>, memoFromKey);</span><br><span class="line">                        <span class="keyword">let</span> memoToKey = toAccount.getIn([<span class="string">"options"</span>, <span class="string">"memo_key"</span>]);</span><br><span class="line">                        <span class="keyword">let</span> nonce = TransactionHelper.unique_nonce_uint64();</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">let</span> memo_object = &#123;</span><br><span class="line">                            <span class="keyword">from</span>: memoFromKey,</span><br><span class="line">                            to: memoToKey,</span><br><span class="line">                            nonce,</span><br><span class="line">                            message: Aes.encrypt_with_checksum(</span><br><span class="line">                                pKey,</span><br><span class="line">                                memoToKey,</span><br><span class="line">                                nonce,</span><br><span class="line">                                memo</span><br><span class="line">                            )</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">let</span> tr = <span class="keyword">new</span> TransactionBuilder()</span><br><span class="line"></span><br><span class="line">                        tr.add_type_operation(<span class="string">"transfer"</span>, &#123;</span><br><span class="line">                            fee: &#123;</span><br><span class="line">                                amount: <span class="number">0</span>,</span><br><span class="line">                                asset_id: feeAsset.get(<span class="string">"id"</span>)</span><br><span class="line">                            &#125;,</span><br><span class="line">                            <span class="keyword">from</span>: fromAccount.get(<span class="string">"id"</span>),</span><br><span class="line">                            to: toAccount.get(<span class="string">"id"</span>),</span><br><span class="line">                            amount: &#123; <span class="attr">amount</span>: sendAmount.amount, <span class="attr">asset_id</span>: sendAsset.get(<span class="string">"id"</span>) &#125;,</span><br><span class="line">                            memo: memo_object</span><br><span class="line">                        &#125;)</span><br><span class="line"></span><br><span class="line">                        tr.set_required_fees().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                            tr.add_signer(pKey, pKey.toPublicKey().toPublicKeyString());</span><br><span class="line">                            <span class="built_in">console</span>.log(<span class="string">"serialized transaction:"</span>, tr.serialize());</span><br><span class="line">                            tr.broadcast(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                                <span class="built_in">console</span>.log(<span class="string">"transaction done"</span>);</span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> transferBTS = <span class="function"><span class="keyword">function</span> (<span class="params">fromAccount, toAccount, amount, memo</span>) </span>&#123;</span><br><span class="line">    transfer(fromAccount, toAccount, &#123; <span class="attr">amount</span>: amount * BTS_PRECISION, <span class="attr">asset</span>: <span class="string">"BTS"</span> &#125;, memo);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> create_order = <span class="function"><span class="keyword">function</span> (<span class="params">orderAccount, sellAmount, buyAmount</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        Apis.instance(wss_url, <span class="literal">true</span>)</span><br><span class="line">            .init_promise.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"connected to:"</span>, res[<span class="number">0</span>].network_name, <span class="string">"network"</span>);</span><br><span class="line"></span><br><span class="line">                ChainStore.init().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">Promise</span>.all([</span><br><span class="line">                        FetchChain(<span class="string">"getAccount"</span>, orderAccount),</span><br><span class="line">                        FetchChain(<span class="string">"getAsset"</span>, sellAmount.asset),</span><br><span class="line">                        FetchChain(<span class="string">"getAsset"</span>, buyAmount.asset)</span><br><span class="line">                    ]).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                        <span class="comment">// console.log("got data:", res);</span></span><br><span class="line">                        <span class="keyword">let</span> orderAccount = res[<span class="number">0</span>];</span><br><span class="line">                        <span class="keyword">let</span> sellAsset = res[<span class="number">1</span>];</span><br><span class="line">                        <span class="keyword">let</span> feeAsset = sellAsset;</span><br><span class="line">                        <span class="keyword">let</span> buyAsset = res[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">let</span> tr = <span class="keyword">new</span> TransactionBuilder()</span><br><span class="line"></span><br><span class="line">                        tr.add_type_operation(<span class="string">"limit_order_create"</span>, &#123;</span><br><span class="line">                            fee: &#123;</span><br><span class="line">                                amount: <span class="number">0</span>,</span><br><span class="line">                                asset_id: feeAsset.get(<span class="string">"id"</span>)</span><br><span class="line">                            &#125;,</span><br><span class="line">                            seller: orderAccount.get(<span class="string">"id"</span>),</span><br><span class="line">                            amount_to_sell: &#123; <span class="attr">amount</span>: sellAmount.amount, <span class="attr">asset_id</span>: sellAsset.get(<span class="string">"id"</span>) &#125;,</span><br><span class="line">                            min_to_receive: &#123; <span class="attr">amount</span>: buyAmount.amount, <span class="attr">asset_id</span>: buyAsset.get(<span class="string">"id"</span>) &#125;,</span><br><span class="line">                            expiration: <span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>) + <span class="number">20</span>,</span><br><span class="line">                            fill_or_kill: <span class="literal">false</span></span><br><span class="line">                        &#125;)</span><br><span class="line"></span><br><span class="line">                        tr.set_required_fees().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                            tr.add_signer(pKey, pKey.toPublicKey().toPublicKeyString());</span><br><span class="line">                            <span class="built_in">console</span>.log(<span class="string">"serialized transaction:"</span>, tr.serialize());</span><br><span class="line">                            tr.broadcast(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                                <span class="built_in">console</span>.log(<span class="string">"transaction done"</span>);</span><br><span class="line">                            &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">                                <span class="built_in">console</span>.log(err);</span><br><span class="line">                            &#125;);</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">transferBTS(<span class="string">"imba"</span>, <span class="string">"qiushaoxi"</span>, <span class="number">0.05</span>, <span class="string">"test nodejs"</span>);</span><br><span class="line">create_order(<span class="string">"imba"</span>, &#123; <span class="attr">amount</span>: <span class="number">0.5</span> * BTS_PRECISION, <span class="attr">asset</span>: <span class="string">"BTS"</span> &#125;, &#123; <span class="attr">amount</span>: <span class="number">5</span> * CNY_PRECISION, <span class="attr">asset</span>: <span class="string">"CNY"</span> &#125;);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/01/25/2018-01-25-bitsharesjs-sample/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/2017-12-20-bitshares-witness/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tiny Hill">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tiny Hill's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/12/20/2017-12-20-bitshares-witness/" class="post-title-link" itemprop="url">Bitshares 私链部署witness节点</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-12-20 09:55:00" itemprop="dateCreated datePublished" datetime="2017-12-20T09:55:00+08:00">2017-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:08" itemprop="dateModified" datetime="2019-11-09T08:05:08+08:00">2019-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链技术</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>单节点私链搭建请参考 剑有偏峰 的文章：</p>
-<p><a href="http://www.jianshu.com/p/b54782cd1926" target="_blank" rel="noopener">比特股环境搭建</a></p>
-<p><a href="http://www.jianshu.com/p/5be0344e30cd" target="_blank" rel="noopener">编译比特股网页钱包</a></p>
-<p><a href="http://www.jianshu.com/p/a89b3835d4e8" target="_blank" rel="noopener">搭建比特股的水龙头注册服务</a></p>
-<h1 id="多节点部署"><a href="#多节点部署" class="headerlink" title="多节点部署"></a>多节点部署</h1><p>通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。</p>
-<p>在另一台机器上同样编译 Bitshares-core ，将原来的genesis.json复制到本机的 bitshares-core/programs/witness_node 目录下，执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net --seed-nodes &quot;[]&quot; --genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
-<p>会初始化目录 test_net<br>然后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl-c</span><br></pre></td></tr></table></figure>
-<p>退出程序，编辑 test_net/config.ini，修改如下几项配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p2p-endpoint = 0.0.0.0:9090</span><br><span class="line">seed-nodes = [&quot;192.168.23.248:9090&quot;]</span><br><span class="line">rpc-endpoint = 0.0.0.0:8090</span><br><span class="line">enable-stale-production = true</span><br></pre></td></tr></table></figure>
-<p>其中 seed-nodes 填写之前启动的区块链节点的 ip 和 p2p-endpoint 端口</p>
-<p>再次启动witness程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net</span><br></pre></td></tr></table></figure>
-<p>这样就成功部署了另一个区块链节点，但是由于没有witness权限，所以不会出块，只会同步区块信息。</p>
-<p>从github下载下来的代码启动私链，默认的 witness 是 init0～inti10。</p>
-<h1 id="成为-witness"><a href="#成为-witness" class="headerlink" title="成为 witness"></a>成为 witness</h1><p>这里默认读者已经会使用 cli_wallet .</p>
-<p>启动 cli_wallet ，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">suggest_brain_key</span><br></pre></td></tr></table></figure>
-<p>获得新账户信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;brain_priv_key&quot;: &quot;LYSSA JUBILEE GIDDIFY KEMPITE INULASE SOBBER GROVEL ENCLAVE T SAHME MYXA GLIDE OVERALL SYNC GROWLER THRILL&quot;,</span><br><span class="line">  &quot;wif_priv_key&quot;: &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;,</span><br><span class="line">  &quot;pub_key&quot;: &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果之前没有import nathan 用户，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key nathan 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3</span><br></pre></td></tr></table></figure>
-<p>nathan 如果看过之前帖子应该知道是什么。</p>
-<p>通过生成的 pub_key 注册用户 joshua（任意名称）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_account joshua &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; nathan nathan 50 true</span><br></pre></td></tr></table></figure>
-<p>从nathan账户转一部分BTS到新建的用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transfer nathan joshua 2000000000 BTS &quot;here is some cash&quot; true</span><br></pre></td></tr></table></figure>
-<p>导入用户的私钥到cli钱包，私钥是刚才生成内容的 wif_priv_key 字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key joshua 5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN</span><br></pre></td></tr></table></figure>
-<p>升级用户成为终身成员</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upgrade_account joshua true</span><br></pre></td></tr></table></figure>
-<p>创建witness用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_witness joshua &quot;&quot; true</span><br></pre></td></tr></table></figure>
-<p>为新建的witness用户投票，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vote_for_witness joshua joshua true true</span><br></pre></td></tr></table></figure>
-<p>获取witness公私钥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_witness joshua</span><br></pre></td></tr></table></figure>
-<p>得到结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: &quot;1.6.12&quot;,</span><br><span class="line">  &quot;witness_account&quot;: &quot;1.2.18&quot;,</span><br><span class="line">  &quot;last_aslot&quot;: 52765,</span><br><span class="line">  &quot;signing_key&quot;: &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">  &quot;pay_vb&quot;: &quot;1.13.9&quot;,</span><br><span class="line">  &quot;vote_id&quot;: &quot;1:22&quot;,</span><br><span class="line">  &quot;total_votes&quot;: &quot;898790081908868&quot;,</span><br><span class="line">  &quot;url&quot;: &quot;&quot;,</span><br><span class="line">  &quot;total_missed&quot;: 13,</span><br><span class="line">  &quot;last_confirmed_block_num&quot;: 15402</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>witness的公钥就是”signing_key”字段，记录下 witness_account ，后面配置有用，再执行 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump_private_keys</span><br></pre></td></tr></table></figure>
-<p>获取目前钱包中存储的私钥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[[</span><br><span class="line">    &quot;BTS78CuY47Vds2nfw2t88ckjTaggPkw16tLhcmg4ReVx1WPr1zRL5&quot;,</span><br><span class="line">    &quot;5JDh3XmHK8CDaQSxQZHh5PUV3zwzG68uVcrTfmg9yQ9idNisYnE&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,</span><br><span class="line">    &quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;,</span><br><span class="line">    &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">    &quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;</span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>根据”signing_key”获取对应的私钥，就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
-<p>记录好这个公私钥对，接下去修改test_net/config.ini</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># ID of witness controlled by this node (e.g. &quot;1.6.5&quot;, quotes are required, may specify multiple times)</span><br><span class="line">witness-id = &quot;1.6.2&quot;</span><br><span class="line">witness-id = &quot;1.6.3&quot;</span><br><span class="line">witness-id = &quot;1.6.12&quot;</span><br><span class="line"></span><br><span class="line"># Tuple of [PublicKey, WIF private key] (may specify multiple times)</span><br><span class="line">private-key = [&quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,&quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]</span><br><span class="line">private-key = [&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
-<p>增加新建的witness-id和对应的公私钥，重启witness重需</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net</span><br></pre></td></tr></table></figure>
-<p><em>这一部分就完成了</em></p>
-<p>不过因为默认的更新witness的时间比较长，24小时，所以要等24小时才能看到joshua成为witness，如果想快一点，需要重头开始做，在执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node --create-genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
-<p>之后，编辑genesis.json，修改下面这个参数为600，这样10分钟就会更新witness</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;maintenance_interval&quot;: 600,</span><br></pre></td></tr></table></figure>
-<hr>
-<p><img src="http://upload-images.jianshu.io/upload_images/7302525-95ffade6d5ccc8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="示例图"></p>
-
       
     </div>
 
@@ -1439,7 +1102,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

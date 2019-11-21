@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="本文内容参考官方版本说明：v1.1.0-preview ，简单看了一下变动，后续如果有时间会写更详细的内容。  官方已经发布v1.1.0-preview版本，V1.1正式版也不远了，来看看这个版本都增加了哪些功能。 FAB-2331 - Node.js Chaincode 支持增加了Node.js开发Chaincode的支持，原先支持Golang和java开发Chaincode，具体内容可以关注">
+  <meta name="description" content="本文内容参考官方版本说明：v1.1.0-preview ，简单看了一下变动，后续如果有时间会写更详细的内容。">
 <meta name="keywords" content="Hyperledger,区块链,fabric">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fabric v1.1 版本新功能简析">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;11&#x2F;09&#x2F;2017-11-09-Release-Note-Fabric-v1.1&#x2F;index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="本文内容参考官方版本说明：v1.1.0-preview ，简单看了一下变动，后续如果有时间会写更详细的内容。  官方已经发布v1.1.0-preview版本，V1.1正式版也不远了，来看看这个版本都增加了哪些功能。 FAB-2331 - Node.js Chaincode 支持增加了Node.js开发Chaincode的支持，原先支持Golang和java开发Chaincode，具体内容可以关注">
+<meta property="og:description" content="本文内容参考官方版本说明：v1.1.0-preview ，简单看了一下变动，后续如果有时间会写更详细的内容。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-09T00:05:33.345Z">
+<meta property="og:updated_time" content="2019-11-21T04:57:15.152Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2017/11/09/2017-11-09-Release-Note-Fabric-v1.1/">
@@ -221,7 +221,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:33" itemprop="dateModified" datetime="2019-11-09T08:05:33+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:57:15" itemprop="dateModified" datetime="2019-11-21T12:57:15+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,20 +249,22 @@
         <blockquote>
 <p>本文内容参考官方版本说明：<br><a href="https://github.com/hyperledger/fabric/releases/tag/v1.1.0-preview" target="_blank" rel="noopener">v1.1.0-preview</a> ，简单看了一下变动，后续如果有时间会写更详细的内容。</p>
 </blockquote>
-<p>官方已经发布v1.1.0-preview版本，V1.1正式版也不远了，来看看这个版本都增加了哪些功能。</p>
-<h2 id="FAB-2331-Node-js-Chaincode-支持"><a href="#FAB-2331-Node-js-Chaincode-支持" class="headerlink" title="FAB-2331 - Node.js Chaincode 支持"></a><a href="https://jira.hyperledger.org/browse/FAB-2331" target="_blank" rel="noopener">FAB-2331</a> - Node.js Chaincode 支持</h2><p>增加了Node.js开发Chaincode的支持，原先支持Golang和java开发Chaincode，具体内容可以关注<a href="https://github.com/hyperledger/fabric-chaincode-node" target="_blank" rel="noopener">fabric-chaincode-node</a>项目，开发模型和go差不多，通过shim接口调用。</p>
-<h2 id="FAB-5363-Node-js-SDK-Connection-Profile"><a href="#FAB-5363-Node-js-SDK-Connection-Profile" class="headerlink" title="FAB-5363 - Node.js SDK Connection Profile"></a><a href="https://jira.hyperledger.org/browse/FAB-5363" target="_blank" rel="noopener">FAB-5363</a> - Node.js SDK Connection Profile</h2><p>通过配置文件的方式管理SDK的连接。参考原先官方的供的node sdk的sample，也有通过配置文件的方式配置连接地址，但是在sdk的外层。目前看，这个功能应该是sdk自带的属性。</p>
-<p>配置文件中包含peer节点、orderer节点的地址，和一些加密信息的配置，基本上使用中所需要的配置内容都集中到这个文件中，通过sdk接口可以方便读取。</p>
+<a id="more"></a>
+
+<p>官方已经发布 v1.1.0-preview 版本，V1.1 正式版也不远了，来看看这个版本都增加了哪些功能。</p>
+<h2 id="FAB-2331-Node-js-Chaincode-支持"><a href="#FAB-2331-Node-js-Chaincode-支持" class="headerlink" title="FAB-2331 - Node.js Chaincode 支持"></a><a href="https://jira.hyperledger.org/browse/FAB-2331" target="_blank" rel="noopener">FAB-2331</a> - Node.js Chaincode 支持</h2><p>增加了 Node.js 开发 Chaincode 的支持，原先支持 Golang 和 java 开发 Chaincode，具体内容可以关注<a href="https://github.com/hyperledger/fabric-chaincode-node" target="_blank" rel="noopener">fabric-chaincode-node</a>项目，开发模型和 go 差不多，通过 shim 接口调用。</p>
+<h2 id="FAB-5363-Node-js-SDK-Connection-Profile"><a href="#FAB-5363-Node-js-SDK-Connection-Profile" class="headerlink" title="FAB-5363 - Node.js SDK Connection Profile"></a><a href="https://jira.hyperledger.org/browse/FAB-5363" target="_blank" rel="noopener">FAB-5363</a> - Node.js SDK Connection Profile</h2><p>通过配置文件的方式管理 SDK 的连接。参考原先官方的供的 node sdk 的 sample，也有通过配置文件的方式配置连接地址，但是在 sdk 的外层。目前看，这个功能应该是 sdk 自带的属性。</p>
+<p>配置文件中包含 peer 节点、orderer 节点的地址，和一些加密信息的配置，基本上使用中所需要的配置内容都集中到这个文件中，通过 sdk 接口可以方便读取。</p>
 <p>以下是简单的例子：</p>
 <p>var client = Client.loadFromConfig(json)</p>
 <p>var mychannel = client.getChannel(‘mychannel’)</p>
 <p>mychannel.sendTransactionProposal()</p>
 <p>mychannel.sendTransaction()</p>
-<h2 id="FAB-830-Encryption-library-for-chaincode"><a href="#FAB-830-Encryption-library-for-chaincode" class="headerlink" title="FAB-830 - Encryption library for chaincode"></a><a href="https://jira.hyperledger.org/browse/FAB-830" target="_blank" rel="noopener">FAB-830</a> - Encryption library for chaincode</h2><p>给Chaincode增加了加密套件，这个东西还是比较重要的，方便用户对上链数据进行灵活的加密。</p>
-<h2 id="FAB-5346-Attribute-based-Access-Control"><a href="#FAB-5346-Attribute-based-Access-Control" class="headerlink" title="FAB-5346 - Attribute-based Access Control"></a><a href="https://jira.hyperledger.org/browse/FAB-5346" target="_blank" rel="noopener">FAB-5346</a> - Attribute-based Access Control</h2><p>基于属性的权限控制。简单说就是在Ecert中加入特定的属性，让chaincode可以根据这个属性进行更加丰富的权限控制。</p>
-<h2 id="FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info"><a href="#FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info" class="headerlink" title="FAB-6089 - Chaincode APIs to retrieve creator cert info"></a><a href="https://jira.hyperledger.org/browse/FAB-6089" target="_blank" rel="noopener">FAB-6089</a> - Chaincode APIs to retrieve creator cert info</h2><p>新增了GetCreator接口方法用来获取交易发起者的信息，方便进行权限控制。</p>
+<h2 id="FAB-830-Encryption-library-for-chaincode"><a href="#FAB-830-Encryption-library-for-chaincode" class="headerlink" title="FAB-830 - Encryption library for chaincode"></a><a href="https://jira.hyperledger.org/browse/FAB-830" target="_blank" rel="noopener">FAB-830</a> - Encryption library for chaincode</h2><p>给 Chaincode 增加了加密套件，这个东西还是比较重要的，方便用户对上链数据进行灵活的加密。</p>
+<h2 id="FAB-5346-Attribute-based-Access-Control"><a href="#FAB-5346-Attribute-based-Access-Control" class="headerlink" title="FAB-5346 - Attribute-based Access Control"></a><a href="https://jira.hyperledger.org/browse/FAB-5346" target="_blank" rel="noopener">FAB-5346</a> - Attribute-based Access Control</h2><p>基于属性的权限控制。简单说就是在 Ecert 中加入特定的属性，让 chaincode 可以根据这个属性进行更加丰富的权限控制。</p>
+<h2 id="FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info"><a href="#FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info" class="headerlink" title="FAB-6089 - Chaincode APIs to retrieve creator cert info"></a><a href="https://jira.hyperledger.org/browse/FAB-6089" target="_blank" rel="noopener">FAB-6089</a> - Chaincode APIs to retrieve creator cert info</h2><p>新增了 GetCreator 接口方法用来获取交易发起者的信息，方便进行权限控制。</p>
 <h2 id="FAB-6421-Performance-improvements"><a href="#FAB-6421-Performance-improvements" class="headerlink" title="FAB-6421 - Performance improvements"></a><a href="https://jira.hyperledger.org/browse/FAB-6421" target="_blank" rel="noopener">FAB-6421</a> - Performance improvements</h2><p>性能优化</p>
-<h2 id="bug修复和其他修改请看Change-Log"><a href="#bug修复和其他修改请看Change-Log" class="headerlink" title="bug修复和其他修改请看Change Log"></a>bug修复和其他修改请看<a href="https://github.com/hyperledger/fabric/blob/master/CHANGELOG.md#v110-preview" target="_blank" rel="noopener">Change Log</a></h2>
+<h2 id="bug-修复和其他修改请看Change-Log"><a href="#bug-修复和其他修改请看Change-Log" class="headerlink" title="bug 修复和其他修改请看Change Log"></a>bug 修复和其他修改请看<a href="https://github.com/hyperledger/fabric/blob/master/CHANGELOG.md#v110-preview" target="_blank" rel="noopener">Change Log</a></h2>
     </div>
 
     
@@ -329,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-2331-Node-js-Chaincode-支持"><span class="nav-number">1.</span> <span class="nav-text">FAB-2331 - Node.js Chaincode 支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-5363-Node-js-SDK-Connection-Profile"><span class="nav-number">2.</span> <span class="nav-text">FAB-5363 - Node.js SDK Connection Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-830-Encryption-library-for-chaincode"><span class="nav-number">3.</span> <span class="nav-text">FAB-830 - Encryption library for chaincode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-5346-Attribute-based-Access-Control"><span class="nav-number">4.</span> <span class="nav-text">FAB-5346 - Attribute-based Access Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info"><span class="nav-number">5.</span> <span class="nav-text">FAB-6089 - Chaincode APIs to retrieve creator cert info</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-6421-Performance-improvements"><span class="nav-number">6.</span> <span class="nav-text">FAB-6421 - Performance improvements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug修复和其他修改请看Change-Log"><span class="nav-number">7.</span> <span class="nav-text">bug修复和其他修改请看Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-2331-Node-js-Chaincode-支持"><span class="nav-number">1.</span> <span class="nav-text">FAB-2331 - Node.js Chaincode 支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-5363-Node-js-SDK-Connection-Profile"><span class="nav-number">2.</span> <span class="nav-text">FAB-5363 - Node.js SDK Connection Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-830-Encryption-library-for-chaincode"><span class="nav-number">3.</span> <span class="nav-text">FAB-830 - Encryption library for chaincode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-5346-Attribute-based-Access-Control"><span class="nav-number">4.</span> <span class="nav-text">FAB-5346 - Attribute-based Access Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-6089-Chaincode-APIs-to-retrieve-creator-cert-info"><span class="nav-number">5.</span> <span class="nav-text">FAB-6089 - Chaincode APIs to retrieve creator cert info</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAB-6421-Performance-improvements"><span class="nav-number">6.</span> <span class="nav-text">FAB-6421 - Performance improvements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug-修复和其他修改请看Change-Log"><span class="nav-number">7.</span> <span class="nav-text">bug 修复和其他修改请看Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -343,7 +345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -59,7 +59,7 @@
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
 <meta property="og:description" content="Dawn 4.0 发布后，基本上白皮书上提到的特性都得到了实现，特别是投票、资源抵押和内存买卖。 EOS 的网络带宽和计算资源是通过抵押代币的方式获得，如果不需要了可以解除抵押收回原先的代币。 投票的权重和抵押代币所获得的带宽和计算资源相关，抵押了越多，投票的权重越大。同时投票的权重会随着时间的推移减少，这个设定鼓励用户持续更新自己的投票。 而存储资源则是通过购买来得到，但是并不会消耗，当不再需要">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-09T00:04:58.222Z">
+<meta property="og:updated_time" content="2019-11-21T04:56:25.410Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2018/05/17/2018-5-17-EOS-SYSTEM-CONTRACT/">
@@ -221,7 +221,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:04:58" itemprop="dateModified" datetime="2019-11-09T08:04:58+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:25" itemprop="dateModified" datetime="2019-11-21T12:56:25+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,11 +249,14 @@
         <p>Dawn 4.0 发布后，基本上白皮书上提到的特性都得到了实现，特别是投票、资源抵押和内存买卖。</p>
 <p>EOS 的网络带宽和计算资源是通过抵押代币的方式获得，如果不需要了可以解除抵押收回原先的代币。</p>
 <p>投票的权重和抵押代币所获得的带宽和计算资源相关，抵押了越多，投票的权重越大。同时投票的权重会随着时间的推移减少，这个设定鼓励用户持续更新自己的投票。</p>
-<p>而存储资源则是通过购买来得到，但是并不会消耗，当不再需要存储资源的时候可以出售。但是存储资源相对于EOS代币的价格会随着市场对于存储资源的需求而变动。</p>
+<p>而存储资源则是通过购买来得到，但是并不会消耗，当不再需要存储资源的时候可以出售。但是存储资源相对于 EOS 代币的价格会随着市场对于存储资源的需求而变动。</p>
 <p>而这些功能都是在 eosio.system 这个智能合约中实现。</p>
 <p>本文试图通过分析 eosio.system 中所有的功能函数来解读 eos 系统功能。</p>
-<h2 id="函数列表"><a href="#函数列表" class="headerlink" title="函数列表"></a>函数列表</h2><p>在 eosio.system.hpp 头文件中包含以下函数声明： </p>
+<a id="more"></a>
+
+<h2 id="函数列表"><a href="#函数列表" class="headerlink" title="函数列表"></a>函数列表</h2><p>在 eosio.system.hpp 头文件中包含以下函数声明：</p>
 <h3 id="delegatebw"><a href="#delegatebw" class="headerlink" title="delegatebw"></a>delegatebw</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onblock</span><span class="params">( block_timestamp timestamp, account_name producer )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delegatebw</span><span class="params">( account_name from, account_name receiver,asset stake_net_quantity, asset stake_cpu_quantity, <span class="keyword">bool</span> transfer )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>delegatebw 函数用来实现抵押代币获取 cpu 和带宽资源。参数定义：</p>
 <ul>
 <li>from : 从哪个账号扣除用来抵押的代币</li>
@@ -263,6 +266,7 @@
 <li>transfer : 是否接受者可以主动解除抵押获得代币，如果不是，只有发起者能够解除抵押收回代币</li>
 </ul>
 <h3 id="undelegatebw"><a href="#undelegatebw" class="headerlink" title="undelegatebw"></a>undelegatebw</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">undelegatebw</span><span class="params">( account_name from, account_name receiver,asset unstake_net_quantity, asset unstake_cpu_quantity )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>undelegatebw 函数用来解除抵押，释放资源，收回代币，参数定义：</p>
 <ul>
 <li>from : 解除用哪个账号所抵押的代币</li>
@@ -270,8 +274,9 @@
 <li>unstake_net_quantity : 解除用来获取带宽资源的代币数量</li>
 <li>unstake_cpu_quantity : 解除用来获取计算资源的代币数量</li>
 </ul>
-<p>解除抵押之后，资源会马上释放，同时投票权重也相应消失。但是代币需要等待一定时间才能回到账号里，目前的设定是3天。</p>
+<p>解除抵押之后，资源会马上释放，同时投票权重也相应消失。但是代币需要等待一定时间才能回到账号里，目前  的设定是 3 天。</p>
 <h3 id="buyram"><a href="#buyram" class="headerlink" title="buyram"></a>buyram</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buyram</span><span class="params">( account_name buyer, account_name receiver, asset tokens )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buyrambytes</span><span class="params">( account_name buyer, account_name receiver, <span class="keyword">uint32_t</span> bytes )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>这两个函数的作用是购买存储资源，区别是买特定数量的代币还是买特定大小的内容。参数定义:</p>
 <ul>
 <li>buyer : 购买存储资源的账号</li>
@@ -280,13 +285,18 @@
 <li>bytes : 都买存储资源空间大小的数值</li>
 </ul>
 <h3 id="sellram"><a href="#sellram" class="headerlink" title="sellram"></a>sellram</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sellram</span><span class="params">( account_name receiver, <span class="keyword">int64_t</span> bytes )</span></span>;</span><br></pre></td></tr></table></figure>
-<p>sellram函数功能是出售不需要的存储资源。参数定义：</p>
+
+<p>sellram 函数功能是出售不需要的存储资源。参数定义：</p>
 <ul>
 <li>receiver : 出售资源代币的接受账号</li>
 <li>bytes : 出售多少空间的存储资源</li>
 </ul>
 <p>出售后资源会马上释放，收入的代币也会马上入账。</p>
-<h3 id="refund"><a href="#refund" class="headerlink" title="refund"></a>refund</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">refund</span><span class="params">( account_name owner )</span></span>;</span><br><span class="line">``` </span><br><span class="line">refund 函数 在 undelegatebw 函数解除抵押后调用，作用是把抵押的代币退回账户。</span><br><span class="line"></span><br><span class="line">##<span class="meta"># regproducer</span></span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">regproducer</span><span class="params">( <span class="keyword">const</span> account_name producer, <span class="keyword">const</span> public_key&amp; producer_key, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; url, <span class="keyword">uint16_t</span> location )</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="refund"><a href="#refund" class="headerlink" title="refund"></a>refund</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">refund</span><span class="params">( account_name owner )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>refund 函数 在 undelegatebw 函数解除抵押后调用，作用是把抵押的代币退回账户。</p>
+<h3 id="regproducer"><a href="#regproducer" class="headerlink" title="regproducer"></a>regproducer</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">regproducer</span><span class="params">( <span class="keyword">const</span> account_name producer, <span class="keyword">const</span> public_key&amp; producer_key, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; url, <span class="keyword">uint16_t</span> location )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>regproducer 函数的作用是注册成为超级节点候选人。参数定义：</p>
 <ul>
 <li>producer : 候选节点的账户名</li>
@@ -296,20 +306,25 @@
 </ul>
 <p>注册成为候选人后就可以接受用户的投票了。</p>
 <h3 id="unregprod"><a href="#unregprod" class="headerlink" title="unregprod"></a>unregprod</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unregprod</span><span class="params">( <span class="keyword">const</span> account_name producer )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>unregprod 函数的作用的取消成为候选人。</p>
 <h3 id="voteproducer"><a href="#voteproducer" class="headerlink" title="voteproducer"></a>voteproducer</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setram</span><span class="params">( <span class="keyword">uint64_t</span> max_ram_size )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">voteproducer</span><span class="params">( <span class="keyword">const</span> account_name voter, <span class="keyword">const</span> account_name proxy, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;account_name&gt;&amp; producers )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>voteproducer 函数的作用是投票。参数定义：</p>
 <ul>
 <li>voter : 投票人</li>
 <li>proxy : 代理投票人</li>
 <li>producers : 得票人列表</li>
 </ul>
-<p>有两种投票模式，代理模式和直接投票模式。代理模式是将投票权重委托给一个代理人，让他帮你投票。直接投票模式就是直接投票给你信任的超级节点，最多30个。</p>
+<p>有两种投票模式，代理模式和直接投票模式。代理模式是将投票权重委托给一个代理人，让他帮你投票。直接投票模式就是直接投票给你信任的超级节点，最多 30 个。</p>
 <h3 id="regproxy"><a href="#regproxy" class="headerlink" title="regproxy"></a>regproxy</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">regproxy</span><span class="params">( <span class="keyword">const</span> account_name proxy, <span class="keyword">bool</span> isproxy )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>regproxy 函数的作用是注册成为代理人，接受其他用户的委托。</p>
 <h3 id="claimrewards"><a href="#claimrewards" class="headerlink" title="claimrewards"></a>claimrewards</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">claimrewards</span><span class="params">( <span class="keyword">const</span> account_name&amp; owner )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <p>claimrewards 函数的作用是支付超级节点的奖励。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setpriv</span><span class="params">( account_name account, <span class="keyword">uint8_t</span> ispriv )</span></span>;</span><br></pre></td></tr></table></figure>
+
 <h2 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h2><p>开发者可以通过 cleos system 子命令来测试这些功能。</p>
 <p>如果要加入一个测试网络成为出块人，步骤应该是这样：</p>
 <ul>
@@ -386,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数列表"><span class="nav-number">1.</span> <span class="nav-text">函数列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#delegatebw"><span class="nav-number">1.1.</span> <span class="nav-text">delegatebw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undelegatebw"><span class="nav-number">1.2.</span> <span class="nav-text">undelegatebw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#buyram"><span class="nav-number">1.3.</span> <span class="nav-text">buyram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sellram"><span class="nav-number">1.4.</span> <span class="nav-text">sellram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#refund"><span class="nav-number">1.5.</span> <span class="nav-text">refund</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unregprod"><span class="nav-number">1.6.</span> <span class="nav-text">unregprod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#voteproducer"><span class="nav-number">1.7.</span> <span class="nav-text">voteproducer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regproxy"><span class="nav-number">1.8.</span> <span class="nav-text">regproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#claimrewards"><span class="nav-number">1.9.</span> <span class="nav-text">claimrewards</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试方法"><span class="nav-number">2.</span> <span class="nav-text">测试方法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数列表"><span class="nav-number">1.</span> <span class="nav-text">函数列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#delegatebw"><span class="nav-number">1.1.</span> <span class="nav-text">delegatebw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undelegatebw"><span class="nav-number">1.2.</span> <span class="nav-text">undelegatebw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#buyram"><span class="nav-number">1.3.</span> <span class="nav-text">buyram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sellram"><span class="nav-number">1.4.</span> <span class="nav-text">sellram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#refund"><span class="nav-number">1.5.</span> <span class="nav-text">refund</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regproducer"><span class="nav-number">1.6.</span> <span class="nav-text">regproducer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unregprod"><span class="nav-number">1.7.</span> <span class="nav-text">unregprod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#voteproducer"><span class="nav-number">1.8.</span> <span class="nav-text">voteproducer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regproxy"><span class="nav-number">1.9.</span> <span class="nav-text">regproxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#claimrewards"><span class="nav-number">1.10.</span> <span class="nav-text">claimrewards</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试方法"><span class="nav-number">2.</span> <span class="nav-text">测试方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -400,7 +415,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

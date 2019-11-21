@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="无抵押、不爆仓的做空机制是否可能？  背景做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。 本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。 该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空">
-<meta name="keywords" content="区块链,uniswap,Defi,去中心化金融,dex,去中心化交易所">
+  <meta name="description" content="无抵押、不爆仓的做空机制是否可能？  背景做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。 本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。">
+<meta name="keywords" content="区块链,Defi,去中心化金融,dex,去中心化交易所,uniswap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于三角Swap的去中心化做空机制">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;2019-11-09-DEFI-SHORT-SWAP&#x2F;index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="无抵押、不爆仓的做空机制是否可能？  背景做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。 本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。 该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空">
+<meta property="og:description" content="无抵押、不爆仓的做空机制是否可能？  背景做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。 本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-09T02:44:08.496Z">
+<meta property="og:updated_time" content="2019-11-21T04:55:18.177Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/11/09/2019-11-09-DEFI-SHORT-SWAP/">
@@ -213,10 +213,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-09 09:12:46 / 修改时间：10:44:08" itemprop="dateCreated datePublished" datetime="2019-11-09T09:12:46+08:00">2019-11-09</time>
+              <time title="创建时间：2019-11-09 09:12:46" itemprop="dateCreated datePublished" datetime="2019-11-09T09:12:46+08:00">2019-11-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 12:55:18" itemprop="dateModified" datetime="2019-11-21T12:55:18+08:00">2019-11-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -245,6 +251,8 @@
 </blockquote>
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。</p>
 <p>本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。</p>
+<a id="more"></a>
+
 <p>该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空中楼阁，看不到实现的可能。但是这个机制用在去中心化交易所的做空机制上，可能是个不错的尝试。</p>
 <h1 id="triswap"><a href="#triswap" class="headerlink" title="triswap"></a>triswap</h1><p>uniswap 是一个经过时间考验，非常成熟好用的去中心化交易协议。它通过交易对的底仓形成价格和深度，为交易者提供即刻的流动性。</p>
 <p>假设一个基于 uniswap 模型的 EOS/USDT 交易对，在交易对中引入一个做空权益代币，short-EOS，简称 sEOS。在对底仓注入交易对两边的资金同时，根据 EOS/sEOS 的价格发行相同价值的做空权益 sEOS。让交易对中的 EOS、sEOS 和 USDT 形成三角的 uniswap，这里简称 triswap。</p>
@@ -336,11 +344,11 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
-              <a href="/tags/uniswap/" rel="tag"># uniswap</a>
               <a href="/tags/Defi/" rel="tag"># Defi</a>
               <a href="/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E9%87%91%E8%9E%8D/" rel="tag"># 去中心化金融</a>
               <a href="/tags/dex/" rel="tag"># dex</a>
               <a href="/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E4%BA%A4%E6%98%93%E6%89%80/" rel="tag"># 去中心化交易所</a>
+              <a href="/tags/uniswap/" rel="tag"># uniswap</a>
           </div>
 
         
@@ -355,6 +363,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/21/2019-11-21-EASY-PAY-EOS/" rel="prev" title="为EOS小白用户准备的应用：Easy Pay">
+                  为EOS小白用户准备的应用：Easy Pay <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -407,7 +418,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

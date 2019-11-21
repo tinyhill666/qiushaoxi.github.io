@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="网上配置贴非常多，但是因为系统版本和docker版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x  启动 regisrty 容器1docker run -d -p 5000:5000 -v &#x2F;mnt&#x2F;date&#x2F;registry:&#x2F;var&#x2F;lib&#x2F;registry registry  -d后台运行 -p指定端口 -v把registry的镜像路径&#x2F;var&#x2F;lib&#x2F;">
+  <meta name="description" content="网上配置贴非常多，但是因为系统版本和 docker 版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x">
 <meta name="keywords" content="docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="本地Docker Hub配置">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;12&#x2F;05&#x2F;2017-12-05-Docker-Hub-Configration&#x2F;index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="网上配置贴非常多，但是因为系统版本和docker版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x  启动 regisrty 容器1docker run -d -p 5000:5000 -v &#x2F;mnt&#x2F;date&#x2F;registry:&#x2F;var&#x2F;lib&#x2F;registry registry  -d后台运行 -p指定端口 -v把registry的镜像路径&#x2F;var&#x2F;lib&#x2F;">
+<meta property="og:description" content="网上配置贴非常多，但是因为系统版本和 docker 版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-09T00:05:20.127Z">
+<meta property="og:updated_time" content="2019-11-21T04:57:04.310Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2017/12/05/2017-12-05-Docker-Hub-Configration/">
@@ -221,7 +221,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:20" itemprop="dateModified" datetime="2019-11-09T08:05:20+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:57:04" itemprop="dateModified" datetime="2019-11-21T12:57:04+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,29 +247,36 @@
 
       
         <blockquote>
-<p>网上配置贴非常多，但是因为系统版本和docker版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x</p>
+<p>网上配置贴非常多，但是因为系统版本和 docker 版本不同略有差异，本贴环境 ubuntu 16.04 docker-ce 17.0x</p>
 </blockquote>
+<a id="more"></a>
+
 <h1 id="启动-regisrty-容器"><a href="#启动-regisrty-容器" class="headerlink" title="启动 regisrty 容器"></a>启动 regisrty 容器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 5000:5000 -v /mnt/date/registry:/var/lib/registry registry</span><br></pre></td></tr></table></figure>
 
-<p>-d后台运行</p>
-<p>-p指定端口</p>
-<p>-v把registry的镜像路径/var/lib/registry映射到本机的/mnt/date/registry</p>
+<p>-d 后台运行</p>
+<p>-p 指定端口</p>
+<p>-v 把 registry 的镜像路径/var/lib/registry 映射到本机的/mnt/date/registry</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 0.0.0.0:5000/v2/_catalog</span><br></pre></td></tr></table></figure>
-<p>返回目前regisrty存在的image，不报错说明服务启动成功。</p>
-<h1 id="修改docker-https配置"><a href="#修改docker-https配置" class="headerlink" title="修改docker https配置"></a>修改docker https配置</h1><p>因为docker镜像的push和pull默认进过https传输，本地的registry并没有启动https的连接，所以要修改部分配置。</p>
+
+<p>返回目前 regisrty 存在的 image，不报错说明服务启动成功。</p>
+<h1 id="修改-docker-https-配置"><a href="#修改-docker-https-配置" class="headerlink" title="修改 docker https 配置"></a>修改 docker https 配置</h1><p>因为 docker 镜像的 push 和 pull 默认进过 https 传输，本地的 registry 并没有启动 https 的连接，所以要修改部分配置。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
-<p>打开docker配置文件，需要root权限</p>
-<p>在ExecStart参数最后加上 –insecure-registry [registry_ip]:[registry_port],如下：</p>
+
+<p>打开 docker 配置文件，需要 root 权限</p>
+<p>在 ExecStart 参数最后加上 –insecure-registry [registry_ip]:[registry_port],如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock  --insecure-registry 192.168.23.113:5000</span><br></pre></td></tr></table></figure>
+
 <p>执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-<p>重新加载docker.service文件的配置，并重启docker服务。</p>
-<h1 id="推送镜像到本地的hub"><a href="#推送镜像到本地的hub" class="headerlink" title="推送镜像到本地的hub"></a>推送镜像到本地的hub</h1><p>首先要tag现有的image</p>
+
+<p>重新加载 docker.service 文件的配置，并重启 docker 服务。</p>
+<h1 id="推送镜像到本地的-hub"><a href="#推送镜像到本地的-hub" class="headerlink" title="推送镜像到本地的 hub"></a>推送镜像到本地的 hub</h1><p>首先要 tag 现有的 image</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag hyperledger/fabric-kafka 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
-<p>然后推送image到本地镜像</p>
+
+<p>然后推送 image 到本地镜像</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
 
-<h1 id="从本地hub拉取镜像"><a href="#从本地hub拉取镜像" class="headerlink" title="从本地hub拉取镜像"></a>从本地hub拉取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
+<h1 id="从本地-hub-拉取镜像"><a href="#从本地-hub-拉取镜像" class="headerlink" title="从本地 hub 拉取镜像"></a>从本地 hub 拉取镜像</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 192.168.23.113:5000/fabric-kafka</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -335,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动-regisrty-容器"><span class="nav-number">1.</span> <span class="nav-text">启动 regisrty 容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改docker-https配置"><span class="nav-number">2.</span> <span class="nav-text">修改docker https配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推送镜像到本地的hub"><span class="nav-number">3.</span> <span class="nav-text">推送镜像到本地的hub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从本地hub拉取镜像"><span class="nav-number">4.</span> <span class="nav-text">从本地hub拉取镜像</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动-regisrty-容器"><span class="nav-number">1.</span> <span class="nav-text">启动 regisrty 容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改-docker-https-配置"><span class="nav-number">2.</span> <span class="nav-text">修改 docker https 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推送镜像到本地的-hub"><span class="nav-number">3.</span> <span class="nav-text">推送镜像到本地的 hub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从本地-hub-拉取镜像"><span class="nav-number">4.</span> <span class="nav-text">从本地 hub 拉取镜像</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -349,7 +356,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

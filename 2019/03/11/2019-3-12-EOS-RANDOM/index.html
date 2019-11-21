@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="最近帮助Enumivo（基于EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。 合约随机逻辑： 用户发起领取交易，领取投票奖励，同时合约账户转1ENU到奖池，同时发起一笔（0-24小时随机值）的延迟交易。  延迟交易被触发，检查奖池金额，达到了10ENU，就把10ENU都奖励给当前用户。   随机机制：0-24小时这个时间的随机数，就使用之前常用的利用b">
+  <meta name="description" content="最近帮助 Enumivo（基于 EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。">
 <meta name="keywords" content="区块链,EOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EOSIO随机数的一种实现">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;11&#x2F;2019-3-12-EOS-RANDOM&#x2F;index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="最近帮助Enumivo（基于EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。 合约随机逻辑： 用户发起领取交易，领取投票奖励，同时合约账户转1ENU到奖池，同时发起一笔（0-24小时随机值）的延迟交易。  延迟交易被触发，检查奖池金额，达到了10ENU，就把10ENU都奖励给当前用户。   随机机制：0-24小时这个时间的随机数，就使用之前常用的利用b">
+<meta property="og:description" content="最近帮助 Enumivo（基于 EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-09T00:04:54.725Z">
+<meta property="og:updated_time" content="2019-11-21T04:56:12.405Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/03/11/2019-3-12-EOS-RANDOM/">
@@ -221,7 +221,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:04:54" itemprop="dateModified" datetime="2019-11-09T08:04:54+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:12" itemprop="dateModified" datetime="2019-11-21T12:56:12+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,14 +246,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>最近帮助Enumivo（基于EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。</p>
+        <p>最近帮助 Enumivo（基于 EOSIO）社区做一个投票奖励活动，除了基本的投票奖励之外，还加入了一定的随机机制，增加乐趣。</p>
+<a id="more"></a>
+
 <h2 id="合约随机逻辑："><a href="#合约随机逻辑：" class="headerlink" title="合约随机逻辑："></a>合约随机逻辑：</h2><ol>
-<li><p>用户发起领取交易，领取投票奖励，同时合约账户转1ENU到奖池，同时发起一笔（0-24小时随机值）的延迟交易。</p>
+<li><p>用户发起领取交易，领取投票奖励，同时合约账户转 1ENU 到奖池，同时发起一笔（0-24 小时随机值）的延迟交易。</p>
 </li>
-<li><p>延迟交易被触发，检查奖池金额，达到了10ENU，就把10ENU都奖励给当前用户。</p>
+<li><p>延迟交易被触发，检查奖池金额，达到了 10ENU，就把 10ENU 都奖励给当前用户。</p>
 </li>
 </ol>
-<h2 id="随机机制："><a href="#随机机制：" class="headerlink" title="随机机制："></a>随机机制：</h2><p>0-24小时这个时间的随机数，就使用之前常用的利用block prefix值来生成，这个不是随机的唯一部分。因为就算用户可以控制随机数来控制延迟时间，也没有办法控制延迟交易发生时奖池的金额，奖池的金额完全是根据其他用户的随机行为来进行累积的。利用这样的随机数方案，或许能够开发一款公平的Lottery Dapp。</p>
+<h2 id="随机机制："><a href="#随机机制：" class="headerlink" title="随机机制："></a>随机机制：</h2><p>0-24 小时这个时间的随机数，就使用之前常用的利用 block prefix 值来生成，这个不是随机的唯一部分。因为就算用户可以控制随机数来控制延迟时间，也没有办法控制延迟交易发生时奖池的金额，奖池的金额完全是根据其他用户的随机行为来进行累积的。利用这样的随机数方案，或许能够开发一款公平的 Lottery Dapp。</p>
 <h2 id="可能的攻击方式："><a href="#可能的攻击方式：" class="headerlink" title="可能的攻击方式："></a>可能的攻击方式：</h2><p>构造交易控制随机数控制延时时间，在延迟交易发生前利用别的账户发起交易，将奖池金额构造到满足开奖条件。像本应用这样金额比较小的开奖，应该没有人会费时费力做这个事情。当奖金足够诱人的时候，就有人和你竞争，增加了开奖的不确定性。</p>
 <p>欢迎拍砖。</p>
 <h2 id="其他信息"><a href="#其他信息" class="headerlink" title="其他信息"></a>其他信息</h2><ul>
@@ -262,7 +264,7 @@
 <li><p>合约开源地址：<a href="https://github.com/ENU-Zion/claimforvote" target="_blank" rel="noopener">https://github.com/ENU-Zion/claimforvote</a></p>
 </li>
 </ul>
-<h2 id="Enumivo"><a href="#Enumivo" class="headerlink" title="Enumivo"></a>Enumivo</h2><p>Enumivo 是一个以UBI（全民基本收入）为目标的区块链项目</p>
+<h2 id="Enumivo"><a href="#Enumivo" class="headerlink" title="Enumivo"></a>Enumivo</h2><p>Enumivo 是一个以 UBI（全民基本收入）为目标的区块链项目</p>
 <p>白皮书：</p>
 <p><a href="https://enumivo.org/whitepapers/whitepaper_cn.pdf" target="_blank" rel="noopener">https://enumivo.org/whitepapers/whitepaper_cn.pdf</a></p>
 
@@ -345,7 +347,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

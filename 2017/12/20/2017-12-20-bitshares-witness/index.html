@@ -51,16 +51,16 @@
   };
 </script>
 
-  <meta name="description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。 在另一台机器上同样编译 Bitshares-core ，将原来的genesis.json复制到本机的 bitshares-core&#x2F;program">
+  <meta name="description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。">
 <meta name="keywords" content="区块链,BitShares">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bitshares 私链部署witness节点">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2017&#x2F;12&#x2F;20&#x2F;2017-12-20-bitshares-witness&#x2F;index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。 在另一台机器上同样编译 Bitshares-core ，将原来的genesis.json复制到本机的 bitshares-core&#x2F;program">
+<meta property="og:description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;7302525-95ffade6d5ccc8e7.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:updated_time" content="2019-11-09T00:05:08.575Z">
+<meta property="og:updated_time" content="2019-11-21T04:56:51.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;7302525-95ffade6d5ccc8e7.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 
@@ -223,7 +223,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-09 08:05:08" itemprop="dateModified" datetime="2019-11-09T08:05:08+08:00">2019-11-09</time>
+                <time title="修改时间：2019-11-21 12:56:51" itemprop="dateModified" datetime="2019-11-21T12:56:51+08:00">2019-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,56 +253,80 @@
 <p><a href="http://www.jianshu.com/p/5be0344e30cd" target="_blank" rel="noopener">编译比特股网页钱包</a></p>
 <p><a href="http://www.jianshu.com/p/a89b3835d4e8" target="_blank" rel="noopener">搭建比特股的水龙头注册服务</a></p>
 <h1 id="多节点部署"><a href="#多节点部署" class="headerlink" title="多节点部署"></a>多节点部署</h1><p>通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。</p>
-<p>在另一台机器上同样编译 Bitshares-core ，将原来的genesis.json复制到本机的 bitshares-core/programs/witness_node 目录下，执行</p>
+<a id="more"></a>
+
+<p>在另一台机器上同样编译 Bitshares-core ，将原来的 genesis.json 复制到本机的 bitshares-core/programs/witness_node 目录下，执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net --seed-nodes &quot;[]&quot; --genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
+
 <p>会初始化目录 test_net<br>然后</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl-c</span><br></pre></td></tr></table></figure>
+
 <p>退出程序，编辑 test_net/config.ini，修改如下几项配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p2p-endpoint = 0.0.0.0:9090</span><br><span class="line">seed-nodes = [&quot;192.168.23.248:9090&quot;]</span><br><span class="line">rpc-endpoint = 0.0.0.0:8090</span><br><span class="line">enable-stale-production = true</span><br></pre></td></tr></table></figure>
+
 <p>其中 seed-nodes 填写之前启动的区块链节点的 ip 和 p2p-endpoint 端口</p>
-<p>再次启动witness程序</p>
+<p>再次启动 witness 程序</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net</span><br></pre></td></tr></table></figure>
-<p>这样就成功部署了另一个区块链节点，但是由于没有witness权限，所以不会出块，只会同步区块信息。</p>
-<p>从github下载下来的代码启动私链，默认的 witness 是 init0～inti10。</p>
+
+<p>这样就成功部署了另一个区块链节点，但是由于没有 witness 权限，所以不会出块，只会同步区块信息。</p>
+<p>从 github 下载下来的代码启动私链，默认的 witness 是 init0 ～ inti10。</p>
 <h1 id="成为-witness"><a href="#成为-witness" class="headerlink" title="成为 witness"></a>成为 witness</h1><p>这里默认读者已经会使用 cli_wallet .</p>
 <p>启动 cli_wallet ，执行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">suggest_brain_key</span><br></pre></td></tr></table></figure>
+
 <p>获得新账户信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;brain_priv_key&quot;: &quot;LYSSA JUBILEE GIDDIFY KEMPITE INULASE SOBBER GROVEL ENCLAVE T SAHME MYXA GLIDE OVERALL SYNC GROWLER THRILL&quot;,</span><br><span class="line">  &quot;wif_priv_key&quot;: &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;,</span><br><span class="line">  &quot;pub_key&quot;: &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果之前没有import nathan 用户，执行：</p>
+
+<p>如果之前没有 import nathan 用户，执行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key nathan 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3</span><br></pre></td></tr></table></figure>
+
 <p>nathan 如果看过之前帖子应该知道是什么。</p>
 <p>通过生成的 pub_key 注册用户 joshua（任意名称）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_account joshua &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; nathan nathan 50 true</span><br></pre></td></tr></table></figure>
-<p>从nathan账户转一部分BTS到新建的用户</p>
+
+<p>从 nathan 账户转一部分 BTS 到新建的用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transfer nathan joshua 2000000000 BTS &quot;here is some cash&quot; true</span><br></pre></td></tr></table></figure>
-<p>导入用户的私钥到cli钱包，私钥是刚才生成内容的 wif_priv_key 字段</p>
+
+<p>导入用户的私钥到 cli 钱包，私钥是刚才生成内容的 wif_priv_key 字段</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key joshua 5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN</span><br></pre></td></tr></table></figure>
+
 <p>升级用户成为终身成员</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upgrade_account joshua true</span><br></pre></td></tr></table></figure>
-<p>创建witness用户</p>
+
+<p>创建 witness 用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_witness joshua &quot;&quot; true</span><br></pre></td></tr></table></figure>
-<p>为新建的witness用户投票，</p>
+
+<p>为新建的 witness 用户投票，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vote_for_witness joshua joshua true true</span><br></pre></td></tr></table></figure>
-<p>获取witness公私钥</p>
+
+<p>获取 witness 公私钥</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_witness joshua</span><br></pre></td></tr></table></figure>
+
 <p>得到结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: &quot;1.6.12&quot;,</span><br><span class="line">  &quot;witness_account&quot;: &quot;1.2.18&quot;,</span><br><span class="line">  &quot;last_aslot&quot;: 52765,</span><br><span class="line">  &quot;signing_key&quot;: &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">  &quot;pay_vb&quot;: &quot;1.13.9&quot;,</span><br><span class="line">  &quot;vote_id&quot;: &quot;1:22&quot;,</span><br><span class="line">  &quot;total_votes&quot;: &quot;898790081908868&quot;,</span><br><span class="line">  &quot;url&quot;: &quot;&quot;,</span><br><span class="line">  &quot;total_missed&quot;: 13,</span><br><span class="line">  &quot;last_confirmed_block_num&quot;: 15402</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>witness的公钥就是”signing_key”字段，记录下 witness_account ，后面配置有用，再执行 </p>
+
+<p>witness 的公钥就是”signing_key”字段，记录下 witness_account ，后面配置有用，再执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump_private_keys</span><br></pre></td></tr></table></figure>
+
 <p>获取目前钱包中存储的私钥</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[[</span><br><span class="line">    &quot;BTS78CuY47Vds2nfw2t88ckjTaggPkw16tLhcmg4ReVx1WPr1zRL5&quot;,</span><br><span class="line">    &quot;5JDh3XmHK8CDaQSxQZHh5PUV3zwzG68uVcrTfmg9yQ9idNisYnE&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,</span><br><span class="line">    &quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;,</span><br><span class="line">    &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">    &quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;</span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 <p>根据”signing_key”获取对应的私钥，就是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
-<p>记录好这个公私钥对，接下去修改test_net/config.ini</p>
+
+<p>记录好这个公私钥对，接下去修改 test_net/config.ini</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># ID of witness controlled by this node (e.g. &quot;1.6.5&quot;, quotes are required, may specify multiple times)</span><br><span class="line">witness-id = &quot;1.6.2&quot;</span><br><span class="line">witness-id = &quot;1.6.3&quot;</span><br><span class="line">witness-id = &quot;1.6.12&quot;</span><br><span class="line"></span><br><span class="line"># Tuple of [PublicKey, WIF private key] (may specify multiple times)</span><br><span class="line">private-key = [&quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,&quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]</span><br><span class="line">private-key = [&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
-<p>增加新建的witness-id和对应的公私钥，重启witness重需</p>
+
+<p>增加新建的 witness-id 和对应的公私钥，重启 witness 重需</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net</span><br></pre></td></tr></table></figure>
+
 <p><em>这一部分就完成了</em></p>
-<p>不过因为默认的更新witness的时间比较长，24小时，所以要等24小时才能看到joshua成为witness，如果想快一点，需要重头开始做，在执行</p>
+<p>不过因为默认的更新 witness 的时间比较长，24 小时，所以要等 24 小时才能看到 joshua 成为 witness，如果想快一点，需要重头开始做，在执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node --create-genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
-<p>之后，编辑genesis.json，修改下面这个参数为600，这样10分钟就会更新witness</p>
+
+<p>之后，编辑 genesis.json，修改下面这个参数为 600，这样 10 分钟就会更新 witness</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;maintenance_interval&quot;: 600,</span><br></pre></td></tr></table></figure>
+
 <hr>
 <p><img src="http://upload-images.jianshu.io/upload_images/7302525-95ffade6d5ccc8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="示例图"></p>
 
@@ -385,7 +409,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
