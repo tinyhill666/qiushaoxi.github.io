@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-03T12:30:15.434Z</updated>
+  <updated>2020-03-03T12:48:36.875Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/03/03/2020-3-3-RSK-SECURITY-MODEL/"/>
     <id>http://yoursite.com/2020/03/03/2020-3-3-RSK-SECURITY-MODEL/</id>
     <published>2020-03-03T08:24:00.000Z</published>
-    <updated>2020-03-03T12:30:15.434Z</updated>
+    <updated>2020-03-03T12:48:36.875Z</updated>
     
     <content type="html"><![CDATA[<p>RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RBTC 是如何做到安全和去中心化的？</p><a id="more"></a><p><a href="https://developers.rsk.co/rsk/architecture/security/" target="_blank" rel="noopener">RSK 文档链接</a></p><p>由于 DeFi（去中心化金融）对于智能 BTC 的需求，目前已经有很多不同类型的 BTC 跨链项目在运行了，而 RSK 的 RBTC 也是这条赛道最早的竞争者之一。</p><p>我们都知道，BTC 的跨链，实际上就是在 Bitcoin 链上锁定，再在另外一条链上发行同样金额的币，反方向则是销毁和解锁。</p><h2 id="RBTC-的跨链安全性"><a href="#RBTC-的跨链安全性" class="headerlink" title="RBTC 的跨链安全性"></a>RBTC 的跨链安全性</h2><p>由于 Bitcoin 不是一个图灵完备的公链，理论上，无法做到完全的去信任跨链。RSK 在 Bitcoin 链上的锁定的 BTC 资产安全由一组可信第三方（简称 STTP）来保证。这些可信第三方组成了 RSK 联合会（Federation），没有一个单独的 STTP 能够操控锁定的 BTC，只有大多数 STTP 通过才能够释放 BTC 资产。当 STTP 监控到 RSK 链上发起的跨链转账 BTC，STTP 多签执行解锁的操作。除此之外，用户在 Bitcoin 链上发起的跨链转账所锁定的 BTC 并不会固定锁定在一个单独的地址中，RSK 锁定的 BTC 是一个大池子，统一管理。</p><p>RSK 联合会成员进行锁定和解锁 BTC 是无需人为干预的。加入 RSK 联合会需要首先对成员的节点程序进行审核，确保节点的基础设施能够提供正确的操作，此外 RSK 实验室也开发了针对 STTP 的硬件安全模块来保证私钥的安全。</p><p>截至 2019 年 1 月，RSK 联合会由 15 名知名且高度安全的公证人组成。这些领先的区块链公司通过自治协议来安全锁定 BTC。作为报酬，RSK 联合会成员将获得 RSK 产生的交易费用的 1％，以支付硬件和维护成本。联合会成员的更替由智能合约负责，因此对公众开放。更替生效之前有一个强制性的延迟一周。 如果用户不信任新的 RSK 联合会成员，用户可以将 BTC 转移回 Bitcoin 网络。</p><p>如果之后 Bitcoin 通过升级添加了特殊的操作码或可扩展性来支持使用 SPV 验证，RSK 将升级跨链的机制来支持完全去中心化的实现。</p><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>搜索了很多资料，关于 RSK 联合会的信息很少，官网中并没有找到，唯一找到的<a href="https://news.bitcoin.com/rsk-federation-partners-industry-leaders/" target="_blank" rel="noopener">文章</a>中列出了成员包括：</p><ul><li>Bitgo</li><li>Bitpay</li><li>Bitstamp</li><li>Blockchain</li><li>Blockchain Intelligence Group</li><li>Bitfinex</li><li>BTCC</li><li>Jaxx</li><li>Huobi</li><li>OKCoin</li><li>Xapo</li></ul><p>确实都是一些业界最知名的公司。</p><p>除了 RBTC，其他一些跨链 BTC 的项目，也都是类似的多机构或者单机构的公证人机制。在目前 Bitcoin 非图灵完备的情况下，还有没有可能出现其他方式的跨链？这是一个值得期待的问题。</p><p>关于其他 BTC 跨链项目，可以看看(<a href="https://www.chainnews.com/articles/969112149833.htm" target="_blank" rel="noopener">https://www.chainnews.com/articles/969112149833.htm</a>)</p>]]></content>
     
@@ -34,10 +34,10 @@
     
       <category term="RSK" scheme="http://yoursite.com/categories/RSK/"/>
     
-      <category term="RBTC" scheme="http://yoursite.com/categories/RSK/RBTC/"/>
     
-      <category term="区块链" scheme="http://yoursite.com/categories/RSK/RBTC/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
+      <category term="RBTC" scheme="http://yoursite.com/tags/RBTC/"/>
     
   </entry>
   
@@ -46,7 +46,7 @@
     <link href="http://yoursite.com/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA/"/>
     <id>http://yoursite.com/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA/</id>
     <published>2020-02-06T08:24:00.000Z</published>
-    <updated>2020-02-06T07:04:26.613Z</updated>
+    <updated>2020-03-03T12:48:30.353Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://voice.com/blog/road-to-beta/" target="_blank" rel="noopener">原文链接</a></p><p>六个月前，我们的首席执行官 Brendan Blumer 和首席技术 Dan Larimer 在拥挤的华盛顿特区礼堂举行了一场激烈的演讲。主题是社交媒体的现状。</p><a id="more"></a><p>好吧，它并不是真正的“激烈”。它更多地是一场涉及次贷危机、区块链演变和社会心理的多元运动演说。</p><p>但所有这些都归结为：</p><p>  <strong>社交媒体”坏”了。社交媒体被设计去利用我们的数据和注意力，为大型集团公司、大型科技公司、银行和华尔街利益集团创造了数万亿美元的利润，与此同时，我们努力保护自己免受注意力被拍卖给匿名方以及个人信息在公开市场上交易的后果。我们与曾经信任的平台之间的利益失衡，使我们越来越容易遭受数据剖析、身份盗窃、网络欺凌和有说服力的错误信息的影响。越来越多的人想要操纵我们的思想并控制自己的行为，在制造出来的信息海洋中去了解真相从未如此困难。</strong></p><p>这就是为什么我们如此专注于Voice的原因：一个基于区块链的社交网络，重新组合用户喜好的公式————消除不透明的单方面数据拍卖，去除隐藏的算法，并通过Voice代币的形式将价值循环回用户手中。通过做自己并表达自己的声音即可获得Voice代币；它们具有影响注意力的效用，可用于在整个生态系统中以不同的方式提升内容。换句话说，我们相信Voice应该是社交性的————那些对平台有利的也对您有利。</p><p>自从我们宣布这一消息以来，成千上万的人已经申请测试版，意见领袖已经宣布支持，媒体也在要求我们提供信息和时间表————正如您也是如此。我们很高兴看到这样的情况，希望你们一直保持下去。</p><p>接下去是什么？</p><p>与大多数新兴技术一样，让人们能够使用Voice不仅需要认真的开发。法律环境仍在不断发展，而区块链与代币化以及社交媒体的结合相对来说尚属未知领域。因此，我们正在与立法部门和监管机构进行持续的公开对话，以确保Voice已为用户准备就绪。</p><p>可以说，这是一条漫长而未铺砌的市场之路。但是我们进展顺利————我们的目标是在<strong>2020年2月14日</strong>发布测试版。</p><p>从现在开始，我们希望与大家分享我们的旅程。行业变革不会一蹴而就，也不会凭空而来。在此过程的每个阶段，没有您的参与，仔细检查和反馈，Voice将无法达成它应有的样子。因此，可以将此篇博客视为公开邀请。我们的最新发现、最大的挑战以及Dan和开发人员的故事，还有法规更新和幕后窥视，我们正准备将其发布在这里，希望产生一些变化，因此您可以与我们一起迈向测试版。再见。</p><h2 id="加入Voice对话"><a href="#加入Voice对话" class="headerlink" title="加入Voice对话"></a>加入Voice对话</h2><p>在<a href="https://twitter.com/voicesocial_" target="_blank" rel="noopener">Twitter</a>，<a href="https://www.facebook.com/getvoicesocial" target="_blank" rel="noopener">Facebook</a>和<a href="https://www.instagram.com/Voice_Social_/" target="_blank" rel="noopener">Instagram</a>上关注我们以获取最新更新，或访问我们的<a href="https://voice.com/blog/road-to-beta/" target="_blank" rel="noopener">常见问题解答</a>，随着我们不断发展Voice，我们将添加新的更新和信息。在这里，您可以看到别人在问什么，并添加自己的问题。</p>]]></content>
     
@@ -60,10 +60,10 @@
     
       <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
     
-      <category term="Voice" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/Voice/"/>
     
-      <category term="EOS" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/Voice/EOS/"/>
+      <category term="EOS" scheme="http://yoursite.com/tags/EOS/"/>
     
+      <category term="Voice" scheme="http://yoursite.com/tags/Voice/"/>
     
   </entry>
   
