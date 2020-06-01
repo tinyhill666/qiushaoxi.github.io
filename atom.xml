@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-17T09:15:31.818Z</updated>
+  <updated>2020-06-01T05:54:10.118Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Fabric学习开篇</title>
+    <link href="http://yoursite.com/2020/03/17/2020-6-1-CHFD/"/>
+    <id>http://yoursite.com/2020/03/17/2020-6-1-CHFD/</id>
+    <published>2020-03-17T08:24:00.000Z</published>
+    <updated>2020-06-01T05:54:10.118Z</updated>
+    
+    <content type="html"><![CDATA[<p>根据 《Certified Hyperledger Fabric Developer》考试要求学习 Fabric</p><a id="more"></a><p>因为工作原因，又需要学习 Hyperledger Fabric 相关的内容，目前Fabric和两年前比起来已经有了一些变化。虽然我还是非常不认可它的设计，但是挡不住公司用它。</p><p>因为要考 CHFD，所以还是需要系统学习一下。打算把学习的内容固化下来。</p><p>今天就先把考试的大纲列一下，后续不断更新。</p><h1 id="CHFD-Domains-amp-Competencies-v1-0"><a href="#CHFD-Domains-amp-Competencies-v1-0" class="headerlink" title="CHFD Domains &amp; Competencies v1.0"></a>CHFD Domains &amp; Competencies v1.0</h1><h2 id="Identity-Management-–-7"><a href="#Identity-Management-–-7" class="headerlink" title="Identity Management – 7%"></a>Identity Management – 7%</h2><ul><li>Instantiate a wallet</li><li>Import identities to a wallet</li><li>Select and manage identity from a wallet</li></ul><h2 id="Network-Configuration-–-8"><a href="#Network-Configuration-–-8" class="headerlink" title="Network Configuration – 8%"></a>Network Configuration – 8%</h2><ul><li>Create and use connection profiles</li><li>Instantiate and connect to a gateway</li><li>Access networks and contracts</li></ul><h2 id="Smart-Contract-Development-–-40"><a href="#Smart-Contract-Development-–-40" class="headerlink" title="Smart Contract Development – 40%"></a>Smart Contract Development – 40%</h2><ul><li>Define smart contract class/construct</li><li>Define transaction functions</li><li>Validate and sanitize inputs and arguments</li><li>Implement deterministic logic/code</li><li>Simple state interaction (Get, Put, Delete)</li><li>Execute simple queries</li><li>Create complex queries</li><li>Define assets using key value pairs</li><li>Identify potentially private data</li><li>Incorporate private data collection</li><li>Implement attribute based access control</li><li>Initialization of the ledger state</li><li>Install and instantiate a smart contract</li></ul><h2 id="Smart-Contract-Invocation-–-25"><a href="#Smart-Contract-Invocation-–-25" class="headerlink" title="Smart Contract Invocation – 25%"></a>Smart Contract Invocation – 25%</h2><ul><li>Invoke smart contracts via CLI</li><li>Submit one or more transactions</li><li>Evaluate transaction functions e.g. for queries</li><li>Query transaction history</li><li>Call a transaction using transaction class (stateful)</li><li>Create and issue an application contract</li><li>Register and handle channel-based events</li></ul><h2 id="Maintenance-and-Testing-–-20"><a href="#Maintenance-and-Testing-–-20" class="headerlink" title="Maintenance and Testing – 20%"></a>Maintenance and Testing – 20%</h2><ul><li>Handle error and success responses</li><li>Identify and review logs</li><li>Unit test contracts</li><li>Diagnose and endorse policy conflicts</li><li>Identify and correct non-determinism in functions</li><li>Troubleshoot transaction flow</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;根据 《Certified Hyperledger Fabric Developer》考试要求学习 Fabric&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Fabric" scheme="http://yoursite.com/categories/Fabric/"/>
+    
+    
+      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="Fabric" scheme="http://yoursite.com/tags/Fabric/"/>
+    
+  </entry>
   
   <entry>
     <title>Codex 和 Uniswap 的区别</title>
@@ -573,38 +598,6 @@
     
     
       <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>三原色事件</title>
-    <link href="http://yoursite.com/2017/11/29/2017-11-29-RYB/"/>
-    <id>http://yoursite.com/2017/11/29/2017-11-29-RYB/</id>
-    <published>2017-11-29T04:55:00.000Z</published>
-    <updated>2019-11-09T00:05:26.431Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>一生都是和这个世界的抗争，没有一刻可以安枕无忧</p></blockquote><p>从携程亲子园、到三原色幼儿园，这个冬天有点遭心，大概是给党的献礼吧。</p><p>想想这些也没什么新鲜的，舆论又重新进入事件的惯有逻辑，每个人选择相信自己相信的事情。只是从前那些事情谁又能想起呢？别说远的，江歌事件才过去没几天就没人再提起了。</p><p>我是个很懒的人，懒到写东西也不太愿意，<br>我是个健忘的人，和大众一样，只有几天的记忆，<br>可是我不想忘记这些，这些不该被忘记的事情。</p><p>这些事情不断的告诉我，这始终都是个丛林的世界，不要寄希望于任何人，只能靠自己。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;一生都是和这个世界的抗争，没有一刻可以安枕无忧&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;从携程亲子园、到三原色幼儿园，这个冬天有点遭心，大概是给党的献礼吧。&lt;/p&gt;
-&lt;p&gt;想想这些也没什么新鲜的，舆论又重新进入事件的惯有逻辑，每个人选择相信自己相
-      
-    
-    </summary>
-    
-    
-      <category term="社会" scheme="http://yoursite.com/categories/%E7%A4%BE%E4%BC%9A/"/>
-    
-    
-      <category term="社会" scheme="http://yoursite.com/tags/%E7%A4%BE%E4%BC%9A/"/>
-    
-      <category term="不该忘记的事情" scheme="http://yoursite.com/tags/%E4%B8%8D%E8%AF%A5%E5%BF%98%E8%AE%B0%E7%9A%84%E4%BA%8B%E6%83%85/"/>
     
   </entry>
   
