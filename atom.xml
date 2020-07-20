@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-20T01:52:14.388Z</updated>
+  <updated>2020-07-20T03:02:40.496Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,19 +21,18 @@
     <link href="http://yoursite.com/2020/07/20/2020-7-20-DEFIS-NETWORK/"/>
     <id>http://yoursite.com/2020/07/20/2020-7-20-DEFIS-NETWORK/</id>
     <published>2020-07-20T01:00:00.000Z</published>
-    <updated>2020-07-20T01:52:14.388Z</updated>
+    <updated>2020-07-20T03:02:40.496Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>没有爆仓的借贷是一种妄念</p></blockquote><h1 id="为什么需要抵押稳定币"><a href="#为什么需要抵押稳定币" class="headerlink" title="为什么需要抵押稳定币"></a>为什么需要抵押稳定币</h1><p>目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。</p><p>所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过BitCNY，Dai等稳定币项目。</p><h1 id="什么是好的抵押稳定币"><a href="#什么是好的抵押稳定币" class="headerlink" title="什么是好的抵押稳定币"></a>什么是好的抵押稳定币</h1><p>标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。</p><p>这这个标准下，还有一些指标来判断稳定币</p><ul><li>资金利用率，就是抵押物的抵押倍数。抵押倍数低，资金利用率就高</li><li>爆仓效率，在抵押物价值快速下跌的过程中，能够及时爆仓保证资金风险</li></ul><h1 id="什么是-USDD"><a href="#什么是-USDD" class="headerlink" title="什么是 USDD"></a>什么是 USDD</h1><p>USDD 是 Defis Networs（DFS）项目，通过超额抵押产生的抵押稳定币。</p><p>他和其他抵押稳定币有什么区别？他需要3倍的超额抵押，就是如果 EOS价值3美金，那他只能生成一个USDD。</p><p>同时，他没有爆仓机制。</p><h1 id="为什么-USDD会失败"><a href="#为什么-USDD会失败" class="headerlink" title="为什么 USDD会失败"></a>为什么 USDD会失败</h1><h2 id="摆事实"><a href="#摆事实" class="headerlink" title="摆事实"></a>摆事实</h2><p>USDD目前长时间对应EOS的价格在 2.2 EOS/USDD 以下，夸张的时候到过1.5 EOS/USDD。</p><p>实际上 EOS的价格为 2.6 EOS/USDT。溢价一度超过 50%</p><h2 id="讲道理"><a href="#讲道理" class="headerlink" title="讲道理"></a>讲道理</h2><h3 id="高额抵押"><a href="#高额抵押" class="headerlink" title="高额抵押"></a>高额抵押</h3><p>高额抵押，意味着，如果稳定币溢价，套利的难度非常大。套利者抵押生成USDD后再用USDD换EOS，这样套利者的资金就被占用，套利的金额有限。</p><p>与3倍高额的抵押相对应的，EOS上另外一个稳定币 VIGOR，只需要1.1倍的抵押就可以生成，那样的话，如果溢价超过10%，套利者就可以无限套利，所以溢价不可能超过10%。</p><h3 id="无爆仓"><a href="#无爆仓" class="headerlink" title="无爆仓"></a>无爆仓</h3><p>设计者希望能够不爆仓生成稳定币，所以使用了3倍的高额抵押。那么是否就真的安全了？</p><p>今年3.12的极端行情，下跌3倍是有可能发生的。那时候，USDD将会资不抵债。</p><p>这个事情DAI的2倍超额抵押，就发生了。DAI是有爆仓的，但是因为ETH网络拥堵，所以爆仓交易被堵住了，最终导致了项目方拍卖MKR来进行补偿。</p><p>而EOS的速度不存在问题，为何要如此放弃自己的优势呢？</p><h1 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h1><p>用户挖矿是比不过科学家的，用户的机会可能就是赌它的上涨，具体会不会涨，这个不在我的能力范围。</p><h1 id="也说一些好事"><a href="#也说一些好事" class="headerlink" title="也说一些好事"></a>也说一些好事</h1><p>目前 EOS/USDD 池子的深度已经有2W+ 的EOS了，这是目前来看，EOS生态里面最大的swap 池子了，这个项目如果能够激活EOS Defi生态，当然是最好不过的事情了。</p><h1 id="其他-EOS-Defi"><a href="#其他-EOS-Defi" class="headerlink" title="其他 EOS Defi"></a>其他 EOS Defi</h1><ul><li>EOSDT 抵押稳定币，存币生息</li><li>Pizza/USDE 抵押稳定币，借贷，交易</li><li>Bancor/USDB 交易，稳定币</li><li>Vigor 抵押稳定币，DAC</li><li>Newdex / Newdex Swap 交易</li><li>sx swap 交易</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>没有爆仓的借贷是一种妄念</p></blockquote><h1 id="为什么需要抵押稳定币"><a href="#为什么需要抵押稳定币" class="headerlink" title="为什么需要抵押稳定币"></a>为什么需要抵押稳定币</h1><p>目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。</p><p>所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过 BitCNY，Dai 等稳定币项目。</p><h1 id="什么是好的抵押稳定币"><a href="#什么是好的抵押稳定币" class="headerlink" title="什么是好的抵押稳定币"></a>什么是好的抵押稳定币</h1><p>标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。</p><a id="more"></a><p>这这个标准下，还有一些指标来判断稳定币</p><ul><li>资金利用率，就是抵押物的抵押倍数。抵押倍数低，资金利用率就高</li><li>爆仓效率，在抵押物价值快速下跌的过程中，能够及时爆仓保证资金风险</li></ul><h1 id="什么是-USDD"><a href="#什么是-USDD" class="headerlink" title="什么是 USDD"></a>什么是 USDD</h1><p>USDD 是 Defis Networs（DFS）项目，通过超额抵押产生的抵押稳定币。</p><p>他和其他抵押稳定币有什么区别？他需要 3 倍的超额抵押，就是如果 EOS 价值 3 美金，那他只能生成一个 USDD。</p><p>同时，他没有爆仓机制。</p><h1 id="为什么-USDD-会失败"><a href="#为什么-USDD-会失败" class="headerlink" title="为什么 USDD 会失败"></a>为什么 USDD 会失败</h1><h2 id="摆事实"><a href="#摆事实" class="headerlink" title="摆事实"></a>摆事实</h2><p>USDD 目前长时间对应 EOS 的价格在 2.2 EOS/USDD 以下，夸张的时候到过 1.5 EOS/USDD。</p><p>实际上 EOS 的价格为 2.6 EOS/USDT。溢价一度超过 50%</p><h2 id="讲道理"><a href="#讲道理" class="headerlink" title="讲道理"></a>讲道理</h2><h3 id="高额抵押"><a href="#高额抵押" class="headerlink" title="高额抵押"></a>高额抵押</h3><p>高额抵押，意味着，如果稳定币溢价，套利的难度非常大。套利者抵押生成 USDD 后再用 USDD 换 EOS，这样套利者的资金就被占用，套利的金额有限。</p><p>与 3 倍高额的抵押相对应的，EOS 上另外一个稳定币 VIGOR，只需要 1.1 倍的抵押就可以生成，那样的话，如果溢价超过 10%，套利者就可以无限套利，所以溢价不可能超过 10%。</p><h3 id="无爆仓"><a href="#无爆仓" class="headerlink" title="无爆仓"></a>无爆仓</h3><p>设计者希望能够不爆仓生成稳定币，所以使用了 3 倍的高额抵押。那么是否就真的安全了？</p><p>今年 3.12 的极端行情，下跌 3 倍是有可能发生的。那时候，USDD 将会资不抵债。</p><p>这个事情 DAI 的 2 倍超额抵押，就发生了。DAI 是有爆仓的，但是因为 ETH 网络拥堵，所以爆仓交易被堵住了，最终导致了项目方拍卖 MKR 来进行补偿。</p><p>而 EOS 的速度不存在问题，为何要如此放弃自己的优势呢？</p><h1 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h1><p>用户挖矿是比不过科学家的，用户的机会可能就是赌它的上涨，具体会不会涨，这个不在我的能力范围。</p><h1 id="也说一些好事"><a href="#也说一些好事" class="headerlink" title="也说一些好事"></a>也说一些好事</h1><p>目前 EOS/USDD 池子的深度已经有 2W+ 的 EOS 了，这是目前来看，EOS 生态里面最大的 swap 池子了，这个项目如果能够激活 EOS Defi 生态，当然是最好不过的事情了。</p><h1 id="其他-EOS-Defi"><a href="#其他-EOS-Defi" class="headerlink" title="其他 EOS Defi"></a>其他 EOS Defi</h1><ul><li>EOSDT 抵押稳定币，存币生息</li><li>Pizza/USDE 抵押稳定币，借贷，交易</li><li>Bancor/USDB 交易，稳定币</li><li>Vigor 抵押稳定币，DAC</li><li>Newdex / Newdex Swap 交易</li><li>sx swap 交易</li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;没有爆仓的借贷是一种妄念&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;为什么需要抵押稳定币&quot;&gt;&lt;a href=&quot;#为什么需要抵押稳定币&quot; class=&quot;headerlink&quot; title=&quot;为什么需要抵押稳定币&quot;&gt;&lt;/a&gt;为什么需要抵押稳定
-      
+&lt;h1 id=&quot;为什么需要抵押稳定币&quot;&gt;&lt;a href=&quot;#为什么需要抵押稳定币&quot; class=&quot;headerlink&quot; title=&quot;为什么需要抵押稳定币&quot;&gt;&lt;/a&gt;为什么需要抵押稳定币&lt;/h1&gt;&lt;p&gt;目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。&lt;/p&gt;
+&lt;p&gt;所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过 BitCNY，Dai 等稳定币项目。&lt;/p&gt;
+&lt;h1 id=&quot;什么是好的抵押稳定币&quot;&gt;&lt;a href=&quot;#什么是好的抵押稳定币&quot; class=&quot;headerlink&quot; title=&quot;什么是好的抵押稳定币&quot;&gt;&lt;/a&gt;什么是好的抵押稳定币&lt;/h1&gt;&lt;p&gt;标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。&lt;/p&gt;
     
     </summary>
     
