@@ -182,6 +182,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/07/2017-12-07-fabric-in-swarm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tiny Hill">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny Hill's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/12/07/2017-12-07-fabric-in-swarm/" class="post-title-link" itemprop="url">在 Swarm 集群环境部署 Fabric 区块链</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-07 12:55:00" itemprop="dateCreated datePublished" datetime="2017-12-07T12:55:00+08:00">2017-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 12:56:55" itemprop="dateModified" datetime="2019-11-21T12:56:55+08:00">2019-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>fabric 部署本来就是一件麻烦的事情，如果还涉及到多机环境部署那就更加的麻烦了。<br>因为 fabric 推荐部署在 docker 环境中，那很自然地想到通过集群部署工具来部署 fabric。本文就通过例子来说明如何在 Swarm 集群中部署 fabric 区块链网络。</p>
+<p>还有之前看到过张海宁的<a href="https://github.com/hainingzhang/articles/blob/master/fabric_multi_nodes/FabricMultiNodev2-3.pdf" target="_blank" rel="noopener">k8s 部署方案</a>，供大家参考。</p>
+<p>文中所有 IP 地址,如 192.168.1.93，都需要根据你本地的情况输入。</p>
+<p>本例子 github 地址：<a href="https://github.com/qiushaoxi/fabric-in-swarm.git" target="_blank" rel="noopener">fabric-in-swarm</a> , 欢迎 star.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/12/07/2017-12-07-fabric-in-swarm/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/2017-12-05-Docker-Hub-Configration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -519,90 +605,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/2017-10-13-configtxlator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Tiny Hill">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tiny Hill's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/13/2017-10-13-configtxlator/" class="post-title-link" itemprop="url">[翻译]使用configtxlator工具重新配置fabric区块链</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-13 17:55:00" itemprop="dateCreated datePublished" datetime="2017-10-13T17:55:00+08:00">2017-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-21 12:57:31" itemprop="dateModified" datetime="2019-11-21T12:57:31+08:00">2019-11-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链技术</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>original：<a href="https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst" target="_blank" rel="noopener">https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst</a></p>
-<h2 id="Overview概览"><a href="#Overview概览" class="headerlink" title="Overview概览"></a>Overview<br />概览</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/10/13/2017-10-13-configtxlator/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/2017-10-15-Kafka-based-Ordering-Service/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,6 +667,90 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/10/13/2017-10-15-Kafka-based-Ordering-Service/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/2017-10-13-configtxlator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tiny Hill">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny Hill's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/13/2017-10-13-configtxlator/" class="post-title-link" itemprop="url">[翻译]使用configtxlator工具重新配置fabric区块链</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-13 17:55:00" itemprop="dateCreated datePublished" datetime="2017-10-13T17:55:00+08:00">2017-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 12:57:31" itemprop="dateModified" datetime="2019-11-21T12:57:31+08:00">2019-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>original：<a href="https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst" target="_blank" rel="noopener">https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst</a></p>
+<h2 id="Overview概览"><a href="#Overview概览" class="headerlink" title="Overview概览"></a>Overview<br />概览</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/10/13/2017-10-13-configtxlator/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -754,14 +840,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -798,7 +884,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
