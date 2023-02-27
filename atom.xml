@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2023-02-27T21:24:54.676Z</updated>
+  <updated>2023-02-27T21:30:26.939Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Blur.io Gas消耗分析</title>
+    <link href="http://yoursite.com/2023/02/23/2023-2-23-blur-gas/"/>
+    <id>http://yoursite.com/2023/02/23/2023-2-23-blur-gas/</id>
+    <published>2023-02-23T09:00:00.000Z</published>
+    <updated>2023-02-27T21:30:26.939Z</updated>
+    
+    <content type="html"><![CDATA[<p>blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。</p><a id="more"></a><p>这里只比对产品自身的交易方式，不对比聚合器的形式。从一个简单的撮合交易中，交易自身逻辑(剔除nft和token的转账)所消耗的gas大概为:blur消耗为180k，opensea为84k，sudoswap为60k。</p><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>blur的合约地址<a href="https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递" target="_blank" rel="noopener">https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递</a></p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>在blur的合约中有个oracle的角色，而且对于买卖两个单子都有一个额外的extraSignature，是由oracle签的，等于要多验签两次。我理解这个应该是项目方的签名，来避免直接绕过前端来发起合约调用。不确定理解是不是正确，欢迎拍砖讨论</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>opensea最新版本的协议的seaport合约，使用了大量的汇编，对输入内容的压缩优化做的比较好，可以作为性能对比的对照基准</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>sudoswap是完全不同于其他nft marketplace的交易方式。挂单用户实际上是要建立一个单独的合约作为池子来存放NFT或者ETH，好在这个合约是用了最小代理，不是很消耗gas。所以在吃单的时候，就使用预设的价格计算公式进行计算，少了很多检查的逻辑，甚至没有验证签名，所以比较节约gas</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+    
+    
+      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+    
+      <category term="NFT" scheme="http://yoursite.com/tags/NFT/"/>
+    
+  </entry>
   
   <entry>
     <title>ParaSpace NFT借贷平台介绍</title>
@@ -553,35 +580,6 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- /TOC --&gt;
-    
-    </summary>
-    
-    
-      <category term="区块链技术" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-      <category term="EOS" scheme="http://yoursite.com/tags/EOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>EOS 相关汇总</title>
-    <link href="http://yoursite.com/2018/02/07/2018-02-07-eos-document/"/>
-    <id>http://yoursite.com/2018/02/07/2018-02-07-eos-document/</id>
-    <published>2018-02-07T17:55:00.000Z</published>
-    <updated>2019-11-09T00:05:03.478Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li><a href="http://blog.eosdata.io/index.php/links/" target="_blank" rel="noopener">http://blog.eosdata.io/index.php/links/</a>                                                                            //     eos开发者的hao123</li><li><a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">https://github.com/EOSIO/Documentation</a>                                                                    //  Github上所有文档</li><li><a href="https://www.jianshu.com/p/bc489db794ce" target="_blank" rel="noopener">https://www.jianshu.com/p/bc489db794ce</a>                                                                    //  eos中文白皮书</li><li><a href="https://github.com/EOSIO/Documentation/blob/master/zh-CN/Roadmap.md" target="_blank" rel="noopener">https://github.com/EOSIO/Documentation/blob/master/zh-CN/Roadmap.md</a>           //    eos开发路线图</li><li><a href="https://www.youtube.com/watch?v=DWxZULsFcF0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=DWxZULsFcF0</a>                                                    //    官方推介会youtube视频(40min)</li><li><a href="https://www.jianshu.com/u/2c20674f10bb" target="_blank" rel="noopener">https://www.jianshu.com/u/2c20674f10bb</a>                                                                    //   《eos入门到精通》技术解析</li><li><a href="http://vdisk.weibo.com/s/yUM-q4I09jbOT" target="_blank" rel="noopener">http://vdisk.weibo.com/s/yUM-q4I09jbOT</a>                                                                    //    Dpos共识白皮书</li><li><a href="https://twitter.com/search?src=typd&amp;q=Dan%20Larimer" target="_blank" rel="noopener">https://twitter.com/search?src=typd&amp;q=Dan%20Larimer</a>                                            //    Dan Larimer的Twitter</li><li><a href="https://www.youtube.com/watch?v=6cDTeIycI6c" target="_blank" rel="noopener">https://www.youtube.com/watch?v=6cDTeIycI6c</a>                                                        //  Dan Larimer采访</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.eosdata.io/index.php/links/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://blog.eosdata.io/index.php/links/&lt;/a&gt;       
-      
     
     </summary>
     
