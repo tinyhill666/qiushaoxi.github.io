@@ -46,22 +46,24 @@
   };
 </script>
 
-  <meta name="description" content="Codex 是运行在 EOS 上的基于底池的自动做市商交易所，它和该模型的鼻祖 Uniswap 之间有什么异同？">
+  <meta name="description" content="新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codex 和 Uniswap 的区别">
-<meta property="og:url" content="http://yoursite.com/2020/03/17/2020-3-17-CODEX-UNISWAP/index.html">
+<meta property="og:title" content="snarkjs学习">
+<meta property="og:url" content="http://yoursite.com/2023/02/23/2023-2-21-snarkjs/index.html">
 <meta property="og:site_name" content="Tiny Hill&#39;s Blog">
-<meta property="og:description" content="Codex 是运行在 EOS 上的基于底池的自动做市商交易所，它和该模型的鼻祖 Uniswap 之间有什么异同？">
+<meta property="og:description" content="新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-17T16:24:00.000Z">
-<meta property="article:modified_time" content="2020-03-17T09:15:31.818Z">
+<meta property="og:image" content="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small">
+<meta property="article:published_time" content="2023-02-23T09:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-27T21:39:22.043Z">
 <meta property="article:author" content="Tiny Hill">
 <meta property="article:tag" content="区块链">
-<meta property="article:tag" content="Uniswap">
-<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="ZK">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/17/2020-3-17-CODEX-UNISWAP/">
+<link rel="canonical" href="http://yoursite.com/2023/02/23/2023-2-21-snarkjs/">
 
 
 <script id="page-configurations">
@@ -73,7 +75,7 @@
   };
 </script>
 
-  <title>Codex 和 Uniswap 的区别 | Tiny Hill's Blog</title>
+  <title>snarkjs学习 | Tiny Hill's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120660538-5"></script>
     <script>
@@ -188,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/2020-3-17-CODEX-UNISWAP/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/02/23/2023-2-21-snarkjs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Codex 和 Uniswap 的区别
+          snarkjs学习
         </h1>
 
         <div class="post-meta">
@@ -210,18 +212,24 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-17 16:24:00 / 修改时间：09:15:31" itemprop="dateCreated datePublished" datetime="2020-03-17T16:24:00+00:00">2020-03-17</time>
+              <time title="创建时间：2023-02-23 09:00:00" itemprop="dateCreated datePublished" datetime="2023-02-23T09:00:00+00:00">2023-02-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-27 21:39:22" itemprop="dateModified" datetime="2023-02-27T21:39:22+00:00">2023-02-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeFi/" itemprop="url" rel="index">
-                    <span itemprop="name">DeFi</span>
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
                   </a>
                 </span>
             </span>
@@ -237,29 +245,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Codex 是运行在 EOS 上的基于底池的自动做市商交易所，它和该模型的鼻祖 Uniswap 之间有什么异同？</p>
+        <p>新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。</p>
 <a id="more"></a>
 
-<p>在之前介绍 FIBOS DEX 的时候已经介绍过 Uniswap 的机制。 这种机制通过底池提供流动性，用户可以立即与底池交易，无需挂单。</p>
-<p>它的核心算法其实很简单，当前价格为底池两种资产的比值，交易前后，底池中两种资产的乘积相等。</p>
-<p>这种机制对于深度较差的交易对，对于小额交易的用户，往往能够提供相对挂单更好的体验，因为用户可以立即成交。而挂单的交易所往往买一和卖一差价很大，用户无法用比较好的价格成交。但是对于大额交易的用户，则不如挂单交易所，因为大额交易会对底池的资金量造成比较大的影响从而导致价格的滑点，结果就是用户无法按照预期的价格成交。</p>
-<p>所以，决定 Uniswap 类交易所使用体验的一个很重要的因素就是底池的深度。</p>
-<p>那么 Codex 又有什么特别的地方？</p>
-<h2 id="平台币"><a href="#平台币" class="headerlink" title="平台币"></a>平台币</h2><p>Codex 和 Uniswap 最显著也是最重要的区别在与平台币。</p>
-<p>Uniswap 没有平台币，是一个很纯粹的项目。所有底池资金由用户提供，来赚取利润，同时也需要承担交易对价格波动的风险。其交易手续费为双向 0.3%。也由一些项目方，比如 Synthetix，会激励用户存入底池提供流动性。</p>
-<p>而 Codex 有平台币，EIDOS，整个 Codex 都是围绕着这个平台币来构建的。在 Codex 中，所有 Token 只和 EIDOS 形成底池和直接交易对。用 EIDOS 购买 Token 收取 0.1%的手续费，而用 Token 买 EIDOS 则不收费。通过 EIDOS 作为中转，可以连接其他两种 Token，形成级联的交易对，级联的交易对双向 0.1%的手续费。同样是级联交易，在 Uniswap 中，因为中转一次，就需要收取 0.6%的手续费。</p>
-<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>主打平台币中转的模式，对于一个新加入的币种快速获得流动性是有非常大的帮助的。</p>
-<p>目前 EOS/EIDOS 和 USDT/EIDOS 已经存在一定的流动性。一个新的币种，只要补充其对 EIDOS 的底池，提供一定的流动性，他们它将立即获得与 EOS 和 USDT 的交易深度。</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>而这种平台币模式，也可能是一把双刃剑。目前 EIDOS 还是一个波动非常大的资产，即使相对 EOS 和 USDT 都是如此。那么对于某个代币的项目方，如果想要在 Codex 中提供流动性，那么就不得不承担 EIDOS 波动的风险。</p>
-<p>这里补充说明一下，存入流动性所存在的风险。如果你存入底池的，你会得到底池中两种资产的赎回权，但是具体你的权益对应两种资产的比例则是根据价格不断变化的。举例，一开始你的权益对应 1 EOS 和 100 EIDOS ， 如果 EIDOS 价格一直涨，那么你的权益可能变为 2 EOS 和 50 EIDOS，相反，也可能变成 0.5 EOS 和 200 EIDOS。</p>
-<p>如果你只在意交易对中的一种资产，而且价格剧烈变化的话，你将承担不小的风险。</p>
-<p>所以，我对于想要存入 Codex 底池的用户有一个建议：<strong>存入双边币种你都希望持有的交易对</strong>，比如，你对 EIDOS 和 YAS 都非常看好，那么无论价格怎么变化，对你来说只是赎回的代币比例的变化，同时，还可以获取交易的手续费，是一个很保险的理财。</p>
-<p>除此之外，Codex 的交易手续费从最开始的 1%到目前只有 0.1%，一定程度降低了用户存入底池的积极性。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Codex 之后可能会推出跨链铆钉资产，这个目前还没上线，也无法详细去研究。</p>
-<p>目前来看， Codex 和 Uniswap 最主要的区别就是平台币 EIDOS 的存在，Codex 的成败与 EIDOS 的接受度，存在强绑定的关系。</p>
-<p>这样的绑定关系是好是坏，只能拭目以待。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>Codex 目前是一个底层的协议，项目方没有推出用户界面。</p>
-<p>我做了一个用户界面 <a href="https://codex.easypayeos.com" target="_blank" rel="noopener">Codex+</a> , 同时集成了 Easy Pay 的资源代付功能，欢迎各位使用。也可以向 codexplusdev 账号捐赠来支持我们的工作，EOS 和 YAS 主网都是这个账号。</p>
+<p><a href="https://github.com/iden3/snarkjs" target="_blank" rel="noopener">https://github.com/iden3/snarkjs</a></p>
+<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>什么是ZK(零知识证明)？已经有太多介绍，这里就简单带过，零知识证明使我们能够证明自己的某些特定特征，而无需透露任何额外的信息。零知识证明在加密货币中有非常多的应用，特别是在隐私方面。著名的应用有zcash隐私币和tornado cash混币器。其次是在扩容方面，zk-rollup是理想的layer2扩容方案</p>
+<h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>zkSNARK 是零知识证明 的一种形式。 zkSNARK 很简洁，可以被快速验证，验证时间不会随验证计算量的增长而线形增加。 zkSNARK 是非交互式的，证明者和验证者之间少有交互，因此也更高效。snarkjs是 zkSNARK 和 的 JavaScript 和 纯 Web Assembly 实现。</p>
+<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>该库中用于多方计算(MPC)的格式与 Semaphore 的 Perpetual Powers of Tau 和其他实现中使用的格式兼容。该库使用由 circom 编译器生成的编译电路。<br>上条和该条可能看不懂，先不着急，往下看。</p>
+<h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>库的guide中，第一步就是Start a new powers of tau ceremony。这是为了完成 zkSNARK 的一个前置 “trusted setup”，即在一个可信的环境中生成一些参数。这些参数通常是一些随机值，用于生成公开的密钥和其他必要的参数，以便进行零知识证明。这些随机值必须严格保密，否则就会破坏协议的安全性。</p>
+<h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>因此，这个 “trusted setup” 的目的是为了确保这些随机值只有在生成参数的时候使用，并且不会被泄露。在这种情况下，只有在 “trusted setup” 的过程中的参与者是可信的，才能确保 zkSNARK 协议的安全性。</p>
+<h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a href="https://w3hitchhiker.mirror.xyz" target="_blank" rel="noopener">https://w3hitchhiker.mirror.xyz</a></p>
+<h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a href="https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是" target="_blank" rel="noopener">https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是</a> c=a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img src="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small" alt="例子"></p>
+<h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>然后x.circom的电路代码会被编译生成 x.r1cs(r1cs 电路的二进制格式约束系统)和 x.wasm(wasm 代码用来生成见证 witness)。接下去就是要针对具体的输入内容来构造witness和proof，输入文件input.json包含a和b的值，使用snarkjs工具和上面的wasm来生成一个witness备用</p>
+<h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>接下来就是要构造证明了，先要生成一个私钥zkey，生成的过程很复杂不展开了，这个zkey会导出一个公开的verification_key.json后续用来验证证明。使用zkey和witness(由输入内容生成)可以计算出proof.json(证明文件)和public.json(公开信息，如上面提到的c)</p>
+<h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof/public/verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" target="_blank" rel="noopener">https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5</a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p>
+<h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs/circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p>
+<h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>通过对snarkjs的浅浅的学习，对zksnark和零知识证明应用是干什么的和怎么干的有了更多的了解和体会。希望可以帮到各位。</p>
+<h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>在twitter搜了一下snarkjs，发现tornado-cash也是用snarkjs和circom来实现的，那么下期就继续学习tornado cash吧。</p>
 
     </div>
 
@@ -270,8 +272,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
-              <a href="/tags/Uniswap/" rel="tag"># Uniswap</a>
-              <a href="/tags/Codex/" rel="tag"># Codex</a>
+              <a href="/tags/DeFi/" rel="tag"># DeFi</a>
+              <a href="/tags/ZK/" rel="tag"># ZK</a>
           </div>
 
         
@@ -280,12 +282,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/17/2020-6-1-CHFD/" rel="prev" title="Fabric学习开篇">
-      <i class="fa fa-chevron-left"></i> Fabric学习开篇
+    <a href="/2023/02/15/2023-2-15-paraspace/" rel="prev" title="ParaSpace NFT借贷平台介绍">
+      <i class="fa fa-chevron-left"></i> ParaSpace NFT借贷平台介绍
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/20/2020-7-20-DEFIS-NETWORK/" rel="next" title="为什么 Defis Network 的 USDD 会失败？">
-      为什么 Defis Network 的 USDD 会失败？ <i class="fa fa-chevron-right"></i>
+    <a href="/2023/02/23/2023-2-23-blur-gas/" rel="next" title="Blur.io Gas消耗分析">
+      Blur.io Gas消耗分析 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -346,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#平台币"><span class="nav-number">1.</span> <span class="nav-text">平台币</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.</span> <span class="nav-text">其他</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01"><span class="nav-number">1.</span> <span class="nav-text">0x01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02"><span class="nav-number">2.</span> <span class="nav-text">0x02</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03"><span class="nav-number">3.</span> <span class="nav-text">0x03</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04"><span class="nav-number">4.</span> <span class="nav-text">0x04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05"><span class="nav-number">5.</span> <span class="nav-text">0x05</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06"><span class="nav-number">6.</span> <span class="nav-text">0x06</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07"><span class="nav-number">7.</span> <span class="nav-text">0x07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08"><span class="nav-number">8.</span> <span class="nav-text">0x08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09"><span class="nav-number">9.</span> <span class="nav-text">0x09</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0a"><span class="nav-number">10.</span> <span class="nav-text">0x0a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0b"><span class="nav-number">11.</span> <span class="nav-text">0x0b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0c"><span class="nav-number">12.</span> <span class="nav-text">0x0c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0d"><span class="nav-number">13.</span> <span class="nav-text">0x0d</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
