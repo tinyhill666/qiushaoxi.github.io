@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bitshares 私链部署witness节点">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/2017-12-20-bitshares-witness/index.html">
+<meta property="og:site_name" content="Tiny Hill&#39;s Blog">
+<meta property="og:description" content="前言单节点私链搭建请参考 剑有偏峰 的文章： 比特股环境搭建 编译比特股网页钱包 搭建比特股的水龙头注册服务 多节点部署通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7302525-95ffade6d5ccc8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2017-12-20T09:55:00.000Z">
+<meta property="article:modified_time" content="2019-11-21T04:56:51.235Z">
+<meta property="article:author" content="Tiny Hill">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="BitShares">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7302525-95ffade6d5ccc8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="http://yoursite.com/2017/12/20/2017-12-20-bitshares-witness/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Bitshares 私链部署witness节点 | Tiny Hill's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120660538-5"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120660538-5');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tiny Hill's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">区块链小山的博客</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/2017-12-20-bitshares-witness/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tiny Hill">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny Hill's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bitshares 私链部署witness节点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-20 09:55:00" itemprop="dateCreated datePublished" datetime="2017-12-20T09:55:00+00:00">2017-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-21 04:56:51" itemprop="dateModified" datetime="2019-11-21T04:56:51+00:00">2019-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链技术</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>单节点私链搭建请参考 剑有偏峰 的文章：</p>
+<p><a href="http://www.jianshu.com/p/b54782cd1926" target="_blank" rel="noopener">比特股环境搭建</a></p>
+<p><a href="http://www.jianshu.com/p/5be0344e30cd" target="_blank" rel="noopener">编译比特股网页钱包</a></p>
+<p><a href="http://www.jianshu.com/p/a89b3835d4e8" target="_blank" rel="noopener">搭建比特股的水龙头注册服务</a></p>
+<h1 id="多节点部署"><a href="#多节点部署" class="headerlink" title="多节点部署"></a>多节点部署</h1><p>通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。</p>
+<a id="more"></a>
+
+<p>在另一台机器上同样编译 Bitshares-core ，将原来的 genesis.json 复制到本机的 bitshares-core/programs/witness_node 目录下，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;witness_node   -d test_net --seed-nodes &quot;[]&quot; --genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
+
+<p>会初始化目录 test_net<br>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl-c</span><br></pre></td></tr></table></figure>
+
+<p>退出程序，编辑 test_net/config.ini，修改如下几项配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p2p-endpoint &#x3D; 0.0.0.0:9090</span><br><span class="line">seed-nodes &#x3D; [&quot;192.168.23.248:9090&quot;]</span><br><span class="line">rpc-endpoint &#x3D; 0.0.0.0:8090</span><br><span class="line">enable-stale-production &#x3D; true</span><br></pre></td></tr></table></figure>
+
+<p>其中 seed-nodes 填写之前启动的区块链节点的 ip 和 p2p-endpoint 端口</p>
+<p>再次启动 witness 程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;witness_node   -d test_net</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功部署了另一个区块链节点，但是由于没有 witness 权限，所以不会出块，只会同步区块信息。</p>
+<p>从 github 下载下来的代码启动私链，默认的 witness 是 init0 ～ inti10。</p>
+<h1 id="成为-witness"><a href="#成为-witness" class="headerlink" title="成为 witness"></a>成为 witness</h1><p>这里默认读者已经会使用 cli_wallet .</p>
+<p>启动 cli_wallet ，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">suggest_brain_key</span><br></pre></td></tr></table></figure>
+
+<p>获得新账户信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;brain_priv_key&quot;: &quot;LYSSA JUBILEE GIDDIFY KEMPITE INULASE SOBBER GROVEL ENCLAVE T SAHME MYXA GLIDE OVERALL SYNC GROWLER THRILL&quot;,</span><br><span class="line">  &quot;wif_priv_key&quot;: &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;,</span><br><span class="line">  &quot;pub_key&quot;: &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果之前没有 import nathan 用户，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key nathan 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3</span><br></pre></td></tr></table></figure>
+
+<p>nathan 如果看过之前帖子应该知道是什么。</p>
+<p>通过生成的 pub_key 注册用户 joshua（任意名称）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">register_account joshua &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot; nathan nathan 50 true</span><br></pre></td></tr></table></figure>
+
+<p>从 nathan 账户转一部分 BTS 到新建的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transfer nathan joshua 2000000000 BTS &quot;here is some cash&quot; true</span><br></pre></td></tr></table></figure>
+
+<p>导入用户的私钥到 cli 钱包，私钥是刚才生成内容的 wif_priv_key 字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_key joshua 5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN</span><br></pre></td></tr></table></figure>
+
+<p>升级用户成为终身成员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upgrade_account joshua true</span><br></pre></td></tr></table></figure>
+
+<p>创建 witness 用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_witness joshua &quot;&quot; true</span><br></pre></td></tr></table></figure>
+
+<p>为新建的 witness 用户投票，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vote_for_witness joshua joshua true true</span><br></pre></td></tr></table></figure>
+
+<p>获取 witness 公私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_witness joshua</span><br></pre></td></tr></table></figure>
+
+<p>得到结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: &quot;1.6.12&quot;,</span><br><span class="line">  &quot;witness_account&quot;: &quot;1.2.18&quot;,</span><br><span class="line">  &quot;last_aslot&quot;: 52765,</span><br><span class="line">  &quot;signing_key&quot;: &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">  &quot;pay_vb&quot;: &quot;1.13.9&quot;,</span><br><span class="line">  &quot;vote_id&quot;: &quot;1:22&quot;,</span><br><span class="line">  &quot;total_votes&quot;: &quot;898790081908868&quot;,</span><br><span class="line">  &quot;url&quot;: &quot;&quot;,</span><br><span class="line">  &quot;total_missed&quot;: 13,</span><br><span class="line">  &quot;last_confirmed_block_num&quot;: 15402</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>witness 的公钥就是”signing_key”字段，记录下 witness_account ，后面配置有用，再执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dump_private_keys</span><br></pre></td></tr></table></figure>
+
+<p>获取目前钱包中存储的私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[[</span><br><span class="line">    &quot;BTS78CuY47Vds2nfw2t88ckjTaggPkw16tLhcmg4ReVx1WPr1zRL5&quot;,</span><br><span class="line">    &quot;5JDh3XmHK8CDaQSxQZHh5PUV3zwzG68uVcrTfmg9yQ9idNisYnE&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,</span><br><span class="line">    &quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS7Zpu3gZmVAGAXgGbD4CzJBwP9uFWtwN5V83TnJQsF9eZ6CnSMx&quot;,</span><br><span class="line">    &quot;5Jiie6zMJWAJ6P8QmivSVjfbPyWa9uKNtwtFXQC3TBoGZDnKXwN&quot;</span><br><span class="line">  ],[</span><br><span class="line">    &quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,</span><br><span class="line">    &quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;</span><br><span class="line">  ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>根据”signing_key”获取对应的私钥，就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>记录好这个公私钥对，接下去修改 test_net/config.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># ID of witness controlled by this node (e.g. &quot;1.6.5&quot;, quotes are required, may specify multiple times)</span><br><span class="line">witness-id &#x3D; &quot;1.6.2&quot;</span><br><span class="line">witness-id &#x3D; &quot;1.6.3&quot;</span><br><span class="line">witness-id &#x3D; &quot;1.6.12&quot;</span><br><span class="line"></span><br><span class="line"># Tuple of [PublicKey, WIF private key] (may specify multiple times)</span><br><span class="line">private-key &#x3D; [&quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,&quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]</span><br><span class="line">private-key &#x3D; [&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>增加新建的 witness-id 和对应的公私钥，重启 witness 重需</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;witness_node   -d test_net</span><br></pre></td></tr></table></figure>
+
+<p><em>这一部分就完成了</em></p>
+<p>不过因为默认的更新 witness 的时间比较长，24 小时，所以要等 24 小时才能看到 joshua 成为 witness，如果想快一点，需要重头开始做，在执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;witness_node --create-genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure>
+
+<p>之后，编辑 genesis.json，修改下面这个参数为 600，这样 10 分钟就会更新 witness</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;maintenance_interval&quot;: 600,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://upload-images.jianshu.io/upload_images/7302525-95ffade6d5ccc8e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="示例图"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"># 区块链</a>
+              <a href="/tags/BitShares/" rel="tag"># BitShares</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/07/2017-12-07-fabric-in-swarm/" rel="prev" title="在 Swarm 集群环境部署 Fabric 区块链">
+      <i class="fa fa-chevron-left"></i> 在 Swarm 集群环境部署 Fabric 区块链
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/01/25/2018-01-25-bitsharesjs-sample/" rel="next" title="使用 NodeJS 调用 API 接口 进行转账和 Bitshares 内盘交易">
+      使用 NodeJS 调用 API 接口 进行转账和 Bitshares 内盘交易 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多节点部署"><span class="nav-number">2.</span> <span class="nav-text">多节点部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成为-witness"><span class="nav-number">3.</span> <span class="nav-text">成为 witness</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tiny Hill</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiushaoxi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiushaoxi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:x@qsx.io" title="E-Mail → mailto:x@qsx.io" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tiny Hill</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
