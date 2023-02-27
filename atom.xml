@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2023-02-27T20:46:51.122Z</updated>
+  <updated>2023-02-27T21:12:16.572Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2021/11/04/2021-11-4-hacked/"/>
     <id>http://yoursite.com/2021/11/04/2021-11-4-hacked/</id>
     <published>2021-11-04T09:00:00.000Z</published>
-    <updated>2023-02-27T20:46:51.122Z</updated>
+    <updated>2023-02-27T21:12:16.572Z</updated>
     
     <content type="html"><![CDATA[<p>今天我在heco上的套利合约被人黑了，损失大概是53000美金。</p><a id="more"></a><p>合约的漏洞大致是：</p><ul><li>合约中有approve 给router的操作</li><li>router是输入传的</li><li>黑客传入自己的合约作为router，但是实际在他的router.swap的逻辑中不做任何操作，所以approve给他的金额没有消费掉</li><li>给我转小额，通过我的余额检查</li><li>从我的逻辑中退出后，因为approve给他的限额没有消费掉，现在可以从我的合约里直接转钱走了</li></ul><p>其实，合约的检查可以更仔细，但是之前考虑到合约不对外且不开源，为了方便，没有加一下验证。这次是真的被迫涨记性了</p><p>通过这次的被盗，至少有一下几点心得：</p><ul><li>合约不开源是可以反编译的，solidity反编译的可读性相对较高</li><li>套利合约，是容易被人盯上的</li><li>sender和tx.origin的检查不能少</li><li>逻辑结束的时候，除了余额检查，应该取消所有approve</li></ul><p>哎</p>]]></content>
     
