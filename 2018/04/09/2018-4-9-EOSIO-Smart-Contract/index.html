@@ -324,32 +324,32 @@
                 <!-- TOC -->
 
 <ul>
-<li><a href="#eosio-%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e4%bb%8b%e7%bb%8d">EOSIO 智能合约介绍</a><ul>
-<li><a href="#%e5%bf%85%e9%a1%bb%e7%9a%84%e8%83%8c%e6%99%af%e7%9f%a5%e8%af%86">必须的背景知识</a></li>
-<li><a href="#eosio-%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">EOSIO 智能合约基础知识</a></li>
+<li><a href="#eosio-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%BB%8B%E7%BB%8D">EOSIO 智能合约介绍</a><ul>
+<li><a href="#%E5%BF%85%E9%A1%BB%E7%9A%84%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86">必须的背景知识</a></li>
+<li><a href="#eosio-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">EOSIO 智能合约基础知识</a></li>
 </ul>
 </li>
-<li><a href="#%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e6%96%87%e4%bb%b6">智能合约文件</a><ul>
+<li><a href="#%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%96%87%E4%BB%B6">智能合约文件</a><ul>
 <li><a href="#hpp">hpp</a></li>
 <li><a href="#cpp">cpp</a></li>
 <li><a href="#wast">wast</a></li>
 <li><a href="#abi">abi</a></li>
 </ul>
 </li>
-<li><a href="#%e8%b0%83%e8%af%95%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6">调试智能合约</a><ul>
-<li><a href="#%e6%96%b9%e6%b3%95">方法</a></li>
-<li><a href="#%e6%89%93%e5%8d%b0">打印</a></li>
-<li><a href="#%e4%be%8b%e5%ad%90">例子</a></li>
+<li><a href="#%E8%B0%83%E8%AF%95%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6">调试智能合约</a><ul>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
+<li><a href="#%E6%89%93%E5%8D%B0">打印</a></li>
+<li><a href="#%E4%BE%8B%E5%AD%90">例子</a></li>
 </ul>
 </li>
 </ul>
 <!-- /TOC -->
 <span id="more"></span>
 
-<h2 id="EOSIO-智能合约介绍"><a href="#EOSIO-智能合约介绍" class="headerlink" title="EOSIO 智能合约介绍"></a>EOSIO 智能合约介绍</h2><h3 id="必须的背景知识"><a href="#必须的背景知识" class="headerlink" title="必须的背景知识"></a>必须的背景知识</h3><p><strong>C / C++ 经验</strong></p>
-<p>基于 EOSIO 的区块链使用 <a class="link"   target="_blank" rel="noopener" href="http://webassembly.org/" >WebAssembly <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (WASM) 执行用户生成的应用程序和代码。WASM 是一项新兴的网络标准，得到了谷歌，微软，苹果等公司的广泛支持。目前，用于构建编译为 WASM 的应用程序的最成熟工具链是使用 C/C++ 编译器的 <a class="link"   target="_blank" rel="noopener" href="https://clang.llvm.org/" >clang/llvm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<h2 id="EOSIO-智能合约介绍"><a href="#EOSIO-智能合约介绍" class="headerlink" title="EOSIO 智能合约介绍"></a>EOSIO 智能合约介绍</h2><h3 id="必须的背景知识"><a href="#必须的背景知识" class="headerlink" title="必须的背景知识"></a>必须的背景知识</h3><p><strong>C &#x2F; C++ 经验</strong></p>
+<p>基于 EOSIO 的区块链使用 <a class="link"   target="_blank" rel="noopener" href="http://webassembly.org/" >WebAssembly <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (WASM) 执行用户生成的应用程序和代码。WASM 是一项新兴的网络标准，得到了谷歌，微软，苹果等公司的广泛支持。目前，用于构建编译为 WASM 的应用程序的最成熟工具链是使用 C&#x2F;C++ 编译器的 <a class="link"   target="_blank" rel="noopener" href="https://clang.llvm.org/" >clang&#x2F;llvm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
 <p>其他第三方开发的工具链包括：Rust，Python 和 Solidity。虽然这些其他语言看起来可能更简单，但它们的性能可能会影响你可以构建的应用程序的规模。我们预计 C++ 将成为开发高性能和安全智能合约的最佳语言，并计划在可预见的将来使用 C++。</p>
-<p><strong>Linux / Mac OS 经验</strong></p>
+<p><strong>Linux &#x2F; Mac OS 经验</strong></p>
 <p>EOSIO 软件支持以下环境:</p>
 <ul>
 <li>Amazon 2017.09 and higher</li>
@@ -428,7 +428,7 @@
 <h2 id="调试智能合约"><a href="#调试智能合约" class="headerlink" title="调试智能合约"></a>调试智能合约</h2><p>为了能够调试你的智能合约，你需要设置本地 nodeos 节点。这个本地 nodeos 节点可以作为独立的私人测试网或作为公共测试网（或官方测试网）的扩展来运行。</p>
 <p>当你首次创建智能合约时，建议先在私人测试网上测试并调试你的智能合约，因为你完全控制了整个区块链。这使你可以拥有无 ​​ 限量你所需要的 eos，你可以随时重置区块链状态。当准备发布到生产环境时，可以通过将本地节点连接到公共测试网（或官方测试网）来在公共测试网（或官方测试网）上进行调试，以便你可以在本地节点中看到测试网的日志。</p>
 <p>下面的教程，将在私人测试网上进行调试。</p>
-<p>如果你尚未设置自己的本地节点，请按照 <a class="link"   target="_blank" rel="noopener" href="https://github.com/eosfansio/eos-tutorials/blob/master/EOS3.0-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md" >启动指南 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 进行操作。默认情况下，除非你按照 <a href="Testnet%3A%20Public">Testnet 指南</a> 中所述修改 config.ini 文件以便与公共 testnet（或官方 testnet）节点连接，否则你的本地节点将仅运行在私有测试网络中。</p>
+<p>如果你尚未设置自己的本地节点，请按照 <a class="link"   target="_blank" rel="noopener" href="https://github.com/eosfansio/eos-tutorials/blob/master/EOS3.0-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md" >启动指南 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 进行操作。默认情况下，除非你按照 <a class="link"   href="Testnet:%20Public" >Testnet 指南 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中所述修改 config.ini 文件以便与公共 testnet（或官方 testnet）节点连接，否则你的本地节点将仅运行在私有测试网络中。</p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>用于调试智能合约的主要方法是 <strong>穴居人调试</strong>（<strong>Caveman Debugging</strong>），我们利用打印功能来检查变量的值并检查合约的流程。在智能合约中打印可以通过打印 API (<a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.h" >C <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 和 <a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.hpp" >C++ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>) 完成。C++ API 是 C API 的封装器，因此大多数情况下我们只会使用 C++ API。</p>
 <h3 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h3><p>打印 C API 支持你可以打印的以下数据类型：</p>
 <ul>

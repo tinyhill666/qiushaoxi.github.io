@@ -334,8 +334,8 @@
 <h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>该库中用于多方计算(MPC)的格式与 Semaphore 的 Perpetual Powers of Tau 和其他实现中使用的格式兼容。该库使用由 circom 编译器生成的编译电路。<br>上条和该条可能看不懂，先不着急，往下看。</p>
 <h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>库的guide中，第一步就是Start a new powers of tau ceremony。这是为了完成 zkSNARK 的一个前置 “trusted setup”，即在一个可信的环境中生成一些参数。这些参数通常是一些随机值，用于生成公开的密钥和其他必要的参数，以便进行零知识证明。这些随机值必须严格保密，否则就会破坏协议的安全性。</p>
 <h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>因此，这个 “trusted setup” 的目的是为了确保这些随机值只有在生成参数的时候使用，并且不会被泄露。在这种情况下，只有在 “trusted setup” 的过程中的参与者是可信的，才能确保 zkSNARK 协议的安全性。</p>
-<h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a class="link"   target="_blank" rel="noopener" href="https://w3hitchhiker.mirror.xyz" >https://w3hitchhiker.mirror.xyz <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a class="link"   target="_blank" rel="noopener" href="https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是" >https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> c=a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img  
+<h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a class="link"   target="_blank" rel="noopener" href="https://w3hitchhiker.mirror.xyz/" >https://w3hitchhiker.mirror.xyz <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a class="link"   target="_blank" rel="noopener" href="https://github.com/iden3/circom%EF%BC%8C%E6%9D%A5%E8%BF%9B%E8%A1%8C%E7%94%B5%E8%B7%AF%E9%80%BB%E8%BE%91%E7%9A%84%E7%BC%96%E7%A0%81%E5%92%8C%E7%BC%96%E8%AF%91%E3%80%82%E5%9B%BE%E7%89%87%E6%98%AF%E4%B8%80%E4%B8%AA%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%B5%E8%B7%AF%E9%80%BB%E8%BE%91%EF%BC%8C%E6%9C%89%E8%BE%93%E5%85%A5%E4%BF%A1%E5%8F%B7a%E5%92%8Cb%EF%BC%8C%E8%BF%98%E6%9C%89%E8%BE%93%E5%87%BA%E4%BF%A1%E5%8F%B7c%EF%BC%8C%E7%BA%A6%E6%9D%9F%E6%98%AF" >https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> c&#x3D;a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small"
@@ -343,8 +343,8 @@
                 ></p>
 <h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>然后x.circom的电路代码会被编译生成 x.r1cs(r1cs 电路的二进制格式约束系统)和 x.wasm(wasm 代码用来生成见证 witness)。接下去就是要针对具体的输入内容来构造witness和proof，输入文件input.json包含a和b的值，使用snarkjs工具和上面的wasm来生成一个witness备用</p>
 <h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>接下来就是要构造证明了，先要生成一个私钥zkey，生成的过程很复杂不展开了，这个zkey会导出一个公开的verification_key.json后续用来验证证明。使用zkey和witness(由输入内容生成)可以计算出proof.json(证明文件)和public.json(公开信息，如上面提到的c)</p>
-<h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof/public/verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" >https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p>
-<h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs/circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p>
+<h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof&#x2F;public&#x2F;verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" >https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p>
+<h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs&#x2F;circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p>
 <h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>通过对snarkjs的浅浅的学习，对zksnark和零知识证明应用是干什么的和怎么干的有了更多的了解和体会。希望可以帮到各位。</p>
 <h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>在twitter搜了一下snarkjs，发现tornado-cash也是用snarkjs和circom来实现的，那么下期就继续学习tornado cash吧。</p>
 
@@ -375,29 +375,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2023/02/23/2023-2-23-blur-gas/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                    <i class="fa-solid fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Blur.io Gas消耗分析</span>
-                                    <span class="post-nav-item">上一篇</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2023/02/15/2023-2-15-paraspace/"
+                            href="/2023/02/23/2023-2-23-blur-gas/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">ParaSpace NFT借贷平台介绍</span>
+                                    <span class="post-nav-title-item">Blur.io Gas消耗分析</span>
                                     <span class="post-nav-item">下一篇</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">

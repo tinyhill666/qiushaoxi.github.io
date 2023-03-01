@@ -392,10 +392,10 @@
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Export list for 192.168.1.93:</span><br><span class="line">/nfs *</span><br></pre></td></tr></table></figure></div>
 
 <p>说明文件服务器是 ok 的。</p>
-<p>将该目录挂载到本地，每个机器都需要挂载，包括管理节点的机器。为的是保证每台机器都能够从/mnt/nfs/目录获取数据。</p>
+<p>将该目录挂载到本地，每个机器都需要挂载，包括管理节点的机器。为的是保证每台机器都能够从&#x2F;mnt&#x2F;nfs&#x2F;目录获取数据。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mnt/nfs</span><br><span class="line">mount 192.168.1.93:/nfs  /mnt/nfs</span><br></pre></td></tr></table></figure></div>
 
-<p>访问本地的/mnt/nfs 目录，就可访问服务端共享的目录了。</p>
+<p>访问本地的&#x2F;mnt&#x2F;nfs 目录，就可访问服务端共享的目录了。</p>
 <h2 id="部署-Fabric"><a href="#部署-Fabric" class="headerlink" title="部署 Fabric"></a>部署 Fabric</h2><h3 id="部署文件准备"><a href="#部署文件准备" class="headerlink" title="部署文件准备"></a>部署文件准备</h3><p>进入 nfs 目录</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/nfs</span><br></pre></td></tr></table></figure></div>
 
@@ -444,7 +444,7 @@
 <p>查看 service</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service ls</span><br></pre></td></tr></table></figure></div>
 
-<p>因为运行 chaincode 的 container 是通过 unix://var/run/docker.sock 启动的，不是由 swarm 启动的，所以通过 docker service 是看不到的。需要到具体执行的机器上执行</p>
+<p>因为运行 chaincode 的 container 是通过 unix:&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock 启动的，不是由 swarm 启动的，所以通过 docker service 是看不到的。需要到具体执行的机器上执行</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></div>
 
 <p>才能看到。</p>

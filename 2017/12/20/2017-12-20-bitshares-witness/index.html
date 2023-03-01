@@ -328,13 +328,13 @@
 <h1 id="多节点部署"><a href="#多节点部署" class="headerlink" title="多节点部署"></a>多节点部署</h1><p>通过之前的文章，部署了单节点的 Bitshares 区块链，接下去模拟真实场景，应该是有很多区块链节点才能实现去中心化高可用的架构。</p>
 <span id="more"></span>
 
-<p>在另一台机器上同样编译 Bitshares-core ，将原来的 genesis.json 复制到本机的 bitshares-core/programs/witness_node 目录下，执行</p>
+<p>在另一台机器上同样编译 Bitshares-core ，将原来的 genesis.json 复制到本机的 bitshares-core&#x2F;programs&#x2F;witness_node 目录下，执行</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./witness_node   -d test_net --seed-nodes &quot;[]&quot; --genesis-json &quot;genesis.json&quot;</span><br></pre></td></tr></table></figure></div>
 
 <p>会初始化目录 test_net<br>然后</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl-c</span><br></pre></td></tr></table></figure></div>
 
-<p>退出程序，编辑 test_net/config.ini，修改如下几项配置</p>
+<p>退出程序，编辑 test_net&#x2F;config.ini，修改如下几项配置</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p2p-endpoint = 0.0.0.0:9090</span><br><span class="line">seed-nodes = [&quot;192.168.23.248:9090&quot;]</span><br><span class="line">rpc-endpoint = 0.0.0.0:8090</span><br><span class="line">enable-stale-production = true</span><br></pre></td></tr></table></figure></div>
 
 <p>其中 seed-nodes 填写之前启动的区块链节点的 ip 和 p2p-endpoint 端口</p>
@@ -387,7 +387,7 @@
 <p>根据”signing_key”获取对应的私钥，就是：</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure></div>
 
-<p>记录好这个公私钥对，接下去修改 test_net/config.ini</p>
+<p>记录好这个公私钥对，接下去修改 test_net&#x2F;config.ini</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># ID of witness controlled by this node (e.g. &quot;1.6.5&quot;, quotes are required, may specify multiple times)</span><br><span class="line">witness-id = &quot;1.6.2&quot;</span><br><span class="line">witness-id = &quot;1.6.3&quot;</span><br><span class="line">witness-id = &quot;1.6.12&quot;</span><br><span class="line"></span><br><span class="line"># Tuple of [PublicKey, WIF private key] (may specify multiple times)</span><br><span class="line">private-key = [&quot;BTS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,&quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]</span><br><span class="line">private-key = [&quot;BTS6UyKzfSim5anCFKZsWB8HPtBSwt8yUthiFCE6oaTXo9Qf6z85e&quot;,&quot;5JM1AsnRJDGDa8x7NR3GtNDhQzzNi6VEs9XmXyuDhLEnJDUwnS8&quot;]</span><br></pre></td></tr></table></figure></div>
 
 <p>增加新建的 witness-id 和对应的公私钥，重启 witness 重需</p>

@@ -328,11 +328,11 @@
                 <p>ParaSpace是一个非常强大的NFT借贷平台，可以看成是一个加强版的Benddao或者支持NFT抵押物的AAVE。</p>
 <span id="more"></span>
 
-<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>它支持NFT和主流token(ETH/USDC/USDT/APE/stETH等)作为抵押物，同样，也支持借出所有这些ERC20的Token。</p>
+<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>它支持NFT和主流token(ETH&#x2F;USDC&#x2F;USDT&#x2F;APE&#x2F;stETH等)作为抵押物，同样，也支持借出所有这些ERC20的Token。</p>
 <p>除了借贷功能外，ParaSpace还有一个NFT的聚合交易功能，支持用户使用在借贷平台的信贷额度，直接购买NFT，免去借出再购买的两次操作。除此之外，还有APE Staking的功能模块。</p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://docs.para.space/para-space/external-audits" >https://docs.para.space/para-space/external-audits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 能够看到项目的审计机构阵容强大，特别是难道一见的Trail of Bits。</p>
 <h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/para-space/paraspace-core" >https://github.com/para-space/paraspace-core <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> paraspace的合约代码也是一个很大的工程，使用hardhat的开发框架，不过也看到了foundry的一点影子，看来目前foundry还是在成熟度方面，特别是部署管理这块不够强大。</p>
-<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>借贷功能的入口合约是 PoolCore.sol<br><a class="link"   target="_blank" rel="noopener" href="https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee" >https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，主要借贷逻辑如，存入token/nft，借出token，清算，拍卖的入口都在这个合约，代码结构比较清晰，入口function内会继续调用SupplyLogic，BorrowLogic，LiquidationLogic，AuctionLogic这几个library。</p>
+<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>借贷功能的入口合约是 PoolCore.sol<br><a class="link"   target="_blank" rel="noopener" href="https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee" >https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，主要借贷逻辑如，存入token&#x2F;nft，借出token，清算，拍卖的入口都在这个合约，代码结构比较清晰，入口function内会继续调用SupplyLogic，BorrowLogic，LiquidationLogic，AuctionLogic这几个library。</p>
 <h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>看代码里面，很多地方都能够看出这个项目有不错的技术实力，在代码优化层面做的很多，在token存入的时候，针对DAI这样支持permit授权的token，做了特别的支持，这样存入DAI就不用花费approve的gas费。还有在存储配置内容的时候，通过掩码的方式，把很多配置项都存在一个uint256里面，节省了存储</p>
 <h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>除了常用的NFT，该项目还支持uniswap v3的LP，也是一种ERC721 形式的NFT，来作为抵押物，目前支持8个主流token的LP NFT，这部分的价值估算和token一样，从合约接口读到底层资产的数量，使用chainlink的oracle来计算价值。</p>
 <h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>supply和withdraw ERC20 token的逻辑和compound差不多，每个token会有一个对应pToken来存放资产，给用户pToken的存款凭证。withdraw和borrow一样，需要检查可提现额度和健康因子。</p>
@@ -379,13 +379,13 @@
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2023/02/23/2023-2-21-snarkjs/"
+                            href="/2023/02/23/2023-2-23-blur-gas/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">snarkjs学习</span>
+                                    <span class="post-nav-title-item">Blur.io Gas消耗分析</span>
                                     <span class="post-nav-item">上一篇</span>
                                 </span>
                             </a>

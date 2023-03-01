@@ -364,7 +364,9 @@ b. ``Orderer.Kafka.Brokers`` contains the address of *at least two* of the
 Kafka brokers in your cluster in ``IP:port`` notation. The list does not
 need to be exhaustive. (These are your seed brokers.)
 
-b. ``Orderer.Kafka.Brokers`` 字段包含 *至少两个* Kafka集群中的节点``IP:port`` 样式的地址。这个列表没有必要详尽无遗(这些是你的 seed brokers.)</code></pre><ol start="2">
+b. ``Orderer.Kafka.Brokers`` 字段包含 *至少两个* Kafka集群中的节点``IP:port`` 样式的地址。这个列表没有必要详尽无遗(这些是你的 seed brokers.)
+</code></pre>
+<ol start="2">
 <li>Orderers: <strong>Set the maximum block size.</strong> Each block will have at most<br><code>Orderer.AbsoluteMaxBytes</code> bytes (not including headers), a value that you can<br>set in <code>configtx.yaml</code>. Let the value you pick here be <code>A</code> and make note of<br>it – it will affect how you configure your Kafka brokers in Step 4.</li>
 </ol>
 <p>Orderers: <strong>设置区块最大容量.</strong> 每一个区块最多只能有 <code>Orderer.AbsoluteMaxBytes</code> bytes 的容量(不含区块头信息), 这是一个你可以修改的值，存放在 <code>configtx.yaml</code> 配置文件中. 假设此处你设置的数值为<code>A</code>,将此数字记下来 – 这会影响你在步骤 4 中对于 Kafka brokers 的配置.</p>
@@ -441,51 +443,55 @@ e. ``log.retention.ms = -1``. Until the ordering service adds
 support for pruning of the Kafka logs, you should disable time-based
 retention and prevent segments from expiring. (Size-based retention -- see
 ``log.retention.bytes`` -- is disabled by default in Kafka at the time of
-this writing, so there&apos;s no need to set it explicitly.)
+this writing, so there&#39;s no need to set it explicitly.)
 
 e. ``log.retention.ms = -1``. 直到排序服务增加了对于 Kafka 日志分割(pruning)的支持之前, 应该禁用基于时间分割的方式以避免单个日志文件到期分段. (基于文件大小的分割方式 -- 看参数 ``log.retention.bytes`` -- 在本文书写时, 在 Kafka 中是默认被禁用的, 所以这个值没有必要指定地很明确. )
 
-Based on what we&apos;ve described above, the minimum allowed values for ``M``
+Based on what we&#39;ve described above, the minimum allowed values for ``M``
 and ``N`` are 2 and 3 respectively. This configuration allows for the
 creation of new channels to go forward, and for all channels to continue to
 be writeable.
 
-基于上文所描述的, ``M`` 和 ``N`` 的最小值分别为 2 和 3 . 这个配置可以创建 channel 并让所有 channel 都是随时可以写入的.</code></pre><ol start="5">
+基于上文所描述的, ``M`` 和 ``N`` 的最小值分别为 2 和 3 . 这个配置可以创建 channel 并让所有 channel 都是随时可以写入的.
+</code></pre>
+<ol start="5">
 <li>Orderers: <strong>Point each OSN to the genesis block.</strong> Edit<br><code>General.GenesisFile</code> in <code>orderer.yaml</code> so that it points to the genesis<br>block created in Step 3 above. (While at it, ensure all other keys in that YAML<br>file are set appropriately.)</li>
 </ol>
 <p>Orderers: <strong>将所有排序节点指向初始区块.</strong> 编辑 <code>orderer.yaml</code> 文件中的参数 <code>General.GenesisFile</code> 使其指向步骤 3 中所创建的初始区块. (同时, 确保 YAML 文件中所有其他参数都是正确的.)</p>
 <ol start="6">
 <li><p>Orderers: <strong>Adjust polling intervals and timeouts.</strong> (Optional step.)<br>Orderers: <strong>调整轮询间隔和超时时间.</strong> (可选步骤.)</p>
-<p>a. The <code>Kafka.Retry</code> section in the <code>orderer.yaml</code> file allows you to<br>adjust the frequency of the metadata/producer/consumer requests, as well as<br>the socket timeouts. (These are all settings you would expect to see in a<br>Kafka producer or consumer.)</p>
-<p>a. <code>orderer.yaml</code> 文件中的 <code>Kafka.Retry</code> 区域让你能够调整 metadata/producer/consumer 请求的频率以及 socket 的超时时间. (这些应该就是所有在 kafka 的生产者和消费者 中你需要的设置)</p>
+<p>a. The <code>Kafka.Retry</code> section in the <code>orderer.yaml</code> file allows you to<br>adjust the frequency of the metadata&#x2F;producer&#x2F;consumer requests, as well as<br>the socket timeouts. (These are all settings you would expect to see in a<br>Kafka producer or consumer.)</p>
+<p>a. <code>orderer.yaml</code> 文件中的 <code>Kafka.Retry</code> 区域让你能够调整 metadata&#x2F;producer&#x2F;consumer 请求的频率以及 socket 的超时时间. (这些应该就是所有在 kafka 的生产者和消费者 中你需要的设置)</p>
 <p>b. Additionally, when a new channel is created, or when an existing channel<br>is reloaded (in case of a just-restarted orderer), the orderer interacts<br>with the Kafka cluster in the following ways:</p>
 <p>b. 另外, 当一个 channel 被创建, 或当一个现有的 channel 被重新读取(刚启动 orderer 的情况), orderer 通过以下方式和 Kafka 集群进行交互.</p>
-<pre><code>a. It creates a Kafka producer (writer) for the Kafka partition that
-corresponds to the channel.
+<pre><code>   a. It creates a Kafka producer (writer) for the Kafka partition that
+   corresponds to the channel.
 
-a. 为 channel 对应的 Kafka 分区 创建一个 Kafka 生产者.
+   a. 为 channel 对应的 Kafka 分区 创建一个 Kafka 生产者.
 
-b. It uses that producer to post a no-op ``CONNECT`` message to that
-partition.
+   b. It uses that producer to post a no-op ``CONNECT`` message to that
+   partition.
 
-b. 通过生产者向这个分区发一个空的连接信息.
+   b. 通过生产者向这个分区发一个空的连接信息.
 
-c. It creates a Kafka consumer (reader) for that partition.
+   c. It creates a Kafka consumer (reader) for that partition.
 
-c. 为这个分区创建一个 Kafka 消费者.
+   c. 为这个分区创建一个 Kafka 消费者.
 
-If any of these steps fail, you can adjust the frequency with which they
-are repeated. Specifically they will be re-attempted every
-``Kafka.Retry.ShortInterval`` for a total of ``Kafka.Retry.ShortTotal``,
-and then every ``Kafka.Retry.LongInterval`` for a total of
-``Kafka.Retry.LongTotal`` until they succeed. Note that the orderer will
-be unable to write to or read from a channel until all of the steps
-above have been completed successfully.
+   If any of these steps fail, you can adjust the frequency with which they
+   are repeated. Specifically they will be re-attempted every
+   ``Kafka.Retry.ShortInterval`` for a total of ``Kafka.Retry.ShortTotal``,
+   and then every ``Kafka.Retry.LongInterval`` for a total of
+   ``Kafka.Retry.LongTotal`` until they succeed. Note that the orderer will
+   be unable to write to or read from a channel until all of the steps
+   above have been completed successfully.
 
-如果任意步骤出错, 你可以调整其重复的频率.
-这些步骤会在每一个 Kafka.Retry.ShortInterval 指定的时间间隔后进行重试 Kafka.Retry.ShortTotal 次,
-再以 Kafka.Retry.LongInterval 规定的时间间隔重试 Kafka.Retry.LongTotal 次直到成功.
-需要注意的是 orderer 不能读写该 channel 的数据直到所有上述步骤都成功执行.</code></pre></li>
+   如果任意步骤出错, 你可以调整其重复的频率.
+   这些步骤会在每一个 Kafka.Retry.ShortInterval 指定的时间间隔后进行重试 Kafka.Retry.ShortTotal 次,
+   再以 Kafka.Retry.LongInterval 规定的时间间隔重试 Kafka.Retry.LongTotal 次直到成功.
+   需要注意的是 orderer 不能读写该 channel 的数据直到所有上述步骤都成功执行.
+</code></pre>
+</li>
 <li><p><strong>Set up the OSNs and Kafka cluster so that they communicate over SSL.</strong><br>(Optional step, but highly recommended.) Refer to <code>the Confluent guide &lt;http://docs.confluent.io/2.0.0/kafka/ssl.html&gt;</code>_ for the Kafka cluster side of<br>the equation, and set the keys under <code>Kafka.TLS</code> in <code>orderer.yaml</code> on every<br>OSN accordingly.</p>
 </li>
 </ol>

@@ -349,7 +349,7 @@
 <li>使用 <code>configtxlator</code> 工具计算更新的配置与原有配置的差异</li>
 <li>SDK 提交配置以及签名</li>
 </ol>
-<p>The <code>configtxlator</code> tool exposes a truly stateless REST API for interacting<br>with configuration elements. These REST components support converting the<br>native configuration format to/from a human readable JSON representation, as<br>well as computing configuration updates based on the difference between two<br>configurations.</p>
+<p>The <code>configtxlator</code> tool exposes a truly stateless REST API for interacting<br>with configuration elements. These REST components support converting the<br>native configuration format to&#x2F;from a human readable JSON representation, as<br>well as computing configuration updates based on the difference between two<br>configurations.</p>
 <p><code>configtxlator</code> 工具暴露一个完全无状态的 REST API 接口用来和配置匀速进行交互。<br>这些 REST 组件支持本地的配置和可读的 JSON 格式配置文件进行相互转换， 同时根据配置文件的差异计算配置的更新。</p>
 <p>Because the <code>configtxlator</code> service deliberately does not contain any crypto<br>material, or otherwise secret information, it does not include any authorization<br>or access control. The anticipated typical deployment would be to operate as<br>a sandboxed container, locally with the application, so that there is a<br>dedicated <code>configtxlator</code> process for each consumer of it.</p>
 <p>因为 <code>configtxlator</code> 工具特意没有包含任何密码工具和密钥信息， 所有它没有任何权限控制。<br>预计的典型部署方式是运行在沙盒容器中， 所以在本地的应用中， 有一个专用的 <code>configtxlator</code> 进程给每一个使用者。</p>
@@ -380,11 +380,11 @@
 <p>Any of the configuration related protos, including <code>common.Block</code>,<br><code>common.Envelope</code>, <code>common.ConfigEnvelope</code>, <code>common.ConfigUpdateEnvelope</code>,<br><code>common.Configuration</code>, and <code>common.ConfigUpdate</code> are valid targets for<br>these URLs. In the future, other proto decoding types may be added, such as<br>for endorser transactions.</p>
 <p>任何原型相关的配置，包括 <code>common.Block</code>,<br><code>common.Envelope</code>, <code>common.ConfigEnvelope</code>, <code>common.ConfigUpdateEnvelope</code>,<br><code>common.Configuration</code>, 和 <code>common.ConfigUpdate</code> 都是这些地址的合法的目标。<br>未来，其他解析类型可能会被增加，比如背书交易。</p>
 <h2 id="Config-update-computation配置更新计算"><a href="#Config-update-computation配置更新计算" class="headerlink" title="Config update computation配置更新计算"></a>Config update computation<br />配置更新计算</h2><p>Given two different configurations, it is possible to compute the config update<br>which transitions between them. Simply POST the two <code>common.Config</code> proto<br>encoded configurations as <code>multipart/formdata</code>, with the original as field<br><code>original</code> and the updated as field <code>updated</code>, to<br><code>http://$SERVER:$PORT/configtxlator/compute/update-from-configs</code>.</p>
-<p>两个不同的配置，可以计算出两个配置更新所需要的交易。<br>向 <code>http://$SERVER:$PORT/configtxlator/compute/update-from-configs`` 发送两个已编码的</code>common.Config<code>原型配置作为</code>multipart/formdata<code>，其中原始配置填入</code>original<code>域，更新配置填入</code>updated` 域。</p>
+<p>两个不同的配置，可以计算出两个配置更新所需要的交易。<br>向 <code>http://$SERVER:$PORT/configtxlator/compute/update-from-configs`` 发送两个已编码的</code>common.Config<code>原型配置作为</code>multipart&#x2F;formdata<code>，其中原始配置填入</code>original<code>域，更新配置填入</code>updated&#96; 域。</p>
 <p>For example, given the original config as the file <code>original_config.pb</code> and<br>the updated config as the file <code>updated_config.pb</code> for the channel<br><code>desiredchannel</code>:</p>
 <p>例如，对于通道 <code>desiredchannel</code> 的原始配置文件 <code>original_config.pb</code> 和更新配置文件 <code>updated_config.pb</code> ：</p>
 <p>.. code:: bash</p>
-<p>curl -X POST -F channel=desiredchannel -F original=@original_config.pb -F updated=@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>curl -X POST -F channel&#x3D;desiredchannel -F original&#x3D;@original_config.pb -F updated&#x3D;@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h2 id="Bootstraping-example引导实例"><a href="#Bootstraping-example引导实例" class="headerlink" title="Bootstraping example引导实例"></a>Bootstraping example<br />引导实例</h2><p>First start the <code>configtxlator</code>:</p>
 <p>首先，启动启动 <code>configtxlator</code> 工具:</p>
 <p>.. code:: bash</p>
@@ -392,7 +392,7 @@
 <p>First, produce a genesis block for the ordering system channel:</p>
 <p>然后，为通道产生初始区块</p>
 <p>.. code:: bash</p>
-<p>$ configtxgen -outputBlock genesis_block.pb<br>2017-05-31 14:15:16.634 EDT [common/configtx/tool] main -&gt; INFO 001 Loading configuration<br>2017-05-31 14:15:16.646 EDT [common/configtx/tool] doOutputBlock -&gt; INFO 002 Generating genesis block<br>2017-05-31 14:15:16.646 EDT [common/configtx/tool] doOutputBlock -&gt; INFO 003 Writing genesis block</p>
+<p>$ configtxgen -outputBlock genesis_block.pb<br>2017-05-31 14:15:16.634 EDT [common&#x2F;configtx&#x2F;tool] main -&gt; INFO 001 Loading configuration<br>2017-05-31 14:15:16.646 EDT [common&#x2F;configtx&#x2F;tool] doOutputBlock -&gt; INFO 002 Generating genesis block<br>2017-05-31 14:15:16.646 EDT [common&#x2F;configtx&#x2F;tool] doOutputBlock -&gt; INFO 003 Writing genesis block</p>
 <p>Decode the genesis block into a human editable form:</p>
 <p>解析初始区块为可编辑的形式</p>
 <p>.. code:: bash</p>
@@ -402,14 +402,14 @@
 <p>First, let’s establish an environment variable to hold the string that defines<br>the path to a property in the json:</p>
 <p>首先，建立一个环境变量来存储变量的路径</p>
 <p>.. code:: bash</p>
-<p>export MAXBATCHSIZEPATH=”.data.data[0].payload.data.config.channel_group.groups.Orderer.values.BatchSize.value.max_message_count”</p>
+<p>export MAXBATCHSIZEPATH&#x3D;”.data.data[0].payload.data.config.channel_group.groups.Orderer.values.BatchSize.value.max_message_count”</p>
 <p>Next, let’s display the value of that property:</p>
 <p>然后，显示变量的值</p>
 <p>.. code:: bash</p>
 <p>jq “$MAXBATCHSIZEPATH” genesis_block.json<br>10</p>
 <p>Now, let’s set the new batch size, and display the new value:</p>
 <p>现在，设置新的区块大小，并且显示新值：</p>
-<p>jq “$MAXBATCHSIZEPATH = 20” genesis_block.json  &gt; updated_genesis_block.json<br>  jq “$MAXBATCHSIZEPATH” updated_genesis_block.json<br>20</p>
+<p>jq “$MAXBATCHSIZEPATH &#x3D; 20” genesis_block.json  &gt; updated_genesis_block.json<br>  jq “$MAXBATCHSIZEPATH” updated_genesis_block.json<br>20</p>
 <p>The genesis block is now ready to be re-encoded into the native proto form to be<br>used for bootstrapping:</p>
 <p>初始区块现在已经可以被重新编码为可用于引导启动的原型格式：</p>
 <p>.. code:: bash</p>
@@ -419,13 +419,13 @@
 <h2 id="Reconfiguration-example重配置示例"><a href="#Reconfiguration-example重配置示例" class="headerlink" title="Reconfiguration example重配置示例"></a>Reconfiguration example<br />重配置示例</h2><p>In another terminal window, start the orderer using the default options,<br>including the provisional bootstrapper which will create a <code>testchainid</code><br>ordering system channel.</p>
 <p>打开另一个终端窗口，使用默认选项启动 orderer，<br>包括临时的引导程序，将会创建一个名称为 <code>testchainid</code> 的排序通道。</p>
 <p>.. code:: bash</p>
-<p>ORDERER_GENERAL_LOGLEVEL=debug orderer</p>
+<p>ORDERER_GENERAL_LOGLEVEL&#x3D;debug orderer</p>
 <p>Reconfiguring a channel can be performed in a very similar way to modifying a<br>genesis config.</p>
 <p>重配置一个通道与修改初始配置类似。</p>
 <p>First, fetch the config_block proto:</p>
 <p>首先，获取配置区块原型：</p>
 <p>.. code:: bash</p>
-<p>$ peer channel fetch config config_block.pb -o 127.0.0.1:7050 -c testchainid<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 001 intermediate certs folder not found at [/home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts]. Skipping.: [stat /home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts: no such file or directory]<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 002 crls folder not found at [/home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts]. Skipping.: [stat /home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/crls: no such file or directory]<br>Received block: 1<br>Received block: 1<br>2017-05-31 15:11:37.635 EDT [main] main -&gt; INFO 003 Exiting…..</p>
+<p>$ peer channel fetch config config_block.pb -o 127.0.0.1:7050 -c testchainid<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 001 intermediate certs folder not found at [&#x2F;home&#x2F;yellickj&#x2F;go&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;sampleconfig&#x2F;msp&#x2F;intermediatecerts]. Skipping.: [stat &#x2F;home&#x2F;yellickj&#x2F;go&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;sampleconfig&#x2F;msp&#x2F;intermediatecerts: no such file or directory]<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 002 crls folder not found at [&#x2F;home&#x2F;yellickj&#x2F;go&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;sampleconfig&#x2F;msp&#x2F;intermediatecerts]. Skipping.: [stat &#x2F;home&#x2F;yellickj&#x2F;go&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;sampleconfig&#x2F;msp&#x2F;crls: no such file or directory]<br>Received block: 1<br>Received block: 1<br>2017-05-31 15:11:37.635 EDT [main] main -&gt; INFO 003 Exiting…..</p>
 <p>Next, send the config block to the <code>configtxlator</code> service for decoding:</p>
 <p>然后，发送配置区块到 <code>configtxlator</code> 服务进行解析：</p>
 <p>.. code:: bash</p>
@@ -437,7 +437,7 @@
 <p>Edit the config, saving it as a new <code>updated_config.json</code>. Here, we set the<br>batch size to 30.</p>
 <p>编辑配置，将编辑后的内容存放在 <code>updated_config.json</code> 。这里我们设计区块大小为 30.</p>
 <p>.. code:: bash</p>
-<p>jq “.channel_group.groups.Orderer.values.BatchSize.value.max_message_count = 30” config.json &gt; updated_config.json</p>
+<p>jq “.channel_group.groups.Orderer.values.BatchSize.value.max_message_count &#x3D; 30” config.json &gt; updated_config.json</p>
 <p>Re-encode both the original config, and the updated config into proto:</p>
 <p>重新将原配置与新配置进行编码：</p>
 <p>.. code:: bash</p>
@@ -447,7 +447,7 @@
 <p>Now, with both configs properly encoded, send them to the <code>configtxlator</code><br>service to compute the config update which transitions between the two.</p>
 <p>现在，将编码后的文件发送到 <code>configtxlator</code> 服务进行计算比对两个的差异。</p>
 <p>.. code:: bash</p>
-<p>curl -X POST -F original=@config.pb -F updated=@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -F channel=testchainid &gt; config_update.pb</p>
+<p>curl -X POST -F original&#x3D;@config.pb -F updated&#x3D;@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -F channel&#x3D;testchainid &gt; config_update.pb</p>
 <p>At this point, the computed config update is now prepared. Traditionally,<br>an SDK would be used to sign and wrap this message. However, in the interest of<br>using only the peer cli, the <code>configtxlator</code> can also be used for this task.</p>
 <p>到此，计算出的配置更新已经准备好了。一般，SDK 会对该消息进行签名打包。<br>然而，为了那些只使用节点命令（peer cli）的情况， <code>configtxlator</code> 工具也能进行这个工作。</p>
 <p>First, we decode the ConfigUpdate so that we may work with it as text:</p>
@@ -473,7 +473,7 @@
 <p>Start the orderer using the <code>SampleDevModeSolo</code> profile option.</p>
 <p>使用 <code>SampleDevModeSolo</code> 属性配置来启动排序服务。</p>
 <p>.. code:: bash</p>
-<p>ORDERER_GENERAL_LOGLEVEL=debug ORDERER_GENERAL_GENESISPROFILE=SampleDevModeSolo orderer</p>
+<p>ORDERER_GENERAL_LOGLEVEL&#x3D;debug ORDERER_GENERAL_GENESISPROFILE&#x3D;SampleDevModeSolo orderer</p>
 <p>The process to add an organization then follows exactly like the batch size<br>example. However, instead of setting the batch size, a new org is defined at<br>the application level. Adding an organization is slightly more involved because<br>we must first create a channel, then modify its membership set.</p>
 <p>增加组织的国政和修改区块大小的过程类似。然而，不同于设置区块大小，一个新的组织被定义在应用层。<br>增加一个组织涉及更多内容因为需要先创建通道，然后修改它的成员集。</p>
 <p>.. Licensed under Creative Commons Attribution 4.0 International License<br><a class="link"   target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/" >https://creativecommons.org/licenses/by/4.0/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
