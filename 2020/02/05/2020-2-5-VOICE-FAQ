@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2020/02/05/2020-2-5-voice-faq"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="VOICE FAQ（常见问题）翻译">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2020/02/05/2020-2-5-VOICE-FAQ">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VOICE FAQ（常见问题）翻译">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            VOICE FAQ（常见问题）翻译 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">VOICE FAQ（常见问题）翻译</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2020-02-05 16:24</span>
+        <span class="mobile">2020-02-05 16:24</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2020-02-05 16:24</span>
+            <span class="mobile">2020-02-05 16:24</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>Voice 是由 Block.one 公司推出的社交网站，基于EOSIO区块链。这里翻译一下官方的问答，基于谷歌翻译并做微调。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://voice.com/faq/" >原文链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong>Voice是什么？</strong></p>
+<p>Voice是用于创建、分发和发现内容的公开透明、基于奖励的社交网络。它旨在通过身份认证和公开透明的数据库基础结构来培养新的可信任的体验。<br>Voice由用户构成并为了用户而创建的。大部分价值通过Voice代币返回到社区，Voice代币是一种实用代币，可以通过获取和使用来获得网络上其他用户的关注。</p>
+<span id="more"></span>
+
+<p><strong>是什么使Voice在技术上与众不同？</strong></p>
+<p>利用Block.one开发的开源EOSIO协议，Voice充分利用了区块链技术的固有特性：安全性和可审计性。通过Voice，我们促进了可信任且透明的社交互动，以及对平台内容推广方式的可见性。</p>
+<p><strong>什么是Voice代币，如何获得？</strong></p>
+<p>Voice代币是消耗性的实用代币，用来引起其他用户的注意；您可以将它们花费在特定内容上，以增加在平台上的曝光度。由于每个人都有被倾听的权利，因此用户每天都会获得相同数量的Voice代币。您可以通过创建其他人消费和欣赏的内容来获得Voice代币。最初，您可以使用代币购买发布的内容下方的空间，但Voice代币被认为是平台上所有形式的促销和广告的中介。</p>
+<p>随着测试版的发布，我们将在Voice博客上发布更多有关Voice代币，以及分发机制和消费模型的详细信息。</p>
+<p><strong>与其他社交媒体相比，Voice上的促销和广告有何不同？</strong></p>
+<p>Voice代币位于区块链账本中，该账本对存储的数据库实现了前所未有的透明性，包括整个平台上的促销和广告。通过使用户能够看到促销内容的背后的发起人和促销方式，使得促销活动更加吸引人并且更少的误导性。这种可审核的透明度还扩展到Voice代币的分发和使用，Voice代币由作者和用户获得，并由寻求推广的人花费。</p>
+<p><strong>那些更被动，主要只是消费内容的社交媒体用户呢？ 他们为什么要使用Voice？</strong></p>
+<p>真实用户。 真实内容。 实际价值。 Voice专为消费者和内容创作者而设计。 Voice上的每个用户将有权影响哪些内容获得的热度，为了确保这一点，所有经过验证的用户每天将获得相等数量的Voice代币。 我们相信每个人的意见都很重要，而Voice代币就是我们确保其真正做到的方式。</p>
+<p><strong>如何使用Voice代币来推广内容？</strong></p>
+<p>Voice上的每个帖子都有机会被“听到”。 这意味着用户可以将其Voice代币消费到帖子中并控制顶部评论。 此操作可奖励内容创建者，并为帖子带来更多可见度。 那时，用户的Voice代币已花费在帖子上。 如果其他人提供了更多Voice代币来控制指定文章上的最高评论点，则前竞标者将失去对该位置的控制权，但获得的Voice代币要比他们最初花费的Voice代币多。 然后，他们可以决定是否要为该位置重新出价以重新获得控制权。</p>
+<p><strong>与其他未能处理假新闻，欺凌和操纵行为的社交平台相比，Voice的工作方式有何不同？内容将如何审核？</strong></p>
+<p>当前社交媒体平台上发生的大规模攻击和操纵，很大程度上是由于无法将内容归因于终端用户，因此为假冒、商业化和操纵性内容和行为营造了猖獗的环境。Voice的用户是经过验证的真实身份，旨在通过将所有内容归因于特定人员的能力来极大地减少假帐户和非法内容的流行。</p>
+<p>适用性仍然是一个问题，控制应用的规则通常不由平台运营商所控制，而由监管机构和适用法律掌握。作为一家公司，我们相信言论自由，并会在遵守所有法律法规的前提下优先考虑该价值。</p>
+<p>我们希望将来能够实现分散的内容分发和审核，但是对于第一阶段，我们主要致力于提供那些可以用许多令人兴奋的方式进行扩展的核心功能。</p>
+<p><strong>Voice的所有用户都将被要求验证身份吗？</strong></p>
+<p>除了单纯内容消费之外，其他所有的场景都需要验证身份。 真实性是使社交媒体保持一致的基础，而身份验证将确保每个帐户都属于一个真实的人。 经过验证的身份有助于消除机器人程序、虚假新闻以及由做恶者隐藏在匿名和商业利益背后而造成的困扰现有社交平台的其他负面体验，并有助于与代币化经济体进行更深入的合规性互动。 我们并没有忘记实现这一目标所会遇到的障碍，但是我们知道它所带来的变革性经验是值得去克服这些障碍的，我们还会专注于使流程尽可能简化和容易。</p>
+<p><strong>Voice测试版是什么样子？</strong></p>
+<p>与所有雄心勃勃的新产品一样，Voice将需要迭代和反复试验，以确保满足以用户为中心，安全性强且人们喜欢它。 随着我们不断进行迭代，有关产品和此问答的许多事情也会改变。 测试版将向社区成员敞开大门，让他们首次体验Voice，测试其设计并开始建立您的网络。</p>
+<p><strong>如何实现Voice博客测试版</strong></p>
+<p>透明度是我们所做工作的核心，并且在我们持续构建Voice的过程中，这部分意味着向我们的社区敞开大门，让他们亲眼目睹Block.one为实现Voice所做的努力、成功和所采取的步骤。</p>
+<p>在未来的几个月中，我们希望通过我们的博客和常见问题解答，就当今困扰社交媒体的问题，与社区进行对话，说明Voice在改变社交媒体范式中所扮演的角色以及我们启动测试版的方式。 我们的博客将重点介绍过程中有趣的方面，因为我们能够应对面临的挑战和所看到的机遇。 在新的Voice博客中可以找到最早的测试公告，以及我们即将推出而不断增长的问答。</p>
+<p><strong>Voice何时可用？</strong></p>
+<p>Voice团队正在努力争取在2020年2月14日发布Voice的公共测试版。您可以在Voice.com上请求测试版的访问权限，以了解最新动态。 虽然Voice测试的初始版本仅是英语，且功能有限，但我们希望使尽可能多的人可以使用它，以开始体验此方向并提供反馈。 如果您尚未请求测试版访问权限，我们鼓励您加入我们。</p>
+<p><strong>Voice将在哪里运行？</strong></p>
+<p>当Voice处于测试状态且处于高度迭代状态时，它将在特定的EOSIO区块链上运行。 随着时间的流逝，我们希望Voice能够利用EOS公链以及可能满足Voice的性能和治理要求的其他区块链。</p>
+<p><strong>哪些国家可以使用测试版Voice？</strong></p>
+<p>Voice旨在成为一个欢迎不同体验和文化的全球社区，这就是我们的目标。 在朝着这个目标努力的过程中，Voice 测试版最初将以英语发布，并在许多可行的发布国家/地区发布。 随着我们针对本地语言，标准和法规环境改进和优化，我们的目标是继续提高世界各地不同国家和语言的用户的可访问性。 我们将继续在Voice博客中及时更新社区信息，以及在发布过程中面临的任何挑战，因为我们打算尽快将邀请尽可能广泛地发出。</p>
+<p><strong>有兴趣加入Block.one来开发Voice吗？</strong></p>
+<p>我们始终欢迎对Voice有兴趣希望加入Block.one的人。 有关加入Block.one团队的更多信息，请访问我们的职业页面以查看我们目前正在招聘的职位。</p>
+
+            </div>
+
+            
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">[翻译] Voice：通往测试版之路</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2020/01/23/2020-1-23"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">关于传染病的过激反应</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'ed5ee5fcff98265053ac',
+                    clientSecret: '3308d9b3cb2d65451187a92bd4478af26b812e03',
+                    repo: 'https://github.com/qiushaoxi/blog-talk',
+                    owner: 'qiushaoxi',
+                    admin: ['qiushaoxi'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">VOICE FAQ（常见问题）翻译</div>
+        
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2017/10/13/2017-10-13-configtxlator"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[翻译]使用configtxlator工具重新配置fabric区块链">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2017/10/13/2017-10-13-configtxlator">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[翻译]使用configtxlator工具重新配置fabric区块链">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            [翻译]使用configtxlator工具重新配置fabric区块链 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">[翻译]使用configtxlator工具重新配置fabric区块链</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2017-10-13 17:55</span>
+        <span class="mobile">2017-10-13 17:55</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2017-10-13 17:55</span>
+            <span class="mobile">2017-10-13 17:55</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Hyperledger/">Hyperledger</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>original：<a class="link"   target="_blank" rel="noopener" href="https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst" >https://github.com/hyperledger/fabric/blob/master/docs/source/configtxlator.rst <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="Overview概览"><a href="#Overview概览" class="headerlink" title="Overview概览"></a>Overview<br />概览</h2><span id="more"></span>
+
+<p>The <code>configtxlator</code> tool was created to support reconfiguration independent<br>of SDKs. Channel configuration is stored as a transaction in configuration<br>blocks of a channel and may be manipulated directly, such as in the bdd behave<br>tests. However, at the time of this writing, no SDK natively supports<br>manipulating the configuration directly, so the <code>configtxlator</code> tool is<br>designed to provide an API which consumers of any SDK may interact with to<br>assist with configuration updates.</p>
+<p>开发 <code>configtxlator</code> 工具是为了支持独立于 SDK 来进行重新配置。通道配置通过一个交易的形式存储在通道的配置区块中，并且能够直接被修改，就像 bdd 行为测试。<br>然而，在本文写作的时间，还没有 SDK 原生支持直接修改配置，所以 <code>configtxlator</code> 工具被设计为提供一个 API 让任意一个 SDK 的用户都能够与之交互来更新配置。</p>
+<p>The tool name is a portmanteau of <em>configtx</em> and <em>translator</em> and is intended to<br>convey that the tool simply converts between different equivalent data<br>representations. It does not generate configuration. It does not submit or<br>retrieve configuration. It does not modify configuration itself, it simply<br>provides some bijective operations between different views of the configtx<br>format.</p>
+<p>工具的名称是 <em>configtx</em> 和 <em>translator</em> 的拼接，意在传达该工具简单地在不同的等效数据之间进行转换。<br>它不产生配置。也不提交或撤回配置。它不修改配置本身，只是简单地提供一些配置格式的不同的双射展现。</p>
+<p>译者注：既是单射又是满射的函数称为双射. 函数为双射当且仅当每个可能的像有且仅有一个变量与之对应。参考：<a class="link"   target="_blank" rel="noopener" href="http://www.cnblogs.com/wanghetao/archive/2012/03/16/2400619.html" >http://www.cnblogs.com/wanghetao/archive/2012/03/16/2400619.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>The standard usage is expected to be:</p>
+<ol>
+<li>SDK retrieves latest config</li>
+<li><code>configtxlator</code> produces human readable version of config</li>
+<li>User or application edits the config</li>
+<li><code>configtxlator</code> is used to compute config update representation of<br>changes to the config</li>
+<li>SDK submits signs and submits config</li>
+</ol>
+<p>标准用法：</p>
+<ol>
+<li>SDK 取出最新的配置</li>
+<li><code>configtxlator</code> 工具产生可读版本的配置文件</li>
+<li>用户或者应用编辑配置文件</li>
+<li>使用 <code>configtxlator</code> 工具计算更新的配置与原有配置的差异</li>
+<li>SDK 提交配置以及签名</li>
+</ol>
+<p>The <code>configtxlator</code> tool exposes a truly stateless REST API for interacting<br>with configuration elements. These REST components support converting the<br>native configuration format to/from a human readable JSON representation, as<br>well as computing configuration updates based on the difference between two<br>configurations.</p>
+<p><code>configtxlator</code> 工具暴露一个完全无状态的 REST API 接口用来和配置匀速进行交互。<br>这些 REST 组件支持本地的配置和可读的 JSON 格式配置文件进行相互转换， 同时根据配置文件的差异计算配置的更新。</p>
+<p>Because the <code>configtxlator</code> service deliberately does not contain any crypto<br>material, or otherwise secret information, it does not include any authorization<br>or access control. The anticipated typical deployment would be to operate as<br>a sandboxed container, locally with the application, so that there is a<br>dedicated <code>configtxlator</code> process for each consumer of it.</p>
+<p>因为 <code>configtxlator</code> 工具特意没有包含任何密码工具和密钥信息， 所有它没有任何权限控制。<br>预计的典型部署方式是运行在沙盒容器中， 所以在本地的应用中， 有一个专用的 <code>configtxlator</code> 进程给每一个使用者。</p>
+<h2 id="Running-the-configtxlator运行-configtxlator-工具"><a href="#Running-the-configtxlator运行-configtxlator-工具" class="headerlink" title="Running the configtxlator运行 configtxlator 工具"></a>Running the configtxlator<br />运行 configtxlator 工具</h2><p>The <code>configtxlator</code> tool can be downloaded with the other Hyperledger Fabric<br>platform-specific binaries. Please see :ref:<code>download-platform-specific-binaries</code><br>for details.</p>
+<p><code>configtxlator</code> 工具可以和其他 Hyperledger Fabric 平台专用工具一样被下载使用。详情请查看 ref:<code>download-platform-specific-binaries</code> 。</p>
+<p>The tool may be configured to listen on a different port and you may also<br>specify the hostname using the <code>--port</code> and <code>--hostname</code> flags. To explore<br>the complete set of commands and flags, run <code>configtxlator --help</code>.</p>
+<p>该工具可以配置去监听不同的端口和地址，只用 <code>--port</code> 和 <code>--hostname</code> 参数。<br>查看所有参数的详细信息，执行 <code>configtxlator --help</code>.</p>
+<p>The binary will start an http server listening on the designated port and is now<br>ready to process request.</p>
+<p>工具启动一个服务器监听指定的端口且等待处理请求。</p>
+<p>To start the <code>configtxlator</code> server:</p>
+<p>执行命令启动 <code>configtxlator</code> 服务：</p>
+<p>.. code:: bash</p>
+<p>configtxlator start<br>2017-06-21 18:16:58.248 HKT [configtxlator] startServer -&gt; INFO 001 Serving HTTP requests on 0.0.0.0:7059</p>
+<h2 id="Proto-translation原型翻译"><a href="#Proto-translation原型翻译" class="headerlink" title="Proto translation原型翻译"></a>Proto translation<br />原型翻译</h2><p>For extensibility, and because certain fields must be signed over, many proto<br>fields are stored as bytes. This makes the natural proto to JSON translation<br>using the <code>jsonpb</code> package ineffective for producing a human readable version<br>of the protobufs. Instead, the <code>configtxlator</code> exposes a REST component to do<br>a more sophisticated translation.</p>
+<p>为了可扩展性，以及特定的字段需要被签名，许多原型字段被存储为字节。使用 <code>jsonpb</code> 工具包来转换原型和可读的 JSON 格式因此变得无效。<br>替代的方式是， <code>configtxlator</code> 暴露一个 REST 组件去做更复杂的翻译。</p>
+<p>To convert a proto to its human readable JSON equivalent, simply post the binary<br>proto to the rest target<br><code>http://$SERVER:$PORT/protolator/decode/&lt;message.Name&gt;</code>,<br>where <code>&lt;message.Name&gt;</code> is the fully qualified proto name of the message.</p>
+<p>要转换原型到可读的 JSON 格式，只要发送二进制原型到 rest 目标<br><code>http://$SERVER:$PORT/protolator/decode/&lt;message.Name&gt;</code>,<br><code>&lt;message.Name&gt;</code> 是合法原型名的全称。</p>
+<p>For instance, to decode a configuration block saved as<br><code>configuration_block.pb</code>, run the command:</p>
+<p>例如，为了解析一个存储为 <code>configuration_block.pb</code> 的配置区块，执行命令：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @configuration_block.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/decode/common.Block" >http://127.0.0.1:7059/protolator/decode/common.Block <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>To convert the human readable JSON version of the proto message, simply post the<br>JSON version to <code>http://$SERVER:$PORT/protolator/encode/&lt;message.Name</code>, where<br><code>&lt;message.Name&gt;</code> is again the fully qualified proto name of the message.</p>
+<p>转换可读的 JSON 版本为原型数据，只要发送 JSON 版本到 <code>http://$SERVER:$PORT/protolator/encode/&lt;message.Name&gt;</code> ，<br>这里的 <code>&lt;message.Name&gt;</code> 是合法原型的全称。</p>
+<p>For instance, to re-encode the block saved as <code>configuration_block.json</code>, run<br>the command:</p>
+<p>例如，重新编码存储为 <code>configuration_block.json</code> 的配置区块，执行命令：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @configuration_block.json <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/encode/common.Block" >http://127.0.0.1:7059/protolator/encode/common.Block <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Any of the configuration related protos, including <code>common.Block</code>,<br><code>common.Envelope</code>, <code>common.ConfigEnvelope</code>, <code>common.ConfigUpdateEnvelope</code>,<br><code>common.Configuration</code>, and <code>common.ConfigUpdate</code> are valid targets for<br>these URLs. In the future, other proto decoding types may be added, such as<br>for endorser transactions.</p>
+<p>任何原型相关的配置，包括 <code>common.Block</code>,<br><code>common.Envelope</code>, <code>common.ConfigEnvelope</code>, <code>common.ConfigUpdateEnvelope</code>,<br><code>common.Configuration</code>, 和 <code>common.ConfigUpdate</code> 都是这些地址的合法的目标。<br>未来，其他解析类型可能会被增加，比如背书交易。</p>
+<h2 id="Config-update-computation配置更新计算"><a href="#Config-update-computation配置更新计算" class="headerlink" title="Config update computation配置更新计算"></a>Config update computation<br />配置更新计算</h2><p>Given two different configurations, it is possible to compute the config update<br>which transitions between them. Simply POST the two <code>common.Config</code> proto<br>encoded configurations as <code>multipart/formdata</code>, with the original as field<br><code>original</code> and the updated as field <code>updated</code>, to<br><code>http://$SERVER:$PORT/configtxlator/compute/update-from-configs</code>.</p>
+<p>两个不同的配置，可以计算出两个配置更新所需要的交易。<br>向 <code>http://$SERVER:$PORT/configtxlator/compute/update-from-configs`` 发送两个已编码的</code>common.Config<code>原型配置作为</code>multipart/formdata<code>，其中原始配置填入</code>original<code>域，更新配置填入</code>updated` 域。</p>
+<p>For example, given the original config as the file <code>original_config.pb</code> and<br>the updated config as the file <code>updated_config.pb</code> for the channel<br><code>desiredchannel</code>:</p>
+<p>例如，对于通道 <code>desiredchannel</code> 的原始配置文件 <code>original_config.pb</code> 和更新配置文件 <code>updated_config.pb</code> ：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST -F channel=desiredchannel -F original=@original_config.pb -F updated=@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="Bootstraping-example引导实例"><a href="#Bootstraping-example引导实例" class="headerlink" title="Bootstraping example引导实例"></a>Bootstraping example<br />引导实例</h2><p>First start the <code>configtxlator</code>:</p>
+<p>首先，启动启动 <code>configtxlator</code> 工具:</p>
+<p>.. code:: bash</p>
+<p>$ configtxlator start<br>2017-05-31 12:57:22.499 EDT [configtxlator] main -&gt; INFO 001 Serving HTTP requests on port: 7059</p>
+<p>First, produce a genesis block for the ordering system channel:</p>
+<p>然后，为通道产生初始区块</p>
+<p>.. code:: bash</p>
+<p>$ configtxgen -outputBlock genesis_block.pb<br>2017-05-31 14:15:16.634 EDT [common/configtx/tool] main -&gt; INFO 001 Loading configuration<br>2017-05-31 14:15:16.646 EDT [common/configtx/tool] doOutputBlock -&gt; INFO 002 Generating genesis block<br>2017-05-31 14:15:16.646 EDT [common/configtx/tool] doOutputBlock -&gt; INFO 003 Writing genesis block</p>
+<p>Decode the genesis block into a human editable form:</p>
+<p>解析初始区块为可编辑的形式</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @genesis_block.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/decode/common.Block" >http://127.0.0.1:7059/protolator/decode/common.Block <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; genesis_block.json</p>
+<p>Edit the <code>genesis_block.json</code> file in your favorite JSON editor, or manipulate<br>it programatically. Here we use the JSON CLI tool <code>jq</code>. For simplicity, we<br>are editing the batch size for the channel, because it is a single numeric<br>field. However, any edits, including policy and MSP edits may be made here.</p>
+<p>使用你喜欢的 JSON 编辑器编辑 <code>genesis_block.json</code> 文件，或使用程序编辑。 这里需要使用 JSON 工具 <code>jq</code> .<br>为了方便，这里编辑通道的区块大小，因为这是一个数字字段。<br>然而，任何修改，包括策略和 MSP 都是可以做的。</p>
+<p>First, let’s establish an environment variable to hold the string that defines<br>the path to a property in the json:</p>
+<p>首先，建立一个环境变量来存储变量的路径</p>
+<p>.. code:: bash</p>
+<p>export MAXBATCHSIZEPATH=”.data.data[0].payload.data.config.channel_group.groups.Orderer.values.BatchSize.value.max_message_count”</p>
+<p>Next, let’s display the value of that property:</p>
+<p>然后，显示变量的值</p>
+<p>.. code:: bash</p>
+<p>jq “$MAXBATCHSIZEPATH” genesis_block.json<br>10</p>
+<p>Now, let’s set the new batch size, and display the new value:</p>
+<p>现在，设置新的区块大小，并且显示新值：</p>
+<p>jq “$MAXBATCHSIZEPATH = 20” genesis_block.json  &gt; updated_genesis_block.json<br>  jq “$MAXBATCHSIZEPATH” updated_genesis_block.json<br>20</p>
+<p>The genesis block is now ready to be re-encoded into the native proto form to be<br>used for bootstrapping:</p>
+<p>初始区块现在已经可以被重新编码为可用于引导启动的原型格式：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @updated_genesis_block.json <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/encode/common.Block" >http://127.0.0.1:7059/protolator/encode/common.Block <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; updated_genesis_block.pb</p>
+<p>The <code>updated_genesis_block.pb</code> file may now be used as the genesis block for<br>bootstrapping an ordering system channel.</p>
+<p>现在， <code>updated_genesis_block.pb</code> 文件可以作为初始区块来引导通道启动了。</p>
+<h2 id="Reconfiguration-example重配置示例"><a href="#Reconfiguration-example重配置示例" class="headerlink" title="Reconfiguration example重配置示例"></a>Reconfiguration example<br />重配置示例</h2><p>In another terminal window, start the orderer using the default options,<br>including the provisional bootstrapper which will create a <code>testchainid</code><br>ordering system channel.</p>
+<p>打开另一个终端窗口，使用默认选项启动 orderer，<br>包括临时的引导程序，将会创建一个名称为 <code>testchainid</code> 的排序通道。</p>
+<p>.. code:: bash</p>
+<p>ORDERER_GENERAL_LOGLEVEL=debug orderer</p>
+<p>Reconfiguring a channel can be performed in a very similar way to modifying a<br>genesis config.</p>
+<p>重配置一个通道与修改初始配置类似。</p>
+<p>First, fetch the config_block proto:</p>
+<p>首先，获取配置区块原型：</p>
+<p>.. code:: bash</p>
+<p>$ peer channel fetch config config_block.pb -o 127.0.0.1:7050 -c testchainid<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 001 intermediate certs folder not found at [/home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts]. Skipping.: [stat /home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts: no such file or directory]<br>2017-05-31 15:11:37.617 EDT [msp] getMspConfig -&gt; INFO 002 crls folder not found at [/home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/intermediatecerts]. Skipping.: [stat /home/yellickj/go/src/github.com/hyperledger/fabric/sampleconfig/msp/crls: no such file or directory]<br>Received block: 1<br>Received block: 1<br>2017-05-31 15:11:37.635 EDT [main] main -&gt; INFO 003 Exiting…..</p>
+<p>Next, send the config block to the <code>configtxlator</code> service for decoding:</p>
+<p>然后，发送配置区块到 <code>configtxlator</code> 服务进行解析：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @config_block.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/decode/common.Block" >http://127.0.0.1:7059/protolator/decode/common.Block <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; config_block.json</p>
+<p>Extract the config section from the block:</p>
+<p>从区块中提取配置区域</p>
+<p>.. code:: bash</p>
+<p>jq .data.data[0].payload.data.config config_block.json &gt; config.json</p>
+<p>Edit the config, saving it as a new <code>updated_config.json</code>. Here, we set the<br>batch size to 30.</p>
+<p>编辑配置，将编辑后的内容存放在 <code>updated_config.json</code> 。这里我们设计区块大小为 30.</p>
+<p>.. code:: bash</p>
+<p>jq “.channel_group.groups.Orderer.values.BatchSize.value.max_message_count = 30” config.json &gt; updated_config.json</p>
+<p>Re-encode both the original config, and the updated config into proto:</p>
+<p>重新将原配置与新配置进行编码：</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @config.json <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/encode/common.Config" >http://127.0.0.1:7059/protolator/encode/common.Config <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; config.pb</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @updated_config.json <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/encode/common.Config" >http://127.0.0.1:7059/protolator/encode/common.Config <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; updated_config.pb</p>
+<p>Now, with both configs properly encoded, send them to the <code>configtxlator</code><br>service to compute the config update which transitions between the two.</p>
+<p>现在，将编码后的文件发送到 <code>configtxlator</code> 服务进行计算比对两个的差异。</p>
+<p>.. code:: bash</p>
+<p>curl -X POST -F original=@config.pb -F updated=@updated_config.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/configtxlator/compute/update-from-configs" >http://127.0.0.1:7059/configtxlator/compute/update-from-configs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -F channel=testchainid &gt; config_update.pb</p>
+<p>At this point, the computed config update is now prepared. Traditionally,<br>an SDK would be used to sign and wrap this message. However, in the interest of<br>using only the peer cli, the <code>configtxlator</code> can also be used for this task.</p>
+<p>到此，计算出的配置更新已经准备好了。一般，SDK 会对该消息进行签名打包。<br>然而，为了那些只使用节点命令（peer cli）的情况， <code>configtxlator</code> 工具也能进行这个工作。</p>
+<p>First, we decode the ConfigUpdate so that we may work with it as text:</p>
+<p>首先，按上文所说对配置更新进行编码：</p>
+<p>.. code:: bash</p>
+<p>$ curl -X POST –data-binary @config_update.pb <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/decode/common.ConfigUpdate" >http://127.0.0.1:7059/protolator/decode/common.ConfigUpdate <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; config_update.json</p>
+<p>Then, we wrap it in an envelope message:</p>
+<p>然后，讲消息进行打包：</p>
+<p>.. code:: bash</p>
+<p>echo ‘{“payload”:{“header”:{“channel_header”:{“channel_id”:”testchainid”, “type”:2}},”data”:{“config_update”:’$(cat config_update.json)’}}}’ &gt; config_update_as_envelope.json</p>
+<p>Next, convert it back into the proto form of a full fledged config<br>transaction:</p>
+<p>接着，将它转换为完整配置的交易的原型结构</p>
+<p>.. code:: bash</p>
+<p>curl -X POST –data-binary @config_update_as_envelope.json <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:7059/protolator/encode/common.Envelope" >http://127.0.0.1:7059/protolator/encode/common.Envelope <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> &gt; config_update_as_envelope.pb</p>
+<p>Finally, submit the config update transaction to ordering to perform a config<br>update.</p>
+<p>最后，将配置更新交易提交到排序服务。</p>
+<p>.. code:: bash</p>
+<p>peer channel update -f config_update_as_envelope.pb -c testchainid -o 127.0.0.1:7050</p>
+<h2 id="Adding-an-organization增加组织"><a href="#Adding-an-organization增加组织" class="headerlink" title="Adding an organization增加组织"></a>Adding an organization<br />增加组织</h2><p>First start the <code>configtxlator</code>:</p>
+<p>首先启动 <code>configtxlator</code> 服务：</p>
+<p>.. code:: bash</p>
+<p>$ configtxlator start<br>2017-05-31 12:57:22.499 EDT [configtxlator] main -&gt; INFO 001 Serving HTTP requests on port: 7059</p>
+<p>Start the orderer using the <code>SampleDevModeSolo</code> profile option.</p>
+<p>使用 <code>SampleDevModeSolo</code> 属性配置来启动排序服务。</p>
+<p>.. code:: bash</p>
+<p>ORDERER_GENERAL_LOGLEVEL=debug ORDERER_GENERAL_GENESISPROFILE=SampleDevModeSolo orderer</p>
+<p>The process to add an organization then follows exactly like the batch size<br>example. However, instead of setting the batch size, a new org is defined at<br>the application level. Adding an organization is slightly more involved because<br>we must first create a channel, then modify its membership set.</p>
+<p>增加组织的国政和修改区块大小的过程类似。然而，不同于设置区块大小，一个新的组织被定义在应用层。<br>增加一个组织涉及更多内容因为需要先创建通道，然后修改它的成员集。</p>
+<p>.. Licensed under Creative Commons Attribution 4.0 International License<br><a class="link"   target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/" >https://creativecommons.org/licenses/by/4.0/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hyperledger/">#Hyperledger</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BF%BB%E8%AF%91/">#翻译</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/11/08/2017-11-08-Fabric-FAQ"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">[翻译]Hyperledger Fabric 答疑</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/10/13/2017-10-15-Kafka-based-Ordering-Service"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">[翻译]fabric区块链中启动基于卡夫卡的排序服务</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'ed5ee5fcff98265053ac',
+                    clientSecret: '3308d9b3cb2d65451187a92bd4478af26b812e03',
+                    repo: 'https://github.com/qiushaoxi/blog-talk',
+                    owner: 'qiushaoxi',
+                    admin: ['qiushaoxi'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">[翻译]使用configtxlator工具重新配置fabric区块链</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview%E6%A6%82%E8%A7%88"><span class="nav-text">Overview概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-the-configtxlator%E8%BF%90%E8%A1%8C-configtxlator-%E5%B7%A5%E5%85%B7"><span class="nav-text">Running the configtxlator运行 configtxlator 工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proto-translation%E5%8E%9F%E5%9E%8B%E7%BF%BB%E8%AF%91"><span class="nav-text">Proto translation原型翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-update-computation%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%96%B0%E8%AE%A1%E7%AE%97"><span class="nav-text">Config update computation配置更新计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bootstraping-example%E5%BC%95%E5%AF%BC%E5%AE%9E%E4%BE%8B"><span class="nav-text">Bootstraping example引导实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reconfiguration-example%E9%87%8D%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">Reconfiguration example重配置示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-an-organization%E5%A2%9E%E5%8A%A0%E7%BB%84%E7%BB%87"><span class="nav-text">Adding an organization增加组织</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

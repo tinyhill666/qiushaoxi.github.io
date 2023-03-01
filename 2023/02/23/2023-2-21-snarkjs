@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2023/02/23/2023-2-21-snarkjs"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="snarkjs学习">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2023/02/23/2023-2-21-snarkjs">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="snarkjs学习">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            snarkjs学习 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">snarkjs学习</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2023-02-23 09:00</span>
+        <span class="mobile">2023-02-23 09</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2023-02-23 09:00</span>
+            <span class="mobile">2023-02-23 09</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/DeFi/">DeFi</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ZK/">ZK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。</p>
+<span id="more"></span>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/iden3/snarkjs" >https://github.com/iden3/snarkjs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>什么是ZK(零知识证明)？已经有太多介绍，这里就简单带过，零知识证明使我们能够证明自己的某些特定特征，而无需透露任何额外的信息。零知识证明在加密货币中有非常多的应用，特别是在隐私方面。著名的应用有zcash隐私币和tornado cash混币器。其次是在扩容方面，zk-rollup是理想的layer2扩容方案</p>
+<h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>zkSNARK 是零知识证明 的一种形式。 zkSNARK 很简洁，可以被快速验证，验证时间不会随验证计算量的增长而线形增加。 zkSNARK 是非交互式的，证明者和验证者之间少有交互，因此也更高效。snarkjs是 zkSNARK 和 的 JavaScript 和 纯 Web Assembly 实现。</p>
+<h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>该库中用于多方计算(MPC)的格式与 Semaphore 的 Perpetual Powers of Tau 和其他实现中使用的格式兼容。该库使用由 circom 编译器生成的编译电路。<br>上条和该条可能看不懂，先不着急，往下看。</p>
+<h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>库的guide中，第一步就是Start a new powers of tau ceremony。这是为了完成 zkSNARK 的一个前置 “trusted setup”，即在一个可信的环境中生成一些参数。这些参数通常是一些随机值，用于生成公开的密钥和其他必要的参数，以便进行零知识证明。这些随机值必须严格保密，否则就会破坏协议的安全性。</p>
+<h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>因此，这个 “trusted setup” 的目的是为了确保这些随机值只有在生成参数的时候使用，并且不会被泄露。在这种情况下，只有在 “trusted setup” 的过程中的参与者是可信的，才能确保 zkSNARK 协议的安全性。</p>
+<h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a class="link"   target="_blank" rel="noopener" href="https://w3hitchhiker.mirror.xyz" >https://w3hitchhiker.mirror.xyz <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a class="link"   target="_blank" rel="noopener" href="https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是" >https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> c=a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small"
+                      alt="例子"
+                ></p>
+<h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>然后x.circom的电路代码会被编译生成 x.r1cs(r1cs 电路的二进制格式约束系统)和 x.wasm(wasm 代码用来生成见证 witness)。接下去就是要针对具体的输入内容来构造witness和proof，输入文件input.json包含a和b的值，使用snarkjs工具和上面的wasm来生成一个witness备用</p>
+<h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>接下来就是要构造证明了，先要生成一个私钥zkey，生成的过程很复杂不展开了，这个zkey会导出一个公开的verification_key.json后续用来验证证明。使用zkey和witness(由输入内容生成)可以计算出proof.json(证明文件)和public.json(公开信息，如上面提到的c)</p>
+<h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof/public/verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" >https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p>
+<h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs/circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p>
+<h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>通过对snarkjs的浅浅的学习，对zksnark和零知识证明应用是干什么的和怎么干的有了更多的了解和体会。希望可以帮到各位。</p>
+<h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>在twitter搜了一下snarkjs，发现tornado-cash也是用snarkjs和circom来实现的，那么下期就继续学习tornado cash吧。</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/DeFi/">#DeFi</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/ZK/">#ZK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2023/02/23/2023-2-23-blur-gas"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Blur.io Gas消耗分析</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'ed5ee5fcff98265053ac',
+                    clientSecret: '3308d9b3cb2d65451187a92bd4478af26b812e03',
+                    repo: 'https://github.com/qiushaoxi/blog-talk',
+                    owner: 'qiushaoxi',
+                    admin: ['qiushaoxi'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">snarkjs学习</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01"><span class="nav-text">0x01</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02"><span class="nav-text">0x02</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03"><span class="nav-text">0x03</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04"><span class="nav-text">0x04</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05"><span class="nav-text">0x05</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06"><span class="nav-text">0x06</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07"><span class="nav-text">0x07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08"><span class="nav-text">0x08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09"><span class="nav-text">0x09</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0a"><span class="nav-text">0x0a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0b"><span class="nav-text">0x0b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0c"><span class="nav-text">0x0c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0d"><span class="nav-text">0x0d</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

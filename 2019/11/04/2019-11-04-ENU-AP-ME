@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2019/11/04/2019-11-04-enu-ap-me"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EIDOS撸爆EOS，说说我和ENU以及AP的故事">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2019/11/04/2019-11-04-ENU-AP-ME">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EIDOS撸爆EOS，说说我和ENU以及AP的故事">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            EIDOS撸爆EOS，说说我和ENU以及AP的故事 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">EIDOS撸爆EOS，说说我和ENU以及AP的故事</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2019-11-04 10:01</span>
+        <span class="mobile">2019-11-04 10:01</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2019-11-04 10:01</span>
+            <span class="mobile">2019-11-04 10:01</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/">区块链轶事</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/EIDOS/">EIDOS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ENU/">ENU</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/AP/">AP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/enumivo/">enumivo</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/aiden-pearce/">aiden pearce</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <blockquote>
+<p>不要接盘！不要接盘！不要接盘！重要的事情说三遍</p>
+</blockquote>
+<p>EIDOS 空投已经成为这个周末币圈最热的话题之一，“0 成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致 EOS 主网 CPU 价格不断攀升，大量用户的 EOS 资源都不够去发起一笔交易。</p>
+<p>关于 EOS 的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为 EOS 主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p>
+<p>EIDOS 是 Enumivo（ENU）创始人 aiden pearce（AP）启动的新项目。</p>
+<p>在这篇文章里，我要讲讲我和 ENU 以及 AP 之前的故事。</p>
+<span id="more"></span>
+
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>时间要回到 2018 年，EOS 主网启动的时候，当时我作为 EOSeco 节点的负责人，全程参与了 EOS 主网启动的过程，同时开发了一款 EOS 区块链浏览器 EOSeco explorer。现在你可能不知道，但是最开始的时候，它还是服务了一些用户，特别是在主网激活阶段，通过离线签名的方式，为用户提供安全的投票操作。后来因为投资人套现 EOS，我们的节点也失去了竞争力，逐渐退出 EOS 节点竞选。在这个过程中，认识了非常多 EOS 圈子的技术大牛。</p>
+<p>后来有个朋友和我说了 ENU，是一个 EOS 的复制链，还没有浏览器工具，让我把浏览器迁移过去。于是，我就在 ENU 上面搭了一个节点，并把浏览器迁移了过去。这个行为得到社区非常热烈的反馈，用户自发众筹感谢浏览器，这让我有些激动。之后，我发现 ENU 社区除了用户活跃之外，也不乏优秀的社区开发者，他们可能原来都不是币圈的用户，而是因为 UBI 的理念参与到这个项目。这里还要特别推荐一下 ENU 上面的一个好玩的趣味 dAPP - 站队 。在 EOS 全都是菠菜 dAPP 的时候，站队玩出了一股清流。因为 EOS 主网启动社区准备了很久，而 ENU 链，甚至比 EOS 主网更早的启动。这些都让我对这个项目产生了一些感情，并且在之后的时间里不断地参与到这个项目当中。</p>
+<p>在这之后，我直接推动了 TP 钱包支持 ENU，在后续的 ENU 钱包和交易所的对接过程中，我几乎是主力的社区技术人员。</p>
+<h2 id="我对-AP-的印象"><a href="#我对-AP-的印象" class="headerlink" title="我对 AP 的印象"></a>我对 AP 的印象</h2><p>熟悉了 ENU 中国社区之后，我也和 AP 取得了直接的联系。AP 是一个匿名的人，你只能在 Telegram 中找到他，他应该是 BTC 和 ETH 的早期投资者，从和他的接触过程中，你能感受到他是一个偏“左”的人，这从 ENU 项目所要做的 UBI（全面基本收入）就可以看出来。其实我自己是个偏“右”的人，不认为这件事情真的能做成，但是这不妨碍我参与其中。经过一段时间的接触，发现 ENU 这个项目除了 AP 自己，没有全职的开发人员，只是在网上雇佣了几个开发者，包括 AP 自己都不算全职。所以除了跟 EOS 的版本更新，几乎没有更多的开发量。而我也作为社区开发者，也帮助做了投票激励和一版 UBI 的原型。但是总体来说，项目的进展非常缓慢，而 UBI 的大饼遥遥无期。</p>
+<h2 id="AP-与社区的矛盾"><a href="#AP-与社区的矛盾" class="headerlink" title="AP 与社区的矛盾"></a>AP 与社区的矛盾</h2><p>与此形成对比的是，ENU 中国社区，靠着社区的力量，以众筹等形式，相继上线 Cointiger、AEX 和 Biki 等交易所，这其中 David 贡献功不可没。这在我看来，真的可以说的币圈的一股清流。</p>
+<p>好景不长，项目进展缓慢，AP 却持续套现来支付开发费用，这导致社区对 AP 产生了很大的意见。而 AP 一边，一直诟病节点的中心化，对于中国社区把持超级节点非常不满。两边的矛盾不断积累，矛盾的爆发只需要一个火星。</p>
+<p>而这个导火索就是 AEX 的交易量，AP 怀疑 AEX 在刷量，认为这会误导持币者，要求 AEX 下架 ENU，同时指出由 5 个节点都是由一个人在控制，要求他退出节点。社区和 AP 已然不可调和，而 AP 最终选择了最激烈的，甚至是行为艺术的方式退出社区。</p>
+<p>目前，ENU 社区也是在苦苦支撑，节点的利润完全不能覆盖成本，为了对社区的一点感情，我也是在持续维持着浏览器。其实，我并不是 ENU 的受益者，在最开始轰轰烈烈的空投以及后来的爆炒都与我无关，所以 AP 的退出，和 ENU 的接近归零对我来说也是很受伤。但是更受伤的是高位接盘的人，ENU 最高的时候到过 1 块钱，而目前的价格是 1 分钱。</p>
+<p>AP 很任性，也很有煽动性，在社区里，还有人在给他造神，甚至说他是中本聪。</p>
+<p>持币者很受伤，甚至是一些大佬。而因为匿名的原因，也没有人找得到他，也没法维权。</p>
+<p>这就是我和 ENU 以及 AP 的一些往事，文笔不行，权当记录。这也是我对 EIDOS 潜在接盘者所能做的一些警告，希望能够帮到他们。</p>
+<p>关于我对 EIDOS 和 CODEX 去中心化交易所的看法，我会再写一篇，敬请期待。</p>
+<p>文章原创首发<a class="link"   target="_blank" rel="noopener" href="https://lichang.io/articleDetail/909965" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/EIDOS/">#EIDOS</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/ENU/">#ENU</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/AP/">#AP</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/enumivo/">#enumivo</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/aiden-pearce/">#aiden pearce</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2019/11/04/2019-11-04-EIDOS-FOMO"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">EIDOS，一场早就分出胜负的游戏</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2019/08/21/2019-08-21-FIBOS-DEX"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">简述FIBOS DEX撮合模型</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'ed5ee5fcff98265053ac',
+                    clientSecret: '3308d9b3cb2d65451187a92bd4478af26b812e03',
+                    repo: 'https://github.com/qiushaoxi/blog-talk',
+                    owner: 'qiushaoxi',
+                    admin: ['qiushaoxi'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">EIDOS撸爆EOS，说说我和ENU以及AP的故事</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%AF%B9-AP-%E7%9A%84%E5%8D%B0%E8%B1%A1"><span class="nav-text">我对 AP 的印象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AP-%E4%B8%8E%E7%A4%BE%E5%8C%BA%E7%9A%84%E7%9F%9B%E7%9B%BE"><span class="nav-text">AP 与社区的矛盾</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

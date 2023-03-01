@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2018/04/09/2018-4-9-eosio-smart-contract"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EOSIO Dawn 3.0 智能合约">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2018/04/09/2018-4-9-EOSIO-Smart-Contract">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EOSIO Dawn 3.0 智能合约">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            EOSIO Dawn 3.0 智能合约 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">EOSIO Dawn 3.0 智能合约</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2018-04-09 13:07</span>
+        <span class="mobile">2018-04-09 13:07</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2018-04-09 13:07</span>
+            <span class="mobile">2018-04-09 13:07</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/EOS/">EOS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <!-- TOC -->
+
+<ul>
+<li><a href="#eosio-%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e4%bb%8b%e7%bb%8d">EOSIO 智能合约介绍</a><ul>
+<li><a href="#%e5%bf%85%e9%a1%bb%e7%9a%84%e8%83%8c%e6%99%af%e7%9f%a5%e8%af%86">必须的背景知识</a></li>
+<li><a href="#eosio-%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">EOSIO 智能合约基础知识</a></li>
+</ul>
+</li>
+<li><a href="#%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e6%96%87%e4%bb%b6">智能合约文件</a><ul>
+<li><a href="#hpp">hpp</a></li>
+<li><a href="#cpp">cpp</a></li>
+<li><a href="#wast">wast</a></li>
+<li><a href="#abi">abi</a></li>
+</ul>
+</li>
+<li><a href="#%e8%b0%83%e8%af%95%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6">调试智能合约</a><ul>
+<li><a href="#%e6%96%b9%e6%b3%95">方法</a></li>
+<li><a href="#%e6%89%93%e5%8d%b0">打印</a></li>
+<li><a href="#%e4%be%8b%e5%ad%90">例子</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<span id="more"></span>
+
+<h2 id="EOSIO-智能合约介绍"><a href="#EOSIO-智能合约介绍" class="headerlink" title="EOSIO 智能合约介绍"></a>EOSIO 智能合约介绍</h2><h3 id="必须的背景知识"><a href="#必须的背景知识" class="headerlink" title="必须的背景知识"></a>必须的背景知识</h3><p><strong>C / C++ 经验</strong></p>
+<p>基于 EOSIO 的区块链使用 <a class="link"   target="_blank" rel="noopener" href="http://webassembly.org/" >WebAssembly <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (WASM) 执行用户生成的应用程序和代码。WASM 是一项新兴的网络标准，得到了谷歌，微软，苹果等公司的广泛支持。目前，用于构建编译为 WASM 的应用程序的最成熟工具链是使用 C/C++ 编译器的 <a class="link"   target="_blank" rel="noopener" href="https://clang.llvm.org/" >clang/llvm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<p>其他第三方开发的工具链包括：Rust，Python 和 Solidity。虽然这些其他语言看起来可能更简单，但它们的性能可能会影响你可以构建的应用程序的规模。我们预计 C++ 将成为开发高性能和安全智能合约的最佳语言，并计划在可预见的将来使用 C++。</p>
+<p><strong>Linux / Mac OS 经验</strong></p>
+<p>EOSIO 软件支持以下环境:</p>
+<ul>
+<li>Amazon 2017.09 and higher</li>
+<li>Centos 7</li>
+<li>Fedora 25 and higher (Fedora 27 recommended)</li>
+<li>Mint 18</li>
+<li>Ubuntu 16.04 (Ubuntu 16.10 recommended)</li>
+<li>MacOS Darwin 10.12 and higher (MacOS 10.13.x recommended)</li>
+</ul>
+<p><strong>命令行知识</strong></p>
+<p>与 EOSIO 一起提供的各种工具，要求你具有基本的命令行知识才能与之交互。</p>
+<h3 id="EOSIO-智能合约基础知识"><a href="#EOSIO-智能合约基础知识" class="headerlink" title="EOSIO 智能合约基础知识"></a>EOSIO 智能合约基础知识</h3><p><strong>交互模型</strong></p>
+<p>EOSIO 智能合约以动作（actions）和共享内存数据库访问的形式彼此交互，<br>例如，合约可以读取其他合约数据库的状态，只要它包含在具有异步事务的读取范围内即可。<br>异步通信可能会导致资源限制算法会处理的垃圾邮件（spam）。<br>在合约中可以定义两种通信模式：</p>
+<ul>
+<li><p><strong>内联</strong>。内联保证与当前交易一起执行或展开; 无论成功或失败，都不会通知任何通知。内联与原有交易拥有相同的作用范围和权限。</p>
+</li>
+<li><p><strong>延期</strong>。延期交互将由出块人酌情决定如何执行; 可以传递交互结果或者可以简单地超时。延期交互可以有不同的作用范围，并带有发送它们的合约指定的权限。</p>
+</li>
+</ul>
+<p><strong>动作 vs 交易</strong></p>
+<p>一个动作表示单个操作，而一个交易是一个或多个动作的集合。合约和账户以动作的形式进行交流。动作可以单独发送，也可以组合的形式发送，如果它们打算作为一个整体来执行。</p>
+<p><em>1 个动作的交易</em>.</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;expiration&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2018-04-01T15:20:44&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;region&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ref_block_num&quot;</span><span class="punctuation">:</span> <span class="number">42580</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ref_block_prefix&quot;</span><span class="punctuation">:</span> <span class="number">3987474256</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;net_usage_words&quot;</span><span class="punctuation">:</span> <span class="number">21</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;kcpu_usage&quot;</span><span class="punctuation">:</span> <span class="number">1000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delay_sec&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;context_free_actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;account&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eosio.token&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;issue&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;authorization&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;actor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eosio&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;permission&quot;</span><span class="punctuation">:</span> <span class="string">&quot;active&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;00000000007015d640420f000000000004454f5300000000046d656d6f&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;signatures&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;context_free_data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em>多动作交易</em>, 这些动作会同时成功或失败.</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;expiration&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;region&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ref_block_num&quot;</span><span class="punctuation">:</span> ...<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;ref_block_prefix&quot;</span><span class="punctuation">:</span> ...<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;net_usage_words&quot;</span><span class="punctuation">:</span> ..<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;kcpu_usage&quot;</span><span class="punctuation">:</span> ..<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delay_sec&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;context_free_actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;account&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;authorization&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;actor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;permission&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;account&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;authorization&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;actor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;permission&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;signatures&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;context_free_data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p><strong>动作名称限制</strong></p>
+<p>动作类型实际上是 <strong>base32 编码的 64 位整数</strong> 。这意味着对于前 12 个字符它们仅限于字符 a-z，1-5 和 ‘.’ 。如果有第 13 个字符，则它仅限于前 16 个字符（’.’和 a-p）。</p>
+<p><strong>交易确认</strong></p>
+<p>接收交易哈希并不意味着交易已被确认，它只意味着节点认为没有错误并接受了它，这也意味着其他出块人很可能会接受它。</p>
+<p>通过确认，你应该在交易历史中看到包含确认交易所属区块的交易。</p>
+<h2 id="智能合约文件"><a href="#智能合约文件" class="headerlink" title="智能合约文件"></a>智能合约文件</h2><p>为了简单起见 ，我们创建了一个名为 <strong><a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eosiocpp" >eosiocpp <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></strong> 的工具，可以用来启动一个新的合约。eosiocpp 也将为你创建 3 个智能合约文件，并提供基本框架。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -n $&#123;contract&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面的命令将新建一个空项目，项目目录下有 3 个文件:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;contract&#125;.abi $&#123;contract&#125;.hpp $&#123;contract&#125;.cpp</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="hpp"><a href="#hpp" class="headerlink" title="hpp"></a>hpp</h3><p><code>$&#123;contract&#125;.hpp</code> 是被 <code>.cpp</code> 引用的，包含变量，常量和函数定义的头文件。</p>
+<h3 id="cpp"><a href="#cpp" class="headerlink" title="cpp"></a>cpp</h3><p><code>$&#123;contract&#125;.cpp</code> 文件是包含智能合约功能函数的源文件。</p>
+<p>如果你使用 <code>eosiocpp</code> 工具生成 <code>.cpp</code> 文件，生成的 .cpp 文件与下面的相似:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;$&#123;contract&#125;.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  The init() and apply() methods must have C calling convention so that the blockchain can lookup and</span></span><br><span class="line"><span class="comment"> *  call these methods.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  This method is called once when the contract is published or updated.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">       eosio::<span class="built_in">print</span>( <span class="string">&quot;Init World!\n&quot;</span> ); <span class="comment">// Replace with actual code</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The apply method implements the dispatch of actions to this contract</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">apply</span><span class="params">( <span class="type">uint64_t</span> code, <span class="type">uint64_t</span> action )</span> </span>&#123;</span><br><span class="line">       eosio::<span class="built_in">print</span>( <span class="string">&quot;Hello World: &quot;</span>, eosio::<span class="built_in">name</span>(code), <span class="string">&quot;-&gt;&quot;</span>, eosio::<span class="built_in">name</span>(action), <span class="string">&quot;\n&quot;</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; <span class="comment">// extern &quot;C&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，你可以看到有两个函数， <code>init</code> 和 <code>apply</code>。<br>他们所做的只是记录动作，不做其他检查。只要出块人允许，任何人都可以随时提供任何操作。在没有任何所需的签名的情况下，合约将按照消耗的带宽收费。</p>
+<p><strong>init</strong></p>
+<p><code>init</code> 函数只会在初始部署时执行一次。用来初始化智能合约的变量，例如，代币合约的代币发行量。</p>
+<p><strong>apply</strong></p>
+<p><code>apply</code> 是动作处理器，它监听所有传入的动作并根据函数内的逻辑作出反应。该 apply 函数需要两个输入参数，<code>code</code> 和 <code>action</code>。</p>
+<p><strong>代码过滤器</strong></p>
+<p>为了应对特定的动作，<code>apply</code> 函数按以下方式编写。你也可以通过省略代码过滤器来编写对通用动作的响应。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (code == <span class="built_in">N</span>($&#123;contract_name&#125;) &#123;</span><br><span class="line">    <span class="comment">// your handler to respond to particular action</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>你也可以在代码块中定义对各个操作的响应。</p>
+<p><strong>动作过滤器</strong></p>
+<p>为了响应某个特定动作，<code>apply</code> 函数按照以下方式编写。这通常与代码过滤器结合使用。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (action == <span class="built_in">N</span>($&#123;action_name&#125;) &#123;</span><br><span class="line">    <span class="comment">//your handler to respond to a particular action</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="wast"><a href="#wast" class="headerlink" title="wast"></a>wast</h3><p>任何要部署到 EOSIO 区块链的程序都必须编译为 WASM 格式。这是区块链接受的唯一格式。</p>
+<p>准备好 CPP 文件后，可以使用 <code>eosiocpp</code> 工具将其编译为 WASM（.wast）的文本版本。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -o $&#123;contract&#125;.wast $&#123;contract&#125;.cpp</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="abi"><a href="#abi" class="headerlink" title="abi"></a>abi</h3><p>应用程序二进制接口（ABI）是一种基于 JSON 的描述，介绍如何将用户动作在 JSON 和二进制表达之间转换。ABI 还介绍了如何将数据库状态转换为 JSON 或从 JSON 转换数据库状态。通过 ABI 描述了智能合约，开发人员和用户就可以通过 JSON 无缝地与你的合约进行交互。</p>
+<p>ABI 文件可以通过使用 <code>eosiocpp</code> 工具从 <code>.hpp</code> 文件生成：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -g $&#123;contract&#125;.abi $&#123;contract&#125;.hpp</span><br></pre></td></tr></table></figure></div>
+
+<p>以下是框架合约 ABI 的示例：</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;new_type_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;structs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;transfer&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;base&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;to&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;quantity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;uint64&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;base&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;account&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;balance&quot;</span><span class="punctuation">:</span> <span class="string">&quot;uint64&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;actions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;transfer&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;transfer&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tables&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;table&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;index_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;i64&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;key_names&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;account&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;key_types&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;name&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>你会注意到这个 ABI 定义了一个 <code>transfer</code> 类型的动作 <code>transfer</code> 。这告诉 EOSIO，当 <code>$&#123;account&#125;-&gt;transfer</code> 被看到时，交易的负载（payload）类型是 <code>transfer</code> 。动作类型 <code>transfer</code> 在 <code>structs</code> 数组中被定义，<code>structs</code> 数组对象中，<code>name</code> 属性的值为 <code>transfer</code>。</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="attr">&quot;structs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;transfer&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;base&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;to&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;quantity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;uint64&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+<p>该 ABI 有好几个字段，包括 <code>from</code>, <code>to</code> 和 <code>quantity</code> 。<br>这些字段有相应的类型 <code>account_name</code>, 和 <code>uint64</code> 。<br><code>account_name</code> 是一个内置的类型使用 <code>uint64</code> 来表示 base32 字符串。<br>要详细了解可用的内置类型，请点击<a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/blob/master/libraries/chain/contracts/abi_serializer.cpp" >此处 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;new_type_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;account_name&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></div>
+
+<p>在上面的 <code>types</code> 数组中，我们为已存在类型定义了一个别名列表。在这里，我们定义 <code>name</code> 为 <code>account_name</code> 的一个别名。</p>
+<h2 id="调试智能合约"><a href="#调试智能合约" class="headerlink" title="调试智能合约"></a>调试智能合约</h2><p>为了能够调试你的智能合约，你需要设置本地 nodeos 节点。这个本地 nodeos 节点可以作为独立的私人测试网或作为公共测试网（或官方测试网）的扩展来运行。</p>
+<p>当你首次创建智能合约时，建议先在私人测试网上测试并调试你的智能合约，因为你完全控制了整个区块链。这使你可以拥有无 ​​ 限量你所需要的 eos，你可以随时重置区块链状态。当准备发布到生产环境时，可以通过将本地节点连接到公共测试网（或官方测试网）来在公共测试网（或官方测试网）上进行调试，以便你可以在本地节点中看到测试网的日志。</p>
+<p>下面的教程，将在私人测试网上进行调试。</p>
+<p>如果你尚未设置自己的本地节点，请按照 <a class="link"   target="_blank" rel="noopener" href="https://github.com/eosfansio/eos-tutorials/blob/master/EOS3.0-%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md" >启动指南 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 进行操作。默认情况下，除非你按照 <a href="Testnet%3A%20Public">Testnet 指南</a> 中所述修改 config.ini 文件以便与公共 testnet（或官方 testnet）节点连接，否则你的本地节点将仅运行在私有测试网络中。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>用于调试智能合约的主要方法是 <strong>穴居人调试</strong>（<strong>Caveman Debugging</strong>），我们利用打印功能来检查变量的值并检查合约的流程。在智能合约中打印可以通过打印 API (<a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.h" >C <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 和 <a class="link"   target="_blank" rel="noopener" href="https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.hpp" >C++ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>) 完成。C++ API 是 C API 的封装器，因此大多数情况下我们只会使用 C++ API。</p>
+<h3 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h3><p>打印 C API 支持你可以打印的以下数据类型：</p>
+<ul>
+<li>prints - 一个带 null 终止符的字符数组（字符串）</li>
+<li>prints_l - 给定大小的任何字符数组（字符串）</li>
+<li>printi - 64 位无符号整数</li>
+<li>printi128 - 128 位无符号整数</li>
+<li>printd - 编码为 64 位无符号整数的浮点类型</li>
+<li>printn - 编码为 64 位无符号整数的 base32 字符串</li>
+<li>printhex - 给出二进制数据及其大小的十六进制</li>
+</ul>
+<p>打印 C++ API 通过重写 print() 函数来封装一些上述 C API，因此用户不需要确定他需要使用哪种特定的打印功能。</p>
+<p>打印 C++ API 支持：</p>
+<ul>
+<li>一个带 null 终止符的字符数组（字符串）</li>
+<li>整数（128 位无符号，64 位无符号，32 位无符号，有符号，无符号）</li>
+<li>编码为 64 位无符号整数的 base32 字符串</li>
+<li>具有 print() 方法的结构体</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们来写一个新的合约作为调试的例子</p>
+<ul>
+<li>debug.hpp</li>
+</ul>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;eoslib/eos.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;eoslib/db.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> debug &#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">foo</span> &#123;</span><br><span class="line">        account_name from;</span><br><span class="line">        account_name to;</span><br><span class="line">        <span class="type">uint64_t</span> amount;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">            eosio::<span class="built_in">print</span>(<span class="string">&quot;Foo from &quot;</span>, eosio::<span class="built_in">name</span>(from), <span class="string">&quot; to &quot;</span>,eosio::<span class="built_in">name</span>(to), <span class="string">&quot; with amount &quot;</span>, amount, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>debug.cpp</li>
+</ul>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;debug.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">apply</span><span class="params">( <span class="type">uint64_t</span> code, <span class="type">uint64_t</span> action )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (code == <span class="built_in">N</span>(debug)) &#123;</span><br><span class="line">            eosio::<span class="built_in">print</span>(<span class="string">&quot;Code is debug\n&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (action == <span class="built_in">N</span>(foo)) &#123;</span><br><span class="line">                 eosio::<span class="built_in">print</span>(<span class="string">&quot;Action is foo\n&quot;</span>);</span><br><span class="line">                debug::foo f = eosio::<span class="built_in">current_message</span>&lt;debug::foo&gt;();</span><br><span class="line">                <span class="keyword">if</span> (f.amount &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">                    eosio::<span class="built_in">print</span>(<span class="string">&quot;Amount is larger or equal than 100\n&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    eosio::<span class="built_in">print</span>(<span class="string">&quot;Amount is smaller than 100\n&quot;</span>);</span><br><span class="line">                    eosio::<span class="built_in">print</span>(<span class="string">&quot;Increase amount by 10\n&quot;</span>);</span><br><span class="line">                    f.amount += <span class="number">10</span>;</span><br><span class="line">                    eosio::<span class="built_in">print</span>(f);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="comment">// extern &quot;C&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>debug.hpp</li>
+</ul>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;structs&quot;</span>: [&#123;</span><br><span class="line">      <span class="string">&quot;name&quot;</span>: <span class="string">&quot;foo&quot;</span>,</span><br><span class="line">      <span class="string">&quot;base&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">      <span class="string">&quot;fields&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;from&quot;</span>: <span class="string">&quot;account_name&quot;</span>,</span><br><span class="line">        <span class="string">&quot;to&quot;</span>: <span class="string">&quot;account_name&quot;</span>,</span><br><span class="line">        <span class="string">&quot;amount&quot;</span>: <span class="string">&quot;uint64&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;actions&quot;</span>: [&#123;</span><br><span class="line">      <span class="string">&quot;action_name&quot;</span>: <span class="string">&quot;foo&quot;</span>,</span><br><span class="line">      <span class="string">&quot;type&quot;</span>: <span class="string">&quot;foo&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>让我们部署它并发送一条消息给它。假设你已经创建 <code>debug</code> 帐户并在将私钥导入你的钱包中。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ eosiocpp -o debug.wast debug.cpp</span><br><span class="line">$ cleos <span class="built_in">set</span> contract debug debug.wast debug.abi</span><br><span class="line">$ cleos push message debug foo <span class="string">&#x27;&#123;&quot;from&quot;:&quot;inita&quot;, &quot;to&quot;:&quot;initb&quot;, &quot;amount&quot;:10&#125;&#x27;</span> --scope debug</span><br></pre></td></tr></table></figure></div>
+
+<p>当你检查你的本地 <code>nodeos</code> 节点日志时，你将在发送上述消息后看到以下行。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Code is debug</span><br><span class="line">Action is foo</span><br><span class="line">Amount is smaller than 100</span><br><span class="line">Increase amount by 10</span><br><span class="line">Foo from inita to initb with amount 20</span><br></pre></td></tr></table></figure></div>
+
+<p>这里，你可以确认你的消息正在进入正确的控制流程并且金额已正确更新。你可能会看到上述消息至少 2 次，这很正常，<br>因为每个交易在验证、块生成和块应用阶段都会被执行。</p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/EOS/">#EOS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2018/05/17/2018-5-17-EOS-SYSTEM-CONTRACT"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">EOSIO Dawn 4.0 系统合约解读</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2018/02/07/2018-02-07-eos-document"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">EOS 相关汇总</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'ed5ee5fcff98265053ac',
+                    clientSecret: '3308d9b3cb2d65451187a92bd4478af26b812e03',
+                    repo: 'https://github.com/qiushaoxi/blog-talk',
+                    owner: 'qiushaoxi',
+                    admin: ['qiushaoxi'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">EOSIO Dawn 3.0 智能合约</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#EOSIO-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%BB%8B%E7%BB%8D"><span class="nav-text">EOSIO 智能合约介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E9%A1%BB%E7%9A%84%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-text">必须的背景知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EOSIO-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">EOSIO 智能合约基础知识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%96%87%E4%BB%B6"><span class="nav-text">智能合约文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hpp"><span class="nav-text">hpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cpp"><span class="nav-text">cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wast"><span class="nav-text">wast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abi"><span class="nav-text">abi</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="nav-text">调试智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0"><span class="nav-text">打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-text">例子</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

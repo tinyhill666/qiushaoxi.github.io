@@ -5,9 +5,9 @@
   <subtitle>区块链小山的博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2023-02-27T21:30:26.939Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://tinyhill.dev/"/>
+  <updated>2023-02-23T09:00:00.000Z</updated>
+  <id>https://tinyhill.dev/</id>
   
   <author>
     <name>Tiny Hill</name>
@@ -17,40 +17,13 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Blur.io Gas消耗分析</title>
-    <link href="http://yoursite.com/2023/02/23/2023-2-23-blur-gas/"/>
-    <id>http://yoursite.com/2023/02/23/2023-2-23-blur-gas/</id>
-    <published>2023-02-23T09:00:00.000Z</published>
-    <updated>2023-02-27T21:30:26.939Z</updated>
-    
-    <content type="html"><![CDATA[<p>blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。</p><a id="more"></a><p>这里只比对产品自身的交易方式，不对比聚合器的形式。从一个简单的撮合交易中，交易自身逻辑(剔除nft和token的转账)所消耗的gas大概为:blur消耗为180k，opensea为84k，sudoswap为60k。</p><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>blur的合约地址<a href="https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递" target="_blank" rel="noopener">https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递</a></p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>在blur的合约中有个oracle的角色，而且对于买卖两个单子都有一个额外的extraSignature，是由oracle签的，等于要多验签两次。我理解这个应该是项目方的签名，来避免直接绕过前端来发起合约调用。不确定理解是不是正确，欢迎拍砖讨论</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>opensea最新版本的协议的seaport合约，使用了大量的汇编，对输入内容的压缩优化做的比较好，可以作为性能对比的对照基准</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>sudoswap是完全不同于其他nft marketplace的交易方式。挂单用户实际上是要建立一个单独的合约作为池子来存放NFT或者ETH，好在这个合约是用了最小代理，不是很消耗gas。所以在吃单的时候，就使用预设的价格计算公式进行计算，少了很多检查的逻辑，甚至没有验证签名，所以比较节约gas</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
-    
-    
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
-    
-      <category term="NFT" scheme="http://yoursite.com/tags/NFT/"/>
-    
-  </entry>
-  
-  <entry>
     <title>snarkjs学习</title>
-    <link href="http://yoursite.com/2023/02/23/2023-2-21-snarkjs/"/>
-    <id>http://yoursite.com/2023/02/23/2023-2-21-snarkjs/</id>
+    <link href="https://tinyhill.dev/2023/02/23/2023-2-21-snarkjs"/>
+    <id>https://tinyhill.dev/2023/02/23/2023-2-21-snarkjs</id>
     <published>2023-02-23T09:00:00.000Z</published>
-    <updated>2023-02-27T21:39:22.043Z</updated>
+    <updated>2023-02-23T09:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。</p><a id="more"></a><p><a href="https://github.com/iden3/snarkjs" target="_blank" rel="noopener">https://github.com/iden3/snarkjs</a></p><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>什么是ZK(零知识证明)？已经有太多介绍，这里就简单带过，零知识证明使我们能够证明自己的某些特定特征，而无需透露任何额外的信息。零知识证明在加密货币中有非常多的应用，特别是在隐私方面。著名的应用有zcash隐私币和tornado cash混币器。其次是在扩容方面，zk-rollup是理想的layer2扩容方案</p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>zkSNARK 是零知识证明 的一种形式。 zkSNARK 很简洁，可以被快速验证，验证时间不会随验证计算量的增长而线形增加。 zkSNARK 是非交互式的，证明者和验证者之间少有交互，因此也更高效。snarkjs是 zkSNARK 和 的 JavaScript 和 纯 Web Assembly 实现。</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>该库中用于多方计算(MPC)的格式与 Semaphore 的 Perpetual Powers of Tau 和其他实现中使用的格式兼容。该库使用由 circom 编译器生成的编译电路。<br>上条和该条可能看不懂，先不着急，往下看。</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>库的guide中，第一步就是Start a new powers of tau ceremony。这是为了完成 zkSNARK 的一个前置 “trusted setup”，即在一个可信的环境中生成一些参数。这些参数通常是一些随机值，用于生成公开的密钥和其他必要的参数，以便进行零知识证明。这些随机值必须严格保密，否则就会破坏协议的安全性。</p><h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>因此，这个 “trusted setup” 的目的是为了确保这些随机值只有在生成参数的时候使用，并且不会被泄露。在这种情况下，只有在 “trusted setup” 的过程中的参与者是可信的，才能确保 zkSNARK 协议的安全性。</p><h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a href="https://w3hitchhiker.mirror.xyz" target="_blank" rel="noopener">https://w3hitchhiker.mirror.xyz</a></p><h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a href="https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是" target="_blank" rel="noopener">https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是</a> c=a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img src="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small" alt="例子"></p><h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>然后x.circom的电路代码会被编译生成 x.r1cs(r1cs 电路的二进制格式约束系统)和 x.wasm(wasm 代码用来生成见证 witness)。接下去就是要针对具体的输入内容来构造witness和proof，输入文件input.json包含a和b的值，使用snarkjs工具和上面的wasm来生成一个witness备用</p><h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>接下来就是要构造证明了，先要生成一个私钥zkey，生成的过程很复杂不展开了，这个zkey会导出一个公开的verification_key.json后续用来验证证明。使用zkey和witness(由输入内容生成)可以计算出proof.json(证明文件)和public.json(公开信息，如上面提到的c)</p><h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof/public/verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" target="_blank" rel="noopener">https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5</a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p><h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs/circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p><h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>通过对snarkjs的浅浅的学习，对zksnark和零知识证明应用是干什么的和怎么干的有了更多的了解和体会。希望可以帮到各位。</p><h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>在twitter搜了一下snarkjs，发现tornado-cash也是用snarkjs和circom来实现的，那么下期就继续学习tornado cash吧。</p>]]></content>
+    <content type="html"><![CDATA[<p>新开一个贴来学习zk-snark的一个工具snarkjs，之前看过很多zk的帖子，但是对于数学基础弱的人来说，看起来还是太累了，而且很多原理上的东西，做应用的人确实也不需要太理解。这次尝试从工具的角度入手，看看zk到底是干什么的。</p><span id="more"></span><p><a class="link"   href="https://github.com/iden3/snarkjs" >https://github.com/iden3/snarkjs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>什么是ZK(零知识证明)？已经有太多介绍，这里就简单带过，零知识证明使我们能够证明自己的某些特定特征，而无需透露任何额外的信息。零知识证明在加密货币中有非常多的应用，特别是在隐私方面。著名的应用有zcash隐私币和tornado cash混币器。其次是在扩容方面，zk-rollup是理想的layer2扩容方案</p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>zkSNARK 是零知识证明 的一种形式。 zkSNARK 很简洁，可以被快速验证，验证时间不会随验证计算量的增长而线形增加。 zkSNARK 是非交互式的，证明者和验证者之间少有交互，因此也更高效。snarkjs是 zkSNARK 和 的 JavaScript 和 纯 Web Assembly 实现。</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>该库中用于多方计算(MPC)的格式与 Semaphore 的 Perpetual Powers of Tau 和其他实现中使用的格式兼容。该库使用由 circom 编译器生成的编译电路。<br>上条和该条可能看不懂，先不着急，往下看。</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>库的guide中，第一步就是Start a new powers of tau ceremony。这是为了完成 zkSNARK 的一个前置 “trusted setup”，即在一个可信的环境中生成一些参数。这些参数通常是一些随机值，用于生成公开的密钥和其他必要的参数，以便进行零知识证明。这些随机值必须严格保密，否则就会破坏协议的安全性。</p><h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>因此，这个 “trusted setup” 的目的是为了确保这些随机值只有在生成参数的时候使用，并且不会被泄露。在这种情况下，只有在 “trusted setup” 的过程中的参与者是可信的，才能确保 zkSNARK 协议的安全性。</p><h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>库的教程中，前8步都是构建”trusted setup” 的过程，具体干什么事情，先不用太在意。接下去就是构建电路(circuit)，zksnarks 不能直接应用于任何计算问题。在使用之前，首先需要将问题转换为代数电路。此处参考<br><a class="link"   href="https://w3hitchhiker.mirror.xyz" >https://w3hitchhiker.mirror.xyz <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>配套snarkjs有一个电路设计语言和工具库circom，<a class="link"   href="https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是" >https://github.com/iden3/circom，来进行电路逻辑的编码和编译。图片是一个最简单的电路逻辑，有输入信号a和b，还有输出信号c，约束是 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> c=a*b。这个电路构造出的证明文件，在公开c和不公开a、b的情况下可以证明你确实知道a和b的数字。这是个非常简单的例子<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://pbs.twimg.com/media/FplHtjuXgAEgAvj?format=png&name=small"                      alt="例子"                ></p><h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>然后x.circom的电路代码会被编译生成 x.r1cs(r1cs 电路的二进制格式约束系统)和 x.wasm(wasm 代码用来生成见证 witness)。接下去就是要针对具体的输入内容来构造witness和proof，输入文件input.json包含a和b的值，使用snarkjs工具和上面的wasm来生成一个witness备用</p><h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>接下来就是要构造证明了，先要生成一个私钥zkey，生成的过程很复杂不展开了，这个zkey会导出一个公开的verification_key.json后续用来验证证明。使用zkey和witness(由输入内容生成)可以计算出proof.json(证明文件)和public.json(公开信息，如上面提到的c)</p><h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>proof/public/verification_key这三个公开的文件就构成了证明的全部。验证者使用snarkjs工具可以验证证明者是否诚实(知道输入a和b的值)，同时snarkjs还可以导出solidity验证代码和调用合约的calldata，<a class="link"   href="https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5" >https://gist.github.com/qiushaoxi/1db8a02efd2c2a57f49132ec9fada1a5 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 这是一段示例代码，大部分是密码学的逻辑，可以在remix跑一下试试</p><h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>简单总结一下，snarkjs/circom是一套工具，可以进行零知识证明的初始化、电路编译、密钥生成、witness生成、执行电路生成证明以及证明验证的功能。除此之外还可以生成用来验证的solidity合约代码。其实大部分跑在以太坊上的zk应用大体也是这样的步骤，知识逻辑会复杂很多。</p><h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>通过对snarkjs的浅浅的学习，对zksnark和零知识证明应用是干什么的和怎么干的有了更多的了解和体会。希望可以帮到各位。</p><h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>在twitter搜了一下snarkjs，发现tornado-cash也是用snarkjs和circom来实现的，那么下期就继续学习tornado cash吧。</p>]]></content>
     
     <summary type="html">
     
@@ -59,25 +32,52 @@
     </summary>
     
     
-      <category term="区块链" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
-      <category term="ZK" scheme="http://yoursite.com/tags/ZK/"/>
+      <category term="ZK" scheme="https://tinyhill.dev/tags/ZK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Blur.io Gas消耗分析</title>
+    <link href="https://tinyhill.dev/2023/02/23/2023-2-23-blur-gas"/>
+    <id>https://tinyhill.dev/2023/02/23/2023-2-23-blur-gas</id>
+    <published>2023-02-23T09:00:00.000Z</published>
+    <updated>2023-02-23T09:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。</p><span id="more"></span><p>这里只比对产品自身的交易方式，不对比聚合器的形式。从一个简单的撮合交易中，交易自身逻辑(剔除nft和token的转账)所消耗的gas大概为:blur消耗为180k，opensea为84k，sudoswap为60k。</p><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>blur的合约地址<a class="link"   href="https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递" >https://docs.blur.foundation/contracts，主要的合约有BlurExchange和BlurPool，BlurPool很简单，就是用来存bid用的ETH，没有其他逻辑，就不用介绍了。逻辑都在BlurExchange中。逻辑看起来比较比较清晰，如果从gas的角度看，输入参数数据比较多，而且内部的函数调用也是直接的参数传递 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p>在blur的合约中有个oracle的角色，而且对于买卖两个单子都有一个额外的extraSignature，是由oracle签的，等于要多验签两次。我理解这个应该是项目方的签名，来避免直接绕过前端来发起合约调用。不确定理解是不是正确，欢迎拍砖讨论</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>opensea最新版本的协议的seaport合约，使用了大量的汇编，对输入内容的压缩优化做的比较好，可以作为性能对比的对照基准</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>sudoswap是完全不同于其他nft marketplace的交易方式。挂单用户实际上是要建立一个单独的合约作为池子来存放NFT或者ETH，好在这个合约是用了最小代理，不是很消耗gas。所以在吃单的时候，就使用预设的价格计算公式进行计算，少了很多检查的逻辑，甚至没有验证签名，所以比较节约gas</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;blur的gas消耗好像挺高的，打算尝试看看为什么，分析一下opensea、blur和suduswap的产品逻辑和gas消耗的情况。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
+    
+    
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
+    
+      <category term="NFT" scheme="https://tinyhill.dev/tags/NFT/"/>
     
   </entry>
   
   <entry>
     <title>ParaSpace NFT借贷平台介绍</title>
-    <link href="http://yoursite.com/2023/02/15/2023-2-15-paraspace/"/>
-    <id>http://yoursite.com/2023/02/15/2023-2-15-paraspace/</id>
+    <link href="https://tinyhill.dev/2023/02/15/2023-2-15-paraspace"/>
+    <id>https://tinyhill.dev/2023/02/15/2023-2-15-paraspace</id>
     <published>2023-02-15T09:00:00.000Z</published>
-    <updated>2023-02-27T21:42:23.874Z</updated>
+    <updated>2023-02-15T09:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>ParaSpace是一个非常强大的NFT借贷平台，可以看成是一个加强版的Benddao或者支持NFT抵押物的AAVE。</p><a id="more"></a><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>它支持NFT和主流token(ETH/USDC/USDT/APE/stETH等)作为抵押物，同样，也支持借出所有这些ERC20的Token。</p><p>除了借贷功能外，ParaSpace还有一个NFT的聚合交易功能，支持用户使用在借贷平台的信贷额度，直接购买NFT，免去借出再购买的两次操作。除此之外，还有APE Staking的功能模块。</p><p><a href="https://docs.para.space/para-space/external-audits" target="_blank" rel="noopener">https://docs.para.space/para-space/external-audits</a> 能够看到项目的审计机构阵容强大，特别是难道一见的Trail of Bits。</p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p><a href="https://github.com/para-space/paraspace-core" target="_blank" rel="noopener">https://github.com/para-space/paraspace-core</a> paraspace的合约代码也是一个很大的工程，使用hardhat的开发框架，不过也看到了foundry的一点影子，看来目前foundry还是在成熟度方面，特别是部署管理这块不够强大。</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>借贷功能的入口合约是 PoolCore.sol<br><a href="https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee" target="_blank" rel="noopener">https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee</a> ，主要借贷逻辑如，存入token/nft，借出token，清算，拍卖的入口都在这个合约，代码结构比较清晰，入口function内会继续调用SupplyLogic，BorrowLogic，LiquidationLogic，AuctionLogic这几个library。</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>看代码里面，很多地方都能够看出这个项目有不错的技术实力，在代码优化层面做的很多，在token存入的时候，针对DAI这样支持permit授权的token，做了特别的支持，这样存入DAI就不用花费approve的gas费。还有在存储配置内容的时候，通过掩码的方式，把很多配置项都存在一个uint256里面，节省了存储</p><h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>除了常用的NFT，该项目还支持uniswap v3的LP，也是一种ERC721 形式的NFT，来作为抵押物，目前支持8个主流token的LP NFT，这部分的价值估算和token一样，从合约接口读到底层资产的数量，使用chainlink的oracle来计算价值。</p><h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>supply和withdraw ERC20 token的逻辑和compound差不多，每个token会有一个对应pToken来存放资产，给用户pToken的存款凭证。withdraw和borrow一样，需要检查可提现额度和健康因子。</p><h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>supplyERC721 也是类似的，每个collection会对应一个NToken的存款凭证合约，用户存入NFT后，会对应mint一个相同tokenId的存款凭证给到用户。</p><h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>NFT抵押物定价一直是NFT借贷项目一个非常核心的关切点，因为诸如地板价这样的价值很多时候都并不能非常准确的体现NFT的公允价值。ParaSpace使用的是Chainlink的数据源，这个数据源是Chainlink和Coinbase一起做的，但是算法是不公开的。</p><h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>borrow功能会先调用ValidationLogic去检查借出后的健康因子是否满足要求，其他诸如withdraw的功能也是需要先检查，然后给用户mint 不可转的债务token VariableDebtToken，这个是借鉴了aave 里面的写法，最后把要借的资产转给用户。</p><h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>repay功能除了可以使用借出token还款之外，还可以使用pToken存款凭证来还款，具体什么场景会这么干呢？大概在循环贷还款的时候可以这么干，节约了取款再还款的步骤。</p><h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>清算会先从ERC20的抵押物开始，先清算完了ERC20再启动ERC721的清算。这部分和传统的借贷协议一致。NFT的清算则会使用荷兰拍卖的方式，拍卖达成后还会对借款人收取一定罚金进入项目的保险池。拍卖NFT只能使用ETH，这些ETH会转成借款人的抵押物。清算对所有人公开，没有白名单。</p><h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>他们目前的NFT shop感觉还不是很好用，我随意试了几个，都是sold，说明从opensea同步状态还不够及时，目前他们前端只能看到对opensea和自家市场的支持，但是在代码里面已经体现了多家的接口，这块应该会在以后去接入。我查了下历史记录，在12000+条交易中，和buyWithCredit相关的只有大概30条。</p><h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>buyWithCredit 的执行步骤大概是，借出ETH，使用这些ETH到Opensea市场去买NFT，然后再把NFT存回借贷合约。操作后，用户的抵押物增加了一个NFT，债务增加了购买所需的ETH。所有操作都在一个交易中执行，用户自己的账户没有余额的变化。所以操作时候还是要小心一些。</p><h2 id="0x0e"><a href="#0x0e" class="headerlink" title="0x0e"></a>0x0e</h2><p>虽然耗费gas有点多，但是这一套的用户体验应该是很不错的，方向是对的，当然需要不断优化。NFTfi的乐高应该也会慢慢叠起来的，非常期待之后还有其他类型的产品。关于 @ParaSpace_NFT的学习贴就写这么多了，这个帖子收获了一些赞，很开心，虽然炒币很差，但是写些简单的项目体验还是可以的。</p><h2 id="0x0f"><a href="#0x0f" class="headerlink" title="0x0f"></a>0x0f</h2><p>最后也说一些我对NFTfi的一些看法。确定性的产品类型，比如借贷池，已经很成熟了，拼的就是产品的优化。另外还有衍生品交易， 有<br>@nftperp和@nfex_official，我是很看好的，NFT的现货交易因为版税的原因，有诸多的问题，但衍生品就没有这个问题，而且衍生品天然就碎片化，可以降低交易的价格门槛</p><h2 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h2><p>很有可能，未来蓝筹NFT的交易量会慢慢迁移到衍生品，现货交易更倾向于收藏性质。但是目前阻碍NFT衍生品的问题还是来自于NFT的定价，地板价或者是成交价都太容易被操控了，这个问题暂时没有看到很好的方案，可以期待一下。</p><h2 id="0x11"><a href="#0x11" class="headerlink" title="0x11"></a>0x11</h2><p>除此之外，我对点对点的NFT借贷也有一些期待，目前点对点的模式，量非常小，因为匹配难度很大，之前我想到了collection offer的时候还兴奋了一下，后来发现<br>@NFTfi<br> 也已经适配了，出资人对整个collection出价明显比借款人单个抵押物出家的效率高。如果把NFT点对点的借贷和房产进行一些类比</p><h2 id="0x12"><a href="#0x12" class="headerlink" title="0x12"></a>0x12</h2><p>就能发现还有很多事情可以做的，对点对点债务进行再打包，再销售，再流转，ETF化。都是可以做的事情，但是目前的资产规模和用户体量似乎还不需要做这些事情。我喜欢点对点这样没有系统性风险的方式，但是从产品和市场角度，似乎点对池才是可以work的模式，期待一下，就这样了。</p>]]></content>
+    <content type="html"><![CDATA[<p>ParaSpace是一个非常强大的NFT借贷平台，可以看成是一个加强版的Benddao或者支持NFT抵押物的AAVE。</p><span id="more"></span><h2 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2><p>它支持NFT和主流token(ETH/USDC/USDT/APE/stETH等)作为抵押物，同样，也支持借出所有这些ERC20的Token。</p><p>除了借贷功能外，ParaSpace还有一个NFT的聚合交易功能，支持用户使用在借贷平台的信贷额度，直接购买NFT，免去借出再购买的两次操作。除此之外，还有APE Staking的功能模块。</p><p><a class="link"   href="https://docs.para.space/para-space/external-audits" >https://docs.para.space/para-space/external-audits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 能够看到项目的审计机构阵容强大，特别是难道一见的Trail of Bits。</p><h2 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2><p><a class="link"   href="https://github.com/para-space/paraspace-core" >https://github.com/para-space/paraspace-core <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> paraspace的合约代码也是一个很大的工程，使用hardhat的开发框架，不过也看到了foundry的一点影子，看来目前foundry还是在成熟度方面，特别是部署管理这块不够强大。</p><h2 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2><p>借贷功能的入口合约是 PoolCore.sol<br><a class="link"   href="https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee" >https://etherscan.io/address/0x638a98bbb92a7582d07c52ff407d49664dc8b3ee <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，主要借贷逻辑如，存入token/nft，借出token，清算，拍卖的入口都在这个合约，代码结构比较清晰，入口function内会继续调用SupplyLogic，BorrowLogic，LiquidationLogic，AuctionLogic这几个library。</p><h2 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h2><p>看代码里面，很多地方都能够看出这个项目有不错的技术实力，在代码优化层面做的很多，在token存入的时候，针对DAI这样支持permit授权的token，做了特别的支持，这样存入DAI就不用花费approve的gas费。还有在存储配置内容的时候，通过掩码的方式，把很多配置项都存在一个uint256里面，节省了存储</p><h2 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h2><p>除了常用的NFT，该项目还支持uniswap v3的LP，也是一种ERC721 形式的NFT，来作为抵押物，目前支持8个主流token的LP NFT，这部分的价值估算和token一样，从合约接口读到底层资产的数量，使用chainlink的oracle来计算价值。</p><h2 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h2><p>supply和withdraw ERC20 token的逻辑和compound差不多，每个token会有一个对应pToken来存放资产，给用户pToken的存款凭证。withdraw和borrow一样，需要检查可提现额度和健康因子。</p><h2 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h2><p>supplyERC721 也是类似的，每个collection会对应一个NToken的存款凭证合约，用户存入NFT后，会对应mint一个相同tokenId的存款凭证给到用户。</p><h2 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h2><p>NFT抵押物定价一直是NFT借贷项目一个非常核心的关切点，因为诸如地板价这样的价值很多时候都并不能非常准确的体现NFT的公允价值。ParaSpace使用的是Chainlink的数据源，这个数据源是Chainlink和Coinbase一起做的，但是算法是不公开的。</p><h2 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h2><p>borrow功能会先调用ValidationLogic去检查借出后的健康因子是否满足要求，其他诸如withdraw的功能也是需要先检查，然后给用户mint 不可转的债务token VariableDebtToken，这个是借鉴了aave 里面的写法，最后把要借的资产转给用户。</p><h2 id="0x0a"><a href="#0x0a" class="headerlink" title="0x0a"></a>0x0a</h2><p>repay功能除了可以使用借出token还款之外，还可以使用pToken存款凭证来还款，具体什么场景会这么干呢？大概在循环贷还款的时候可以这么干，节约了取款再还款的步骤。</p><h2 id="0x0b"><a href="#0x0b" class="headerlink" title="0x0b"></a>0x0b</h2><p>清算会先从ERC20的抵押物开始，先清算完了ERC20再启动ERC721的清算。这部分和传统的借贷协议一致。NFT的清算则会使用荷兰拍卖的方式，拍卖达成后还会对借款人收取一定罚金进入项目的保险池。拍卖NFT只能使用ETH，这些ETH会转成借款人的抵押物。清算对所有人公开，没有白名单。</p><h2 id="0x0c"><a href="#0x0c" class="headerlink" title="0x0c"></a>0x0c</h2><p>他们目前的NFT shop感觉还不是很好用，我随意试了几个，都是sold，说明从opensea同步状态还不够及时，目前他们前端只能看到对opensea和自家市场的支持，但是在代码里面已经体现了多家的接口，这块应该会在以后去接入。我查了下历史记录，在12000+条交易中，和buyWithCredit相关的只有大概30条。</p><h2 id="0x0d"><a href="#0x0d" class="headerlink" title="0x0d"></a>0x0d</h2><p>buyWithCredit 的执行步骤大概是，借出ETH，使用这些ETH到Opensea市场去买NFT，然后再把NFT存回借贷合约。操作后，用户的抵押物增加了一个NFT，债务增加了购买所需的ETH。所有操作都在一个交易中执行，用户自己的账户没有余额的变化。所以操作时候还是要小心一些。</p><h2 id="0x0e"><a href="#0x0e" class="headerlink" title="0x0e"></a>0x0e</h2><p>虽然耗费gas有点多，但是这一套的用户体验应该是很不错的，方向是对的，当然需要不断优化。NFTfi的乐高应该也会慢慢叠起来的，非常期待之后还有其他类型的产品。关于 @ParaSpace_NFT的学习贴就写这么多了，这个帖子收获了一些赞，很开心，虽然炒币很差，但是写些简单的项目体验还是可以的。</p><h2 id="0x0f"><a href="#0x0f" class="headerlink" title="0x0f"></a>0x0f</h2><p>最后也说一些我对NFTfi的一些看法。确定性的产品类型，比如借贷池，已经很成熟了，拼的就是产品的优化。另外还有衍生品交易， 有<br>@nftperp和@nfex_official，我是很看好的，NFT的现货交易因为版税的原因，有诸多的问题，但衍生品就没有这个问题，而且衍生品天然就碎片化，可以降低交易的价格门槛</p><h2 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h2><p>很有可能，未来蓝筹NFT的交易量会慢慢迁移到衍生品，现货交易更倾向于收藏性质。但是目前阻碍NFT衍生品的问题还是来自于NFT的定价，地板价或者是成交价都太容易被操控了，这个问题暂时没有看到很好的方案，可以期待一下。</p><h2 id="0x11"><a href="#0x11" class="headerlink" title="0x11"></a>0x11</h2><p>除此之外，我对点对点的NFT借贷也有一些期待，目前点对点的模式，量非常小，因为匹配难度很大，之前我想到了collection offer的时候还兴奋了一下，后来发现<br>@NFTfi<br> 也已经适配了，出资人对整个collection出价明显比借款人单个抵押物出家的效率高。如果把NFT点对点的借贷和房产进行一些类比</p><h2 id="0x12"><a href="#0x12" class="headerlink" title="0x12"></a>0x12</h2><p>就能发现还有很多事情可以做的，对点对点债务进行再打包，再销售，再流转，ETF化。都是可以做的事情，但是目前的资产规模和用户体量似乎还不需要做这些事情。我喜欢点对点这样没有系统性风险的方式，但是从产品和市场角度，似乎点对池才是可以work的模式，期待一下，就这样了。</p>]]></content>
     
     <summary type="html">
     
@@ -86,52 +86,52 @@
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
-      <category term="NFT" scheme="http://yoursite.com/tags/NFT/"/>
+      <category term="NFT" scheme="https://tinyhill.dev/tags/NFT/"/>
     
   </entry>
   
   <entry>
     <title>NFTfi.com借贷平台</title>
-    <link href="http://yoursite.com/2023/01/27/2023-1-27-nftfi/"/>
-    <id>http://yoursite.com/2023/01/27/2023-1-27-nftfi/</id>
+    <link href="https://tinyhill.dev/2023/01/27/2023-1-27-nftfi"/>
+    <id>https://tinyhill.dev/2023/01/27/2023-1-27-nftfi</id>
     <published>2023-01-27T09:58:00.000Z</published>
-    <updated>2023-02-27T21:47:12.920Z</updated>
+    <updated>2023-01-27T09:58:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="http://NFTfi.com" target="_blank" rel="noopener">http://NFTfi.com</a> 学习贴，该协议是一个以NFT为抵押物的P2P借贷平台。</p> <a id="more"></a><p>借款人和出借人对利率、期限、借款金额和抵押物达成一致后，就可以开启借贷流程。出借人将 WETH/USDC/DAI等资产转给借款人，借款人将NFT抵押物存入 NFTfi的保管库（escrow）。</p><h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>借贷有2个结果：借款人在到期日之前正常还款，NFT抵押物退回。如果借款人逾期未还，出借人可以处置抵押物。此外，协议有留一个方法，借贷到期后可以双方可以协商延长借贷期限。</p><h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>在最开始的流程中，借款人把自己的抵押物和希望借的金额和利率等信息发布，等待出借人来进行匹配。<a href="https://etherscan.io/address/0x8252Df1d8b29057d1Afe3062bf5a64D503152BC8" target="_blank" rel="noopener">https://etherscan.io/address/0x8252Df1d8b29057d1Afe3062bf5a64D503152BC8</a> ，这样的方式匹配的难度比较大。目前加入了出借人对collection进行出价，借款人来选择接受，相对匹配的难度降低，<a href="https://etherscan.io/address/0xE52Cec0E90115AbeB3304BaA36bc2655731f7934" target="_blank" rel="noopener">https://etherscan.io/address/0xE52Cec0E90115AbeB3304BaA36bc2655731f7934</a> 。</p><h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>相对于bendDao的点对池模式，NFTfi的点对点模式的流动性会差很多，但是没有系统性风险，风险分布在具体的每一笔借贷里。另外还有一个好处是，借贷产生后，债权和债券都会生成一个相对应的NFT，该NFT可以进行交易流转，意味着，债权和债务（偿还具体金额赎回抵押物的权利）有机会形成二级市场。</p><h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>NFTfi目前的借贷量还不是很理想，但我觉得这个模式还是很有前途，如何更高效撮合借贷以及债权、债务二级市场都是很好的方向。相同抵押物的债务也有机会打包成某种形式的金融产品，进行金融化的操作。</p>]]></content>
+    <content type="html"><![CDATA[<p><a class="link"   href="http://NFTfi.com" >http://NFTfi.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 学习贴，该协议是一个以NFT为抵押物的P2P借贷平台。</p> <span id="more"></span><p>借款人和出借人对利率、期限、借款金额和抵押物达成一致后，就可以开启借贷流程。出借人将 WETH/USDC/DAI等资产转给借款人，借款人将NFT抵押物存入 NFTfi的保管库（escrow）。</p><h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>借贷有2个结果：借款人在到期日之前正常还款，NFT抵押物退回。如果借款人逾期未还，出借人可以处置抵押物。此外，协议有留一个方法，借贷到期后可以双方可以协商延长借贷期限。</p><h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>在最开始的流程中，借款人把自己的抵押物和希望借的金额和利率等信息发布，等待出借人来进行匹配。<a class="link"   href="https://etherscan.io/address/0x8252Df1d8b29057d1Afe3062bf5a64D503152BC8" >https://etherscan.io/address/0x8252Df1d8b29057d1Afe3062bf5a64D503152BC8 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，这样的方式匹配的难度比较大。目前加入了出借人对collection进行出价，借款人来选择接受，相对匹配的难度降低，<a class="link"   href="https://etherscan.io/address/0xE52Cec0E90115AbeB3304BaA36bc2655731f7934" >https://etherscan.io/address/0xE52Cec0E90115AbeB3304BaA36bc2655731f7934 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 。</p><h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>相对于bendDao的点对池模式，NFTfi的点对点模式的流动性会差很多，但是没有系统性风险，风险分布在具体的每一笔借贷里。另外还有一个好处是，借贷产生后，债权和债券都会生成一个相对应的NFT，该NFT可以进行交易流转，意味着，债权和债务（偿还具体金额赎回抵押物的权利）有机会形成二级市场。</p><h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>NFTfi目前的借贷量还不是很理想，但我觉得这个模式还是很有前途，如何更高效撮合借贷以及债权、债务二级市场都是很好的方向。相同抵押物的债务也有机会打包成某种形式的金融产品，进行金融化的操作。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://NFTfi.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://NFTfi.com&lt;/a&gt; 学习贴，该协议是一个以NFT为抵押物的P2P借贷平台。&lt;/p&gt;
+      &lt;p&gt;&lt;a class=&quot;link&quot;   href=&quot;http://NFTfi.com&quot; &gt;http://NFTfi.com &lt;i class=&quot;fa-regular fa-arrow-up-right-from-square fa-sm&quot;&gt;&lt;/i&gt;&lt;/a&gt; 学习贴，该协议是一个以NFT为抵押物的P2P借贷平台。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
-      <category term="NFT" scheme="http://yoursite.com/tags/NFT/"/>
+      <category term="NFT" scheme="https://tinyhill.dev/tags/NFT/"/>
     
   </entry>
   
   <entry>
     <title>Perpetual Protocol V2学习</title>
-    <link href="http://yoursite.com/2023/01/20/2023-1-20-perpetual/"/>
-    <id>http://yoursite.com/2023/01/20/2023-1-20-perpetual/</id>
+    <link href="https://tinyhill.dev/2023/01/20/2023-1-20-perpetual"/>
+    <id>https://tinyhill.dev/2023/01/20/2023-1-20-perpetual</id>
     <published>2023-01-20T09:58:00.000Z</published>
-    <updated>2023-02-27T21:53:25.443Z</updated>
+    <updated>2023-01-20T09:58:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Perpetual Protocol 是除了@dydx之外另一个明星的链上永续合约交易所，目前V2版本运行在 @optimismFND上。主要的特点是协议主要负责利润计算和爆仓清算，交易的部分和流动性的部分都集成了 @Uniswap V3</p> <a id="more"></a><h1 id="2-Vault模块"><a href="#2-Vault模块" class="headerlink" title="2 Vault模块"></a>2 Vault模块</h1><p><a href="https://optimistic.etherscan.io/address/0xad7b4c162707e0b2b5f6fddbd3f8538a5fba0d60" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xad7b4c162707e0b2b5f6fddbd3f8538a5fba0d60</a> 该模块负责存放用户的保证金的充值和提现，还有清算。结算的币种是USDC，利润和亏损都是计算在USDC上。如果爆仓或关仓后USDC为负数，则必须充值进去补上才能提现其他币种。有5个币种可以作为保证金，权重和折算如图。<br><img src="https://twitter.com/JosQiu/status/1616458374098587654/photo/1" alt=""></p><h1 id="3-CollateralManager-模块"><a href="#3-CollateralManager-模块" class="headerlink" title="3 CollateralManager 模块"></a>3 CollateralManager 模块</h1><p><a href="https://optimistic.etherscan.io/address/0x8Ac835C05530f10595C8015467339523154b4D85" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0x8Ac835C05530f10595C8015467339523154b4D85</a><br>管理抵押物的币种、计价来源、权重、封顶和折算比例，这个模块是一个配置的模块，上线后暂时没有调整过配置。</p><h1 id="4-DelegateApproval模块"><a href="#4-DelegateApproval模块" class="headerlink" title="4 DelegateApproval模块"></a>4 DelegateApproval模块</h1><p><a href="https://optimistic.etherscan.io/address/0xfd7bB5F6844a43c5469c972640Eddfa99597a547" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xfd7bB5F6844a43c5469c972640Eddfa99597a547</a> ，该模块用来支持用户将操作权限，比如开单权限授权给第三方。这样的方式可以吸引更多生态项目建立，也方便DeFi乐高的堆叠。</p><h1 id="5-ClearingHouse模块"><a href="#5-ClearingHouse模块" class="headerlink" title="5 ClearingHouse模块"></a>5 ClearingHouse模块</h1><p><a href="https://optimistic.etherscan.io/address/0x82ac2CE43e33683c58BE4cDc40975E73aA50f459，是最重要的一个模块，也是用户交互最多的模块。开单、关仓、增加减少流动性都通过这个合约进行。开单和关仓实际上是在uniswap上交易perp发行的虚拟token，vETH/vUSD等。该模块另一重要的功能就是清算爆仓，计算用户的亏损和保证金余额，不足则爆仓。" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0x82ac2CE43e33683c58BE4cDc40975E73aA50f459，是最重要的一个模块，也是用户交互最多的模块。开单、关仓、增加减少流动性都通过这个合约进行。开单和关仓实际上是在uniswap上交易perp发行的虚拟token，vETH/vUSD等。该模块另一重要的功能就是清算爆仓，计算用户的亏损和保证金余额，不足则爆仓。</a></p><h1 id="6-InsuranceFund模块"><a href="#6-InsuranceFund模块" class="headerlink" title="6 InsuranceFund模块"></a>6 InsuranceFund模块</h1><p><a href="https://optimistic.etherscan.io/address/0x1C9a192DF3936cBF093d8afDc352718bCF834EB6，该模块提供协议的保险资金，初始资金100,000" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0x1C9a192DF3936cBF093d8afDc352718bCF834EB6，该模块提供协议的保险资金，初始资金100,000</a> USDC。用来支付协议的清算缺口。该合约还有一个分发手续费收入的功能，可以把这部分钱从vault中转到 SurplusBeneficiary</p><h1 id="7-SurplusBeneficiary模块"><a href="#7-SurplusBeneficiary模块" class="headerlink" title="7 SurplusBeneficiary模块"></a>7 SurplusBeneficiary模块</h1><p><a href="https://optimistic.etherscan.io/address/0x78120c1ca337007323de2226d677e7fcf42d6ee7，该合约接受手续费收入，然后根据比例分发给treasury和vePERP持有人" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0x78120c1ca337007323de2226d677e7fcf42d6ee7，该合约接受手续费收入，然后根据比例分发给treasury和vePERP持有人</a></p><h1 id="8-MarketRegistry模块"><a href="#8-MarketRegistry模块" class="headerlink" title="8  MarketRegistry模块"></a>8  MarketRegistry模块</h1><p><a href="https://optimistic.etherscan.io/address/0xd5820eE0F55205f6cdE8BB0647072143b3060067，该合约负责交易币种的管理，上架新币种、设置交易费率等。" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xd5820eE0F55205f6cdE8BB0647072143b3060067，该合约负责交易币种的管理，上架新币种、设置交易费率等。</a></p><h1 id="9-VirtualToken模块"><a href="#9-VirtualToken模块" class="headerlink" title="9 VirtualToken模块"></a>9 VirtualToken模块</h1><p>在perp上交易的所有token，都会由ClearingHouse模块发行相应的vToken，包括vUSD、vETH等，然后vToken实际的交易撮合发生在Uniswap V3。vToken的作用更多是为了记账，vToken只会出现在ClearingHouse、和Uniswap Pool里面，并不会转到用户的地址里。</p><h1 id="10-Exchange模块"><a href="#10-Exchange模块" class="headerlink" title="10 Exchange模块"></a>10 Exchange模块</h1><p><a href="https://optimistic.etherscan.io/address/0xBd7a3B7DbEb096F0B832Cf467B94b091f30C34ec，用户通过ClearingHouse模块发起开仓和关仓的操作，ClearingHouse会调用Exchange模块来将对应的vToken通过Uniswap交易成另外一个vToken。比如开多ETH，就会把vUSD" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xBd7a3B7DbEb096F0B832Cf467B94b091f30C34ec，用户通过ClearingHouse模块发起开仓和关仓的操作，ClearingHouse会调用Exchange模块来将对应的vToken通过Uniswap交易成另外一个vToken。比如开多ETH，就会把vUSD</a> swap 成为 vETH。</p><h1 id="11-OrderBook模块"><a href="#11-OrderBook模块" class="headerlink" title="11 OrderBook模块"></a>11 OrderBook模块</h1><p><a href="https://optimistic.etherscan.io/address/0xDfcaEBe8f6ea5E022BeFAFaE8c6Cdae8D4E1094b，用来记录通过ClearingHouse往Uniswap添加流动性的行为。在实际开单关单的交易中会利用这些流动性记录来预计算交易的金额和滑点的检查。" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xDfcaEBe8f6ea5E022BeFAFaE8c6Cdae8D4E1094b，用来记录通过ClearingHouse往Uniswap添加流动性的行为。在实际开单关单的交易中会利用这些流动性记录来预计算交易的金额和滑点的检查。</a></p><h1 id="12-AccountBalance模块"><a href="#12-AccountBalance模块" class="headerlink" title="12  AccountBalance模块"></a>12  AccountBalance模块</h1><p><a href="https://optimistic.etherscan.io/address/0xA7f3FC32043757039d5e13d790EE43edBcBa8b7c，前面讲到的vToken模块并不代表用户在系统内的余额，更多是与uniswap之间的账户记录。实际计算用户余额、利润是在AccountBalance模块。该模块可以查询用户的系统内余额、未结算利润和仓位等信息。" target="_blank" rel="noopener">https://optimistic.etherscan.io/address/0xA7f3FC32043757039d5e13d790EE43edBcBa8b7c，前面讲到的vToken模块并不代表用户在系统内的余额，更多是与uniswap之间的账户记录。实际计算用户余额、利润是在AccountBalance模块。该模块可以查询用户的系统内余额、未结算利润和仓位等信息。</a></p><h1 id="13-小结"><a href="#13-小结" class="headerlink" title="13 小结"></a>13 小结</h1><p>该贴只是个很简单过了一下各个合约是干什么的，要理解还是需要更多的研究。ClearingHouse是该协议最重要的模块，基本操作的入口都是该模块。很久没有学习DeFi的合约代码了，现在的项目确实复杂度越来越高。所有逻辑堆在一个合约里的小作坊时代一去不复返了。<a href="https://github.com/perpetual-protocol/perp-curie-contract" target="_blank" rel="noopener">https://github.com/perpetual-protocol/perp-curie-contract</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Perpetual Protocol 是除了@dydx之外另一个明星的链上永续合约交易所，目前V2版本运行在 @optimismFND上。主要的特点是协议主要负责利润计算和爆仓清算，交易的部分和流动性的部分都集成了 @Uniswap V3</p> <span id="more"></span><h1 id="2-Vault模块"><a href="#2-Vault模块" class="headerlink" title="2 Vault模块"></a>2 Vault模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xad7b4c162707e0b2b5f6fddbd3f8538a5fba0d60" >https://optimistic.etherscan.io/address/0xad7b4c162707e0b2b5f6fddbd3f8538a5fba0d60 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 该模块负责存放用户的保证金的充值和提现，还有清算。结算的币种是USDC，利润和亏损都是计算在USDC上。如果爆仓或关仓后USDC为负数，则必须充值进去补上才能提现其他币种。有5个币种可以作为保证金，权重和折算如图。<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://twitter.com/JosQiu/status/1616458374098587654/photo/1"                      alt=""                ></p><h1 id="3-CollateralManager-模块"><a href="#3-CollateralManager-模块" class="headerlink" title="3 CollateralManager 模块"></a>3 CollateralManager 模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0x8Ac835C05530f10595C8015467339523154b4D85" >https://optimistic.etherscan.io/address/0x8Ac835C05530f10595C8015467339523154b4D85 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>管理抵押物的币种、计价来源、权重、封顶和折算比例，这个模块是一个配置的模块，上线后暂时没有调整过配置。</p><h1 id="4-DelegateApproval模块"><a href="#4-DelegateApproval模块" class="headerlink" title="4 DelegateApproval模块"></a>4 DelegateApproval模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xfd7bB5F6844a43c5469c972640Eddfa99597a547" >https://optimistic.etherscan.io/address/0xfd7bB5F6844a43c5469c972640Eddfa99597a547 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，该模块用来支持用户将操作权限，比如开单权限授权给第三方。这样的方式可以吸引更多生态项目建立，也方便DeFi乐高的堆叠。</p><h1 id="5-ClearingHouse模块"><a href="#5-ClearingHouse模块" class="headerlink" title="5 ClearingHouse模块"></a>5 ClearingHouse模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0x82ac2CE43e33683c58BE4cDc40975E73aA50f459，是最重要的一个模块，也是用户交互最多的模块。开单、关仓、增加减少流动性都通过这个合约进行。开单和关仓实际上是在uniswap上交易perp发行的虚拟token，vETH/vUSD等。该模块另一重要的功能就是清算爆仓，计算用户的亏损和保证金余额，不足则爆仓。" >https://optimistic.etherscan.io/address/0x82ac2CE43e33683c58BE4cDc40975E73aA50f459，是最重要的一个模块，也是用户交互最多的模块。开单、关仓、增加减少流动性都通过这个合约进行。开单和关仓实际上是在uniswap上交易perp发行的虚拟token，vETH/vUSD等。该模块另一重要的功能就是清算爆仓，计算用户的亏损和保证金余额，不足则爆仓。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h1 id="6-InsuranceFund模块"><a href="#6-InsuranceFund模块" class="headerlink" title="6 InsuranceFund模块"></a>6 InsuranceFund模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0x1C9a192DF3936cBF093d8afDc352718bCF834EB6，该模块提供协议的保险资金，初始资金100,000" >https://optimistic.etherscan.io/address/0x1C9a192DF3936cBF093d8afDc352718bCF834EB6，该模块提供协议的保险资金，初始资金100,000 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> USDC。用来支付协议的清算缺口。该合约还有一个分发手续费收入的功能，可以把这部分钱从vault中转到 SurplusBeneficiary</p><h1 id="7-SurplusBeneficiary模块"><a href="#7-SurplusBeneficiary模块" class="headerlink" title="7 SurplusBeneficiary模块"></a>7 SurplusBeneficiary模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0x78120c1ca337007323de2226d677e7fcf42d6ee7，该合约接受手续费收入，然后根据比例分发给treasury和vePERP持有人" >https://optimistic.etherscan.io/address/0x78120c1ca337007323de2226d677e7fcf42d6ee7，该合约接受手续费收入，然后根据比例分发给treasury和vePERP持有人 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h1 id="8-MarketRegistry模块"><a href="#8-MarketRegistry模块" class="headerlink" title="8  MarketRegistry模块"></a>8  MarketRegistry模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xd5820eE0F55205f6cdE8BB0647072143b3060067，该合约负责交易币种的管理，上架新币种、设置交易费率等。" >https://optimistic.etherscan.io/address/0xd5820eE0F55205f6cdE8BB0647072143b3060067，该合约负责交易币种的管理，上架新币种、设置交易费率等。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h1 id="9-VirtualToken模块"><a href="#9-VirtualToken模块" class="headerlink" title="9 VirtualToken模块"></a>9 VirtualToken模块</h1><p>在perp上交易的所有token，都会由ClearingHouse模块发行相应的vToken，包括vUSD、vETH等，然后vToken实际的交易撮合发生在Uniswap V3。vToken的作用更多是为了记账，vToken只会出现在ClearingHouse、和Uniswap Pool里面，并不会转到用户的地址里。</p><h1 id="10-Exchange模块"><a href="#10-Exchange模块" class="headerlink" title="10 Exchange模块"></a>10 Exchange模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xBd7a3B7DbEb096F0B832Cf467B94b091f30C34ec，用户通过ClearingHouse模块发起开仓和关仓的操作，ClearingHouse会调用Exchange模块来将对应的vToken通过Uniswap交易成另外一个vToken。比如开多ETH，就会把vUSD" >https://optimistic.etherscan.io/address/0xBd7a3B7DbEb096F0B832Cf467B94b091f30C34ec，用户通过ClearingHouse模块发起开仓和关仓的操作，ClearingHouse会调用Exchange模块来将对应的vToken通过Uniswap交易成另外一个vToken。比如开多ETH，就会把vUSD <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> swap 成为 vETH。</p><h1 id="11-OrderBook模块"><a href="#11-OrderBook模块" class="headerlink" title="11 OrderBook模块"></a>11 OrderBook模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xDfcaEBe8f6ea5E022BeFAFaE8c6Cdae8D4E1094b，用来记录通过ClearingHouse往Uniswap添加流动性的行为。在实际开单关单的交易中会利用这些流动性记录来预计算交易的金额和滑点的检查。" >https://optimistic.etherscan.io/address/0xDfcaEBe8f6ea5E022BeFAFaE8c6Cdae8D4E1094b，用来记录通过ClearingHouse往Uniswap添加流动性的行为。在实际开单关单的交易中会利用这些流动性记录来预计算交易的金额和滑点的检查。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h1 id="12-AccountBalance模块"><a href="#12-AccountBalance模块" class="headerlink" title="12  AccountBalance模块"></a>12  AccountBalance模块</h1><p><a class="link"   href="https://optimistic.etherscan.io/address/0xA7f3FC32043757039d5e13d790EE43edBcBa8b7c，前面讲到的vToken模块并不代表用户在系统内的余额，更多是与uniswap之间的账户记录。实际计算用户余额、利润是在AccountBalance模块。该模块可以查询用户的系统内余额、未结算利润和仓位等信息。" >https://optimistic.etherscan.io/address/0xA7f3FC32043757039d5e13d790EE43edBcBa8b7c，前面讲到的vToken模块并不代表用户在系统内的余额，更多是与uniswap之间的账户记录。实际计算用户余额、利润是在AccountBalance模块。该模块可以查询用户的系统内余额、未结算利润和仓位等信息。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><h1 id="13-小结"><a href="#13-小结" class="headerlink" title="13 小结"></a>13 小结</h1><p>该贴只是个很简单过了一下各个合约是干什么的，要理解还是需要更多的研究。ClearingHouse是该协议最重要的模块，基本操作的入口都是该模块。很久没有学习DeFi的合约代码了，现在的项目确实复杂度越来越高。所有逻辑堆在一个合约里的小作坊时代一去不复返了。<a class="link"   href="https://github.com/perpetual-protocol/perp-curie-contract" >https://github.com/perpetual-protocol/perp-curie-contract <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>]]></content>
     
     <summary type="html">
     
@@ -140,23 +140,23 @@
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
   </entry>
   
   <entry>
     <title>我被黑了</title>
-    <link href="http://yoursite.com/2021/11/04/2021-11-4-hacked/"/>
-    <id>http://yoursite.com/2021/11/04/2021-11-4-hacked/</id>
+    <link href="https://tinyhill.dev/2021/11/04/2021-11-4-hacked"/>
+    <id>https://tinyhill.dev/2021/11/04/2021-11-4-hacked</id>
     <published>2021-11-04T09:00:00.000Z</published>
-    <updated>2023-02-27T21:13:11.442Z</updated>
+    <updated>2021-11-04T09:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>今天我在heco上的套利合约被人黑了，损失大概是53000美金。</p><a id="more"></a><p>合约的漏洞大致是：</p><ul><li>合约中有approve 给router的操作</li><li>router是输入传的</li><li>黑客传入自己的合约作为router，但是实际在他的router.swap的逻辑中不做任何操作，所以approve给他的金额没有消费掉</li><li>给我转小额，通过我的余额检查</li><li>从我的逻辑中退出后，因为approve给他的限额没有消费掉，现在可以从我的合约里直接转钱走了</li></ul><p>其实，合约的检查可以更仔细，但是之前考虑到合约不对外且不开源，为了方便，没有加一下验证。这次是真的被迫涨记性了</p><p>通过这次的被盗，至少有一下几点心得：</p><ul><li>合约不开源是可以反编译的，solidity反编译的可读性相对较高</li><li>套利合约，是容易被人盯上的</li><li>sender和tx.origin的检查不能少</li><li>逻辑结束的时候，除了余额检查，应该取消所有approve</li></ul><p>哎</p>]]></content>
+    <content type="html"><![CDATA[<p>今天我在heco上的套利合约被人黑了，损失大概是53000美金。</p><span id="more"></span><p>合约的漏洞大致是：</p><ul><li>合约中有approve 给router的操作</li><li>router是输入传的</li><li>黑客传入自己的合约作为router，但是实际在他的router.swap的逻辑中不做任何操作，所以approve给他的金额没有消费掉</li><li>给我转小额，通过我的余额检查</li><li>从我的逻辑中退出后，因为approve给他的限额没有消费掉，现在可以从我的合约里直接转钱走了</li></ul><p>其实，合约的检查可以更仔细，但是之前考虑到合约不对外且不开源，为了方便，没有加一下验证。这次是真的被迫涨记性了</p><p>通过这次的被盗，至少有一下几点心得：</p><ul><li>合约不开源是可以反编译的，solidity反编译的可读性相对较高</li><li>套利合约，是容易被人盯上的</li><li>sender和tx.origin的检查不能少</li><li>逻辑结束的时候，除了余额检查，应该取消所有approve</li></ul><p>哎</p>]]></content>
     
     <summary type="html">
     
@@ -165,23 +165,23 @@
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
   </entry>
   
   <entry>
     <title>Compound清算机器人设计</title>
-    <link href="http://yoursite.com/2021/10/17/2021-10-17-compound/"/>
-    <id>http://yoursite.com/2021/10/17/2021-10-17-compound/</id>
+    <link href="https://tinyhill.dev/2021/10/17/2021-10-17-compound"/>
+    <id>https://tinyhill.dev/2021/10/17/2021-10-17-compound</id>
     <published>2021-10-17T08:00:00.000Z</published>
-    <updated>2023-02-27T20:47:43.996Z</updated>
+    <updated>2021-10-17T08:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>清算机器人的目的是为了帮助协议清算有风险的债务，同时获得协议奖励。</p><a id="more"></a><p>清算的总体步骤包括（假设使用闪电贷）：</p><ul><li>发现待清算债务</li><li>计算需清算债务金额</li><li>闪电贷借出债务</li><li>偿还债务获得抵押物cToken</li><li>抵押物cToken赎回抵押物</li><li>交易抵押物偿还闪电贷</li></ul><h1 id="发现待清算债务"><a href="#发现待清算债务" class="headerlink" title="发现待清算债务"></a>发现待清算债务</h1><p>这部分实际是比较有难度的，因为直接从合约里面无法读取所有借款人。我的方法是自己通过扫区块构建的event数据库里面获得的，也可以通过the graph这样的工具。</p><p>从主合约里能获得所有cToken，通过筛选event，关联到cToken合约的Borrow事件可以找到借款人。</p><p>得到借款人后，需要检查每个借款人的抵押率。可以参考合约中getAccountLiquidity的方法来计算抵押率。</p><p>将抵押率较低的借款账户选出来，提高检查的频率，最好可以监控预言机交易，因为只有价格更新后，抵押率才会发生变化。</p><h1 id="计算待清算金额"><a href="#计算待清算金额" class="headerlink" title="计算待清算金额"></a>计算待清算金额</h1><p>债务的抵押物可能是多种，清算时需要选取清算的金额和获得的抵押物，需要根据抵押物的比例，计算出清算债务的金额。</p><p>也有一个比较简单粗暴的方法，就是多次尝试，如果失败（estimate失败）就将金额进行调整。</p><h1 id="闪电贷借出债务"><a href="#闪电贷借出债务" class="headerlink" title="闪电贷借出债务"></a>闪电贷借出债务</h1><p>考虑到后面需要将抵押物交易回债务偿还闪电贷，所以一般选择uniswap的闪电贷，除了交易费，没有其他的费用。</p><p>如果抵押物和债务直接的交易对深度不好，还需要选择更好的交易路径。</p><p>具体闪电贷swap的逻辑不在这里展开，和清算无关</p><h1 id="偿还债务获得抵押物"><a href="#偿还债务获得抵押物" class="headerlink" title="偿还债务获得抵押物"></a>偿还债务获得抵押物</h1><p>ETH和ERC20的方法有点差异，这里就简单说一下ERC20的方法。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">err &#x3D; CErc20Interface(params.cTokenBorrowAddr).liquidateBorrow(</span><br><span class="line">                params.borrower,</span><br><span class="line">                params.liquidateAmount,</span><br><span class="line">                params.cTokenCollateralAddr</span><br><span class="line">            );</span><br></pre></td></tr></table></figure><p>调用债务cToken合约的liquidateBorrow方法，传入借款人，清算债务实际token的数量，希望获得的抵押物（cToken）</p><h1 id="抵押物cToken赎回抵押物"><a href="#抵押物cToken赎回抵押物" class="headerlink" title="抵押物cToken赎回抵押物"></a>抵押物cToken赎回抵押物</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uint256 cTokenCollateralBalance &#x3D; IERC20(params.cTokenCollateralAddr)</span><br><span class="line">            .balanceOf(address(this));</span><br><span class="line"></span><br><span class="line">err &#x3D; CErc20Interface(params.cTokenCollateralAddr).redeem(</span><br><span class="line">            cTokenCollateralBalance</span><br><span class="line">        );</span><br></pre></td></tr></table></figure><p>从抵押物cToken合约赎回抵押物</p><h1 id="交易抵押物偿还闪电贷"><a href="#交易抵押物偿还闪电贷" class="headerlink" title="交易抵押物偿还闪电贷"></a>交易抵押物偿还闪电贷</h1><p>在构建闪电贷的时候，从 A-B LP 从借出A可以还B，具体金额关系也是用乘积公示计算，这里不展开。</p><p>将需要偿还的抵押物还给闪电贷LP，剩下的就是利润。</p>]]></content>
+    <content type="html"><![CDATA[<p>清算机器人的目的是为了帮助协议清算有风险的债务，同时获得协议奖励。</p><span id="more"></span><p>清算的总体步骤包括（假设使用闪电贷）：</p><ul><li>发现待清算债务</li><li>计算需清算债务金额</li><li>闪电贷借出债务</li><li>偿还债务获得抵押物cToken</li><li>抵押物cToken赎回抵押物</li><li>交易抵押物偿还闪电贷</li></ul><h1 id="发现待清算债务"><a href="#发现待清算债务" class="headerlink" title="发现待清算债务"></a>发现待清算债务</h1><p>这部分实际是比较有难度的，因为直接从合约里面无法读取所有借款人。我的方法是自己通过扫区块构建的event数据库里面获得的，也可以通过the graph这样的工具。</p><p>从主合约里能获得所有cToken，通过筛选event，关联到cToken合约的Borrow事件可以找到借款人。</p><p>得到借款人后，需要检查每个借款人的抵押率。可以参考合约中getAccountLiquidity的方法来计算抵押率。</p><p>将抵押率较低的借款账户选出来，提高检查的频率，最好可以监控预言机交易，因为只有价格更新后，抵押率才会发生变化。</p><h1 id="计算待清算金额"><a href="#计算待清算金额" class="headerlink" title="计算待清算金额"></a>计算待清算金额</h1><p>债务的抵押物可能是多种，清算时需要选取清算的金额和获得的抵押物，需要根据抵押物的比例，计算出清算债务的金额。</p><p>也有一个比较简单粗暴的方法，就是多次尝试，如果失败（estimate失败）就将金额进行调整。</p><h1 id="闪电贷借出债务"><a href="#闪电贷借出债务" class="headerlink" title="闪电贷借出债务"></a>闪电贷借出债务</h1><p>考虑到后面需要将抵押物交易回债务偿还闪电贷，所以一般选择uniswap的闪电贷，除了交易费，没有其他的费用。</p><p>如果抵押物和债务直接的交易对深度不好，还需要选择更好的交易路径。</p><p>具体闪电贷swap的逻辑不在这里展开，和清算无关</p><h1 id="偿还债务获得抵押物"><a href="#偿还债务获得抵押物" class="headerlink" title="偿还债务获得抵押物"></a>偿还债务获得抵押物</h1><p>ETH和ERC20的方法有点差异，这里就简单说一下ERC20的方法。</p><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">err = CErc20Interface(params.cTokenBorrowAddr).liquidateBorrow(</span><br><span class="line">                params.borrower,</span><br><span class="line">                params.liquidateAmount,</span><br><span class="line">                params.cTokenCollateralAddr</span><br><span class="line">            );</span><br><span class="line"></span><br></pre></td></tr></table></figure></div><p>调用债务cToken合约的liquidateBorrow方法，传入借款人，清算债务实际token的数量，希望获得的抵押物（cToken）</p><h1 id="抵押物cToken赎回抵押物"><a href="#抵押物cToken赎回抵押物" class="headerlink" title="抵押物cToken赎回抵押物"></a>抵押物cToken赎回抵押物</h1><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uint256 cTokenCollateralBalance = IERC20(params.cTokenCollateralAddr)</span><br><span class="line">            .balanceOf(address(this));</span><br><span class="line"></span><br><span class="line">err = CErc20Interface(params.cTokenCollateralAddr).redeem(</span><br><span class="line">            cTokenCollateralBalance</span><br><span class="line">        );</span><br></pre></td></tr></table></figure></div><p>从抵押物cToken合约赎回抵押物</p><h1 id="交易抵押物偿还闪电贷"><a href="#交易抵押物偿还闪电贷" class="headerlink" title="交易抵押物偿还闪电贷"></a>交易抵押物偿还闪电贷</h1><p>在构建闪电贷的时候，从 A-B LP 从借出A可以还B，具体金额关系也是用乘积公示计算，这里不展开。</p><p>将需要偿还的抵押物还给闪电贷LP，剩下的就是利润。</p>]]></content>
     
     <summary type="html">
     
@@ -190,53 +190,50 @@
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="DeFi" scheme="http://yoursite.com/tags/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/tags/DeFi/"/>
     
   </entry>
   
   <entry>
     <title>为什么 Defis Network 的 USDD 会失败？</title>
-    <link href="http://yoursite.com/2020/07/20/2020-7-20-DEFIS-NETWORK/"/>
-    <id>http://yoursite.com/2020/07/20/2020-7-20-DEFIS-NETWORK/</id>
+    <link href="https://tinyhill.dev/2020/07/20/2020-7-20-DEFIS-NETWORK"/>
+    <id>https://tinyhill.dev/2020/07/20/2020-7-20-DEFIS-NETWORK</id>
     <published>2020-07-20T08:00:00.000Z</published>
-    <updated>2020-07-20T03:02:40.496Z</updated>
+    <updated>2020-07-20T08:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>没有爆仓的借贷是一种妄念</p></blockquote><h1 id="为什么需要抵押稳定币"><a href="#为什么需要抵押稳定币" class="headerlink" title="为什么需要抵押稳定币"></a>为什么需要抵押稳定币</h1><p>目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。</p><p>所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过 BitCNY，Dai 等稳定币项目。</p><h1 id="什么是好的抵押稳定币"><a href="#什么是好的抵押稳定币" class="headerlink" title="什么是好的抵押稳定币"></a>什么是好的抵押稳定币</h1><p>标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。</p><a id="more"></a><p>这这个标准下，还有一些指标来判断稳定币</p><ul><li>资金利用率，就是抵押物的抵押倍数。抵押倍数低，资金利用率就高</li><li>爆仓效率，在抵押物价值快速下跌的过程中，能够及时爆仓保证资金风险</li></ul><h1 id="什么是-USDD"><a href="#什么是-USDD" class="headerlink" title="什么是 USDD"></a>什么是 USDD</h1><p>USDD 是 Defis Networs（DFS）项目，通过超额抵押产生的抵押稳定币。</p><p>他和其他抵押稳定币有什么区别？他需要 3 倍的超额抵押，就是如果 EOS 价值 3 美金，那他只能生成一个 USDD。</p><p>同时，他没有爆仓机制。</p><h1 id="为什么-USDD-会失败"><a href="#为什么-USDD-会失败" class="headerlink" title="为什么 USDD 会失败"></a>为什么 USDD 会失败</h1><h2 id="摆事实"><a href="#摆事实" class="headerlink" title="摆事实"></a>摆事实</h2><p>USDD 目前长时间对应 EOS 的价格在 2.2 EOS/USDD 以下，夸张的时候到过 1.5 EOS/USDD。</p><p>实际上 EOS 的价格为 2.6 EOS/USDT。溢价一度超过 50%</p><h2 id="讲道理"><a href="#讲道理" class="headerlink" title="讲道理"></a>讲道理</h2><h3 id="高额抵押"><a href="#高额抵押" class="headerlink" title="高额抵押"></a>高额抵押</h3><p>高额抵押，意味着，如果稳定币溢价，套利的难度非常大。套利者抵押生成 USDD 后再用 USDD 换 EOS，这样套利者的资金就被占用，套利的金额有限。</p><p>与 3 倍高额的抵押相对应的，EOS 上另外一个稳定币 VIGOR，只需要 1.1 倍的抵押就可以生成，那样的话，如果溢价超过 10%，套利者就可以无限套利，所以溢价不可能超过 10%。</p><h3 id="无爆仓"><a href="#无爆仓" class="headerlink" title="无爆仓"></a>无爆仓</h3><p>设计者希望能够不爆仓生成稳定币，所以使用了 3 倍的高额抵押。那么是否就真的安全了？</p><p>今年 3.12 的极端行情，下跌 3 倍是有可能发生的。那时候，USDD 将会资不抵债。</p><p>这个事情 DAI 的 2 倍超额抵押，就发生了。DAI 是有爆仓的，但是因为 ETH 网络拥堵，所以爆仓交易被堵住了，最终导致了项目方拍卖 MKR 来进行补偿。</p><p>而 EOS 的速度不存在问题，为何要如此放弃自己的优势呢？</p><h1 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h1><p>用户挖矿是比不过科学家的，用户的机会可能就是赌它的上涨，具体会不会涨，这个不在我的能力范围。</p><h1 id="也说一些好事"><a href="#也说一些好事" class="headerlink" title="也说一些好事"></a>也说一些好事</h1><p>目前 EOS/USDD 池子的深度已经有 2W+ 的 EOS 了，这是目前来看，EOS 生态里面最大的 swap 池子了，这个项目如果能够激活 EOS Defi 生态，当然是最好不过的事情了。</p><h1 id="其他-EOS-Defi"><a href="#其他-EOS-Defi" class="headerlink" title="其他 EOS Defi"></a>其他 EOS Defi</h1><ul><li>EOSDT 抵押稳定币，存币生息</li><li>Pizza/USDE 抵押稳定币，借贷，交易</li><li>Bancor/USDB 交易，稳定币</li><li>Vigor 抵押稳定币，DAC</li><li>Newdex / Newdex Swap 交易</li><li>sx swap 交易</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>没有爆仓的借贷是一种妄念</p></blockquote><span id="more"></span><h1 id="为什么需要抵押稳定币"><a href="#为什么需要抵押稳定币" class="headerlink" title="为什么需要抵押稳定币"></a>为什么需要抵押稳定币</h1><p>目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。</p><p>所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过 BitCNY，Dai 等稳定币项目。</p><h1 id="什么是好的抵押稳定币"><a href="#什么是好的抵押稳定币" class="headerlink" title="什么是好的抵押稳定币"></a>什么是好的抵押稳定币</h1><p>标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。</p><p>这这个标准下，还有一些指标来判断稳定币</p><ul><li>资金利用率，就是抵押物的抵押倍数。抵押倍数低，资金利用率就高</li><li>爆仓效率，在抵押物价值快速下跌的过程中，能够及时爆仓保证资金风险</li></ul><h1 id="什么是-USDD"><a href="#什么是-USDD" class="headerlink" title="什么是 USDD"></a>什么是 USDD</h1><p>USDD 是 Defis Networs（DFS）项目，通过超额抵押产生的抵押稳定币。</p><p>他和其他抵押稳定币有什么区别？他需要 3 倍的超额抵押，就是如果 EOS 价值 3 美金，那他只能生成一个 USDD。</p><p>同时，他没有爆仓机制。</p><h1 id="为什么-USDD-会失败"><a href="#为什么-USDD-会失败" class="headerlink" title="为什么 USDD 会失败"></a>为什么 USDD 会失败</h1><h2 id="摆事实"><a href="#摆事实" class="headerlink" title="摆事实"></a>摆事实</h2><p>USDD 目前长时间对应 EOS 的价格在 2.2 EOS/USDD 以下，夸张的时候到过 1.5 EOS/USDD。</p><p>实际上 EOS 的价格为 2.6 EOS/USDT。溢价一度超过 50%</p><h2 id="讲道理"><a href="#讲道理" class="headerlink" title="讲道理"></a>讲道理</h2><h3 id="高额抵押"><a href="#高额抵押" class="headerlink" title="高额抵押"></a>高额抵押</h3><p>高额抵押，意味着，如果稳定币溢价，套利的难度非常大。套利者抵押生成 USDD 后再用 USDD 换 EOS，这样套利者的资金就被占用，套利的金额有限。</p><p>与 3 倍高额的抵押相对应的，EOS 上另外一个稳定币 VIGOR，只需要 1.1 倍的抵押就可以生成，那样的话，如果溢价超过 10%，套利者就可以无限套利，所以溢价不可能超过 10%。</p><h3 id="无爆仓"><a href="#无爆仓" class="headerlink" title="无爆仓"></a>无爆仓</h3><p>设计者希望能够不爆仓生成稳定币，所以使用了 3 倍的高额抵押。那么是否就真的安全了？</p><p>今年 3.12 的极端行情，下跌 3 倍是有可能发生的。那时候，USDD 将会资不抵债。</p><p>这个事情 DAI 的 2 倍超额抵押，就发生了。DAI 是有爆仓的，但是因为 ETH 网络拥堵，所以爆仓交易被堵住了，最终导致了项目方拍卖 MKR 来进行补偿。</p><p>而 EOS 的速度不存在问题，为何要如此放弃自己的优势呢？</p><h1 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h1><p>用户挖矿是比不过科学家的，用户的机会可能就是赌它的上涨，具体会不会涨，这个不在我的能力范围。</p><h1 id="也说一些好事"><a href="#也说一些好事" class="headerlink" title="也说一些好事"></a>也说一些好事</h1><p>目前 EOS/USDD 池子的深度已经有 2W+ 的 EOS 了，这是目前来看，EOS 生态里面最大的 swap 池子了，这个项目如果能够激活 EOS Defi 生态，当然是最好不过的事情了。</p><h1 id="其他-EOS-Defi"><a href="#其他-EOS-Defi" class="headerlink" title="其他 EOS Defi"></a>其他 EOS Defi</h1><ul><li>EOSDT 抵押稳定币，存币生息</li><li>Pizza/USDE 抵押稳定币，借贷，交易</li><li>Bancor/USDB 交易，稳定币</li><li>Vigor 抵押稳定币，DAC</li><li>Newdex / Newdex Swap 交易</li><li>sx swap 交易</li></ul>]]></content>
     
     <summary type="html">
     
       &lt;blockquote&gt;
 &lt;p&gt;没有爆仓的借贷是一种妄念&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;为什么需要抵押稳定币&quot;&gt;&lt;a href=&quot;#为什么需要抵押稳定币&quot; class=&quot;headerlink&quot; title=&quot;为什么需要抵押稳定币&quot;&gt;&lt;/a&gt;为什么需要抵押稳定币&lt;/h1&gt;&lt;p&gt;目前的稳定币主要分为两类，一类是通过美金准备金进行刚性兑付的中心化稳定币。比如 USDT 和 USDC 等，这些稳定币或合规，或不合规，都或多活少收到政府监管。最近就又几起稳定币司法冻结的事件。初次之外，是否真的能够刚性兑付这个事情，因为账目不透明所以，一直是一个迷。&lt;/p&gt;
-&lt;p&gt;所以，基于抵押所产生的，原生区块链资产稳定币，成为一个需求。在这个赛道上，出现过 BitCNY，Dai 等稳定币项目。&lt;/p&gt;
-&lt;h1 id=&quot;什么是好的抵押稳定币&quot;&gt;&lt;a href=&quot;#什么是好的抵押稳定币&quot; class=&quot;headerlink&quot; title=&quot;什么是好的抵押稳定币&quot;&gt;&lt;/a&gt;什么是好的抵押稳定币&lt;/h1&gt;&lt;p&gt;标准非常简单，是否能够长期稳定，不出现脱离锚定的情况。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="区块链轶事" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
+      <category term="区块链轶事" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="EOS" scheme="http://yoursite.com/tags/EOS/"/>
+      <category term="EOS" scheme="https://tinyhill.dev/tags/EOS/"/>
     
   </entry>
   
   <entry>
     <title>Codex 和 Uniswap 的区别</title>
-    <link href="http://yoursite.com/2020/03/17/2020-3-17-CODEX-UNISWAP/"/>
-    <id>http://yoursite.com/2020/03/17/2020-3-17-CODEX-UNISWAP/</id>
+    <link href="https://tinyhill.dev/2020/03/17/2020-3-17-CODEX-UNISWAP"/>
+    <id>https://tinyhill.dev/2020/03/17/2020-3-17-CODEX-UNISWAP</id>
     <published>2020-03-17T16:24:00.000Z</published>
-    <updated>2020-03-17T09:15:31.818Z</updated>
+    <updated>2020-03-17T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Codex 是运行在 EOS 上的基于底池的自动做市商交易所，它和该模型的鼻祖 Uniswap 之间有什么异同？</p><a id="more"></a><p>在之前介绍 FIBOS DEX 的时候已经介绍过 Uniswap 的机制。 这种机制通过底池提供流动性，用户可以立即与底池交易，无需挂单。</p><p>它的核心算法其实很简单，当前价格为底池两种资产的比值，交易前后，底池中两种资产的乘积相等。</p><p>这种机制对于深度较差的交易对，对于小额交易的用户，往往能够提供相对挂单更好的体验，因为用户可以立即成交。而挂单的交易所往往买一和卖一差价很大，用户无法用比较好的价格成交。但是对于大额交易的用户，则不如挂单交易所，因为大额交易会对底池的资金量造成比较大的影响从而导致价格的滑点，结果就是用户无法按照预期的价格成交。</p><p>所以，决定 Uniswap 类交易所使用体验的一个很重要的因素就是底池的深度。</p><p>那么 Codex 又有什么特别的地方？</p><h2 id="平台币"><a href="#平台币" class="headerlink" title="平台币"></a>平台币</h2><p>Codex 和 Uniswap 最显著也是最重要的区别在与平台币。</p><p>Uniswap 没有平台币，是一个很纯粹的项目。所有底池资金由用户提供，来赚取利润，同时也需要承担交易对价格波动的风险。其交易手续费为双向 0.3%。也由一些项目方，比如 Synthetix，会激励用户存入底池提供流动性。</p><p>而 Codex 有平台币，EIDOS，整个 Codex 都是围绕着这个平台币来构建的。在 Codex 中，所有 Token 只和 EIDOS 形成底池和直接交易对。用 EIDOS 购买 Token 收取 0.1%的手续费，而用 Token 买 EIDOS 则不收费。通过 EIDOS 作为中转，可以连接其他两种 Token，形成级联的交易对，级联的交易对双向 0.1%的手续费。同样是级联交易，在 Uniswap 中，因为中转一次，就需要收取 0.6%的手续费。</p><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>主打平台币中转的模式，对于一个新加入的币种快速获得流动性是有非常大的帮助的。</p><p>目前 EOS/EIDOS 和 USDT/EIDOS 已经存在一定的流动性。一个新的币种，只要补充其对 EIDOS 的底池，提供一定的流动性，他们它将立即获得与 EOS 和 USDT 的交易深度。</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>而这种平台币模式，也可能是一把双刃剑。目前 EIDOS 还是一个波动非常大的资产，即使相对 EOS 和 USDT 都是如此。那么对于某个代币的项目方，如果想要在 Codex 中提供流动性，那么就不得不承担 EIDOS 波动的风险。</p><p>这里补充说明一下，存入流动性所存在的风险。如果你存入底池的，你会得到底池中两种资产的赎回权，但是具体你的权益对应两种资产的比例则是根据价格不断变化的。举例，一开始你的权益对应 1 EOS 和 100 EIDOS ， 如果 EIDOS 价格一直涨，那么你的权益可能变为 2 EOS 和 50 EIDOS，相反，也可能变成 0.5 EOS 和 200 EIDOS。</p><p>如果你只在意交易对中的一种资产，而且价格剧烈变化的话，你将承担不小的风险。</p><p>所以，我对于想要存入 Codex 底池的用户有一个建议：<strong>存入双边币种你都希望持有的交易对</strong>，比如，你对 EIDOS 和 YAS 都非常看好，那么无论价格怎么变化，对你来说只是赎回的代币比例的变化，同时，还可以获取交易的手续费，是一个很保险的理财。</p><p>除此之外，Codex 的交易手续费从最开始的 1%到目前只有 0.1%，一定程度降低了用户存入底池的积极性。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Codex 之后可能会推出跨链铆钉资产，这个目前还没上线，也无法详细去研究。</p><p>目前来看， Codex 和 Uniswap 最主要的区别就是平台币 EIDOS 的存在，Codex 的成败与 EIDOS 的接受度，存在强绑定的关系。</p><p>这样的绑定关系是好是坏，只能拭目以待。</p><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>Codex 目前是一个底层的协议，项目方没有推出用户界面。</p><p>我做了一个用户界面 <a href="https://codex.easypayeos.com" target="_blank" rel="noopener">Codex+</a> , 同时集成了 Easy Pay 的资源代付功能，欢迎各位使用。也可以向 codexplusdev 账号捐赠来支持我们的工作，EOS 和 YAS 主网都是这个账号。</p>]]></content>
+    <content type="html"><![CDATA[<p>Codex 是运行在 EOS 上的基于底池的自动做市商交易所，它和该模型的鼻祖 Uniswap 之间有什么异同？</p><span id="more"></span><p>在之前介绍 FIBOS DEX 的时候已经介绍过 Uniswap 的机制。 这种机制通过底池提供流动性，用户可以立即与底池交易，无需挂单。</p><p>它的核心算法其实很简单，当前价格为底池两种资产的比值，交易前后，底池中两种资产的乘积相等。</p><p>这种机制对于深度较差的交易对，对于小额交易的用户，往往能够提供相对挂单更好的体验，因为用户可以立即成交。而挂单的交易所往往买一和卖一差价很大，用户无法用比较好的价格成交。但是对于大额交易的用户，则不如挂单交易所，因为大额交易会对底池的资金量造成比较大的影响从而导致价格的滑点，结果就是用户无法按照预期的价格成交。</p><p>所以，决定 Uniswap 类交易所使用体验的一个很重要的因素就是底池的深度。</p><p>那么 Codex 又有什么特别的地方？</p><h2 id="平台币"><a href="#平台币" class="headerlink" title="平台币"></a>平台币</h2><p>Codex 和 Uniswap 最显著也是最重要的区别在与平台币。</p><p>Uniswap 没有平台币，是一个很纯粹的项目。所有底池资金由用户提供，来赚取利润，同时也需要承担交易对价格波动的风险。其交易手续费为双向 0.3%。也由一些项目方，比如 Synthetix，会激励用户存入底池提供流动性。</p><p>而 Codex 有平台币，EIDOS，整个 Codex 都是围绕着这个平台币来构建的。在 Codex 中，所有 Token 只和 EIDOS 形成底池和直接交易对。用 EIDOS 购买 Token 收取 0.1%的手续费，而用 Token 买 EIDOS 则不收费。通过 EIDOS 作为中转，可以连接其他两种 Token，形成级联的交易对，级联的交易对双向 0.1%的手续费。同样是级联交易，在 Uniswap 中，因为中转一次，就需要收取 0.6%的手续费。</p><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>主打平台币中转的模式，对于一个新加入的币种快速获得流动性是有非常大的帮助的。</p><p>目前 EOS/EIDOS 和 USDT/EIDOS 已经存在一定的流动性。一个新的币种，只要补充其对 EIDOS 的底池，提供一定的流动性，他们它将立即获得与 EOS 和 USDT 的交易深度。</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>而这种平台币模式，也可能是一把双刃剑。目前 EIDOS 还是一个波动非常大的资产，即使相对 EOS 和 USDT 都是如此。那么对于某个代币的项目方，如果想要在 Codex 中提供流动性，那么就不得不承担 EIDOS 波动的风险。</p><p>这里补充说明一下，存入流动性所存在的风险。如果你存入底池的，你会得到底池中两种资产的赎回权，但是具体你的权益对应两种资产的比例则是根据价格不断变化的。举例，一开始你的权益对应 1 EOS 和 100 EIDOS ， 如果 EIDOS 价格一直涨，那么你的权益可能变为 2 EOS 和 50 EIDOS，相反，也可能变成 0.5 EOS 和 200 EIDOS。</p><p>如果你只在意交易对中的一种资产，而且价格剧烈变化的话，你将承担不小的风险。</p><p>所以，我对于想要存入 Codex 底池的用户有一个建议：<strong>存入双边币种你都希望持有的交易对</strong>，比如，你对 EIDOS 和 YAS 都非常看好，那么无论价格怎么变化，对你来说只是赎回的代币比例的变化，同时，还可以获取交易的手续费，是一个很保险的理财。</p><p>除此之外，Codex 的交易手续费从最开始的 1%到目前只有 0.1%，一定程度降低了用户存入底池的积极性。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Codex 之后可能会推出跨链铆钉资产，这个目前还没上线，也无法详细去研究。</p><p>目前来看， Codex 和 Uniswap 最主要的区别就是平台币 EIDOS 的存在，Codex 的成败与 EIDOS 的接受度，存在强绑定的关系。</p><p>这样的绑定关系是好是坏，只能拭目以待。</p><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>Codex 目前是一个底层的协议，项目方没有推出用户界面。</p><p>我做了一个用户界面 <a class="link"   href="https://codex.easypayeos.com" >Codex+ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> , 同时集成了 Easy Pay 的资源代付功能，欢迎各位使用。也可以向 codexplusdev 账号捐赠来支持我们的工作，EOS 和 YAS 主网都是这个账号。</p>]]></content>
     
     <summary type="html">
     
@@ -245,25 +242,25 @@
     </summary>
     
     
-      <category term="DeFi" scheme="http://yoursite.com/categories/DeFi/"/>
+      <category term="DeFi" scheme="https://tinyhill.dev/categories/DeFi/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="Uniswap" scheme="http://yoursite.com/tags/Uniswap/"/>
+      <category term="Uniswap" scheme="https://tinyhill.dev/tags/Uniswap/"/>
     
-      <category term="Codex" scheme="http://yoursite.com/tags/Codex/"/>
+      <category term="Codex" scheme="https://tinyhill.dev/tags/Codex/"/>
     
   </entry>
   
   <entry>
     <title>Fabric学习开篇</title>
-    <link href="http://yoursite.com/2020/03/17/2020-6-1-CHFD/"/>
-    <id>http://yoursite.com/2020/03/17/2020-6-1-CHFD/</id>
+    <link href="https://tinyhill.dev/2020/03/17/2020-6-1-CHFD"/>
+    <id>https://tinyhill.dev/2020/03/17/2020-6-1-CHFD</id>
     <published>2020-03-17T16:24:00.000Z</published>
-    <updated>2020-06-01T07:32:14.673Z</updated>
+    <updated>2020-03-17T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>根据 《Certified Hyperledger Fabric Developer》考试要求学习 Fabric</p><a id="more"></a><p>因为工作原因，又需要学习 Hyperledger Fabric 相关的内容，目前Fabric和两年前比起来已经有了一些变化。虽然我还是非常不认可它的设计，但是挡不住公司用它。</p><p>因为要考 CHFD，所以还是需要系统学习一下。打算把学习的内容固化下来。</p><p>今天就先把考试的大纲列一下，后续不断更新。</p><h1 id="CHFD-Domains-amp-Competencies-v1-0"><a href="#CHFD-Domains-amp-Competencies-v1-0" class="headerlink" title="CHFD Domains &amp; Competencies v1.0"></a>CHFD Domains &amp; Competencies v1.0</h1><h2 id="Identity-Management-–-7"><a href="#Identity-Management-–-7" class="headerlink" title="Identity Management – 7%"></a>Identity Management – 7%</h2><ul><li>Instantiate a wallet</li><li>Import identities to a wallet</li><li>Select and manage identity from a wallet</li></ul><h2 id="Network-Configuration-–-8"><a href="#Network-Configuration-–-8" class="headerlink" title="Network Configuration – 8%"></a>Network Configuration – 8%</h2><ul><li>Create and use connection profiles</li><li>Instantiate and connect to a gateway</li><li>Access networks and contracts</li></ul><h2 id="Smart-Contract-Development-–-40"><a href="#Smart-Contract-Development-–-40" class="headerlink" title="Smart Contract Development – 40%"></a>Smart Contract Development – 40%</h2><ul><li>Define smart contract class/construct</li><li>Define transaction functions</li><li>Validate and sanitize inputs and arguments</li><li>Implement deterministic logic/code</li><li>Simple state interaction (Get, Put, Delete)</li><li>Execute simple queries</li><li>Create complex queries</li><li>Define assets using key value pairs</li><li>Identify potentially private data</li><li>Incorporate private data collection</li><li>Implement attribute based access control</li><li>Initialization of the ledger state</li><li>Install and instantiate a smart contract</li></ul><h2 id="Smart-Contract-Invocation-–-25"><a href="#Smart-Contract-Invocation-–-25" class="headerlink" title="Smart Contract Invocation – 25%"></a>Smart Contract Invocation – 25%</h2><ul><li>Invoke smart contracts via CLI</li><li>Submit one or more transactions</li><li>Evaluate transaction functions e.g. for queries</li><li>Query transaction history</li><li>Call a transaction using transaction class (stateful)</li><li>Create and issue an application contract</li><li>Register and handle channel-based events</li></ul><h2 id="Maintenance-and-Testing-–-20"><a href="#Maintenance-and-Testing-–-20" class="headerlink" title="Maintenance and Testing – 20%"></a>Maintenance and Testing – 20%</h2><ul><li>Handle error and success responses</li><li>Identify and review logs</li><li>Unit test contracts</li><li>Diagnose and endorse policy conflicts</li><li>Identify and correct non-determinism in functions</li><li>Troubleshoot transaction flow</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>根据 《Certified Hyperledger Fabric Developer》考试要求学习 Fabric</p><span id="more"></span><p>因为工作原因，又需要学习 Hyperledger Fabric 相关的内容，目前Fabric和两年前比起来已经有了一些变化。虽然我还是非常不认可它的设计，但是挡不住公司用它。</p><p>因为要考 CHFD，所以还是需要系统学习一下。打算把学习的内容固化下来。</p><p>今天就先把考试的大纲列一下，后续不断更新。</p><h1 id="CHFD-Domains-amp-Competencies-v1-0"><a href="#CHFD-Domains-amp-Competencies-v1-0" class="headerlink" title="CHFD Domains &amp; Competencies v1.0"></a>CHFD Domains &amp; Competencies v1.0</h1><h2 id="Identity-Management-–-7"><a href="#Identity-Management-–-7" class="headerlink" title="Identity Management – 7%"></a>Identity Management – 7%</h2><ul><li>Instantiate a wallet</li><li>Import identities to a wallet</li><li>Select and manage identity from a wallet</li></ul><h2 id="Network-Configuration-–-8"><a href="#Network-Configuration-–-8" class="headerlink" title="Network Configuration – 8%"></a>Network Configuration – 8%</h2><ul><li>Create and use connection profiles</li><li>Instantiate and connect to a gateway</li><li>Access networks and contracts</li></ul><h2 id="Smart-Contract-Development-–-40"><a href="#Smart-Contract-Development-–-40" class="headerlink" title="Smart Contract Development – 40%"></a>Smart Contract Development – 40%</h2><ul><li>Define smart contract class/construct</li><li>Define transaction functions</li><li>Validate and sanitize inputs and arguments</li><li>Implement deterministic logic/code</li><li>Simple state interaction (Get, Put, Delete)</li><li>Execute simple queries</li><li>Create complex queries</li><li>Define assets using key value pairs</li><li>Identify potentially private data</li><li>Incorporate private data collection</li><li>Implement attribute based access control</li><li>Initialization of the ledger state</li><li>Install and instantiate a smart contract</li></ul><h2 id="Smart-Contract-Invocation-–-25"><a href="#Smart-Contract-Invocation-–-25" class="headerlink" title="Smart Contract Invocation – 25%"></a>Smart Contract Invocation – 25%</h2><ul><li>Invoke smart contracts via CLI</li><li>Submit one or more transactions</li><li>Evaluate transaction functions e.g. for queries</li><li>Query transaction history</li><li>Call a transaction using transaction class (stateful)</li><li>Create and issue an application contract</li><li>Register and handle channel-based events</li></ul><h2 id="Maintenance-and-Testing-–-20"><a href="#Maintenance-and-Testing-–-20" class="headerlink" title="Maintenance and Testing – 20%"></a>Maintenance and Testing – 20%</h2><ul><li>Handle error and success responses</li><li>Identify and review logs</li><li>Unit test contracts</li><li>Diagnose and endorse policy conflicts</li><li>Identify and correct non-determinism in functions</li><li>Troubleshoot transaction flow</li></ul>]]></content>
     
     <summary type="html">
     
@@ -272,23 +269,23 @@
     </summary>
     
     
-      <category term="Fabric" scheme="http://yoursite.com/categories/Fabric/"/>
+      <category term="Fabric" scheme="https://tinyhill.dev/categories/Fabric/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="Fabric" scheme="http://yoursite.com/tags/Fabric/"/>
+      <category term="Fabric" scheme="https://tinyhill.dev/tags/Fabric/"/>
     
   </entry>
   
   <entry>
     <title>RBTC 的跨链安全性</title>
-    <link href="http://yoursite.com/2020/03/03/2020-3-3-RSK-SECURITY-MODEL/"/>
-    <id>http://yoursite.com/2020/03/03/2020-3-3-RSK-SECURITY-MODEL/</id>
+    <link href="https://tinyhill.dev/2020/03/03/2020-3-3-RSK-SECURITY-MODEL"/>
+    <id>https://tinyhill.dev/2020/03/03/2020-3-3-RSK-SECURITY-MODEL</id>
     <published>2020-03-03T16:24:00.000Z</published>
-    <updated>2020-03-03T12:48:36.875Z</updated>
+    <updated>2020-03-03T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RBTC 是如何做到安全和去中心化的？</p><a id="more"></a><p><a href="https://developers.rsk.co/rsk/architecture/security/" target="_blank" rel="noopener">RSK 文档链接</a></p><p>由于 DeFi（去中心化金融）对于智能 BTC 的需求，目前已经有很多不同类型的 BTC 跨链项目在运行了，而 RSK 的 RBTC 也是这条赛道最早的竞争者之一。</p><p>我们都知道，BTC 的跨链，实际上就是在 Bitcoin 链上锁定，再在另外一条链上发行同样金额的币，反方向则是销毁和解锁。</p><h2 id="RBTC-的跨链安全性"><a href="#RBTC-的跨链安全性" class="headerlink" title="RBTC 的跨链安全性"></a>RBTC 的跨链安全性</h2><p>由于 Bitcoin 不是一个图灵完备的公链，理论上，无法做到完全的去信任跨链。RSK 在 Bitcoin 链上的锁定的 BTC 资产安全由一组可信第三方（简称 STTP）来保证。这些可信第三方组成了 RSK 联合会（Federation），没有一个单独的 STTP 能够操控锁定的 BTC，只有大多数 STTP 通过才能够释放 BTC 资产。当 STTP 监控到 RSK 链上发起的跨链转账 BTC，STTP 多签执行解锁的操作。除此之外，用户在 Bitcoin 链上发起的跨链转账所锁定的 BTC 并不会固定锁定在一个单独的地址中，RSK 锁定的 BTC 是一个大池子，统一管理。</p><p>RSK 联合会成员进行锁定和解锁 BTC 是无需人为干预的。加入 RSK 联合会需要首先对成员的节点程序进行审核，确保节点的基础设施能够提供正确的操作，此外 RSK 实验室也开发了针对 STTP 的硬件安全模块来保证私钥的安全。</p><p>截至 2019 年 1 月，RSK 联合会由 15 名知名且高度安全的公证人组成。这些领先的区块链公司通过自治协议来安全锁定 BTC。作为报酬，RSK 联合会成员将获得 RSK 产生的交易费用的 1％，以支付硬件和维护成本。联合会成员的更替由智能合约负责，因此对公众开放。更替生效之前有一个强制性的延迟一周。 如果用户不信任新的 RSK 联合会成员，用户可以将 BTC 转移回 Bitcoin 网络。</p><p>如果之后 Bitcoin 通过升级添加了特殊的操作码或可扩展性来支持使用 SPV 验证，RSK 将升级跨链的机制来支持完全去中心化的实现。</p><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>搜索了很多资料，关于 RSK 联合会的信息很少，官网中并没有找到，唯一找到的<a href="https://news.bitcoin.com/rsk-federation-partners-industry-leaders/" target="_blank" rel="noopener">文章</a>中列出了成员包括：</p><ul><li>Bitgo</li><li>Bitpay</li><li>Bitstamp</li><li>Blockchain</li><li>Blockchain Intelligence Group</li><li>Bitfinex</li><li>BTCC</li><li>Jaxx</li><li>Huobi</li><li>OKCoin</li><li>Xapo</li></ul><p>确实都是一些业界最知名的公司。</p><p>除了 RBTC，其他一些跨链 BTC 的项目，也都是类似的多机构或者单机构的公证人机制。在目前 Bitcoin 非图灵完备的情况下，还有没有可能出现其他方式的跨链？这是一个值得期待的问题。</p><p>关于其他 BTC 跨链项目，可以看看(<a href="https://www.chainnews.com/articles/969112149833.htm" target="_blank" rel="noopener">https://www.chainnews.com/articles/969112149833.htm</a>)</p>]]></content>
+    <content type="html"><![CDATA[<p>RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RBTC 是如何做到安全和去中心化的？</p><span id="more"></span><p><a class="link"   href="https://developers.rsk.co/rsk/architecture/security/" >RSK 文档链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>由于 DeFi（去中心化金融）对于智能 BTC 的需求，目前已经有很多不同类型的 BTC 跨链项目在运行了，而 RSK 的 RBTC 也是这条赛道最早的竞争者之一。</p><p>我们都知道，BTC 的跨链，实际上就是在 Bitcoin 链上锁定，再在另外一条链上发行同样金额的币，反方向则是销毁和解锁。</p><h2 id="RBTC-的跨链安全性"><a href="#RBTC-的跨链安全性" class="headerlink" title="RBTC 的跨链安全性"></a>RBTC 的跨链安全性</h2><p>由于 Bitcoin 不是一个图灵完备的公链，理论上，无法做到完全的去信任跨链。RSK 在 Bitcoin 链上的锁定的 BTC 资产安全由一组可信第三方（简称 STTP）来保证。这些可信第三方组成了 RSK 联合会（Federation），没有一个单独的 STTP 能够操控锁定的 BTC，只有大多数 STTP 通过才能够释放 BTC 资产。当 STTP 监控到 RSK 链上发起的跨链转账 BTC，STTP 多签执行解锁的操作。除此之外，用户在 Bitcoin 链上发起的跨链转账所锁定的 BTC 并不会固定锁定在一个单独的地址中，RSK 锁定的 BTC 是一个大池子，统一管理。</p><p>RSK 联合会成员进行锁定和解锁 BTC 是无需人为干预的。加入 RSK 联合会需要首先对成员的节点程序进行审核，确保节点的基础设施能够提供正确的操作，此外 RSK 实验室也开发了针对 STTP 的硬件安全模块来保证私钥的安全。</p><p>截至 2019 年 1 月，RSK 联合会由 15 名知名且高度安全的公证人组成。这些领先的区块链公司通过自治协议来安全锁定 BTC。作为报酬，RSK 联合会成员将获得 RSK 产生的交易费用的 1％，以支付硬件和维护成本。联合会成员的更替由智能合约负责，因此对公众开放。更替生效之前有一个强制性的延迟一周。 如果用户不信任新的 RSK 联合会成员，用户可以将 BTC 转移回 Bitcoin 网络。</p><p>如果之后 Bitcoin 通过升级添加了特殊的操作码或可扩展性来支持使用 SPV 验证，RSK 将升级跨链的机制来支持完全去中心化的实现。</p><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>搜索了很多资料，关于 RSK 联合会的信息很少，官网中并没有找到，唯一找到的<a class="link"   href="https://news.bitcoin.com/rsk-federation-partners-industry-leaders/" >文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中列出了成员包括：</p><ul><li>Bitgo</li><li>Bitpay</li><li>Bitstamp</li><li>Blockchain</li><li>Blockchain Intelligence Group</li><li>Bitfinex</li><li>BTCC</li><li>Jaxx</li><li>Huobi</li><li>OKCoin</li><li>Xapo</li></ul><p>确实都是一些业界最知名的公司。</p><p>除了 RBTC，其他一些跨链 BTC 的项目，也都是类似的多机构或者单机构的公证人机制。在目前 Bitcoin 非图灵完备的情况下，还有没有可能出现其他方式的跨链？这是一个值得期待的问题。</p><p>关于其他 BTC 跨链项目，可以看看(<a class="link"   href="https://www.chainnews.com/articles/969112149833.htm" >https://www.chainnews.com/articles/969112149833.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)</p>]]></content>
     
     <summary type="html">
     
@@ -297,23 +294,23 @@
     </summary>
     
     
-      <category term="RSK" scheme="http://yoursite.com/categories/RSK/"/>
+      <category term="RSK" scheme="https://tinyhill.dev/categories/RSK/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="RBTC" scheme="http://yoursite.com/tags/RBTC/"/>
+      <category term="RBTC" scheme="https://tinyhill.dev/tags/RBTC/"/>
     
   </entry>
   
   <entry>
     <title>RSK 如何做到低费用高安全</title>
-    <link href="http://yoursite.com/2020/03/03/2020-3-5-RSK-FEE/"/>
-    <id>http://yoursite.com/2020/03/03/2020-3-5-RSK-FEE/</id>
+    <link href="https://tinyhill.dev/2020/03/03/2020-3-5-RSK-FEE"/>
+    <id>https://tinyhill.dev/2020/03/03/2020-3-5-RSK-FEE</id>
     <published>2020-03-03T16:24:00.000Z</published>
-    <updated>2020-03-17T09:17:12.496Z</updated>
+    <updated>2020-03-03T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RSK 是否存在 RBTC 的区块奖励？这些奖励从哪里来？</p><a id="more"></a><p><a href="https://blog.rsk.co/zh-hans/noticia/%e6%af%94%e7%89%b9%e5%b8%81%e5%90%88%e5%b9%b6%e6%8c%96%e7%9f%bf%e5%8c%ba%e5%9d%97%e9%93%be%e7%9a%84%e7%9b%88%e5%88%a9%e8%83%bd%e5%8a%9b%e7%a0%94%e7%a9%b6/" target="_blank" rel="noopener">RSK 文档链接</a></p><p>没有详细了解 RSK 之前，有一个问题一直困扰我。既然 RSK 使用 RBTC 作为基础代币，那么作为区块奖励的 RBTC 从何而来？如果是自身增发，那么 RBTC 和 BTC 的 1:1 必然不可持续。如果是使用基金会募资来补贴，也必然不是长久之际。</p><p>那答案是什么呢？RSK 的区块奖励只包括交易手续费，而没有一般区块链的 coinbase（币基）奖励。这意味着矿工的所有收入都来源于交易手续费，RBTC 不存在增发。</p><p>依赖双挖的特性，BTC 的矿工可以在挖 BTC 的同时一起挖 RSK 而不付出多余的代价。<strong>这就是矿工愿意接入 RSK 的原因</strong>。</p><p>RSK 大约每 30 秒出块秒，每个区块的手续费平均为 0.00006844 RBTC，每月的区块奖励大概在 6 个 RBTC。虽然手续费的收入不算多，但是聊胜于无。目前已经有大约 40%的 BTC 算力同时参与 RSK 挖矿。</p><p>正因为有双挖的机制，RSK 能够提供很高的安全性，同时在交易手续费方面又可以保持较低的水平。RSK 目前的手续费大幅低于 BTC，而且低于以太坊的费率。</p><p>RSK 完全兼容以太的智能合约，在以太升级 POS 所导致的各种隐忧的情况下，一些希望长久稳定，并且希望由大算力护航的项目，不妨考虑一下 RSK。</p>]]></content>
+    <content type="html"><![CDATA[<p>RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RSK 是否存在 RBTC 的区块奖励？这些奖励从哪里来？</p><span id="more"></span><p><a class="link"   href="https://blog.rsk.co/zh-hans/noticia/%e6%af%94%e7%89%b9%e5%b8%81%e5%90%88%e5%b9%b6%e6%8c%96%e7%9f%bf%e5%8c%ba%e5%9d%97%e9%93%be%e7%9a%84%e7%9b%88%e5%88%a9%e8%83%bd%e5%8a%9b%e7%a0%94%e7%a9%b6/" >RSK 文档链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>没有详细了解 RSK 之前，有一个问题一直困扰我。既然 RSK 使用 RBTC 作为基础代币，那么作为区块奖励的 RBTC 从何而来？如果是自身增发，那么 RBTC 和 BTC 的 1:1 必然不可持续。如果是使用基金会募资来补贴，也必然不是长久之际。</p><p>那答案是什么呢？RSK 的区块奖励只包括交易手续费，而没有一般区块链的 coinbase（币基）奖励。这意味着矿工的所有收入都来源于交易手续费，RBTC 不存在增发。</p><p>依赖双挖的特性，BTC 的矿工可以在挖 BTC 的同时一起挖 RSK 而不付出多余的代价。<strong>这就是矿工愿意接入 RSK 的原因</strong>。</p><p>RSK 大约每 30 秒出块秒，每个区块的手续费平均为 0.00006844 RBTC，每月的区块奖励大概在 6 个 RBTC。虽然手续费的收入不算多，但是聊胜于无。目前已经有大约 40%的 BTC 算力同时参与 RSK 挖矿。</p><p>正因为有双挖的机制，RSK 能够提供很高的安全性，同时在交易手续费方面又可以保持较低的水平。RSK 目前的手续费大幅低于 BTC，而且低于以太坊的费率。</p><p>RSK 完全兼容以太的智能合约，在以太升级 POS 所导致的各种隐忧的情况下，一些希望长久稳定，并且希望由大算力护航的项目，不妨考虑一下 RSK。</p>]]></content>
     
     <summary type="html">
     
@@ -322,73 +319,73 @@
     </summary>
     
     
-      <category term="RSK" scheme="http://yoursite.com/categories/RSK/"/>
+      <category term="RSK" scheme="https://tinyhill.dev/categories/RSK/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="RBTC" scheme="http://yoursite.com/tags/RBTC/"/>
+      <category term="RBTC" scheme="https://tinyhill.dev/tags/RBTC/"/>
     
   </entry>
   
   <entry>
     <title>[翻译] Voice：通往测试版之路</title>
-    <link href="http://yoursite.com/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA/"/>
-    <id>http://yoursite.com/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA/</id>
+    <link href="https://tinyhill.dev/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA"/>
+    <id>https://tinyhill.dev/2020/02/06/2020-2-6-VOICE-ROAD-TO-BETA</id>
     <published>2020-02-06T16:24:00.000Z</published>
-    <updated>2020-03-03T12:48:30.353Z</updated>
+    <updated>2020-02-06T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://voice.com/blog/road-to-beta/" target="_blank" rel="noopener">原文链接</a></p><p>六个月前，我们的首席执行官 Brendan Blumer 和首席技术 Dan Larimer 在拥挤的华盛顿特区礼堂举行了一场激烈的演讲。主题是社交媒体的现状。</p><a id="more"></a><p>好吧，它并不是真正的“激烈”。它更多地是一场涉及次贷危机、区块链演变和社会心理的多元运动演说。</p><p>但所有这些都归结为：</p><p>  <strong>社交媒体”坏”了。社交媒体被设计去利用我们的数据和注意力，为大型集团公司、大型科技公司、银行和华尔街利益集团创造了数万亿美元的利润，与此同时，我们努力保护自己免受注意力被拍卖给匿名方以及个人信息在公开市场上交易的后果。我们与曾经信任的平台之间的利益失衡，使我们越来越容易遭受数据剖析、身份盗窃、网络欺凌和有说服力的错误信息的影响。越来越多的人想要操纵我们的思想并控制自己的行为，在制造出来的信息海洋中去了解真相从未如此困难。</strong></p><p>这就是为什么我们如此专注于Voice的原因：一个基于区块链的社交网络，重新组合用户喜好的公式————消除不透明的单方面数据拍卖，去除隐藏的算法，并通过Voice代币的形式将价值循环回用户手中。通过做自己并表达自己的声音即可获得Voice代币；它们具有影响注意力的效用，可用于在整个生态系统中以不同的方式提升内容。换句话说，我们相信Voice应该是社交性的————那些对平台有利的也对您有利。</p><p>自从我们宣布这一消息以来，成千上万的人已经申请测试版，意见领袖已经宣布支持，媒体也在要求我们提供信息和时间表————正如您也是如此。我们很高兴看到这样的情况，希望你们一直保持下去。</p><p>接下去是什么？</p><p>与大多数新兴技术一样，让人们能够使用Voice不仅需要认真的开发。法律环境仍在不断发展，而区块链与代币化以及社交媒体的结合相对来说尚属未知领域。因此，我们正在与立法部门和监管机构进行持续的公开对话，以确保Voice已为用户准备就绪。</p><p>可以说，这是一条漫长而未铺砌的市场之路。但是我们进展顺利————我们的目标是在<strong>2020年2月14日</strong>发布测试版。</p><p>从现在开始，我们希望与大家分享我们的旅程。行业变革不会一蹴而就，也不会凭空而来。在此过程的每个阶段，没有您的参与，仔细检查和反馈，Voice将无法达成它应有的样子。因此，可以将此篇博客视为公开邀请。我们的最新发现、最大的挑战以及Dan和开发人员的故事，还有法规更新和幕后窥视，我们正准备将其发布在这里，希望产生一些变化，因此您可以与我们一起迈向测试版。再见。</p><h2 id="加入Voice对话"><a href="#加入Voice对话" class="headerlink" title="加入Voice对话"></a>加入Voice对话</h2><p>在<a href="https://twitter.com/voicesocial_" target="_blank" rel="noopener">Twitter</a>，<a href="https://www.facebook.com/getvoicesocial" target="_blank" rel="noopener">Facebook</a>和<a href="https://www.instagram.com/Voice_Social_/" target="_blank" rel="noopener">Instagram</a>上关注我们以获取最新更新，或访问我们的<a href="https://voice.com/blog/road-to-beta/" target="_blank" rel="noopener">常见问题解答</a>，随着我们不断发展Voice，我们将添加新的更新和信息。在这里，您可以看到别人在问什么，并添加自己的问题。</p>]]></content>
+    <content type="html"><![CDATA[<p><a class="link"   href="https://voice.com/blog/road-to-beta/" >原文链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p>六个月前，我们的首席执行官 Brendan Blumer 和首席技术 Dan Larimer 在拥挤的华盛顿特区礼堂举行了一场激烈的演讲。主题是社交媒体的现状。</p><span id="more"></span><p>好吧，它并不是真正的“激烈”。它更多地是一场涉及次贷危机、区块链演变和社会心理的多元运动演说。</p><p>但所有这些都归结为：</p><p>  <strong>社交媒体”坏”了。社交媒体被设计去利用我们的数据和注意力，为大型集团公司、大型科技公司、银行和华尔街利益集团创造了数万亿美元的利润，与此同时，我们努力保护自己免受注意力被拍卖给匿名方以及个人信息在公开市场上交易的后果。我们与曾经信任的平台之间的利益失衡，使我们越来越容易遭受数据剖析、身份盗窃、网络欺凌和有说服力的错误信息的影响。越来越多的人想要操纵我们的思想并控制自己的行为，在制造出来的信息海洋中去了解真相从未如此困难。</strong></p><p>这就是为什么我们如此专注于Voice的原因：一个基于区块链的社交网络，重新组合用户喜好的公式————消除不透明的单方面数据拍卖，去除隐藏的算法，并通过Voice代币的形式将价值循环回用户手中。通过做自己并表达自己的声音即可获得Voice代币；它们具有影响注意力的效用，可用于在整个生态系统中以不同的方式提升内容。换句话说，我们相信Voice应该是社交性的————那些对平台有利的也对您有利。</p><p>自从我们宣布这一消息以来，成千上万的人已经申请测试版，意见领袖已经宣布支持，媒体也在要求我们提供信息和时间表————正如您也是如此。我们很高兴看到这样的情况，希望你们一直保持下去。</p><p>接下去是什么？</p><p>与大多数新兴技术一样，让人们能够使用Voice不仅需要认真的开发。法律环境仍在不断发展，而区块链与代币化以及社交媒体的结合相对来说尚属未知领域。因此，我们正在与立法部门和监管机构进行持续的公开对话，以确保Voice已为用户准备就绪。</p><p>可以说，这是一条漫长而未铺砌的市场之路。但是我们进展顺利————我们的目标是在<strong>2020年2月14日</strong>发布测试版。</p><p>从现在开始，我们希望与大家分享我们的旅程。行业变革不会一蹴而就，也不会凭空而来。在此过程的每个阶段，没有您的参与，仔细检查和反馈，Voice将无法达成它应有的样子。因此，可以将此篇博客视为公开邀请。我们的最新发现、最大的挑战以及Dan和开发人员的故事，还有法规更新和幕后窥视，我们正准备将其发布在这里，希望产生一些变化，因此您可以与我们一起迈向测试版。再见。</p><h2 id="加入Voice对话"><a href="#加入Voice对话" class="headerlink" title="加入Voice对话"></a>加入Voice对话</h2><p>在<a class="link"   href="https://twitter.com/voicesocial_" >Twitter <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，<a class="link"   href="https://www.facebook.com/getvoicesocial" >Facebook <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和<a class="link"   href="https://www.instagram.com/Voice_Social_/" >Instagram <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>上关注我们以获取最新更新，或访问我们的<a class="link"   href="https://voice.com/blog/road-to-beta/" >常见问题解答 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，随着我们不断发展Voice，我们将添加新的更新和信息。在这里，您可以看到别人在问什么，并添加自己的问题。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://voice.com/blog/road-to-beta/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a class=&quot;link&quot;   href=&quot;https://voice.com/blog/road-to-beta/&quot; &gt;原文链接 &lt;i class=&quot;fa-regular fa-arrow-up-right-from-square fa-sm&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;六个月前，我们的首席执行官 Brendan Blumer 和首席技术 Dan Larimer 在拥挤的华盛顿特区礼堂举行了一场激烈的演讲。主题是社交媒体的现状。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="翻译" scheme="https://tinyhill.dev/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="EOS" scheme="http://yoursite.com/tags/EOS/"/>
+      <category term="EOS" scheme="https://tinyhill.dev/tags/EOS/"/>
     
-      <category term="Voice" scheme="http://yoursite.com/tags/Voice/"/>
+      <category term="Voice" scheme="https://tinyhill.dev/tags/Voice/"/>
     
   </entry>
   
   <entry>
     <title>VOICE FAQ（常见问题）翻译</title>
-    <link href="http://yoursite.com/2020/02/05/2020-2-5-VOICE-FAQ/"/>
-    <id>http://yoursite.com/2020/02/05/2020-2-5-VOICE-FAQ/</id>
+    <link href="https://tinyhill.dev/2020/02/05/2020-2-5-VOICE-FAQ"/>
+    <id>https://tinyhill.dev/2020/02/05/2020-2-5-VOICE-FAQ</id>
     <published>2020-02-05T16:24:00.000Z</published>
-    <updated>2020-02-05T11:49:32.387Z</updated>
+    <updated>2020-02-05T16:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Voice 是由 Block.one 公司推出的社交网站，基于EOSIO区块链。这里翻译一下官方的问答，基于谷歌翻译并做微调。</p><p><a href="https://voice.com/faq/" target="_blank" rel="noopener">原文链接</a></p><p><strong>Voice是什么？</strong></p><p>Voice是用于创建、分发和发现内容的公开透明、基于奖励的社交网络。它旨在通过身份认证和公开透明的数据库基础结构来培养新的可信任的体验。<br>Voice由用户构成并为了用户而创建的。大部分价值通过Voice代币返回到社区，Voice代币是一种实用代币，可以通过获取和使用来获得网络上其他用户的关注。</p><a id="more"></a><p><strong>是什么使Voice在技术上与众不同？</strong></p><p>利用Block.one开发的开源EOSIO协议，Voice充分利用了区块链技术的固有特性：安全性和可审计性。通过Voice，我们促进了可信任且透明的社交互动，以及对平台内容推广方式的可见性。</p><p><strong>什么是Voice代币，如何获得？</strong></p><p>Voice代币是消耗性的实用代币，用来引起其他用户的注意；您可以将它们花费在特定内容上，以增加在平台上的曝光度。由于每个人都有被倾听的权利，因此用户每天都会获得相同数量的Voice代币。您可以通过创建其他人消费和欣赏的内容来获得Voice代币。最初，您可以使用代币购买发布的内容下方的空间，但Voice代币被认为是平台上所有形式的促销和广告的中介。</p><p>随着测试版的发布，我们将在Voice博客上发布更多有关Voice代币，以及分发机制和消费模型的详细信息。</p><p><strong>与其他社交媒体相比，Voice上的促销和广告有何不同？</strong></p><p>Voice代币位于区块链账本中，该账本对存储的数据库实现了前所未有的透明性，包括整个平台上的促销和广告。通过使用户能够看到促销内容的背后的发起人和促销方式，使得促销活动更加吸引人并且更少的误导性。这种可审核的透明度还扩展到Voice代币的分发和使用，Voice代币由作者和用户获得，并由寻求推广的人花费。</p><p><strong>那些更被动，主要只是消费内容的社交媒体用户呢？ 他们为什么要使用Voice？</strong></p><p>真实用户。 真实内容。 实际价值。 Voice专为消费者和内容创作者而设计。 Voice上的每个用户将有权影响哪些内容获得的热度，为了确保这一点，所有经过验证的用户每天将获得相等数量的Voice代币。 我们相信每个人的意见都很重要，而Voice代币就是我们确保其真正做到的方式。</p><p><strong>如何使用Voice代币来推广内容？</strong></p><p>Voice上的每个帖子都有机会被“听到”。 这意味着用户可以将其Voice代币消费到帖子中并控制顶部评论。 此操作可奖励内容创建者，并为帖子带来更多可见度。 那时，用户的Voice代币已花费在帖子上。 如果其他人提供了更多Voice代币来控制指定文章上的最高评论点，则前竞标者将失去对该位置的控制权，但获得的Voice代币要比他们最初花费的Voice代币多。 然后，他们可以决定是否要为该位置重新出价以重新获得控制权。</p><p><strong>与其他未能处理假新闻，欺凌和操纵行为的社交平台相比，Voice的工作方式有何不同？内容将如何审核？</strong></p><p>当前社交媒体平台上发生的大规模攻击和操纵，很大程度上是由于无法将内容归因于终端用户，因此为假冒、商业化和操纵性内容和行为营造了猖獗的环境。Voice的用户是经过验证的真实身份，旨在通过将所有内容归因于特定人员的能力来极大地减少假帐户和非法内容的流行。</p><p>适用性仍然是一个问题，控制应用的规则通常不由平台运营商所控制，而由监管机构和适用法律掌握。作为一家公司，我们相信言论自由，并会在遵守所有法律法规的前提下优先考虑该价值。</p><p>我们希望将来能够实现分散的内容分发和审核，但是对于第一阶段，我们主要致力于提供那些可以用许多令人兴奋的方式进行扩展的核心功能。</p><p><strong>Voice的所有用户都将被要求验证身份吗？</strong></p><p>除了单纯内容消费之外，其他所有的场景都需要验证身份。 真实性是使社交媒体保持一致的基础，而身份验证将确保每个帐户都属于一个真实的人。 经过验证的身份有助于消除机器人程序、虚假新闻以及由做恶者隐藏在匿名和商业利益背后而造成的困扰现有社交平台的其他负面体验，并有助于与代币化经济体进行更深入的合规性互动。 我们并没有忘记实现这一目标所会遇到的障碍，但是我们知道它所带来的变革性经验是值得去克服这些障碍的，我们还会专注于使流程尽可能简化和容易。</p><p><strong>Voice测试版是什么样子？</strong></p><p>与所有雄心勃勃的新产品一样，Voice将需要迭代和反复试验，以确保满足以用户为中心，安全性强且人们喜欢它。 随着我们不断进行迭代，有关产品和此问答的许多事情也会改变。 测试版将向社区成员敞开大门，让他们首次体验Voice，测试其设计并开始建立您的网络。</p><p><strong>如何实现Voice博客测试版</strong></p><p>透明度是我们所做工作的核心，并且在我们持续构建Voice的过程中，这部分意味着向我们的社区敞开大门，让他们亲眼目睹Block.one为实现Voice所做的努力、成功和所采取的步骤。</p><p>在未来的几个月中，我们希望通过我们的博客和常见问题解答，就当今困扰社交媒体的问题，与社区进行对话，说明Voice在改变社交媒体范式中所扮演的角色以及我们启动测试版的方式。 我们的博客将重点介绍过程中有趣的方面，因为我们能够应对面临的挑战和所看到的机遇。 在新的Voice博客中可以找到最早的测试公告，以及我们即将推出而不断增长的问答。</p><p><strong>Voice何时可用？</strong></p><p>Voice团队正在努力争取在2020年2月14日发布Voice的公共测试版。您可以在Voice.com上请求测试版的访问权限，以了解最新动态。 虽然Voice测试的初始版本仅是英语，且功能有限，但我们希望使尽可能多的人可以使用它，以开始体验此方向并提供反馈。 如果您尚未请求测试版访问权限，我们鼓励您加入我们。</p><p><strong>Voice将在哪里运行？</strong></p><p>当Voice处于测试状态且处于高度迭代状态时，它将在特定的EOSIO区块链上运行。 随着时间的流逝，我们希望Voice能够利用EOS公链以及可能满足Voice的性能和治理要求的其他区块链。</p><p><strong>哪些国家可以使用测试版Voice？</strong></p><p>Voice旨在成为一个欢迎不同体验和文化的全球社区，这就是我们的目标。 在朝着这个目标努力的过程中，Voice 测试版最初将以英语发布，并在许多可行的发布国家/地区发布。 随着我们针对本地语言，标准和法规环境改进和优化，我们的目标是继续提高世界各地不同国家和语言的用户的可访问性。 我们将继续在Voice博客中及时更新社区信息，以及在发布过程中面临的任何挑战，因为我们打算尽快将邀请尽可能广泛地发出。</p><p><strong>有兴趣加入Block.one来开发Voice吗？</strong></p><p>我们始终欢迎对Voice有兴趣希望加入Block.one的人。 有关加入Block.one团队的更多信息，请访问我们的职业页面以查看我们目前正在招聘的职位。</p>]]></content>
+    <content type="html"><![CDATA[<p>Voice 是由 Block.one 公司推出的社交网站，基于EOSIO区块链。这里翻译一下官方的问答，基于谷歌翻译并做微调。</p><p><a class="link"   href="https://voice.com/faq/" >原文链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p><strong>Voice是什么？</strong></p><p>Voice是用于创建、分发和发现内容的公开透明、基于奖励的社交网络。它旨在通过身份认证和公开透明的数据库基础结构来培养新的可信任的体验。<br>Voice由用户构成并为了用户而创建的。大部分价值通过Voice代币返回到社区，Voice代币是一种实用代币，可以通过获取和使用来获得网络上其他用户的关注。</p><span id="more"></span><p><strong>是什么使Voice在技术上与众不同？</strong></p><p>利用Block.one开发的开源EOSIO协议，Voice充分利用了区块链技术的固有特性：安全性和可审计性。通过Voice，我们促进了可信任且透明的社交互动，以及对平台内容推广方式的可见性。</p><p><strong>什么是Voice代币，如何获得？</strong></p><p>Voice代币是消耗性的实用代币，用来引起其他用户的注意；您可以将它们花费在特定内容上，以增加在平台上的曝光度。由于每个人都有被倾听的权利，因此用户每天都会获得相同数量的Voice代币。您可以通过创建其他人消费和欣赏的内容来获得Voice代币。最初，您可以使用代币购买发布的内容下方的空间，但Voice代币被认为是平台上所有形式的促销和广告的中介。</p><p>随着测试版的发布，我们将在Voice博客上发布更多有关Voice代币，以及分发机制和消费模型的详细信息。</p><p><strong>与其他社交媒体相比，Voice上的促销和广告有何不同？</strong></p><p>Voice代币位于区块链账本中，该账本对存储的数据库实现了前所未有的透明性，包括整个平台上的促销和广告。通过使用户能够看到促销内容的背后的发起人和促销方式，使得促销活动更加吸引人并且更少的误导性。这种可审核的透明度还扩展到Voice代币的分发和使用，Voice代币由作者和用户获得，并由寻求推广的人花费。</p><p><strong>那些更被动，主要只是消费内容的社交媒体用户呢？ 他们为什么要使用Voice？</strong></p><p>真实用户。 真实内容。 实际价值。 Voice专为消费者和内容创作者而设计。 Voice上的每个用户将有权影响哪些内容获得的热度，为了确保这一点，所有经过验证的用户每天将获得相等数量的Voice代币。 我们相信每个人的意见都很重要，而Voice代币就是我们确保其真正做到的方式。</p><p><strong>如何使用Voice代币来推广内容？</strong></p><p>Voice上的每个帖子都有机会被“听到”。 这意味着用户可以将其Voice代币消费到帖子中并控制顶部评论。 此操作可奖励内容创建者，并为帖子带来更多可见度。 那时，用户的Voice代币已花费在帖子上。 如果其他人提供了更多Voice代币来控制指定文章上的最高评论点，则前竞标者将失去对该位置的控制权，但获得的Voice代币要比他们最初花费的Voice代币多。 然后，他们可以决定是否要为该位置重新出价以重新获得控制权。</p><p><strong>与其他未能处理假新闻，欺凌和操纵行为的社交平台相比，Voice的工作方式有何不同？内容将如何审核？</strong></p><p>当前社交媒体平台上发生的大规模攻击和操纵，很大程度上是由于无法将内容归因于终端用户，因此为假冒、商业化和操纵性内容和行为营造了猖獗的环境。Voice的用户是经过验证的真实身份，旨在通过将所有内容归因于特定人员的能力来极大地减少假帐户和非法内容的流行。</p><p>适用性仍然是一个问题，控制应用的规则通常不由平台运营商所控制，而由监管机构和适用法律掌握。作为一家公司，我们相信言论自由，并会在遵守所有法律法规的前提下优先考虑该价值。</p><p>我们希望将来能够实现分散的内容分发和审核，但是对于第一阶段，我们主要致力于提供那些可以用许多令人兴奋的方式进行扩展的核心功能。</p><p><strong>Voice的所有用户都将被要求验证身份吗？</strong></p><p>除了单纯内容消费之外，其他所有的场景都需要验证身份。 真实性是使社交媒体保持一致的基础，而身份验证将确保每个帐户都属于一个真实的人。 经过验证的身份有助于消除机器人程序、虚假新闻以及由做恶者隐藏在匿名和商业利益背后而造成的困扰现有社交平台的其他负面体验，并有助于与代币化经济体进行更深入的合规性互动。 我们并没有忘记实现这一目标所会遇到的障碍，但是我们知道它所带来的变革性经验是值得去克服这些障碍的，我们还会专注于使流程尽可能简化和容易。</p><p><strong>Voice测试版是什么样子？</strong></p><p>与所有雄心勃勃的新产品一样，Voice将需要迭代和反复试验，以确保满足以用户为中心，安全性强且人们喜欢它。 随着我们不断进行迭代，有关产品和此问答的许多事情也会改变。 测试版将向社区成员敞开大门，让他们首次体验Voice，测试其设计并开始建立您的网络。</p><p><strong>如何实现Voice博客测试版</strong></p><p>透明度是我们所做工作的核心，并且在我们持续构建Voice的过程中，这部分意味着向我们的社区敞开大门，让他们亲眼目睹Block.one为实现Voice所做的努力、成功和所采取的步骤。</p><p>在未来的几个月中，我们希望通过我们的博客和常见问题解答，就当今困扰社交媒体的问题，与社区进行对话，说明Voice在改变社交媒体范式中所扮演的角色以及我们启动测试版的方式。 我们的博客将重点介绍过程中有趣的方面，因为我们能够应对面临的挑战和所看到的机遇。 在新的Voice博客中可以找到最早的测试公告，以及我们即将推出而不断增长的问答。</p><p><strong>Voice何时可用？</strong></p><p>Voice团队正在努力争取在2020年2月14日发布Voice的公共测试版。您可以在Voice.com上请求测试版的访问权限，以了解最新动态。 虽然Voice测试的初始版本仅是英语，且功能有限，但我们希望使尽可能多的人可以使用它，以开始体验此方向并提供反馈。 如果您尚未请求测试版访问权限，我们鼓励您加入我们。</p><p><strong>Voice将在哪里运行？</strong></p><p>当Voice处于测试状态且处于高度迭代状态时，它将在特定的EOSIO区块链上运行。 随着时间的流逝，我们希望Voice能够利用EOS公链以及可能满足Voice的性能和治理要求的其他区块链。</p><p><strong>哪些国家可以使用测试版Voice？</strong></p><p>Voice旨在成为一个欢迎不同体验和文化的全球社区，这就是我们的目标。 在朝着这个目标努力的过程中，Voice 测试版最初将以英语发布，并在许多可行的发布国家/地区发布。 随着我们针对本地语言，标准和法规环境改进和优化，我们的目标是继续提高世界各地不同国家和语言的用户的可访问性。 我们将继续在Voice博客中及时更新社区信息，以及在发布过程中面临的任何挑战，因为我们打算尽快将邀请尽可能广泛地发出。</p><p><strong>有兴趣加入Block.one来开发Voice吗？</strong></p><p>我们始终欢迎对Voice有兴趣希望加入Block.one的人。 有关加入Block.one团队的更多信息，请访问我们的职业页面以查看我们目前正在招聘的职位。</p>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;Voice 是由 Block.one 公司推出的社交网站，基于EOSIO区块链。这里翻译一下官方的问答，基于谷歌翻译并做微调。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://voice.com/faq/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;link&quot;   href=&quot;https://voice.com/faq/&quot; &gt;原文链接 &lt;i class=&quot;fa-regular fa-arrow-up-right-from-square fa-sm&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Voice是什么？&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Voice是用于创建、分发和发现内容的公开透明、基于奖励的社交网络。它旨在通过身份认证和公开透明的数据库基础结构来培养新的可信任的体验。&lt;br&gt;Voice由用户构成并为了用户而创建的。大部分价值通过Voice代币返回到社区，Voice代币是一种实用代币，可以通过获取和使用来获得网络上其他用户的关注。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+      <category term="翻译" scheme="https://tinyhill.dev/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
   </entry>
   
   <entry>
     <title>关于传染病的过激反应</title>
-    <link href="http://yoursite.com/2020/01/23/2020-1-23/"/>
-    <id>http://yoursite.com/2020/01/23/2020-1-23/</id>
+    <link href="https://tinyhill.dev/2020/01/23/2020-1-23"/>
+    <id>https://tinyhill.dev/2020/01/23/2020-1-23</id>
     <published>2020-01-23T22:24:00.000Z</published>
-    <updated>2020-01-23T14:56:34.158Z</updated>
+    <updated>2020-01-23T22:24:00.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>传染病的季节，怕死的人该如何自处？</p></blockquote><p>经过了两天的纠结与折腾，终于决定了取消回家的计划。随着疫情的不断变化加剧，从坐火车到开车到取消，实在是让人心累。</p><p>不知道是有了宝宝之后怕死还是自己原来就这么怕死，但是对于这次的疫情，我表现出了异常的敏感。</p><p>此刻夜深，老婆孩子都已睡着，计划也已经做定，似乎才缓过神来，可以恢复理智地思考。</p><a id="more"></a><h1 id="是不是过度恐慌了？"><a href="#是不是过度恐慌了？" class="headerlink" title="是不是过度恐慌了？"></a>是不是过度恐慌了？</h1><p>发源于武汉的新型冠状病毒正式命名为SARI，它同SARS是非常类似的病毒。除了致病原理和毒性相似外，其潜伏期更加久，这导致了疾病控制的困难增加。</p><p>看着不断在微信里面传播的各种信息，真消息假消息肯定都有，从这些支离破碎的信息中，我能够感受到的情况是武汉已经非常严重了。加上潜伏期和春运，我个人的悲观估计，春节后会大范围地爆发。</p><p>所以，想到春节就算不回老家，在上海也不可避免需要参与一次的聚餐，还是感到了非常的不适。</p><p>但是，实际上，对于我来说，感染的风险还是很低的，为此，我牺牲了回家团圆的机会，想想是不理智了。</p><h1 id="关于疫情早期的瞒报"><a href="#关于疫情早期的瞒报" class="headerlink" title="关于疫情早期的瞒报"></a>关于疫情早期的瞒报</h1><p>武汉的官员，已经注定被钉在耻辱柱上了。不过，他们也只不过是倒霉的人，换做其他城市的官员，大抵也不过如此。</p><p>你实在是想不明白，这样的信息有什么好隐瞒和压制的。他们或许不是故意的，但是，这些基因早就写在了骨子里，不是这样基因的人根本做不到这样的位置。</p><p>我曾经已经和自己和解，这样的体制，大家好好赚钱就好了。关于专制和腐败成本和民主的社会成本，我觉得是可以算的过来的。但是一到了这种关乎生死的时刻，你才发行，还是不行。</p><p>或许，这样的心情会过去。希望，疫情也早些过去。</p><p>但是如何再与自己和解？</p><h1 id="关于众志成城"><a href="#关于众志成城" class="headerlink" title="关于众志成城"></a>关于众志成城</h1><p>好消息是，一旦这个国家不得不重视起来的时候，做事情的效率也是非常的快。看着各地的医生志愿（或不得已）奔赴疫情前行，我心里还是非常的敬佩的。同时也生出非常的羞愧情绪。</p><p>希望疫情能够得到控制，希望2020年能够一切顺利。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>传染病的季节，怕死的人该如何自处？</p></blockquote><p>经过了两天的纠结与折腾，终于决定了取消回家的计划。随着疫情的不断变化加剧，从坐火车到开车到取消，实在是让人心累。</p><p>不知道是有了宝宝之后怕死还是自己原来就这么怕死，但是对于这次的疫情，我表现出了异常的敏感。</p><p>此刻夜深，老婆孩子都已睡着，计划也已经做定，似乎才缓过神来，可以恢复理智地思考。</p><span id="more"></span><h1 id="是不是过度恐慌了？"><a href="#是不是过度恐慌了？" class="headerlink" title="是不是过度恐慌了？"></a>是不是过度恐慌了？</h1><p>发源于武汉的新型冠状病毒正式命名为SARI，它同SARS是非常类似的病毒。除了致病原理和毒性相似外，其潜伏期更加久，这导致了疾病控制的困难增加。</p><p>看着不断在微信里面传播的各种信息，真消息假消息肯定都有，从这些支离破碎的信息中，我能够感受到的情况是武汉已经非常严重了。加上潜伏期和春运，我个人的悲观估计，春节后会大范围地爆发。</p><p>所以，想到春节就算不回老家，在上海也不可避免需要参与一次的聚餐，还是感到了非常的不适。</p><p>但是，实际上，对于我来说，感染的风险还是很低的，为此，我牺牲了回家团圆的机会，想想是不理智了。</p><h1 id="关于疫情早期的瞒报"><a href="#关于疫情早期的瞒报" class="headerlink" title="关于疫情早期的瞒报"></a>关于疫情早期的瞒报</h1><p>武汉的官员，已经注定被钉在耻辱柱上了。不过，他们也只不过是倒霉的人，换做其他城市的官员，大抵也不过如此。</p><p>你实在是想不明白，这样的信息有什么好隐瞒和压制的。他们或许不是故意的，但是，这些基因早就写在了骨子里，不是这样基因的人根本做不到这样的位置。</p><p>我曾经已经和自己和解，这样的体制，大家好好赚钱就好了。关于专制和腐败成本和民主的社会成本，我觉得是可以算的过来的。但是一到了这种关乎生死的时刻，你才发行，还是不行。</p><p>或许，这样的心情会过去。希望，疫情也早些过去。</p><p>但是如何再与自己和解？</p><h1 id="关于众志成城"><a href="#关于众志成城" class="headerlink" title="关于众志成城"></a>关于众志成城</h1><p>好消息是，一旦这个国家不得不重视起来的时候，做事情的效率也是非常的快。看着各地的医生志愿（或不得已）奔赴疫情前行，我心里还是非常的敬佩的。同时也生出非常的羞愧情绪。</p><p>希望疫情能够得到控制，希望2020年能够一切顺利。</p>]]></content>
     
     <summary type="html">
     
@@ -402,19 +399,19 @@
     </summary>
     
     
-      <category term="个人" scheme="http://yoursite.com/categories/%E4%B8%AA%E4%BA%BA/"/>
+      <category term="个人" scheme="https://tinyhill.dev/categories/%E4%B8%AA%E4%BA%BA/"/>
     
     
   </entry>
   
   <entry>
     <title>为EOS小白用户准备的应用：Easy Pay</title>
-    <link href="http://yoursite.com/2019/11/21/2019-11-21-EASY-PAY-EOS/"/>
-    <id>http://yoursite.com/2019/11/21/2019-11-21-EASY-PAY-EOS/</id>
+    <link href="https://tinyhill.dev/2019/11/21/2019-11-21-EASY-PAY-EOS"/>
+    <id>https://tinyhill.dev/2019/11/21/2019-11-21-EASY-PAY-EOS</id>
     <published>2019-11-21T03:14:32.522Z</published>
-    <updated>2019-11-21T04:58:55.699Z</updated>
+    <updated>2019-11-21T03:14:32.522Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>普通用户是否需要了解 EOS 的资源模型？</p></blockquote><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>EIDOS 的空投导致整个 EOS 网络交易费用高企，大量用户抵押 EOS 不够发起交易，用户怨声载道。是否 EOS 的资源模型设计存在问题，又有什么办法可以解决这样的问题？</p><a id="more"></a><h1 id="EOS-资源模型"><a href="#EOS-资源模型" class="headerlink" title="EOS 资源模型"></a>EOS 资源模型</h1><p>EOS 的资源模型涉及到</p><ul><li>CPU</li><li>NET</li><li>RAM</li></ul><h2 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h2><p>用来存储用户的数据，比如账户余额，合约数据等。</p><p>RAM 需要向系统购买，不用的时候可以出售还给系统。</p><p>什么时候需要消耗 RAM？比如你给一个用户转账一个代币，而用户原来没有这个代币，那么对方就需要一个快新的空间来存储余额，这个时候，就需要消耗 RAM。</p><p>而在一般的交易中，无需关心 RAM。</p><h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p>每一笔交易，都需要节点执行并验证，CPU 资源就是与节点的计算时间相对应，每笔交易需要消耗一定的 CPU 时间。</p><p>CPU 资源通过向系统抵押 EOS 来获得，CPU 消耗过后，会在 3 天时间内逐渐恢复。</p><p>抵押一定数量的 EOS 获得的 CPU 时长是动态的，根据全网的使用量动态调节。全网使用量越大，单位 EOS 获得的 CPU 时长越少。</p><h2 id="NET"><a href="#NET" class="headerlink" title="NET"></a>NET</h2><p>每一笔交易，需要传输到节点并且存储在区块中，NET 资源对应的是网络传输和存储的成本，每笔交易需要消耗一定的 NET 使用量。NET 和 CPU 相似，采用抵押获得。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>NET 资源目前是非常宽裕的，而 RAM 资源一般不产生变化，所以主要的问题是 CPU 资源的问题。</p><p>和 BTC、ETH 资源模型不同，前者只要支付交易手续费，就可以等待交易被打包。区别在去交易成功的快慢问题，所以在交易量大的时候，交易成功会延迟。这就是俗称的区块链网络拥堵。</p><p>而在 EOS 中，不存在拥堵的情况，交易如果是合法的，马上就会成功。那么什么是“EOS”的网络拥堵呢？</p><p>那就是用户抵押的 EOS 所获得的 CPU 资源，不够发一笔交易，需要等到全网负荷减少，从而能够分配到足够的 CPU 资源来发起交易。</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>从上面的描述，可以得到的结论是，EOS 的资源模型，虽然有着看似免费的概念，但是事实是复杂的，且存在一些缺陷。</p><h2 id="CPU-死锁"><a href="#CPU-死锁" class="headerlink" title="CPU 死锁"></a>CPU 死锁</h2><ul><li>如何获得更多的 CPU 资源？</li><li>通过抵押更多的 EOS</li><li>如何发起抵押操作？</li><li>需要足够的 CPU 资源</li></ul><p>是不是死锁了？没有 CPU 资源什么都做不了。</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li>他人帮助，有足够多的 CPU 资源的用户，可以帮助抵押 EOS 来获取资源。缺点：<strong>麻烦</strong></li><li>法币租赁，第三方服务商通过收取法币，为用户抵押 EOS 来获取资源。缺点：<strong>昂贵</strong></li></ul><h2 id="空闲浪费"><a href="#空闲浪费" class="headerlink" title="空闲浪费"></a>空闲浪费</h2><p>普通用户，抵押了 EOS 获得了 CPU 资源，常常是空闲不用的，那么这就产生了一种浪费，也降低了资产的流动性。</p><ul><li>抵押足够多：随时可发起交易，多数时间空闲，<strong>浪费</strong></li><li>抵押小：网络负荷低时可以发起交易，网络负荷高无法发起交易，<strong>头疼</strong></li></ul><h1 id="Easy-Pay"><a href="#Easy-Pay" class="headerlink" title="Easy Pay"></a>Easy Pay</h1><p>那有什么办法来解决目前 EOS 资源模型存在的问题？</p><p>EOS 最新的系统升级，引入了一个新特性，就是他方付 CPU 的特性。一笔交易，CPU 资源可以不从交易发起者扣除，而是指定其他账户扣除。</p><p>这样的特性为文本所介绍的应用带来的可能。</p><p>在 Easy Pay 中转账，用户不用给自己抵押 EOS、也不用关心网络的负荷，只需要支付 0.01 EOS 的手续费，就可以马上把交易发出去。CPU 资源由应用方来为用户支付。</p><h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul><li>简单易懂</li><li>无需抵押，为资产提供更高的流动性</li><li>无论网络负荷多数，都可以第一时间将交易发送出去</li></ul><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>Easy Pay 目前支持</p><ul><li>EOS 转账</li><li>EOS 网络中的代币转账，如 LC</li><li>EOS 通用合约调用</li></ul><p>即将上线的功能：</p><ul><li>EOS 糖果抓取</li><li>CPU、NET、RAM 等资源管理</li><li>REX 租赁</li><li>其他常用的功能</li></ul><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>目前 Easy Pay 已经上线 麦子、Meet One、TokenPocket、ONE 等 EOS 钱包，在这些钱包的应用中都可以搜索到，使用界面简单易懂。</p><p>唯一需要关心的是手续费金额，默认是简单交易 0.01 EOS，一般的转账都是没有问题。如果有复杂的合约调用、领取空投、账号创建等交易。如果使用简单交易超时报错，可以选择复杂交易，需要支付 0.05 EOS。</p><p>文章原创首发<a href="https://lichang.io/otherShow/890" target="_blank" rel="noopener">力场</a></p><p><img src="/img/easy-pay/easypay.jpg" alt="界面"><br><img src="/img/easy-pay/math.jpeg" alt="钱包"></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>普通用户是否需要了解 EOS 的资源模型？</p></blockquote><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>EIDOS 的空投导致整个 EOS 网络交易费用高企，大量用户抵押 EOS 不够发起交易，用户怨声载道。是否 EOS 的资源模型设计存在问题，又有什么办法可以解决这样的问题？</p><span id="more"></span><h1 id="EOS-资源模型"><a href="#EOS-资源模型" class="headerlink" title="EOS 资源模型"></a>EOS 资源模型</h1><p>EOS 的资源模型涉及到</p><ul><li>CPU</li><li>NET</li><li>RAM</li></ul><h2 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h2><p>用来存储用户的数据，比如账户余额，合约数据等。</p><p>RAM 需要向系统购买，不用的时候可以出售还给系统。</p><p>什么时候需要消耗 RAM？比如你给一个用户转账一个代币，而用户原来没有这个代币，那么对方就需要一个快新的空间来存储余额，这个时候，就需要消耗 RAM。</p><p>而在一般的交易中，无需关心 RAM。</p><h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p>每一笔交易，都需要节点执行并验证，CPU 资源就是与节点的计算时间相对应，每笔交易需要消耗一定的 CPU 时间。</p><p>CPU 资源通过向系统抵押 EOS 来获得，CPU 消耗过后，会在 3 天时间内逐渐恢复。</p><p>抵押一定数量的 EOS 获得的 CPU 时长是动态的，根据全网的使用量动态调节。全网使用量越大，单位 EOS 获得的 CPU 时长越少。</p><h2 id="NET"><a href="#NET" class="headerlink" title="NET"></a>NET</h2><p>每一笔交易，需要传输到节点并且存储在区块中，NET 资源对应的是网络传输和存储的成本，每笔交易需要消耗一定的 NET 使用量。NET 和 CPU 相似，采用抵押获得。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>NET 资源目前是非常宽裕的，而 RAM 资源一般不产生变化，所以主要的问题是 CPU 资源的问题。</p><p>和 BTC、ETH 资源模型不同，前者只要支付交易手续费，就可以等待交易被打包。区别在去交易成功的快慢问题，所以在交易量大的时候，交易成功会延迟。这就是俗称的区块链网络拥堵。</p><p>而在 EOS 中，不存在拥堵的情况，交易如果是合法的，马上就会成功。那么什么是“EOS”的网络拥堵呢？</p><p>那就是用户抵押的 EOS 所获得的 CPU 资源，不够发一笔交易，需要等到全网负荷减少，从而能够分配到足够的 CPU 资源来发起交易。</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>从上面的描述，可以得到的结论是，EOS 的资源模型，虽然有着看似免费的概念，但是事实是复杂的，且存在一些缺陷。</p><h2 id="CPU-死锁"><a href="#CPU-死锁" class="headerlink" title="CPU 死锁"></a>CPU 死锁</h2><ul><li>如何获得更多的 CPU 资源？</li><li>通过抵押更多的 EOS</li><li>如何发起抵押操作？</li><li>需要足够的 CPU 资源</li></ul><p>是不是死锁了？没有 CPU 资源什么都做不了。</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li>他人帮助，有足够多的 CPU 资源的用户，可以帮助抵押 EOS 来获取资源。缺点：<strong>麻烦</strong></li><li>法币租赁，第三方服务商通过收取法币，为用户抵押 EOS 来获取资源。缺点：<strong>昂贵</strong></li></ul><h2 id="空闲浪费"><a href="#空闲浪费" class="headerlink" title="空闲浪费"></a>空闲浪费</h2><p>普通用户，抵押了 EOS 获得了 CPU 资源，常常是空闲不用的，那么这就产生了一种浪费，也降低了资产的流动性。</p><ul><li>抵押足够多：随时可发起交易，多数时间空闲，<strong>浪费</strong></li><li>抵押小：网络负荷低时可以发起交易，网络负荷高无法发起交易，<strong>头疼</strong></li></ul><h1 id="Easy-Pay"><a href="#Easy-Pay" class="headerlink" title="Easy Pay"></a>Easy Pay</h1><p>那有什么办法来解决目前 EOS 资源模型存在的问题？</p><p>EOS 最新的系统升级，引入了一个新特性，就是他方付 CPU 的特性。一笔交易，CPU 资源可以不从交易发起者扣除，而是指定其他账户扣除。</p><p>这样的特性为文本所介绍的应用带来的可能。</p><p>在 Easy Pay 中转账，用户不用给自己抵押 EOS、也不用关心网络的负荷，只需要支付 0.01 EOS 的手续费，就可以马上把交易发出去。CPU 资源由应用方来为用户支付。</p><h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><ul><li>简单易懂</li><li>无需抵押，为资产提供更高的流动性</li><li>无论网络负荷多数，都可以第一时间将交易发送出去</li></ul><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>Easy Pay 目前支持</p><ul><li>EOS 转账</li><li>EOS 网络中的代币转账，如 LC</li><li>EOS 通用合约调用</li></ul><p>即将上线的功能：</p><ul><li>EOS 糖果抓取</li><li>CPU、NET、RAM 等资源管理</li><li>REX 租赁</li><li>其他常用的功能</li></ul><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>目前 Easy Pay 已经上线 麦子、Meet One、TokenPocket、ONE 等 EOS 钱包，在这些钱包的应用中都可以搜索到，使用界面简单易懂。</p><p>唯一需要关心的是手续费金额，默认是简单交易 0.01 EOS，一般的转账都是没有问题。如果有复杂的合约调用、领取空投、账号创建等交易。如果使用简单交易超时报错，可以选择复杂交易，需要支付 0.05 EOS。</p><p>文章原创首发<a class="link"   href="https://lichang.io/otherShow/890" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="/img/easy-pay/easypay.jpg"                      alt="界面"                ><br><img                       lazyload                     src="/images/loading.svg"                     data-src="/img/easy-pay/math.jpeg"                      alt="钱包"                ></p>]]></content>
     
     <summary type="html">
     
@@ -426,23 +423,23 @@
     </summary>
     
     
-      <category term="区块链技术" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+      <category term="区块链技术" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="EOS" scheme="http://yoursite.com/tags/EOS/"/>
+      <category term="EOS" scheme="https://tinyhill.dev/tags/EOS/"/>
     
   </entry>
   
   <entry>
     <title>基于三角Swap的去中心化做空机制</title>
-    <link href="http://yoursite.com/2019/11/09/2019-11-09-DEFI-SHORT-SWAP/"/>
-    <id>http://yoursite.com/2019/11/09/2019-11-09-DEFI-SHORT-SWAP/</id>
+    <link href="https://tinyhill.dev/2019/11/09/2019-11-09-DEFI-SHORT-SWAP"/>
+    <id>https://tinyhill.dev/2019/11/09/2019-11-09-DEFI-SHORT-SWAP</id>
     <published>2019-11-09T01:12:46.720Z</published>
-    <updated>2019-11-21T04:55:18.177Z</updated>
+    <updated>2019-11-09T01:12:46.720Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>无抵押、不爆仓的做空机制是否可能？</p></blockquote><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。</p><p>本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。</p><a id="more"></a><p>该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空中楼阁，看不到实现的可能。但是这个机制用在去中心化交易所的做空机制上，可能是个不错的尝试。</p><h1 id="triswap"><a href="#triswap" class="headerlink" title="triswap"></a>triswap</h1><p>uniswap 是一个经过时间考验，非常成熟好用的去中心化交易协议。它通过交易对的底仓形成价格和深度，为交易者提供即刻的流动性。</p><p>假设一个基于 uniswap 模型的 EOS/USDT 交易对，在交易对中引入一个做空权益代币，short-EOS，简称 sEOS。在对底仓注入交易对两边的资金同时，根据 EOS/sEOS 的价格发行相同价值的做空权益 sEOS。让交易对中的 EOS、sEOS 和 USDT 形成三角的 uniswap，这里简称 triswap。</p><p>3 个币种会自然形成 3 个交易对，分别是 EOS/USDT、sEOS/USDT、EOS/sEOS，根据 uniswap 的模型，价格来源于币种在底仓中余额的比值，而这 3 个交易对共享底仓中 3 个余额。所以每个交易对发生交易后，对其他 2 个交易对的价格也会产生直接的影响。</p><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><ul><li>初始 0 底仓，交易对补充 10000 USDT 和 5000 EOS 形成交易对。</li><li>EOS/sEOS 交易对在实际情况中会有市场价格，在初始阶段，需要对 sEOS 拟定一个价格</li><li>例子假设 EOS/sEOS = 1/10</li><li>补充底仓的同时新增发行同等价值的 50000 sEOS</li><li>初始价格：EOS：2 U ， sEOS：0.2 U</li><li>以下举例都由最初的底仓展开，交易资金量为底仓 1%</li><li>3 个交易对有 6 中交易行为</li></ul><h3 id="USDT-gt-EOS"><a href="#USDT-gt-EOS" class="headerlink" title="USDT-&gt;EOS"></a>USDT-&gt;EOS</h3><p>100 USDT -&gt; 49.5 EOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.04， 上涨 4%</li><li>sEOS/USDT： 0.202，上涨 2% （同时上涨）</li><li>sEOS/EOS： 0.099，下降 1%</li></ul><h3 id="EOS-gt-USDT"><a href="#EOS-gt-USDT" class="headerlink" title="EOS-&gt;USDT"></a>EOS-&gt;USDT</h3><p>50 EOS -&gt; 99.01 USDT</p><p>交易后：</p><ul><li>EOS/USDT： 1.96， 下跌 4%</li><li>sEOS/USDT： 0.198， 下跌 2% （同时下跌）</li><li>sEOS/EOS： 0.101， 上涨 1%</li></ul><h3 id="USDT-gt-sEOS"><a href="#USDT-gt-sEOS" class="headerlink" title="USDT-&gt;sEOS"></a>USDT-&gt;sEOS</h3><p>100 USDT -&gt; 495.05 sEOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.02， 上涨 2%</li><li>sEOS/USDT：0.0204，上涨 4%</li><li>sEOS/EOS： 0.101， 上涨 1%</li></ul><h3 id="sEOS-gt-USDT"><a href="#sEOS-gt-USDT" class="headerlink" title="sEOS-&gt;USDT"></a>sEOS-&gt;USDT</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p><p>500 sEOS -&gt; 99.01 USDT</p><p>交易后：</p><ul><li>EOS/USDT： 1.98， 下跌 2%</li><li>sEOS/USDT：0.196，下跌 4%</li><li>sEOS/EOS： 0.099，下降 1%</li></ul><h3 id="EOS-gt-sEOS"><a href="#EOS-gt-sEOS" class="headerlink" title="EOS-&gt;sEOS"></a>EOS-&gt;sEOS</h3><p>50 EOS-&gt; 495.05 sEOS</p><p>交易后：</p><ul><li>EOS/USDT： 1.98 ，下降 1%</li><li>sEOS/USDT：0.202，上涨 1%</li><li>sEOS/EOS： 0.102，上涨 2%</li></ul><h3 id="sEOS-gt-EOS-卖出平空"><a href="#sEOS-gt-EOS-卖出平空" class="headerlink" title="sEOS-&gt;EOS 卖出平空"></a>sEOS-&gt;EOS 卖出平空</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p><p>500 sEOS-&gt; 49.5 EOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.02 ， 上涨 1%</li><li>sEOS/USDT：0.0198 ，下跌 1%</li><li>sEOS/EOS： 0.098 ， 下跌 2%</li></ul><h1 id="做空逻辑"><a href="#做空逻辑" class="headerlink" title="做空逻辑"></a>做空逻辑</h1><ul><li>认为 EOS 价格会下跌，用 EOS 买入 sEOS</li><li>EOS/USDT 价格下跌，普通用户、套利用户会卖出 EOS</li><li>如果交易 EOS-&gt;USDT，sEOS/USDT 价格下跌幅度为 EOS/USDT 的一半，sEOS 相对 EOS 的价格上涨</li><li>如果交易 EOS-&gt;sEOS，同样能够使 EOS/USDT 下降以匹配价差，此时，sEOS 相对 EOS 价格的涨幅是交易额的 2 倍</li><li>认为下跌行情结束，用 sEOS 买回 EOS，可以获得相对购买时更多的 EOS</li></ul><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul><li>sEOS 无需其他资产抵押</li><li>sEOS 没有爆仓</li><li>sEOS 只有最后兑现成 EOS 才能完成做空的盈利，sEOS 对 USDT 不会产生做空盈利</li><li>这是一个赚币的做空方案</li><li>无杠杆，波动相对小</li></ul><h1 id="产品化方案"><a href="#产品化方案" class="headerlink" title="产品化方案"></a>产品化方案</h1><ul><li>在 uniswap 的币币兑换的基础上增加“币做空”</li><li>“币做空”交易 EOS/sEOS</li><li>考虑到 sEOS/USDT 对于 EOS/USDT 并不是反向的作用，可以禁用 USDT-&gt;sEOS ，只允许 sEOS-&gt;USDT 的权益兑现</li></ul><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>全文以 USDT、EOS、sEOS 举例，可以适用于任何交易对。但是在 unsiwap 多交易对拼接形成的交易对中，可能效果会不同。</p><p>sEOS 的发行是对底仓注资的同时。所以，在底仓取回的同时，也会根据当时的 EOS/sEOS 价格销毁相同价值的 sEOS</p><p>EOS/sEOS 的价格，是一个市场博弈的结果，对于什么价格是合理的，我目前也没有想通。如果想通了可以再写一篇。</p><p>这个想法还是很粗糙，欢迎大家一起讨论。</p><p>文章原创首发<a href="https://lichang.io/articleDetail/931431" target="_blank" rel="noopener">力场</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>无抵押、不爆仓的做空机制是否可能？</p></blockquote><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>做空是最常用的金融工具之一，而目前还没有出现成熟的去中心化做空的机制。其中一个重要的原因在于预言机机制不成熟，导致爆仓的时效性无法得到保证。</p><p>本文尝试讨论一种无需抵押和爆仓的做空机制，这样就可以不受目前预言机等技术限制的影响。</p><span id="more"></span><p>该想法最早来源于 aiden pearce 的算法稳定币 VUSD 的设计。但是，我认为他用错了地方，算法稳定币目前来看，还是空中楼阁，看不到实现的可能。但是这个机制用在去中心化交易所的做空机制上，可能是个不错的尝试。</p><h1 id="triswap"><a href="#triswap" class="headerlink" title="triswap"></a>triswap</h1><p>uniswap 是一个经过时间考验，非常成熟好用的去中心化交易协议。它通过交易对的底仓形成价格和深度，为交易者提供即刻的流动性。</p><p>假设一个基于 uniswap 模型的 EOS/USDT 交易对，在交易对中引入一个做空权益代币，short-EOS，简称 sEOS。在对底仓注入交易对两边的资金同时，根据 EOS/sEOS 的价格发行相同价值的做空权益 sEOS。让交易对中的 EOS、sEOS 和 USDT 形成三角的 uniswap，这里简称 triswap。</p><p>3 个币种会自然形成 3 个交易对，分别是 EOS/USDT、sEOS/USDT、EOS/sEOS，根据 uniswap 的模型，价格来源于币种在底仓中余额的比值，而这 3 个交易对共享底仓中 3 个余额。所以每个交易对发生交易后，对其他 2 个交易对的价格也会产生直接的影响。</p><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><ul><li>初始 0 底仓，交易对补充 10000 USDT 和 5000 EOS 形成交易对。</li><li>EOS/sEOS 交易对在实际情况中会有市场价格，在初始阶段，需要对 sEOS 拟定一个价格</li><li>例子假设 EOS/sEOS = 1/10</li><li>补充底仓的同时新增发行同等价值的 50000 sEOS</li><li>初始价格：EOS：2 U ， sEOS：0.2 U</li><li>以下举例都由最初的底仓展开，交易资金量为底仓 1%</li><li>3 个交易对有 6 中交易行为</li></ul><h3 id="USDT-gt-EOS"><a href="#USDT-gt-EOS" class="headerlink" title="USDT-&gt;EOS"></a>USDT-&gt;EOS</h3><p>100 USDT -&gt; 49.5 EOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.04， 上涨 4%</li><li>sEOS/USDT： 0.202，上涨 2% （同时上涨）</li><li>sEOS/EOS： 0.099，下降 1%</li></ul><h3 id="EOS-gt-USDT"><a href="#EOS-gt-USDT" class="headerlink" title="EOS-&gt;USDT"></a>EOS-&gt;USDT</h3><p>50 EOS -&gt; 99.01 USDT</p><p>交易后：</p><ul><li>EOS/USDT： 1.96， 下跌 4%</li><li>sEOS/USDT： 0.198， 下跌 2% （同时下跌）</li><li>sEOS/EOS： 0.101， 上涨 1%</li></ul><h3 id="USDT-gt-sEOS"><a href="#USDT-gt-sEOS" class="headerlink" title="USDT-&gt;sEOS"></a>USDT-&gt;sEOS</h3><p>100 USDT -&gt; 495.05 sEOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.02， 上涨 2%</li><li>sEOS/USDT：0.0204，上涨 4%</li><li>sEOS/EOS： 0.101， 上涨 1%</li></ul><h3 id="sEOS-gt-USDT"><a href="#sEOS-gt-USDT" class="headerlink" title="sEOS-&gt;USDT"></a>sEOS-&gt;USDT</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p><p>500 sEOS -&gt; 99.01 USDT</p><p>交易后：</p><ul><li>EOS/USDT： 1.98， 下跌 2%</li><li>sEOS/USDT：0.196，下跌 4%</li><li>sEOS/EOS： 0.099，下降 1%</li></ul><h3 id="EOS-gt-sEOS"><a href="#EOS-gt-sEOS" class="headerlink" title="EOS-&gt;sEOS"></a>EOS-&gt;sEOS</h3><p>50 EOS-&gt; 495.05 sEOS</p><p>交易后：</p><ul><li>EOS/USDT： 1.98 ，下降 1%</li><li>sEOS/USDT：0.202，上涨 1%</li><li>sEOS/EOS： 0.102，上涨 2%</li></ul><h3 id="sEOS-gt-EOS-卖出平空"><a href="#sEOS-gt-EOS-卖出平空" class="headerlink" title="sEOS-&gt;EOS 卖出平空"></a>sEOS-&gt;EOS 卖出平空</h3><p><em>初始情况不存在可以卖出的 sEOS，此处假设</em></p><p>500 sEOS-&gt; 49.5 EOS</p><p>交易后：</p><ul><li>EOS/USDT： 2.02 ， 上涨 1%</li><li>sEOS/USDT：0.0198 ，下跌 1%</li><li>sEOS/EOS： 0.098 ， 下跌 2%</li></ul><h1 id="做空逻辑"><a href="#做空逻辑" class="headerlink" title="做空逻辑"></a>做空逻辑</h1><ul><li>认为 EOS 价格会下跌，用 EOS 买入 sEOS</li><li>EOS/USDT 价格下跌，普通用户、套利用户会卖出 EOS</li><li>如果交易 EOS-&gt;USDT，sEOS/USDT 价格下跌幅度为 EOS/USDT 的一半，sEOS 相对 EOS 的价格上涨</li><li>如果交易 EOS-&gt;sEOS，同样能够使 EOS/USDT 下降以匹配价差，此时，sEOS 相对 EOS 价格的涨幅是交易额的 2 倍</li><li>认为下跌行情结束，用 sEOS 买回 EOS，可以获得相对购买时更多的 EOS</li></ul><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul><li>sEOS 无需其他资产抵押</li><li>sEOS 没有爆仓</li><li>sEOS 只有最后兑现成 EOS 才能完成做空的盈利，sEOS 对 USDT 不会产生做空盈利</li><li>这是一个赚币的做空方案</li><li>无杠杆，波动相对小</li></ul><h1 id="产品化方案"><a href="#产品化方案" class="headerlink" title="产品化方案"></a>产品化方案</h1><ul><li>在 uniswap 的币币兑换的基础上增加“币做空”</li><li>“币做空”交易 EOS/sEOS</li><li>考虑到 sEOS/USDT 对于 EOS/USDT 并不是反向的作用，可以禁用 USDT-&gt;sEOS ，只允许 sEOS-&gt;USDT 的权益兑现</li></ul><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>全文以 USDT、EOS、sEOS 举例，可以适用于任何交易对。但是在 unsiwap 多交易对拼接形成的交易对中，可能效果会不同。</p><p>sEOS 的发行是对底仓注资的同时。所以，在底仓取回的同时，也会根据当时的 EOS/sEOS 价格销毁相同价值的 sEOS</p><p>EOS/sEOS 的价格，是一个市场博弈的结果，对于什么价格是合理的，我目前也没有想通。如果想通了可以再写一篇。</p><p>这个想法还是很粗糙，欢迎大家一起讨论。</p><p>文章原创首发<a class="link"   href="https://lichang.io/articleDetail/931431" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>]]></content>
     
     <summary type="html">
     
@@ -455,31 +452,31 @@
     </summary>
     
     
-      <category term="区块链技术" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+      <category term="区块链技术" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="uniswap" scheme="http://yoursite.com/tags/uniswap/"/>
+      <category term="Defi" scheme="https://tinyhill.dev/tags/Defi/"/>
     
-      <category term="Defi" scheme="http://yoursite.com/tags/Defi/"/>
+      <category term="去中心化金融" scheme="https://tinyhill.dev/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E9%87%91%E8%9E%8D/"/>
     
-      <category term="去中心化金融" scheme="http://yoursite.com/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E9%87%91%E8%9E%8D/"/>
+      <category term="dex" scheme="https://tinyhill.dev/tags/dex/"/>
     
-      <category term="dex" scheme="http://yoursite.com/tags/dex/"/>
+      <category term="去中心化交易所" scheme="https://tinyhill.dev/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E4%BA%A4%E6%98%93%E6%89%80/"/>
     
-      <category term="去中心化交易所" scheme="http://yoursite.com/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E4%BA%A4%E6%98%93%E6%89%80/"/>
+      <category term="uniswap" scheme="https://tinyhill.dev/tags/uniswap/"/>
     
   </entry>
   
   <entry>
     <title>EIDOS，一场早就分出胜负的游戏</title>
-    <link href="http://yoursite.com/2019/11/04/2019-11-04-EIDOS-FOMO/"/>
-    <id>http://yoursite.com/2019/11/04/2019-11-04-EIDOS-FOMO/</id>
+    <link href="https://tinyhill.dev/2019/11/04/2019-11-04-EIDOS-FOMO"/>
+    <id>https://tinyhill.dev/2019/11/04/2019-11-04-EIDOS-FOMO</id>
     <published>2019-11-04T18:53:00.000Z</published>
-    <updated>2019-11-21T04:54:53.329Z</updated>
+    <updated>2019-11-04T18:53:00.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>EIDOS - ENUMIVO IS DEAD, OH SHIT!</p></blockquote><h1 id="0-撸的魅力"><a href="#0-撸的魅力" class="headerlink" title="0 撸的魅力"></a>0 撸的魅力</h1><p>一个币，开盘就上线 Bithumb，完全没有付上币费，Hoo、MXC、BKEX、BIKI、Newdex、WhaleEX。。。。抢着上架。这就是热度的价值，这就是 0 撸的魅力。</p><a id="more"></a><p>币圈最不缺的就是羊毛党。</p><p>EIDOS 这个项目，只要你往合约地址转账任意金额的 EOS，你就能获得 1/10000 新增产量的 EIDOS，并且 EOS 也会还给你。</p><p>EIDOS 总量 10 亿，1 年半发行完，20%的发行量给团队。</p><p>11 月 1 号下午 4 点开始，当天早上在区块律动和 dapp 社区的宣传下，引发了大量的关注。</p><p>很多用户都去撸了，很快，EOS 的交易量就上来了，很快 EOS 的 CPU 价格就被推高了，普通用户的可怜的 0.1 EOS 的资源抵押可能连 1 次交易都不能发起。</p><p>这个时候轮到 MYKEY 表演了，MYKEY 是一个 EOS 的（半）中心化钱包，很难准确的定义。MYKEY 帮助用户支付 CPU 成本，让用户继续 0 撸，一时间大量用户涌入 MYKEY，就一个晚上就把 MYKEY 原来的资源撸爆，MYKEY 紧急维护。维护之后限制用户每分钟只能撸一次。</p><p>同一时间在 TokenPocket 上，撸币矿机（帮助用户更快撸币的工具），包括 Win96 矿机 dapp 都第一时间支持 EIDOS。</p><p>所有这些的结果就是，EOS 链 CPU 价格攀升，普通用户无法交易。给币圈的感官是 EOS 又堵了，EOS 又爆了。</p><p>当然，这个认识是错误，EOS 是高速公路，保证快速交易的同时，因为 CPU 价格调节机制阻挡了低价交易。关于 EOS 费用模型可以单读开一篇，这个不多说。好在 EOS 的新特性可以优化目前的问题。</p><h1 id="胜负早已决定"><a href="#胜负早已决定" class="headerlink" title="胜负早已决定"></a>胜负早已决定</h1><p><strong>这部分是本文的核心。</strong></p><p>EIDOS 的分发，看似是长达 1 年半的游戏。但是实际上，在第一天就决定了各个参与方的优势所在。</p><p>EIDOS 的分发，比拼 CPU 的数量，你拥有更多的 CPU 时间你就能获得更多的币。</p><p><strong>本质上，比拼的是 CPU 的成本。</strong></p><p>这里普及一下 REX（EOS 系统级资源交易所），用户可以将没用的 EOS 存入 REX 产生收益，需要资源的用户可以向 REX 租 EOS 资源。</p><p>11 月 1 号下午 5 点，我向 REX 支付 40 个 EOS，换取了 130331 EOS 对应的资源的 30 天使用权，价格是 3200 EOS-CPU/EOS。</p><p>而现在，11 月 4 号下午 6 点，REX 的价格是 188 EOS-CPU/EOS。</p><p>什么概念，新矿工的挖矿成本是我的 17 倍。</p><p>更夸张的是，第一天租赁 CPU 的矿工，当天就回本了！而且他还可以挖 29 天。</p><p>所以说，那些散户矿工和后来租赁 EOS 的矿工很可能辛辛苦苦，最后不能回本。因为你面对的是技术比你牛，成本比你低的专业玩家。</p><h1 id="不是傻就是坏"><a href="#不是傻就是坏" class="headerlink" title="不是傻就是坏"></a>不是傻就是坏</h1><p>我已经在上一篇文章中介绍了 AP，这个匿名创始人因为认为 ENU 分配机制不公平导致大户垄断整条链的男人，声称他这次使用了公平的方式去分发 EIDOS。</p><p><strong>这样的人，不是傻就是坏！</strong></p><p>当然他一点都不傻。</p><h1 id="模式创造者"><a href="#模式创造者" class="headerlink" title="模式创造者"></a>模式创造者</h1><p>两次代币发行都引起巨大的舆论关注和热度，不得不承认，AP 这个人有点厉害。他是一个很好的模式创造者。ENU 的分发带起了空抓的概念。而这次 EIDOS 的发行，不断地酝酿。至少已经出现了 POS 云矿机等新的概念。而有新的玩法对这个圈子就是好事情，我同意小岛的说法，这个事件实际利好 EOS，因为有不同的玩法出现了。</p><h1 id="CODEX"><a href="#CODEX" class="headerlink" title="CODEX"></a>CODEX</h1><p>昨天晚上，AP 公布了 EIDOS 这个空气的价值，它将成为 CODEX 的平台币。而 CODEX 这个 DEX 有什么特别的地方吗？</p><p><strong>然鹅并没有</strong></p><p>CODEX 就是 UNISWAP 的一个复制。UNISWAP 可以看我之前文章的介绍。</p><p>AP 这个男人，我们戏称他 FORK MAN，LiteShares fork BitShares，ENU fork EOS，CODEX fork UNISWAP。</p><p>除了 Fork，他还会什么？</p><h1 id="EOS-堵的假象"><a href="#EOS-堵的假象" class="headerlink" title="EOS 堵的假象"></a>EOS 堵的假象</h1><p>我还是要为 EOS 辩驳几句，EOS 的堵是假象。</p><p>只要你有足够的资源，你还是可以秒到账，而没有资源交易都不能成功。</p><p>当全网交易量增大后，资源价格的自动调节机制，导致资源抵押不够的用户无法发起交易。</p><p>目前社区有各种资源租赁的方案可以部分解决这个问题。</p><p>最新的他方付费机制，能够更好地解决这个问题。</p><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这个项目最终会归零，但是过程会是怎么样，谁也不知道，每个人自己把握吧。</p><p>文章原创首发<a href="https://lichang.io/articleDetail/911639" target="_blank" rel="noopener">力场</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>EIDOS - ENUMIVO IS DEAD, OH SHIT!</p></blockquote><h1 id="0-撸的魅力"><a href="#0-撸的魅力" class="headerlink" title="0 撸的魅力"></a>0 撸的魅力</h1><p>一个币，开盘就上线 Bithumb，完全没有付上币费，Hoo、MXC、BKEX、BIKI、Newdex、WhaleEX。。。。抢着上架。这就是热度的价值，这就是 0 撸的魅力。</p><span id="more"></span><p>币圈最不缺的就是羊毛党。</p><p>EIDOS 这个项目，只要你往合约地址转账任意金额的 EOS，你就能获得 1/10000 新增产量的 EIDOS，并且 EOS 也会还给你。</p><p>EIDOS 总量 10 亿，1 年半发行完，20%的发行量给团队。</p><p>11 月 1 号下午 4 点开始，当天早上在区块律动和 dapp 社区的宣传下，引发了大量的关注。</p><p>很多用户都去撸了，很快，EOS 的交易量就上来了，很快 EOS 的 CPU 价格就被推高了，普通用户的可怜的 0.1 EOS 的资源抵押可能连 1 次交易都不能发起。</p><p>这个时候轮到 MYKEY 表演了，MYKEY 是一个 EOS 的（半）中心化钱包，很难准确的定义。MYKEY 帮助用户支付 CPU 成本，让用户继续 0 撸，一时间大量用户涌入 MYKEY，就一个晚上就把 MYKEY 原来的资源撸爆，MYKEY 紧急维护。维护之后限制用户每分钟只能撸一次。</p><p>同一时间在 TokenPocket 上，撸币矿机（帮助用户更快撸币的工具），包括 Win96 矿机 dapp 都第一时间支持 EIDOS。</p><p>所有这些的结果就是，EOS 链 CPU 价格攀升，普通用户无法交易。给币圈的感官是 EOS 又堵了，EOS 又爆了。</p><p>当然，这个认识是错误，EOS 是高速公路，保证快速交易的同时，因为 CPU 价格调节机制阻挡了低价交易。关于 EOS 费用模型可以单读开一篇，这个不多说。好在 EOS 的新特性可以优化目前的问题。</p><h1 id="胜负早已决定"><a href="#胜负早已决定" class="headerlink" title="胜负早已决定"></a>胜负早已决定</h1><p><strong>这部分是本文的核心。</strong></p><p>EIDOS 的分发，看似是长达 1 年半的游戏。但是实际上，在第一天就决定了各个参与方的优势所在。</p><p>EIDOS 的分发，比拼 CPU 的数量，你拥有更多的 CPU 时间你就能获得更多的币。</p><p><strong>本质上，比拼的是 CPU 的成本。</strong></p><p>这里普及一下 REX（EOS 系统级资源交易所），用户可以将没用的 EOS 存入 REX 产生收益，需要资源的用户可以向 REX 租 EOS 资源。</p><p>11 月 1 号下午 5 点，我向 REX 支付 40 个 EOS，换取了 130331 EOS 对应的资源的 30 天使用权，价格是 3200 EOS-CPU/EOS。</p><p>而现在，11 月 4 号下午 6 点，REX 的价格是 188 EOS-CPU/EOS。</p><p>什么概念，新矿工的挖矿成本是我的 17 倍。</p><p>更夸张的是，第一天租赁 CPU 的矿工，当天就回本了！而且他还可以挖 29 天。</p><p>所以说，那些散户矿工和后来租赁 EOS 的矿工很可能辛辛苦苦，最后不能回本。因为你面对的是技术比你牛，成本比你低的专业玩家。</p><h1 id="不是傻就是坏"><a href="#不是傻就是坏" class="headerlink" title="不是傻就是坏"></a>不是傻就是坏</h1><p>我已经在上一篇文章中介绍了 AP，这个匿名创始人因为认为 ENU 分配机制不公平导致大户垄断整条链的男人，声称他这次使用了公平的方式去分发 EIDOS。</p><p><strong>这样的人，不是傻就是坏！</strong></p><p>当然他一点都不傻。</p><h1 id="模式创造者"><a href="#模式创造者" class="headerlink" title="模式创造者"></a>模式创造者</h1><p>两次代币发行都引起巨大的舆论关注和热度，不得不承认，AP 这个人有点厉害。他是一个很好的模式创造者。ENU 的分发带起了空抓的概念。而这次 EIDOS 的发行，不断地酝酿。至少已经出现了 POS 云矿机等新的概念。而有新的玩法对这个圈子就是好事情，我同意小岛的说法，这个事件实际利好 EOS，因为有不同的玩法出现了。</p><h1 id="CODEX"><a href="#CODEX" class="headerlink" title="CODEX"></a>CODEX</h1><p>昨天晚上，AP 公布了 EIDOS 这个空气的价值，它将成为 CODEX 的平台币。而 CODEX 这个 DEX 有什么特别的地方吗？</p><p><strong>然鹅并没有</strong></p><p>CODEX 就是 UNISWAP 的一个复制。UNISWAP 可以看我之前文章的介绍。</p><p>AP 这个男人，我们戏称他 FORK MAN，LiteShares fork BitShares，ENU fork EOS，CODEX fork UNISWAP。</p><p>除了 Fork，他还会什么？</p><h1 id="EOS-堵的假象"><a href="#EOS-堵的假象" class="headerlink" title="EOS 堵的假象"></a>EOS 堵的假象</h1><p>我还是要为 EOS 辩驳几句，EOS 的堵是假象。</p><p>只要你有足够的资源，你还是可以秒到账，而没有资源交易都不能成功。</p><p>当全网交易量增大后，资源价格的自动调节机制，导致资源抵押不够的用户无法发起交易。</p><p>目前社区有各种资源租赁的方案可以部分解决这个问题。</p><p>最新的他方付费机制，能够更好地解决这个问题。</p><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这个项目最终会归零，但是过程会是怎么样，谁也不知道，每个人自己把握吧。</p><p>文章原创首发<a class="link"   href="https://lichang.io/articleDetail/911639" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>]]></content>
     
     <summary type="html">
     
@@ -491,25 +488,25 @@
     </summary>
     
     
-      <category term="区块链轶事" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
+      <category term="区块链轶事" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="EIDOS" scheme="http://yoursite.com/tags/EIDOS/"/>
+      <category term="EIDOS" scheme="https://tinyhill.dev/tags/EIDOS/"/>
     
-      <category term="AP" scheme="http://yoursite.com/tags/AP/"/>
+      <category term="AP" scheme="https://tinyhill.dev/tags/AP/"/>
     
   </entry>
   
   <entry>
     <title>EIDOS撸爆EOS，说说我和ENU以及AP的故事</title>
-    <link href="http://yoursite.com/2019/11/04/2019-11-04-ENU-AP-ME/"/>
-    <id>http://yoursite.com/2019/11/04/2019-11-04-ENU-AP-ME/</id>
+    <link href="https://tinyhill.dev/2019/11/04/2019-11-04-ENU-AP-ME"/>
+    <id>https://tinyhill.dev/2019/11/04/2019-11-04-ENU-AP-ME</id>
     <published>2019-11-04T10:01:00.000Z</published>
-    <updated>2019-11-21T04:55:07.027Z</updated>
+    <updated>2019-11-04T10:01:00.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>不要接盘！不要接盘！不要接盘！重要的事情说三遍</p></blockquote><p>EIDOS 空投已经成为这个周末币圈最热的话题之一，“0 成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致 EOS 主网 CPU 价格不断攀升，大量用户的 EOS 资源都不够去发起一笔交易。</p><p>关于 EOS 的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为 EOS 主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p><p>EIDOS 是 Enumivo（ENU）创始人 aiden pearce（AP）启动的新项目。</p><p>在这篇文章里，我要讲讲我和 ENU 以及 AP 之前的故事。</p><a id="more"></a><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>时间要回到 2018 年，EOS 主网启动的时候，当时我作为 EOSeco 节点的负责人，全程参与了 EOS 主网启动的过程，同时开发了一款 EOS 区块链浏览器 EOSeco explorer。现在你可能不知道，但是最开始的时候，它还是服务了一些用户，特别是在主网激活阶段，通过离线签名的方式，为用户提供安全的投票操作。后来因为投资人套现 EOS，我们的节点也失去了竞争力，逐渐退出 EOS 节点竞选。在这个过程中，认识了非常多 EOS 圈子的技术大牛。</p><p>后来有个朋友和我说了 ENU，是一个 EOS 的复制链，还没有浏览器工具，让我把浏览器迁移过去。于是，我就在 ENU 上面搭了一个节点，并把浏览器迁移了过去。这个行为得到社区非常热烈的反馈，用户自发众筹感谢浏览器，这让我有些激动。之后，我发现 ENU 社区除了用户活跃之外，也不乏优秀的社区开发者，他们可能原来都不是币圈的用户，而是因为 UBI 的理念参与到这个项目。这里还要特别推荐一下 ENU 上面的一个好玩的趣味 dAPP - 站队 。在 EOS 全都是菠菜 dAPP 的时候，站队玩出了一股清流。因为 EOS 主网启动社区准备了很久，而 ENU 链，甚至比 EOS 主网更早的启动。这些都让我对这个项目产生了一些感情，并且在之后的时间里不断地参与到这个项目当中。</p><p>在这之后，我直接推动了 TP 钱包支持 ENU，在后续的 ENU 钱包和交易所的对接过程中，我几乎是主力的社区技术人员。</p><h2 id="我对-AP-的印象"><a href="#我对-AP-的印象" class="headerlink" title="我对 AP 的印象"></a>我对 AP 的印象</h2><p>熟悉了 ENU 中国社区之后，我也和 AP 取得了直接的联系。AP 是一个匿名的人，你只能在 Telegram 中找到他，他应该是 BTC 和 ETH 的早期投资者，从和他的接触过程中，你能感受到他是一个偏“左”的人，这从 ENU 项目所要做的 UBI（全面基本收入）就可以看出来。其实我自己是个偏“右”的人，不认为这件事情真的能做成，但是这不妨碍我参与其中。经过一段时间的接触，发现 ENU 这个项目除了 AP 自己，没有全职的开发人员，只是在网上雇佣了几个开发者，包括 AP 自己都不算全职。所以除了跟 EOS 的版本更新，几乎没有更多的开发量。而我也作为社区开发者，也帮助做了投票激励和一版 UBI 的原型。但是总体来说，项目的进展非常缓慢，而 UBI 的大饼遥遥无期。</p><h2 id="AP-与社区的矛盾"><a href="#AP-与社区的矛盾" class="headerlink" title="AP 与社区的矛盾"></a>AP 与社区的矛盾</h2><p>与此形成对比的是，ENU 中国社区，靠着社区的力量，以众筹等形式，相继上线 Cointiger、AEX 和 Biki 等交易所，这其中 David 贡献功不可没。这在我看来，真的可以说的币圈的一股清流。</p><p>好景不长，项目进展缓慢，AP 却持续套现来支付开发费用，这导致社区对 AP 产生了很大的意见。而 AP 一边，一直诟病节点的中心化，对于中国社区把持超级节点非常不满。两边的矛盾不断积累，矛盾的爆发只需要一个火星。</p><p>而这个导火索就是 AEX 的交易量，AP 怀疑 AEX 在刷量，认为这会误导持币者，要求 AEX 下架 ENU，同时指出由 5 个节点都是由一个人在控制，要求他退出节点。社区和 AP 已然不可调和，而 AP 最终选择了最激烈的，甚至是行为艺术的方式退出社区。</p><p>目前，ENU 社区也是在苦苦支撑，节点的利润完全不能覆盖成本，为了对社区的一点感情，我也是在持续维持着浏览器。其实，我并不是 ENU 的受益者，在最开始轰轰烈烈的空投以及后来的爆炒都与我无关，所以 AP 的退出，和 ENU 的接近归零对我来说也是很受伤。但是更受伤的是高位接盘的人，ENU 最高的时候到过 1 块钱，而目前的价格是 1 分钱。</p><p>AP 很任性，也很有煽动性，在社区里，还有人在给他造神，甚至说他是中本聪。</p><p>持币者很受伤，甚至是一些大佬。而因为匿名的原因，也没有人找得到他，也没法维权。</p><p>这就是我和 ENU 以及 AP 的一些往事，文笔不行，权当记录。这也是我对 EIDOS 潜在接盘者所能做的一些警告，希望能够帮到他们。</p><p>关于我对 EIDOS 和 CODEX 去中心化交易所的看法，我会再写一篇，敬请期待。</p><p>文章原创首发<a href="https://lichang.io/articleDetail/909965" target="_blank" rel="noopener">力场</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>不要接盘！不要接盘！不要接盘！重要的事情说三遍</p></blockquote><p>EIDOS 空投已经成为这个周末币圈最热的话题之一，“0 成本”挖矿吸引了一波用户关注。因为大量的撸币交易，导致 EOS 主网 CPU 价格不断攀升，大量用户的 EOS 资源都不够去发起一笔交易。</p><p>关于 EOS 的资源模型所存在的问题，可以单独写一篇文章，这里就暂时不展开。好消息是，因为 EOS 主网刚升级的他方付费的特性，用户使用资源的老大难问题很快会得到解决。</p><p>EIDOS 是 Enumivo（ENU）创始人 aiden pearce（AP）启动的新项目。</p><p>在这篇文章里，我要讲讲我和 ENU 以及 AP 之前的故事。</p><span id="more"></span><h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>时间要回到 2018 年，EOS 主网启动的时候，当时我作为 EOSeco 节点的负责人，全程参与了 EOS 主网启动的过程，同时开发了一款 EOS 区块链浏览器 EOSeco explorer。现在你可能不知道，但是最开始的时候，它还是服务了一些用户，特别是在主网激活阶段，通过离线签名的方式，为用户提供安全的投票操作。后来因为投资人套现 EOS，我们的节点也失去了竞争力，逐渐退出 EOS 节点竞选。在这个过程中，认识了非常多 EOS 圈子的技术大牛。</p><p>后来有个朋友和我说了 ENU，是一个 EOS 的复制链，还没有浏览器工具，让我把浏览器迁移过去。于是，我就在 ENU 上面搭了一个节点，并把浏览器迁移了过去。这个行为得到社区非常热烈的反馈，用户自发众筹感谢浏览器，这让我有些激动。之后，我发现 ENU 社区除了用户活跃之外，也不乏优秀的社区开发者，他们可能原来都不是币圈的用户，而是因为 UBI 的理念参与到这个项目。这里还要特别推荐一下 ENU 上面的一个好玩的趣味 dAPP - 站队 。在 EOS 全都是菠菜 dAPP 的时候，站队玩出了一股清流。因为 EOS 主网启动社区准备了很久，而 ENU 链，甚至比 EOS 主网更早的启动。这些都让我对这个项目产生了一些感情，并且在之后的时间里不断地参与到这个项目当中。</p><p>在这之后，我直接推动了 TP 钱包支持 ENU，在后续的 ENU 钱包和交易所的对接过程中，我几乎是主力的社区技术人员。</p><h2 id="我对-AP-的印象"><a href="#我对-AP-的印象" class="headerlink" title="我对 AP 的印象"></a>我对 AP 的印象</h2><p>熟悉了 ENU 中国社区之后，我也和 AP 取得了直接的联系。AP 是一个匿名的人，你只能在 Telegram 中找到他，他应该是 BTC 和 ETH 的早期投资者，从和他的接触过程中，你能感受到他是一个偏“左”的人，这从 ENU 项目所要做的 UBI（全面基本收入）就可以看出来。其实我自己是个偏“右”的人，不认为这件事情真的能做成，但是这不妨碍我参与其中。经过一段时间的接触，发现 ENU 这个项目除了 AP 自己，没有全职的开发人员，只是在网上雇佣了几个开发者，包括 AP 自己都不算全职。所以除了跟 EOS 的版本更新，几乎没有更多的开发量。而我也作为社区开发者，也帮助做了投票激励和一版 UBI 的原型。但是总体来说，项目的进展非常缓慢，而 UBI 的大饼遥遥无期。</p><h2 id="AP-与社区的矛盾"><a href="#AP-与社区的矛盾" class="headerlink" title="AP 与社区的矛盾"></a>AP 与社区的矛盾</h2><p>与此形成对比的是，ENU 中国社区，靠着社区的力量，以众筹等形式，相继上线 Cointiger、AEX 和 Biki 等交易所，这其中 David 贡献功不可没。这在我看来，真的可以说的币圈的一股清流。</p><p>好景不长，项目进展缓慢，AP 却持续套现来支付开发费用，这导致社区对 AP 产生了很大的意见。而 AP 一边，一直诟病节点的中心化，对于中国社区把持超级节点非常不满。两边的矛盾不断积累，矛盾的爆发只需要一个火星。</p><p>而这个导火索就是 AEX 的交易量，AP 怀疑 AEX 在刷量，认为这会误导持币者，要求 AEX 下架 ENU，同时指出由 5 个节点都是由一个人在控制，要求他退出节点。社区和 AP 已然不可调和，而 AP 最终选择了最激烈的，甚至是行为艺术的方式退出社区。</p><p>目前，ENU 社区也是在苦苦支撑，节点的利润完全不能覆盖成本，为了对社区的一点感情，我也是在持续维持着浏览器。其实，我并不是 ENU 的受益者，在最开始轰轰烈烈的空投以及后来的爆炒都与我无关，所以 AP 的退出，和 ENU 的接近归零对我来说也是很受伤。但是更受伤的是高位接盘的人，ENU 最高的时候到过 1 块钱，而目前的价格是 1 分钱。</p><p>AP 很任性，也很有煽动性，在社区里，还有人在给他造神，甚至说他是中本聪。</p><p>持币者很受伤，甚至是一些大佬。而因为匿名的原因，也没有人找得到他，也没法维权。</p><p>这就是我和 ENU 以及 AP 的一些往事，文笔不行，权当记录。这也是我对 EIDOS 潜在接盘者所能做的一些警告，希望能够帮到他们。</p><p>关于我对 EIDOS 和 CODEX 去中心化交易所的看法，我会再写一篇，敬请期待。</p><p>文章原创首发<a class="link"   href="https://lichang.io/articleDetail/909965" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>]]></content>
     
     <summary type="html">
     
@@ -524,31 +521,31 @@
     </summary>
     
     
-      <category term="区块链轶事" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
+      <category term="区块链轶事" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%BD%B6%E4%BA%8B/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="EIDOS" scheme="http://yoursite.com/tags/EIDOS/"/>
+      <category term="EIDOS" scheme="https://tinyhill.dev/tags/EIDOS/"/>
     
-      <category term="AP" scheme="http://yoursite.com/tags/AP/"/>
+      <category term="ENU" scheme="https://tinyhill.dev/tags/ENU/"/>
     
-      <category term="ENU" scheme="http://yoursite.com/tags/ENU/"/>
+      <category term="AP" scheme="https://tinyhill.dev/tags/AP/"/>
     
-      <category term="enumivo" scheme="http://yoursite.com/tags/enumivo/"/>
+      <category term="enumivo" scheme="https://tinyhill.dev/tags/enumivo/"/>
     
-      <category term="aiden pearce" scheme="http://yoursite.com/tags/aiden-pearce/"/>
+      <category term="aiden pearce" scheme="https://tinyhill.dev/tags/aiden-pearce/"/>
     
   </entry>
   
   <entry>
     <title>简述FIBOS DEX撮合模型</title>
-    <link href="http://yoursite.com/2019/08/21/2019-08-21-FIBOS-DEX/"/>
-    <id>http://yoursite.com/2019/08/21/2019-08-21-FIBOS-DEX/</id>
+    <link href="https://tinyhill.dev/2019/08/21/2019-08-21-FIBOS-DEX"/>
+    <id>https://tinyhill.dev/2019/08/21/2019-08-21-FIBOS-DEX</id>
     <published>2019-08-21T08:58:00.000Z</published>
-    <updated>2019-11-09T00:08:27.353Z</updated>
+    <updated>2019-08-21T08:58:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>说说FIBOS DEX如果结合uniswap和挂单的撮合模型</p><a id="more"></a><p>在之前的文章中，已经介绍过 FIBOS 和 FIBOS 的异构跨链体系。随着 FIBOS DEX 的正式上线，我们来聊一聊 FIBOS DEX 到底有什么特别之处。</p><h2 id="传统交易形式"><a href="#传统交易形式" class="headerlink" title="传统交易形式"></a>传统交易形式</h2><p>一般的交易所，包括目前绝大部分的交易所，都是采用「挂单/吃单」的撮合模型。用户可以选择指定的价格买入/卖出特定资产，如果没有匹配的价格，那么这个交易需求会保存在「订单簿」上，这个行为称为「挂单」。直到有用户选择「市价买入」或者挂一个新单能够匹配目前「订单簿」的价格，那么就会把之前的挂单与新的挂单进行撮合成交，这个行为称为「吃单」。</p><p>这种交易撮合模式是符合直觉的，也是目前主流的交易撮合模式。那么这样的模式有什么问题呢？</p><p>我们在一些小的交易所或者小的币种的对一对经常会看到，如果挂单的「深度」不够，如果你现在就想梭哈或者抛售，往往不可能，如果深度不够，可以会「拉爆」或者「砸穿」。这是一些新手大户会遇到的问题，如果习惯了市价吃单，或者挂错价格，那可能会得到意想不到的后果。</p><p>对于买卖方意愿都不足的市场，挂单的撮合模型存在「流动性」问题。</p><p>那么，除了挂单的撮合模型，还有哪些撮合模型呢？</p><h2 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h2><p>这个撮合模型我们在之前的文章中也有提到过，它是一个自动成交的交易模型。你不需要等人和你进行价格匹配，立马就可以成交。所有的交易都是「吃单」的行为，那么吃谁的单？以什么价格成交呢？</p><p>在 uniswap 中，有底池的概念，底池中分别有交易对的两个币种，底池就是交易对手方。那么又是以什么价格同底池进行交易呢？</p><p>底池中两个币种的比例就是目前的价格，比如底池用有 10 个 USDT，1000 个 FO，那么目前 FO 的价格就是 0.01 USDT。那么当你进行购买操作的时候，是不是都以 0.01 的价格成交呢？并不是这样的。</p><p>在公式中，要求交易前后有一个等式必须成立：</p><p><strong>交易前底池币种 A _ 交易前底池币种 B = 交易后底池币种 A _ 交易后底池币种 B</strong></p><p>假如我们用 A 来购买 B，进一步推导：</p><p><strong>交易前底池币种 A _ 交易前底池币种 B = （交易前底池币种 A+购买所付出的币种 A）_（交易前底池币种 B-买到的币种 B）</strong></p><p>再进行简化：</p><p><strong>买到的币种 B = 交易前底池币种 B -（交易前底池币种 A * 交易前底池币种 B）/（交易前底池币种 A+购买所付出的币种 A）</strong></p><p>是不是已经晕了？我们举个例子。</p><p>底池用有 10 个 USDT，1000 个 FO，我用 1USDT 来购买 FO。</p><p>买到的 FO = 1000 - 10*1000/（10+1） ≈ 90.9，成交的价格为 0.011。</p><p>是的，价格不是 0.01 而是 0.011。这就是 uniswap 的特点，每次交易都会造成价格的变化，如果买了价格就会变多，如果卖了价格就会变低。而交易金额相对底仓越多，就会造成越大的价格变化。</p><p>为了避免价格的剧烈变动，就必须保持底仓的金额足够多。除了交易之外，还可以对底仓进行加仓或者减仓。使用当前的市价，为底仓注入同等价值的代币。这样，在不变动价格的情况下，就可以增加底仓的金额。这样，一般的交易者就可以用更好的价格进行交易。</p><p>而底仓的资金也都是来自用户，那用户把资金加入底仓有什么好处呢？底仓用户可以瓜分交易的手续费。那么底仓资金有什么风险呢？如果市场形成单边行情，比如一直涨，那么底仓中的 USDT 就会增多，而 FO 就会减少。如果哪天你要从底仓中拿出你的资金，你会发现，USDT 多了而 FO 少了，而按照目前的价格，多出来的 USDT 买不到少掉的 FO，其实你就是变相在价格升高的过程中把 FO 卖给其他用户。</p><p>uniswap 模型适合希望立即成交的用户，但是问题是，你无法用你期待的价格进行成交。</p><h2 id="FIBOS-DEX"><a href="#FIBOS-DEX" class="headerlink" title="FIBOS DEX"></a>FIBOS DEX</h2><p>说到这里，终于可以介绍 FIBOS DEX 了，它结合了 uniswap 和挂单两种撮合模型。如果你愿意等，你可以挂单，等待特定的价格进行撮合。如果你不愿意等，希望立即成交，你也可以通过 uniswap 模型，直接与底仓交易。除此之外，你还可以充值底仓，通过提供流动性来赚取手续费。</p><p>除此之外，FIBOS DEX 其实是一个「协议」而不是具体的交易所，因为所有的交易对都是用户自行创建，底层也是用户来进行维护。交易手续费归属底仓用户，没有所谓的项目方收取手续费。更重要的是，资产完全由用户自己保管，不存在交易所被盗的风险。</p><p>文章原创首发<a href="https://lichang.io/articleDetail/563924" target="_blank" rel="noopener">力场</a></p>]]></content>
+    <content type="html"><![CDATA[<p>说说FIBOS DEX如果结合uniswap和挂单的撮合模型</p><span id="more"></span><p>在之前的文章中，已经介绍过 FIBOS 和 FIBOS 的异构跨链体系。随着 FIBOS DEX 的正式上线，我们来聊一聊 FIBOS DEX 到底有什么特别之处。</p><h2 id="传统交易形式"><a href="#传统交易形式" class="headerlink" title="传统交易形式"></a>传统交易形式</h2><p>一般的交易所，包括目前绝大部分的交易所，都是采用「挂单/吃单」的撮合模型。用户可以选择指定的价格买入/卖出特定资产，如果没有匹配的价格，那么这个交易需求会保存在「订单簿」上，这个行为称为「挂单」。直到有用户选择「市价买入」或者挂一个新单能够匹配目前「订单簿」的价格，那么就会把之前的挂单与新的挂单进行撮合成交，这个行为称为「吃单」。</p><p>这种交易撮合模式是符合直觉的，也是目前主流的交易撮合模式。那么这样的模式有什么问题呢？</p><p>我们在一些小的交易所或者小的币种的对一对经常会看到，如果挂单的「深度」不够，如果你现在就想梭哈或者抛售，往往不可能，如果深度不够，可以会「拉爆」或者「砸穿」。这是一些新手大户会遇到的问题，如果习惯了市价吃单，或者挂错价格，那可能会得到意想不到的后果。</p><p>对于买卖方意愿都不足的市场，挂单的撮合模型存在「流动性」问题。</p><p>那么，除了挂单的撮合模型，还有哪些撮合模型呢？</p><h2 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h2><p>这个撮合模型我们在之前的文章中也有提到过，它是一个自动成交的交易模型。你不需要等人和你进行价格匹配，立马就可以成交。所有的交易都是「吃单」的行为，那么吃谁的单？以什么价格成交呢？</p><p>在 uniswap 中，有底池的概念，底池中分别有交易对的两个币种，底池就是交易对手方。那么又是以什么价格同底池进行交易呢？</p><p>底池中两个币种的比例就是目前的价格，比如底池用有 10 个 USDT，1000 个 FO，那么目前 FO 的价格就是 0.01 USDT。那么当你进行购买操作的时候，是不是都以 0.01 的价格成交呢？并不是这样的。</p><p>在公式中，要求交易前后有一个等式必须成立：</p><p><strong>交易前底池币种 A _ 交易前底池币种 B = 交易后底池币种 A _ 交易后底池币种 B</strong></p><p>假如我们用 A 来购买 B，进一步推导：</p><p><strong>交易前底池币种 A _ 交易前底池币种 B = （交易前底池币种 A+购买所付出的币种 A）_（交易前底池币种 B-买到的币种 B）</strong></p><p>再进行简化：</p><p><strong>买到的币种 B = 交易前底池币种 B -（交易前底池币种 A * 交易前底池币种 B）/（交易前底池币种 A+购买所付出的币种 A）</strong></p><p>是不是已经晕了？我们举个例子。</p><p>底池用有 10 个 USDT，1000 个 FO，我用 1USDT 来购买 FO。</p><p>买到的 FO = 1000 - 10*1000/（10+1） ≈ 90.9，成交的价格为 0.011。</p><p>是的，价格不是 0.01 而是 0.011。这就是 uniswap 的特点，每次交易都会造成价格的变化，如果买了价格就会变多，如果卖了价格就会变低。而交易金额相对底仓越多，就会造成越大的价格变化。</p><p>为了避免价格的剧烈变动，就必须保持底仓的金额足够多。除了交易之外，还可以对底仓进行加仓或者减仓。使用当前的市价，为底仓注入同等价值的代币。这样，在不变动价格的情况下，就可以增加底仓的金额。这样，一般的交易者就可以用更好的价格进行交易。</p><p>而底仓的资金也都是来自用户，那用户把资金加入底仓有什么好处呢？底仓用户可以瓜分交易的手续费。那么底仓资金有什么风险呢？如果市场形成单边行情，比如一直涨，那么底仓中的 USDT 就会增多，而 FO 就会减少。如果哪天你要从底仓中拿出你的资金，你会发现，USDT 多了而 FO 少了，而按照目前的价格，多出来的 USDT 买不到少掉的 FO，其实你就是变相在价格升高的过程中把 FO 卖给其他用户。</p><p>uniswap 模型适合希望立即成交的用户，但是问题是，你无法用你期待的价格进行成交。</p><h2 id="FIBOS-DEX"><a href="#FIBOS-DEX" class="headerlink" title="FIBOS DEX"></a>FIBOS DEX</h2><p>说到这里，终于可以介绍 FIBOS DEX 了，它结合了 uniswap 和挂单两种撮合模型。如果你愿意等，你可以挂单，等待特定的价格进行撮合。如果你不愿意等，希望立即成交，你也可以通过 uniswap 模型，直接与底仓交易。除此之外，你还可以充值底仓，通过提供流动性来赚取手续费。</p><p>除此之外，FIBOS DEX 其实是一个「协议」而不是具体的交易所，因为所有的交易对都是用户自行创建，底层也是用户来进行维护。交易手续费归属底仓用户，没有所谓的项目方收取手续费。更重要的是，资产完全由用户自己保管，不存在交易所被盗的风险。</p><p>文章原创首发<a class="link"   href="https://lichang.io/articleDetail/563924" >力场 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>]]></content>
     
     <summary type="html">
     
@@ -557,16 +554,16 @@
     </summary>
     
     
-      <category term="区块链技术" scheme="http://yoursite.com/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
+      <category term="区块链技术" scheme="https://tinyhill.dev/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="区块链" scheme="http://yoursite.com/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://tinyhill.dev/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="FIBOS" scheme="http://yoursite.com/tags/FIBOS/"/>
+      <category term="uniswap" scheme="https://tinyhill.dev/tags/uniswap/"/>
     
-      <category term="DEX" scheme="http://yoursite.com/tags/DEX/"/>
+      <category term="FIBOS" scheme="https://tinyhill.dev/tags/FIBOS/"/>
     
-      <category term="uniswap" scheme="http://yoursite.com/tags/uniswap/"/>
+      <category term="DEX" scheme="https://tinyhill.dev/tags/DEX/"/>
     
   </entry>
   
