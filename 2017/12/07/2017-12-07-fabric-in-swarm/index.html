@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Tiny Hill">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-redefine.png">
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://tinyhill.dev/2017/12/07/2017-12-07-fabric-in-swarm/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="在 Swarm 集群环境部署 Fabric 区块链">
+    <meta property="og:description" content="Hexo Theme Redefine">
+    <meta property="og:url" content="https://tinyhill.dev/2017/12/07/2017-12-07-fabric-in-swarm/">
+    <meta property="og:image" content="/img/favicon.ico">
+    <meta property="og:site_name" content="TinyHill&#39;s Tech Blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="在 Swarm 集群环境部署 Fabric 区块链">
+    <meta name="twitter:description" content="Hexo Theme Redefine">
+    <meta name="twitter:image" content="/img/favicon.ico">
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico">
+    <meta name="theme-color" content="#005080">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <title>
+        
+            在 Swarm 集群环境部署 Fabric 区块链 -
+        
+        TinyHill&#39;s Tech Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    
+    
+    
+    
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"tinyhill.dev","root":"/","language":"zh-CN"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/img/avatar.svg","favicon":"/img/favicon.ico","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/img/bg.webp","dark":"/img/dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"Do Your Own Research","custom_font":{"enable":false,"font_family":null,"font_url":null}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":false,"preload":true},"code_block":{"copy":true,"style":"mac","custom_font":{"enable":false,"font_family":null,"font_url":null}},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"1.1.3","friend_links":{"columns":2},"home_article":{"date_format":"auto","category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":3}}};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+    
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Tiny Hill's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="menu-wrapper">
+    
+    <div class="menu-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                TinyHill&#39;s Tech Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="menu-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="menu-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-menu-item flex-center">
+                        <a class="" 
+                        target="_blank" rel="noopener" href="https://memos.tinyhill.dev"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">在 Swarm 集群环境部署 Fabric 区块链</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/img/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Tiny Hill</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="pc">2017-12-07 12:55</span>
+        <span class="mobile">2017-12-07 12:55</span>
+        <span class="hover-info">创建时间</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="pc">2017-12-07 12:55</span>
+            <span class="mobile">2017-12-07 12:55</span>
+            <span class="hover-info">更新时间</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/">区块链技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Hyperledger/">Hyperledger</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/fabric/">fabric</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/docker/">docker</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/swarm/">swarm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>fabric 部署本来就是一件麻烦的事情，如果还涉及到多机环境部署那就更加的麻烦了。<br>因为 fabric 推荐部署在 docker 环境中，那很自然地想到通过集群部署工具来部署 fabric。本文就通过例子来说明如何在 Swarm 集群中部署 fabric 区块链网络。</p>
+<p>还有之前看到过张海宁的<a class="link"   target="_blank" rel="noopener" href="https://github.com/hainingzhang/articles/blob/master/fabric_multi_nodes/FabricMultiNodev2-3.pdf" >k8s 部署方案 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，供大家参考。</p>
+<p>文中所有 IP 地址,如 192.168.1.93，都需要根据你本地的情况输入。</p>
+<p>本例子 github 地址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/qiushaoxi/fabric-in-swarm.git" >fabric-in-swarm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> , 欢迎 star.</p>
+<span id="more"></span>
+
+<h2 id="架构说明"><a href="#架构说明" class="headerlink" title="架构说明"></a>架构说明</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/fabric-in-swarm/architect.png"
+                      alt="架构图"
+                ></p>
+<p>docker swarm 会在各台机器之上 创建一个 overlay 虚拟网络，通过 swarm 启动的 container 可以跨主机互相访问。</p>
+<p>docker service 是 swarm 编排的最小单位，可以配置运行的镜像、网络端口、环境变量等，一个 service 可以启动多个 container 进行负载均衡。不过因为区块链中每个节点都有不同的配置，本例子中每个 service 只跑一个 container。后续可以继续探讨启动多个 container 的场景。</p>
+<p>docker stack 则是一组 service 的合集， 每个 stack 会默认创建一个 default 的 overlay 网络，其中还可以再配置其他网络。 stack 本意是技术栈，通过在 stack 中配置前后端、中间件等 service，可以实现一键部署整个技术栈。本例子的 stack 中，配置了 1 个 orderer、4 个 peer 和 1 个 cli 一共 6 个 service。后续可以根据需要加入 kafka、couchdb 等 service。</p>
+<p>swarm 集群会对外暴露一个 IP，通过端口映射，可以访问到具体 service 的端口。</p>
+<h2 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h2><h3 id="Swarm-集群搭建"><a href="#Swarm-集群搭建" class="headerlink" title="Swarm 集群搭建"></a>Swarm 集群搭建</h3><h4 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h4><p>如果还没有安装 docker ，执行：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="在-leader-创建-Swarm-集群"><a href="#在-leader-创建-Swarm-集群" class="headerlink" title="在 leader 创建 Swarm 集群"></a>在 leader 创建 Swarm 集群</h4><p>选择一台机器作为 leader</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init --advertise-addr 192.168.1.93</span><br></pre></td></tr></table></figure></div>
+
+<p>这里的 ip 是整个 swarm 集群对外的 ip，所有 swarm 集群里面的容器都通过这个 ip 对外提供服务。</p>
+<p>执行返回：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">To add a worker to this swarm, run the following command:</span><br><span class="line"></span><br><span class="line">    docker swarm join /</span><br><span class="line">    --token SWMTKN-1-16kit6dksvrqilgptjg5pvu0tvo5qfs8uczjq458lf9mul41hc-dzvgu0h3qngfgihz4fv0855bo /</span><br><span class="line">    192.168.1.93:2377</span><br><span class="line"></span><br><span class="line">To add a manager to this swarm, run &#x27;docker swarm join-token manager&#x27; and follow the instructions.</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="其他机器加入-Swarm-集群"><a href="#其他机器加入-Swarm-集群" class="headerlink" title="其他机器加入 Swarm 集群"></a>其他机器加入 Swarm 集群</h4><p>根据第一步返回的命令加入集群：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker swarm join /</span><br><span class="line">--token SWMTKN-1-16kit6dksvrqilgptjg5pvu0tvo5qfs8uczjq458lf9mul41hc-dzvgu0h3qngfgihz4fv0855bo /</span><br><span class="line">192.168.1.93:2377</span><br></pre></td></tr></table></figure></div>
+
+<p>所有其他机器执行命令后，在 leader 执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker node ls</span><br></pre></td></tr></table></figure></div>
+
+<p>如果能看到所有机器，说明操作成功，Swarm 集群搭建完毕。</p>
+<h4 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h4><p>这里推荐一个开源的 docker 后台管理工具<a class="link"   target="_blank" rel="noopener" href="https://portainer.io/" >portainer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，也支持 Swarm 集群的管理。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker service create \</span><br><span class="line">--name portainer \</span><br><span class="line">--publish 9000:9000 \</span><br><span class="line">--replicas=1 \</span><br><span class="line">--constraint &#x27;node.role == manager&#x27; \</span><br><span class="line">--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \</span><br><span class="line">portainer/portainer \</span><br><span class="line">-H unix:///var/run/docker.sock</span><br></pre></td></tr></table></figure></div>
+
+<p>执行这个命令就可以在 Swarm 中启动，然后访问 Swarm_IP:9000 就可以进行管理后台，初次需要设置密码。</p>
+<h3 id="NFS-服务器搭建"><a href="#NFS-服务器搭建" class="headerlink" title="NFS 服务器搭建"></a>NFS 服务器搭建</h3><p>因为集群容器需要读取一些文件，所以需要搭一个文件服务器。</p>
+<h4 id="安装-nfs-kernel-server"><a href="#安装-nfs-kernel-server" class="headerlink" title="安装 nfs-kernel-server"></a>安装 nfs-kernel-server</h4><p>可以在任意台机器安装，本例子就在 swarm manager 的机器上安装的。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install nfs-common</span><br><span class="line">apt install nfs-kernel-server</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/exports</span><br></pre></td></tr></table></figure></div>
+
+<p>修改内容如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/nfs *(rw,sync,no_root_squash)</span><br></pre></td></tr></table></figure></div>
+
+<p>各段表达的意思如下，根据实际进行修改</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/nfs   ：共享的目录</span><br><span class="line">*       ：指定哪些用户可以访问</span><br><span class="line">            *  所有可以ping同该主机的用户</span><br><span class="line">            192.168.1.*  指定网段，在该网段中的用户可以挂载</span><br><span class="line">            192.168.1.12 只有该用户能挂载</span><br><span class="line">(ro,sync,no_root_squash)：  权限</span><br><span class="line">        ro : 只读</span><br><span class="line">        rw : 读写</span><br><span class="line">        sync :  同步</span><br><span class="line">        no_root_squash: 不降低root用户的权限</span><br><span class="line">    其他选项man 5 exports 查看</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="创建目录并重启-nfs-服务"><a href="#创建目录并重启-nfs-服务" class="headerlink" title="创建目录并重启 nfs 服务"></a>创建目录并重启 nfs 服务</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /nfs</span><br><span class="line">service nfs-kernel-server restart</span><br></pre></td></tr></table></figure></div>
+
+<p>到此，nfs 的服务就搭建好了。</p>
+<h4 id="连接挂载-nfs-服务器"><a href="#连接挂载-nfs-服务器" class="headerlink" title="连接挂载 nfs 服务器"></a>连接挂载 nfs 服务器</h4><p>执行 showmount -e + 主机 IP 测试和 nfs 服务器是否能够联通</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install nfs-common</span><br><span class="line"></span><br><span class="line">showmount -e 192.168.1.93</span><br></pre></td></tr></table></figure></div>
+
+<p>如果看到返回：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Export list for 192.168.1.93:</span><br><span class="line">/nfs *</span><br></pre></td></tr></table></figure></div>
+
+<p>说明文件服务器是 ok 的。</p>
+<p>将该目录挂载到本地，每个机器都需要挂载，包括管理节点的机器。为的是保证每台机器都能够从/mnt/nfs/目录获取数据。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mnt/nfs</span><br><span class="line">mount 192.168.1.93:/nfs  /mnt/nfs</span><br></pre></td></tr></table></figure></div>
+
+<p>访问本地的/mnt/nfs 目录，就可访问服务端共享的目录了。</p>
+<h2 id="部署-Fabric"><a href="#部署-Fabric" class="headerlink" title="部署 Fabric"></a>部署 Fabric</h2><h3 id="部署文件准备"><a href="#部署文件准备" class="headerlink" title="部署文件准备"></a>部署文件准备</h3><p>进入 nfs 目录</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/nfs</span><br></pre></td></tr></table></figure></div>
+
+<p>从 github 获取示例脚本</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/qiushaoxi/fabric-in-swarm.git</span><br><span class="line">cd fabric-in-swarm</span><br></pre></td></tr></table></figure></div>
+
+<p>每个节点都需要有 fabric 相关的 docker image，我例子使用 fabric 1.0.0 版本。</p>
+<p>如果还没有，需要在每台机器执行下载脚本，拉取 image</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash download-dockerimages.sh</span><br></pre></td></tr></table></figure></div>
+
+<p>如果觉得下载速度太慢，可以使用阿里云镜像加速，或者在本地部署 docker hub，具体方法可以参考<a class="link"   target="_blank" rel="noopener" href="http://qiushaoxi.com/2017/12/05/Docker-Hub-Configration/" >本地 Docker Hub 配置 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h3 id="执行部署命令"><a href="#执行部署命令" class="headerlink" title="执行部署命令"></a>执行部署命令</h3><p>设置相关环境变量，FABRIC_IP 是你 Swarm 管理节点的 ip</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export FABRIC_IP=192.168.1.93</span><br></pre></td></tr></table></figure></div>
+
+<p>执行 docker stack deploy 命令启动 stack，docker-compose-cli.yaml 是 docker-compose v3 配置文件，配置了相关的 service。</p>
+<p>示例的配置参考 fabric 官方 e2e_cli，1 个 orderer，4 个 peer，一个 cli。命令最后的 e2e 是 stack 的名称。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd e2e_cli</span><br><span class="line">docker stack deploy -c docker-compose-cli.yaml e2e</span><br></pre></td></tr></table></figure></div>
+
+<p>docker-compose 文件中配置了 cli 容器会自动执行脚本，执行创建通道、加入通道等一系列操作。</p>
+<p>docker service 会根据每台机器的性能和负载，选择启动 container 的机器。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/fabric-in-swarm/cluster.png"
+                      alt="运行情况"
+                ></p>
+<h3 id="查看执行结果"><a href="#查看执行结果" class="headerlink" title="查看执行结果"></a>查看执行结果</h3><p>执行下面命令，查询执行日志。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service logs -f e2e_cli</span><br></pre></td></tr></table></figure></div>
+
+<p>如果看不到内容，（我在本地可以用这个命令，阿里云看不到，原因不明）。执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service ps e2e_cli</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到 cli 容器的 id 和运行在哪台机器上。</p>
+<p>到运行 cli 容器的机器上执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs [cli_container_id]</span><br></pre></td></tr></table></figure></div>
+
+<p>查看执行日志。</p>
+<p>如果最后出现 END-E2E，则说明执行成功。</p>
+<h3 id="移除-stack"><a href="#移除-stack" class="headerlink" title="移除 stack"></a>移除 stack</h3><p>执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stack rm e2e</span><br></pre></td></tr></table></figure></div>
+
+<p>就可以停止并移除所有配置启动的 service。</p>
+<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><p>查看 stack</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stack ls</span><br></pre></td></tr></table></figure></div>
+
+<p>查看 service</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker service ls</span><br></pre></td></tr></table></figure></div>
+
+<p>因为运行 chaincode 的 container 是通过 unix://var/run/docker.sock 启动的，不是由 swarm 启动的，所以通过 docker service 是看不到的。需要到具体执行的机器上执行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></div>
+
+<p>才能看到。</p>
+<p>而且，就算是停止了 stack 也不会自动删除这些 container，不过因为 peer 停止了，这些 chaincode 的 container 也会自动停止。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a class="link"   target="_blank" rel="noopener" href="http://www.jianshu.com/p/748416621013" >Docker Compose 配置文件详解（V3） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/" >官方接口文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://blog.csdn.net/u014743697/article/details/53004638" >多主机网络下 Docker Swarm 模式的容器管理 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/MoreExcellent/p/7222895.html" >ubuntu 16.04 nfs 服务的搭建 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+            </div>
+
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Hyperledger/">#Hyperledger</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">#区块链</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/fabric/">#fabric</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/docker/">#docker</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/swarm/">#swarm</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/12/20/2017-12-20-bitshares-witness/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Bitshares 私链部署witness节点</span>
+                                    <span class="post-nav-item">上一篇</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/12/05/2017-12-05-Docker-Hub-Configration/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">本地Docker Hub配置</span>
+                                    <span class="post-nav-item">下一篇</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">在 Swarm 集群环境部署 Fabric 区块链</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="nav-text">架构说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-text">基础环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swarm-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="nav-text">Swarm 集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-docker"><span class="nav-text">安装 docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-leader-%E5%88%9B%E5%BB%BA-Swarm-%E9%9B%86%E7%BE%A4"><span class="nav-text">在 leader 创建 Swarm 集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%9C%BA%E5%99%A8%E5%8A%A0%E5%85%A5-Swarm-%E9%9B%86%E7%BE%A4"><span class="nav-text">其他机器加入 Swarm 集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#portainer"><span class="nav-text">portainer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA"><span class="nav-text">NFS 服务器搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-nfs-kernel-server"><span class="nav-text">安装 nfs-kernel-server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95%E5%B9%B6%E9%87%8D%E5%90%AF-nfs-%E6%9C%8D%E5%8A%A1"><span class="nav-text">创建目录并重启 nfs 服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%8C%82%E8%BD%BD-nfs-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">连接挂载 nfs 服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-Fabric"><span class="nav-text">部署 Fabric</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%96%87%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-text">部署文件准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E9%83%A8%E7%BD%B2%E5%91%BD%E4%BB%A4"><span class="nav-text">执行部署命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-text">查看执行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4-stack"><span class="nav-text">移除 stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E"><span class="nav-text">其他说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Tiny Hill</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a> 驱动</span>
+                <br> 
+            <span class="theme-version-container">主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v1.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_time_div" style="display:none">
+                2022/8/17 11:45:14
+            </div>
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="unfolded-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="right-bottom-tools rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                <i class="fa-regular fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="folded-tools-list">
+        <li class="right-bottom-tools tool-toggle-show flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/menu-shrink.js"></script>
+
+<script src="/js/tools/go-top-bottom.js"></script>
+
+<script src="/js/tools/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/code-block.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/toc-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
